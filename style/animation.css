@@ -1,0 +1,28 @@
+.join-logo-start {
+    vertical-align: middle;
+    animation: moveLogo ease-in-out 1000ms;
+    animation-fill-mode: forwards;
+    animation-delay: 400ms;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+@keyframes moveLogo {
+    from {
+        width: 274px;
+        height: 334.07px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        width: 100.03px;
+        height: 121.97px;
+        top: 60px;
+        left: 77px;
+        transform: none;
+    }
+}
