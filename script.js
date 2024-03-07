@@ -61,6 +61,16 @@ async function pushDataToUsers() {
     return users;
 }
 
+async function deleteAllUsers() {
+    users = [];
+    await postData(USERS_PATH, users);
+}
+
+async function deleteUser() {
+    users.splice(1, 1);
+    await postData(USERS_PATH, users);
+}
+
 
 
 
