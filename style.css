@@ -1,8 +1,8 @@
 @import url(./style/fonts.css);
 @import url(./style/animation.css);
-@import url(./style/header.css);
 @import url(./style/login.css);
 @import url(./style/sign_up.css);
+@import url(./style/side_bar.css);
 
 body {
     margin: 0;
