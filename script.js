@@ -1,4 +1,5 @@
 const BASE_URL = "https://remotestorage-346a1-default-rtdb.europe-west1.firebasedatabase.app/";
+const USERS_PATH = "/users";
 let users = [];
 
 async function init() {
@@ -15,13 +16,13 @@ async function loadData(path="") {
 
 async function loadUsers() {
     try {
-        users = await loadData("/users");
+        users = await loadData(USERS_PATH);
     } catch (error) {
         console.error("Loading users error:", error);
     }
 }
 
-async function postData(path="", data={}) {
+async function postData(path="", users={}) {
     let response = await fetch(BASE_URL + path + ".json",{
         method: "PUT",
         header: {
@@ -36,16 +37,32 @@ function getDataFromInput() {
     let userName= document.getElementById('name');
     let userEmail = document.getElementById('email');
     let userPassword = document.getElementById('password');
-    let userId = users.length;
+    let userId;
+    if (users && users.length > 0) {
+        userId = users.length;
+    } else {
+        userId = 0;
+    }
     let data = {"name": userName.value, "email": userEmail.value, "password": userPassword.value, "id": userId};
     return data;
 }
 
 async function register() {
-    let data = getDataFromInput();
-    users.push(data);
-    await postData("/users/", users);
+    await pushDataToUsers();
+    await postData(USERS_PATH, users);
 }
+
+async function pushDataToUsers() {
+    let data = getDataFromInput();
+    if (!users) {
+        users = [];
+    }
+    users.push(data);
+    return users;
+}
+
+
+
 
 
 
