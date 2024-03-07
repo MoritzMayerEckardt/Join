@@ -1,0 +1,94 @@
+body {
+    background-color: #f6f7f8;
+}
+
+.heading-container {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+.heading {
+    font-family: 'Inter';
+    font-size: 61px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.seperator {
+    width: 3px;
+    height: 59px;
+    background-color: #29ABE2;
+    margin: 0 30px;
+}
+
+.subheading {
+    font-family: 'Inter';
+    font-size: 27px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+}
+
+.overview-container {
+    width: 560px;
+    height: 562px;
+}
+
+.todo-done-row {
+    display: flex;
+    
+    width: 560px;
+    height: 168px;
+    gap: 32px;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 264px;
+    height: 168px;
+    background-color: white;
+    border-radius: 30px;
+    gap: 16px;
+}
+
+.edit-container {
+    padding: 22.5px;
+
+    background-color: #2a3647;
+    border-radius: 100px;
+}
+
+.edit-img {
+    width: 32px;
+    height:32px
+}
+
+.amount-todo {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 76.8px;
+}
+
+
+.todo-text {
+    font-family: 'Inter';
+    font-weight: 400px;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2A3647;
+}
+
+.done-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 264px;
+    height: 168px;
+    background-color: white;
+    border-radius: 30px;
+}
