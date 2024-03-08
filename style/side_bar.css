@@ -83,3 +83,11 @@ header {
     gap: 16px;
 }
 
+.content-container {
+    display: flex;
+}
+
+#content-left {
+    width: 232px;
+}
+
