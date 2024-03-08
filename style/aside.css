@@ -60,34 +60,3 @@
     display: flex;
 }
 
-header {
-    display: flex;
-    height: 96px;
-    width: calc(100vw - 232px);
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px 20px 348px;
-    background-color: #ffffff;
-    box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
-}
-
-.header-headline {
-    font-size: 20px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    width: 104px;
-    height: 56px;
-    gap: 16px;
-}
-
-.content-container {
-    display: flex;
-}
-
-#content-left {
-    width: 232px;
-}
-
