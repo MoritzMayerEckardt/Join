@@ -57,11 +57,14 @@ body {
     gap: 16px;
     text-decoration: none;
     color: black;
+    transition: transform 0.3s ease;
 }
 
 .sign-and-description-container:hover {
     background-color: #2a3647;
     color: white;
+    transform: scale(1.03);
+
 
     .edit-container {
         background-color: white !important;
@@ -134,16 +137,16 @@ body {
 }
 
 .done-container {
-        background: url('../assets/img/hook.svg') no-repeat;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 22.5px;
-        width: 69px;
-        height: 69px;
-        background-color: #2a3647;
-        border-radius: 100px;
+    background: url('../assets/img/hook.svg') no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22.5px;
+    width: 69px;
+    height: 69px;
+    background-color: #2a3647;
+    border-radius: 100px;
 }
 
 
