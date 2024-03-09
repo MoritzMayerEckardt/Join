@@ -1,74 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>board</title>
+    <script src="js/includeHTML.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style/summary.css">
 </head>
-<body>
-    <section class="frame-container">
-        <aside class="side-bar">
-            <div>
-                <img class="logo-white" src="assets/img/logo_white.png" alt="logo">
-            </div>
-            <div class="menu-container">
-                <a class="link-container-sidebar"  href="#">
-                    <img class="icon-side-bar" src="./assets/img/summary.png" alt="">
-                    <span>Summary</span>
-                </a>
-                <a class="link-container-sidebar" href="#">
-                    <img class="icon-side-bar" src="./assets/img/add_task.png" alt="">
-                    <span>Add Task</span>
-                </a>
-                <a class="link-container-sidebar" href="#">
-                    <img class="icon-side-bar" src="./assets/img/board.png" alt="">
-                    <span>Board</span>
-                </a>
-                <a class="link-container-sidebar" href="#">
-                    <img class="icon-side-bar" src="./assets/img/contacts.png" alt="">
-                    <span>Contacts</span>
-                </a>
-            </div>
-            <div class="about-container">
-                <a class="links-about-container" href="">Privacy Policy</a>
-                <a class="links-about-container" href="">Legal Notice</a>
-            </div>
-        </aside>
-        <header>
-            <div>Kanban Project Management Tool</div>
-            <div class="header-right">
-                <img src="./assets/img/help.png" alt="">
-                <img src="./assets/img/ellipse.png" alt="">
-            </div>
-        </header>
-    </section>
 
-    <div class="heading-container">
-        <div class="heading">JOIN 360</div>
-        <div class="seperator"></div>
-        <div class="subheading">Key Metrics at a Glance</div>
-    </div>
-
-    <div class="overview-container">
-        <div class="todo-done-row">
-            <div class="todo-container">
-                <div class="edit-container">
-                    <img class="edit-img" src="img/edit.svg" alt="">
-                </div>
+<body onload="includeHTML()">
+    <div class="content-container">
+        <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
+        <section id="content-right">
+            <header w3-include-html="\assets\templates\header.html"></header>
+            <section class="summary" id="summary">
                 <div>
-                    <div class="amount-todo">1</div>
-                    <div class="todo-text">To-do</div>
+                    <div class="heading-container">
+                        <div class="heading">JOIN 360</div>
+                        <div class="seperator"></div>
+                        <div class="subheading">Key Metrics at a Glance</div>
+                    </div>
+
+                    <div class="overview-container">
+                        <div class="todo-done-row">
+                            <div class="sign-and-description-container">
+                                <div class="edit-container">
+                                    <img class="edit-img" src="assets/img/pen.svg" alt="">
+                                </div>
+                                <div class="amount-container">
+                                    <div class="amount">1</div>
+                                    <div class="amount-description">To-do</div>
+                                </div>
+                            </div>
+                            <div class="sign-and-description-container">
+                                <div class="edit-container">
+                                    <img class="hook-img" src="assets/img/hook.svg" alt="">
+                                </div>
+                                <div class="amount-container">
+                                    <div class="amount">1</div>
+                                    <div class="amount-description">Done</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="urgent-container">
+                            <div class="inner-urgent-container">
+                                <div class="urgent-img-container">
+                                    <img class="urgent-img" src="assets/img/up-arrow.svg" alt="">
+                                </div>
+                                <div class="amount-container">
+                                    <div class="amount">1</div>
+                                    <div class="amount-description">Urgent</div>
+                                </div>
+                            </div>
+                            <div class="urgent-seperator"></div>
+                            <div class="deadline-container">
+                                <div class="deadline-date">October 16, 2022</div>
+                                <div class="deadline-description">Upcoming Deadline</div>
+                            </div>
+                        </div>
+
+                        <div class="overview-tasks-container">
+                            <div class="tasks-info-container">
+                                <div class="tasks-amount">5</div>
+                                <div class="tasks-description-container">
+                                    <span>Tasks in</span>
+                                    <span>Board</span>
+                                </div>
+                            </div>
+
+                            <div class="tasks-info-container">
+                                <div class="tasks-amount">5</div>
+                                <div class="tasks-description-container">
+                                    <span>Tasks in</span>
+                                    <span>Progress</span>
+                                </div>
+                            </div>
+
+                            <div class="tasks-info-container">
+                                <div class="tasks-amount">5</div>
+                                <div class="tasks-description-container">
+                                    <span>Awaiting</span>
+                                    <span>Feedback</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="done-container">2</div>
-        </div>
-        <div></div>
-        <div></div>
+                <div class="greeting-container">
+                    <div class="greeting-text-container">
+                        <span class="greet">Good Morning,</span>
+                        <span class="greeting-name">Sofia Müller</span>
+                    </div>
+
+                </div>
+
+            </section>
+        </section>
     </div>
-
-
 </body>
-</html>
 
+</html>
