@@ -55,14 +55,31 @@ body {
     background-color: white;
     border-radius: 30px;
     gap: 16px;
+    text-decoration: none;
+    color: black;
+}
+
+.sign-and-description-container:hover {
+    background-color: #2a3647;
+    color: white;
+
+    .edit-container {
+        background-color: white !important;
+        background: url('../assets/img/pen.svg') no-repeat;
+        background-position: center;
+    }
+
+    .amount-description {
+        color: white;
+    }
 }
 
 .todo-done-row {
     display: flex;
-
     width: 560px;
     height: 168px;
     gap: 32px;
+    color: black;
 }
 
 .todo-container {
@@ -77,6 +94,8 @@ body {
 }
 
 .edit-container {
+    background: url('../assets/img/pen.svg') no-repeat;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,13 +134,16 @@ body {
 }
 
 .done-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 264px;
-    height: 168px;
-    background-color: white;
-    border-radius: 30px;
+        background: url('../assets/img/hook.svg') no-repeat;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 22.5px;
+        width: 69px;
+        height: 69px;
+        background-color: #2a3647;
+        border-radius: 100px;
 }
 
 
@@ -142,6 +164,13 @@ body {
     border-radius: 30px;
     height: 168px;
     padding: 28px 60px 28px 60px;
+    text-decoration: none;
+    color: black;
+}
+
+.urgent-container:hover {
+    background-color: #2a3647;
+    color: white;
 }
 
 .inner-urgent-container {
@@ -193,8 +222,14 @@ body {
     height: 168px;
     border-radius: 30px;
     padding: 25px 0px 25px 0px;
-    
     background-color: white;
+    text-decoration: none;
+    color: black;
+}
+
+.tasks-info-container:hover {
+    background-color: #2a3647;
+    color: white;
 }
 
 .tasks-description-container {
@@ -206,7 +241,7 @@ body {
 .tasks-amount {
     font-size: 64px;
     font-weight: 600;
-    line-height: 76.8px; 
+    line-height: 76.8px;
 }
 
 
@@ -235,4 +270,3 @@ body {
     color: #29ABE2;
     line-height: 76.8px;
 }
-
