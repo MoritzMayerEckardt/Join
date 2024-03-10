@@ -6,6 +6,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .logo-white {
@@ -24,7 +25,6 @@
 
 .link-container-sidebar {
     height: 46px;
-    border-radius: 8px;
     padding: 8px 56px 8px 56px;
     display: flex;
     align-items: center;
@@ -33,6 +33,12 @@
     text-decoration: none;
     justify-content: flex-start;
     width: 232px;
+    transition: transform 0.125s ease;
+}
+
+.link-container-sidebar:hover {
+    background-color: #979ba0;
+    transform: scale(1.02);
 }
 
 .about-container {
@@ -53,8 +59,15 @@
 .links-about-container {
     color: #A8A8A8;
     text-decoration: none;
-    padding: 8px
+    padding: 8px;
+    transition: transform 0.125s ease;
 }
+
+.links-about-container:hover {
+    color: #29ABE2;
+    transform: scale(1.02);
+}
+
 
 .frame-container {
     display: flex;
