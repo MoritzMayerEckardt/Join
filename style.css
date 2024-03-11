@@ -4,6 +4,7 @@
 @import url(./style/sign_up.css);
 @import url(./style/aside.css);
 @import url(./style/header.css);
+@import url(./style/board.css);
 
 body {
     margin: 0;
@@ -18,6 +19,24 @@ body {
 
 .d-none {
     display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.w-232 {
+    width: 232px;
 }
 
 .gap-3em {
@@ -140,6 +159,10 @@ body {
     width: 100%;
 }
 
+.w-32 {
+    width: 32px;
+}
+
 .w-160 {
     width: 160px;
 }
@@ -179,3 +202,4 @@ body {
 .margin-bottom-20 {
     margin-bottom: 20px;
 }
+

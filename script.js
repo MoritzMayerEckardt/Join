@@ -1,8 +1,10 @@
 const BASE_URL = "https://remotestorage-346a1-default-rtdb.europe-west1.firebasedatabase.app/";
 const USERS_PATH = "/users";
+const TASKS_PATH = "/tasks";
 let users = [];
+let tasks = [];
 
-async function init() {
+async function initLogin() {
     await loadUsers();
     setTimeout(() => {
         includeHTML();
