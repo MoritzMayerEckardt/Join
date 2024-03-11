@@ -1,6 +1,7 @@
 async function init() {
     includeHTML();
     await loadTasks();
+    addBackgroundColor(2);
     renderToDo();
     renderInProgress();
     renderAwaitFeedback();
@@ -62,7 +63,7 @@ function renderDone() {
 function renderCard(task) {
     return /*html*/`
             <div class="task-card">
-                <div class="task-category flex-center">${task.category.cat_1}</div>
+                <div class="task-category">${task.category.cat_1}</div>
                     <span class="task-title">${task.title}</span>
                     <div class="task-description">${task.description}</div>  
                 <div class="task-subtasks-container">
