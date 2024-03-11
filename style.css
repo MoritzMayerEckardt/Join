@@ -4,11 +4,8 @@
 @import url(./style/sign_up.css);
 @import url(./style/aside.css);
 @import url(./style/header.css);
-<<<<<<< HEAD
 @import url(./style/add-task.css);
-=======
 @import url(./style/board.css);
->>>>>>> 77287ac6f152a67db9eafc0026b356340959f32b
 
 body {
     margin: 0;
