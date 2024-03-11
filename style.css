@@ -4,7 +4,11 @@
 @import url(./style/sign_up.css);
 @import url(./style/aside.css);
 @import url(./style/header.css);
+<<<<<<< HEAD
 @import url(./style/add-task.css);
+=======
+@import url(./style/board.css);
+>>>>>>> 77287ac6f152a67db9eafc0026b356340959f32b
 
 body {
     margin: 0;
@@ -19,6 +23,24 @@ body {
 
 .d-none {
     display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.w-232 {
+    width: 232px;
 }
 
 .gap-3em {
@@ -141,6 +163,10 @@ body {
     width: 100%;
 }
 
+.w-32 {
+    width: 32px;
+}
+
 .w-160 {
     width: 160px;
 }
@@ -180,3 +206,4 @@ body {
 .margin-bottom-20 {
     margin-bottom: 20px;
 }
+

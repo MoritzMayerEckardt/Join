@@ -5,16 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>board</title>
     <script src="js/includeHTML.js"></script>
+    <script src="/js/board.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="includeHTML()">
-    <div class="content-container">
-        <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
-        <section id="content-right">
+<body onload="init()">
+    <div class="flex">
+        <aside class="w-232" w3-include-html="\assets\templates\aside.html"></aside>
+        <section>
             <header w3-include-html="\assets\templates\header.html"></header>
             <section id="board">
+                <div class="board-top">
+                    <div class="board-headline-container">
+                        <h1 class="board-headline">Board</h1>
+                        <div class="board-search-and-task-container">
+                            <div class="search-container">
+                                <div class="search-container-inside">
+                                    <input id="search" placeholder="Find Task" type="search">
+                                    <div class="search-image-container">
+                                        <a class="flex-center" href=""><img src="./assets/img/search.png" style="height: 17.58px;" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="add-task-button">
+                                <span>Add task</span>
+                                <div class="flex-center w-32"><img style="width: 18.67px;" src="./assets/img/add.png" alt=""></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-subheadlines">
+                    <div class="subheadline-container">
+                        <span>To do</span>
+                        <img src="./assets/img/plus_button.png" alt="">
+                    </div>
+                    <div class="subheadline-container">
+                        <span>In progress</span>
+                        <img src="./assets/img/plus_button.png" alt="">
+                    </div>
+                    <div class="subheadline-container">
+                        <span>Await feedback</span>
+                        <img src="./assets/img/plus_button.png" alt="">
+                    </div>
+                    <div class="subheadline-container">
+                        <span>Done</span>
+                    </div>
+                </div>
+                <div id="board-content">
+                        
+                </div>
 
-                
             </section>
         </section>
     </div>

@@ -1,6 +1,15 @@
 body {
     background-color: #f6f7f8;
+    /* background-color: #a5a5a5; */
+    font-family: 'Inter';
 }
+
+.summary {
+    margin-left: 96px;
+    display: flex;
+}
+
+/* ******************HEADING CONTAINER****************** */
 
 .heading-container {
     display: flex;
@@ -9,7 +18,6 @@ body {
 }
 
 .heading {
-    font-family: 'Inter';
     font-size: 61px;
     font-weight: 700;
     display: flex;
@@ -24,27 +32,34 @@ body {
 }
 
 .subheading {
-    font-family: 'Inter';
     font-size: 27px;
     font-weight: 400;
     display: flex;
     align-items: center;
 }
 
+/* ******************OVERVIEW CONTAINER****************** */
+
 .overview-container {
+    display: flex;
+    flex-direction: column;
     width: 560px;
     height: 562px;
+    display: flex;
+    gap: 16px;
 }
+
+/* ******************TODO DONE ROW****************** */
 
 .todo-done-row {
     display: flex;
-    
     width: 560px;
     height: 168px;
     gap: 32px;
+    color: black;
 }
 
-.todo-container {
+.to-do-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,35 +68,60 @@ body {
     background-color: white;
     border-radius: 30px;
     gap: 16px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.125s ease;
+}
+
+.to-do-container:hover {
+    background-color: #2a3647;
+    color: white;
+    transform: scale(1.01);
+
+
+    .edit-container {
+        background-color: white !important;
+        background: url('../assets/img/pen-blue.svg') no-repeat;
+        background-position: center;
+    }
+
+    .amount-description {
+        color: white;
+    }
 }
 
 .edit-container {
+    background: url('../assets/img/pen.svg') no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 22.5px;
-
+    width: 69px;
+    height: 69px;
     background-color: #2a3647;
     border-radius: 100px;
 }
 
 .edit-img {
     width: 32px;
-    height:32px
+    height: 32px
 }
 
-.amount-todo {
-    font-family: 'Inter';
+.amount {
     font-weight: 600;
     font-size: 64px;
     line-height: 76.8px;
 }
 
-
-.todo-text {
-    font-family: 'Inter';
+.amount-description {
     font-weight: 400px;
     font-size: 20px;
     line-height: 24px;
     color: #2A3647;
 }
+
 
 .done-container {
     display: flex;
@@ -91,4 +131,173 @@ body {
     height: 168px;
     background-color: white;
     border-radius: 30px;
+    gap: 16px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.125s ease;
+}
+
+.inner-done-container {
+    background: url('../assets/img/hook.svg') no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22.5px;
+    width: 69px;
+    height: 69px;
+    background-color: #2a3647;
+    border-radius: 100px;
+}
+
+.hook-img {
+    width: 29.94px;
+    height: 22.13px;
+}
+
+.amount-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.done-container:hover {
+    background-color: #2a3647;
+    color: white;
+    transform: scale(1.01);
+
+    .inner-done-container {
+        background-color: white !important;
+        background: url('../assets/img/hook-blue.svg') no-repeat;
+        background-position: center;
+    }
+
+    .amount-description {
+        color: white;
+    }
+}
+
+/* ******************URGENT CONTAINER****************** */
+
+.urgent-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 30px;
+    height: 168px;
+    padding: 28px 60px 28px 60px;
+    text-decoration: none;
+    color: black;
+    transition: transform 0.125s ease;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.urgent-container:hover {
+    background-color: #2a3647;
+    color: white;
+    transform: scale(1.01);
+
+}
+
+.inner-urgent-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.urgent-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22.5px;
+    width: 69px;
+    height: 69px;
+    background-color: #ff3d00;
+    border-radius: 100px;
+}
+
+.urgent-img {
+    width: 32px;
+    height: 32px
+}
+
+.urgent-seperator {
+    background-color: #D1D1D1;
+    height: 102.02px;
+    width: 2px;
+}
+
+.deadline-date {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+}
+
+/* ******************TASKS CONTAINER****************** */
+
+.overview-tasks-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tasks-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 168px;
+    height: 168px;
+    border-radius: 30px;
+    padding: 25px 0px 25px 0px;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.125s ease;
+}
+
+.tasks-info-container:hover {
+    background-color: #2a3647;
+    color: white;
+    transform: scale(1.01);
+}
+
+.tasks-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tasks-amount {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 76.8px;
+}
+
+
+/* ******************GREETING CONTAINER****************** */
+
+.greeting-container {
+    display: flex;
+    align-items: center;
+}
+
+.greeting-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.greet {
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56.4px;
+    color: #2A3647;
+}
+
+.greeting-name {
+    font-size: 64px;
+    font-weight: 700;
+    color: #29ABE2;
+    line-height: 76.8px;
 }

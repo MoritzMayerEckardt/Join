@@ -9,22 +9,10 @@ header {
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
 }
 
-.header-headline {
-    font-size: 20px;
-}
-
 .header-right {
     display: flex;
     align-items: center;
     width: 104px;
     height: 56px;
     gap: 16px;
-}
-
-.content-container {
-    display: flex;
-}
-
-#content-left {
-    width: 232px;
 }
