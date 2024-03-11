@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .headline {
     position: absolute;
     width: 278px;
@@ -117,6 +121,7 @@ header {
     line-height: 24px;
     position: relative;
     top: 10px;
+    display: flex;
 }
 
 .inputTitle {
@@ -136,8 +141,12 @@ header {
     gap: 10px;
     background-color: #FFFFFF;
     border-color: #D1D1D1;
-    border-style: solid; 
+    border-style: solid;
 
+}
+
+.inputfieldTitle:hover {
+    cursor: pointer !important;
 }
 
 .inputfieldTitle::placeholder {
@@ -194,6 +203,7 @@ header {
     background-color: #FFFFFF;
     border-color: #D1D1D1;
     font-family: 'Inter' !important;
+    overflow: hidden;
 }
 
 .smallinputfieldDescription::placeholder {
@@ -222,7 +232,7 @@ header {
     padding-top: 10px;
 }
 
-.select{
+.select {
     width: 440px;
     height: 53px;
     border-radius: 10px;
@@ -236,10 +246,10 @@ header {
     font-family: 'Inter' !important;
     font-size: 20px;
     line-height: 24px;
-    font-weight: 400;  
+    font-weight: 400;
 }
 
-.select:hover{
+.select:hover {
     cursor: pointer !important;
 }
 
@@ -248,7 +258,7 @@ header {
 }
 
 .svg {
-   
+
     width: 1px;
     position: absolute;
     left: 816.25px;
@@ -257,16 +267,112 @@ header {
     transform-origin: center;
     transform: rotate(-0deg);
 }
+
 .vector {
     stroke: #D1D1D1;
     stroke-width: 1px;
 }
 
-.rightSide{
-        position: absolute;
-        width: 440px;
-        height: 416px;
-        top: 327px;
-        left: 864.25px;
-    
+.rightSide {
+    position: relative;
+    width: 440px;
+    height: 416px;
+    top: 230px;
+    left: 632.25px;
+}
+
+.smallButtonsFrame {
+    display: flex;
+    gap: 8px
+}
+
+.urgent,
+.medium,
+.low {
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    padding-top: 16px;
+    padding-right: 10px;
+    padding-bottom: 16px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-width: 0px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.urgent,
+.low {
+    background-color: #FFFFFF;
+}
+
+.medium {
+    color: #FFFFFF;
+    background-color: orange;
+}
+
+.arrows {
+    width: 20px;
+    height: 14.51px;
+}
+
+.urgentText {
+    width: 65px;
+    height: 24px;
+    font-family: 'Inter' !important;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.mediumText {
+    width: 84px;
+    height: 24px;
+    font-family: 'Inter' !important;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+}
+
+.lowText {
+    width: 40px;
+    height: 24px;
+    font-family: 'Inter' !important;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.categoryFrame {
+    width: 440px;
+    height: 80px;
+}
+
+.category {
+    width: 98px;
+    height: 24px;
+    font-family: 'Inter' !important;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2A3647;
+    display: flex;
+    padding-top: 10px;
+}
+
+.subtaskFrame{
+    width: 440px;
+    height: 80px;
+}
+
+.subtask{
+    width: 88px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    padding-top: 10px;
 }
