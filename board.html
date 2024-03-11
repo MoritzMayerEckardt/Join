@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>board</title>
+    <title>Board</title>
     <script src="js/includeHTML.js"></script>
     <script src="/js/board.js"></script>
     <script src="script.js"></script>
@@ -12,9 +12,9 @@
 <body onload="init()">
     <div class="flex">
         <aside class="w-232" w3-include-html="\assets\templates\aside.html"></aside>
-        <section>
-            <header w3-include-html="\assets\templates\header.html"></header>
-            <section id="board">
+        <section style="max-width: 1440px;">
+            <header style="width: 100%; max-width: 1440px;" w3-include-html="\assets\templates\header.html"></header>
+            <section style="max-width: 1440px;" id="board">
                 <div class="board-top">
                     <div class="board-headline-container">
                         <h1 class="board-headline">Board</h1>
@@ -52,7 +52,10 @@
                     </div>
                 </div>
                 <div id="board-content">
-                        
+                    <div id="to-do-column" class="column"></div>
+                    <div id="in-progress-column" class="column"></div>
+                    <div id="await-feedback-column" class="column"></div>
+                    <div id="done-column"></div>
                 </div>
 
             </section>

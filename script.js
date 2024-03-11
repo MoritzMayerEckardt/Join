@@ -2,7 +2,43 @@ const BASE_URL = "https://remotestorage-346a1-default-rtdb.europe-west1.firebase
 const USERS_PATH = "/users";
 const TASKS_PATH = "/tasks";
 let users = [];
-let tasks = [];
+let tasks = [
+    {
+      "to_do": {
+        "assigned": '',
+        "category": ['User Story', 'Technical Task'],
+        "date": '',
+        "description": '',
+        "priority": ['urgent', 'medium', 'low'],
+        "title": ''
+      },
+      "await_feedback": {
+        "assigned": '',
+        "category": ['User Story', 'Technical Task'],
+        "date": '',
+        "description": '',
+        "priority": ['urgent', 'medium', 'low'],
+        "title": ''
+      },
+      "almost_done": {
+        "assigned": '',
+        "category": ['User Story', 'Technical Task'],
+        "date": '',
+        "description": '',
+        "priority": ['urgent', 'medium', 'low'],
+        "title": ''
+      },
+      "done": {
+        "assigned": '',
+        "category": ['User Story', 'Technical Task'],
+        "date": '',
+        "description": '',
+        "priority": ['urgent', 'medium', 'low'],
+        "title": ''
+      }
+    }
+  ];
+  
 
 async function initLogin() {
     await loadUsers();
