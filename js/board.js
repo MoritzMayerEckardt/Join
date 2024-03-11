@@ -13,10 +13,11 @@ function renderTasks() {
             <div class="task-card">
                 <div class="task-category flex-center">${task.category}</div>
                 <span class="task-title">${task.title}</span>
+                <span class="task-description">${task.description}</span>
                 <span>${task.assigned}</span>
                 <span>${task.date}</span>
                 <span>${task.priority}</span>
-                <span>${task.title}</span>
+                
                 <span>${task.subtasks}</span>
             </div>
         `;
