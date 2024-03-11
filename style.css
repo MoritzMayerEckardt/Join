@@ -4,6 +4,7 @@
 @import url(./style/sign_up.css);
 @import url(./style/aside.css);
 @import url(./style/header.css);
+@import url(./style/add-task.css);
 
 body {
     margin: 0;

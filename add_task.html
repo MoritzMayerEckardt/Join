@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board</title>
+    <script src="js/includeHTML.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="includeHTML()">
+    <div class="content-container">
+        <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
+        <section id="content-right">
+            <header w3-include-html="\assets\templates\header.html"></header>
+            <section id="board" class="board1">
+                <div class="headline">
+                    Add Task
+                </div>
+                <div class="buttons">
+                    <button class="clearBtn">
+                        <p class="clear">Clear</p>
+                        <img src="assets/img/cancel.png">
+                    </button>
+                    <button class="createBtn">
+                        <p class="create">Create Task</p>
+                        <img src="assets/img/check.png">
+                    </button>
+                </div>
+                <div class="leftSide">
+                    <div class="titleFrame">
+                        <p class="title">Title <span class="star">*</span></p>
+                        <div class="inputTitle">
+                            <input type="text" class="inputfieldTitle" placeholder="Enter a title">
+                            <p class="requiredTitle">This field is required </p>
+                        </div>
+                    </div>
+                    <div class="descriptionFrame">
+                        <p class="description">Description</p>
+                        <div class="inputfieldDescription">
+                            <textarea name="smallinputfieldDescription" id="" placeholder="Enter a Description"
+                                class="smallinputfieldDescription" cols="30" rows="10"></textarea>
+                            <p class="requiredTitle">This field is required </p>
+                        </div>
+                    </div>
+                    <div class="assignedToFrame">
+                        <p class="assignedTo">Assigned to</p>
+                        <select class="select">
+                            <option value="option1">Select contacts to assign</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="rightSide">
+                    <div class="titleFrame">
+                        <p class="title">Due Date <span class="star">*</span></p>
+                        <div class="inputTitle">
+                            <input type="date" name="date" class="inputfieldTitle">
+                            <p class="requiredTitle">This field is required </p>
+                        </div>
+                    </div>
+                    <div class="buttonsFrame">
+
+                    </div>
+                    <div class="assignedToFrame">
+                        <p class="assignedTo">Category <span class="star">*</span></p>
+                        <select class="select">
+                            <option value="option1">Select task category</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+                <svg class="svg" height="424px">
+                    <line class="vector" x1="0" y1="0" x2="0" y2="424" />
+                </svg>
+                <div class="rightSide">
+
+                </div>
+            </section>
+        </section>
+    </div>
+</body>
+
+</html>
