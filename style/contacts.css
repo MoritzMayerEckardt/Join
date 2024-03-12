@@ -107,9 +107,10 @@ body {
 .contacts-heading-container {
     display: flex;
     align-items: center;
-    width: 569px;
+    width: 575px;
     height: 73px;
     gap: 30px;
+    margin-top: 55px;
 }
 
 .main-contact-heading {
@@ -132,4 +133,128 @@ body {
     line-height: 32px;
     letter-spacing: 0em;
     text-align: left;
+}
+
+.view-contact-container {
+    display: flex;
+    flex-direction: column;
+    width: 461px;
+    height: 364px;
+    margin-top: 52.5px;
+
+}
+
+.name-container {
+    display: flex;
+    align-items: center;
+    gap: 54px;
+    width: 461px;
+    height: 120px;
+    gap: 54px
+}
+
+.name-initials-container-view-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    border: 3px solid white;
+    border-radius: 100%;
+    background-color: orange;
+    font-size: 12px;
+    color: white;
+}
+
+.name-initials-view-contact {
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.name-view-contact-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 287px;
+    height: 88px;
+    gap: 8px;
+}
+
+.name-view-contact {
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.edit-container-view-contact {
+    display: flex;
+}
+
+.icon-view-contact {
+    display: flex;
+    align-items: center;
+    width: 81px;
+    height: 24px;
+    gap: 8px;
+    text-decoration: none;
+    color: #2A3647;
+}
+
+.icon-view-contact:hover {
+    color: rgb(0, 124, 238);;
+}
+
+.contact-information-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.contact-information {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    width: 207px;
+    height: 74px;
+    margin-top: 21px;
+}
+
+.email-view-contact-container {
+    width: 140px;
+    height: 53px;
+    margin-top: 21px;
+}
+
+.email-phone-heading-view-contact {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+}
+
+.email-view-contact {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #007CEE;
+    padding-top: 15px;
+}
+
+.phone-noumber-view-contact {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    padding-top: 15px;
 }
