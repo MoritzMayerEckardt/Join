@@ -12,23 +12,6 @@ body {
     font-weight: 700;
 }
 
-header {
-    position: fixed;
-    display: flex;
-    height: 96px;
-    width: calc(-232px + 100vw);
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.2) -2px 0px 6px 0px;
-    padding: 20px 40px 20px calc(116px);
-}
-
-.side-bar {
-    /*height: 1024px;*/
-    width: 232px;
-}
-
 .about-container {
     padding: 243px, 0px, 0px, 52px;
     justify-content: flex-end;

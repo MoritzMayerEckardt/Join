@@ -17,6 +17,7 @@
 }
 
 .menu-container {
+    padding-top: 80px;
     flex-direction: column;
     display: flex;
     align-items: center;
