@@ -13,6 +13,7 @@ body {
 }
 
 header {
+    position: fixed;
     display: flex;
     height: 96px;
     width: calc(-232px + 100vw);

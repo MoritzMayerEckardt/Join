@@ -1,5 +1,5 @@
 header {
-    position: fixed;
+    position: fixed !important;
     left: 232px;
     display: flex;
     height: 96px;
