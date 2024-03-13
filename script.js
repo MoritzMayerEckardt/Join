@@ -3,43 +3,8 @@ const USERS_PATH = "/users";
 const TASKS_PATH = "/tasks";
 const CONTACTS_PATH = "/contacts";
 let users = [];
+let tasks = [];
 let contacts = [];
-let tasks = [
-    {
-      "to_do": {
-        "assigned": '',
-        "category": ['User Story', 'Technical Task'],
-        "date": '',
-        "description": '',
-        "priority": ['urgent', 'medium', 'low'],
-        "title": ''
-      },
-      "await_feedback": {
-        "assigned": '',
-        "category": ['User Story', 'Technical Task'],
-        "date": '',
-        "description": '',
-        "priority": ['urgent', 'medium', 'low'],
-        "title": ''
-      },
-      "almost_done": {
-        "assigned": '',
-        "category": ['User Story', 'Technical Task'],
-        "date": '',
-        "description": '',
-        "priority": ['urgent', 'medium', 'low'],
-        "title": ''
-      },
-      "done": {
-        "assigned": '',
-        "category": ['User Story', 'Technical Task'],
-        "date": '',
-        "description": '',
-        "priority": ['urgent', 'medium', 'low'],
-        "title": ''
-      }
-    }
-  ];
 
 async function initLogin() {
     await loadUsers();

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form onsubmit="addTask(); return false">
+        <input required type="text" id="title" placeholder="Enter a title">
+        <input required type="text" id="description" placeholder="Enter a description">
+        <select id="assigned">
+            <option value="">select contacts</option>
+            <option value="Hans Zimmer">Hans Zimmer</option>
+            <option value="Klaus Drayer">Klaus Drayer</option>
+        </select>
+        <input type="date" name="" id="date">
+            <input type="button" value="urgent">
+            <input type="button" value="medium">
+            <input type="button" value="low">
+        <select name="select task category" id="category">
+            <option value="">select task category</option>
+            <option value="User Story">User Story</option>
+            <option value="Technical Task">Technical Task</option>
+        </select>
+        <input type="text" id="subtasks" placeholder="Add new subtask">
+        <input type="submit" value="Add task">
+    </form>
+
+    <script>
+const BASE_URL = "https://remotestorage-346a1-default-rtdb.europe-west1.firebasedatabase.app/";
+let tasks = [];
+
+async function addTask() {
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let assigned = document.getElementById('assigned');
+    let date = document.getElementById('date');
+    let category = document.getElementById('category');
+    let subtasks = document.getElementById('subtasks');
+    let boardCategory = 'toDo';
+    tasks.push({
+        title: title.value,
+        description: description.value,
+        assigned: assigned.value,
+        date: date.value,
+        category: category.value,
+        subtasks: subtasks.value,
+        boardCategory: boardCategory,
+    });
+    await postData();
+}
+
+async function postData(path="/tasks") {
+    let response = await fetch(BASE_URL + path + ".json",{
+        method: "PUT",
+        header: {
+            "content-Type": "application/json",
+        },
+        body: JSON.stringify(tasks)
+    });
+    return responseAsJson = await response.json();
+}
+
+            
+    </script>
+</body>
+</html>
