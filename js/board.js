@@ -132,7 +132,6 @@ function renderDone() {
     }
 }
 
-
 function getBackgroundColorTaskCategory(type) {
     switch (type) {
         case 'User Story':
@@ -148,9 +147,9 @@ function prepareBackgroundColorTaskCategory(index) {
     return backgroundColor;
 }
 
-function renderCard(task, index) {
+function renderCard(task) {
     return /*html*/`
-            <div draggable="true" ondragstart="startDragging(${index})" class="task-card">
+            <div draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
                 <div class="task-category">${task.category}</div>
                     <span class="task-title">${task.title}</span>
                     <div class="task-description">${task.description}</div>  
@@ -184,9 +183,8 @@ function getNameFromContacts() {
     return firstLetter;
 }
 
-function startDragging(index) {
-    currentDraggedElement = index;
-    console.log("Current dragged element index:", index)
+function startDragging(task) {
+    currentDraggedElement = task;
 }
 
 function allowDrop(ev) {
@@ -194,7 +192,8 @@ function allowDrop(ev) {
 }
 
 async function moveTo(category) {
-        tasks[currentDraggedElement].boardCategory = category;
-        await postData();
-        renderBoard();
+    let task = tasks.find(task => task.id === currentDraggedElement);
+    task.boardCategory = category;
+    await postData(); 
+    renderBoard();
 }

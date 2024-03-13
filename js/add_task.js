@@ -1,15 +1,34 @@
+let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
+
 async function addTask() {
+    createTasksIfNotCreated();
+    pushValuesToTasks();
+    await postData();
+    renderBoard();
+    saveTaskIdCounter();
+}
+
+function createTasksIfNotCreated() {
+    if (!tasks) {
+        tasks = []; 
+    }
+}
+
+function getValuesFromInput() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
     let category = document.getElementById('category');
     let subtasks = document.getElementById('subtasks');
-    let boardCategory = 'toDo'; 
-    if (!tasks) {
-        tasks = []; 
-    }
+    return (title, description, assigned, date, category, subtasks);
+}
+
+function pushValuesToTasks() {
+    let boardCategory = "toDo";
+    getValuesFromInput();
     tasks.push({
+        id: taskIdCounter++,
         title: title.value,
         description: description.value,
         assigned: assigned.value,
@@ -18,8 +37,6 @@ async function addTask() {
         subtasks: subtasks.value,
         boardCategory: boardCategory,
     });
-    await postData();
-    renderBoard();
 }
 
 async function postData(path="/tasks") {
@@ -31,4 +48,8 @@ async function postData(path="/tasks") {
         body: JSON.stringify(tasks)
     });
     return responseAsJson = await response.json();
+}
+
+function saveTaskIdCounter() {
+    localStorage.setItem('taskIdCounter', taskIdCounter.toString());
 }
