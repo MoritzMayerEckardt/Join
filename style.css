@@ -6,6 +6,7 @@
 @import url(./style/header.css);
 @import url(./style/add-task.css);
 @import url(./style/board.css);
+@import url(./style/summary.css);
 
 body {
     margin: 0;
