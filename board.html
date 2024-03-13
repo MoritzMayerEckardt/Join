@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>board</title>
+    <title>Board</title>
     <script src="js/includeHTML.js"></script>
     <script src="/js/board.js"></script>
+    <script src="/js/aside.js"></script>
     <script src="script.js"></script>
+    <script src="/js/add_task.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="init()">
     <div class="flex">
         <aside class="w-232" w3-include-html="\assets\templates\aside.html"></aside>
-        <section>
-            <header w3-include-html="\assets\templates\header.html"></header>
-            <section id="board">
+        <section style="max-width: 1440px;">
+            <header style="width: 100%; max-width: 1440px;" w3-include-html="\assets\templates\header.html"></header>
+            <section style="max-width: 1440px;" id="board">
                 <div class="board-top">
                     <div class="board-headline-container">
                         <h1 class="board-headline">Board</h1>
@@ -37,26 +39,48 @@
                 <div class="board-subheadlines">
                     <div class="subheadline-container">
                         <span>To do</span>
-                        <img src="./assets/img/plus_button.png" alt="">
+                        <img src="./assets/img/plus_button.svg" alt="">
                     </div>
                     <div class="subheadline-container">
                         <span>In progress</span>
-                        <img src="./assets/img/plus_button.png" alt="">
+                        <img src="./assets/img/plus_button.svg" alt="">
                     </div>
                     <div class="subheadline-container">
                         <span>Await feedback</span>
-                        <img src="./assets/img/plus_button.png" alt="">
+                        <img src="./assets/img/plus_button.svg" alt="">
                     </div>
                     <div class="subheadline-container">
                         <span>Done</span>
                     </div>
                 </div>
                 <div id="board-content">
-                        
+                    <div ondragover="allowDrop(event)" ondrop="moveTo('toDo')" id="to-do-column" class="column"></div>
+                    <div ondragover="allowDrop(event)" ondrop="moveTo('inProgress')" id="in-progress-column" class="column"></div>
+                    <div ondragover="allowDrop(event)" ondrop="moveTo('awaitFeedback')" id="await-feedback-column" class="column"></div>
+                    <div ondragover="allowDrop(event)" ondrop="moveTo('done')" id="done-column"></div>
                 </div>
-
             </section>
         </section>
     </div>
+    <form onsubmit="addTask(); return false">
+        <input required type="text" id="title" placeholder="Enter a title">
+        <input required type="text" id="description" placeholder="Enter a description">
+        <select id="assigned">
+            <option value="option1">select contacts</option>
+            <option value="option2">Hans Zimmer</option>
+            <option value="option3">Klaus Drayer</option>
+        </select>
+        <input type="date" name="" id="date">
+            <input type="button" value="urgent">
+            <input type="button" value="medium">
+            <input type="button" value="low">
+        <select name="select task category" id="category">
+            <option value="">select task category</option>
+            <option value="User Story">User Story</option>
+            <option value="Technical Task">Technical Task</option>
+        </select>
+        <input type="text" id="subtasks" placeholder="Add new subtask">
+        <input type="submit" value="Add task">
+    </form>
 </body>
 </html>

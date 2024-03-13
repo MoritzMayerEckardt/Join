@@ -18,8 +18,10 @@
             <section class="contacts-section" id="contacts">
                 <div class="contacts-container">
                     <div class="contacts-list-container">
-                        <button class="add-contacts-btn">Add new contact <img class="person-add-svg"
-                                src="assets/img/person_add.svg" alt=""></button>
+                        <div class="button-container">
+                            <button class="add-contacts-btn">Add new contact <img class="person-add-svg"
+                                    src="assets/img/person_add.svg" alt=""></button>
+                        </div>
                         <ol class="list-container">
 
                             <li class="contact-in-list">
@@ -91,7 +93,7 @@
                                     <div>Anton Mayer</div>
                                     <div>antonmayer@gmail.com</div>
                                 </div>
-                            </li>                     
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -102,6 +104,75 @@
                         <div class="main-contact-heading">Contacts</div>
                         <div class="seperator-contacts-heading"></div>
                         <div class="contact-subheading">Better with a team</div>
+                    </div>
+                    <div class="view-contact-container">
+                        <div class="name-container">
+                            <div class="name-initials-container-view-contact">
+                                <div class="name-initials-view-contact">AM</div>
+                            </div>
+                            <div class="name-view-contact-container">
+                                <div class="name-view-contact">Anton Mayer</div>
+                                <div class="edit-container-view-contact">
+                                    <a href="#" class="icon-view-contact"><img src="assets/img/edit-dark-blue.svg"
+                                            alt="">Edit<span></span></a>
+                                    <a href="#" class="icon-view-contact"><img src="assets/img/delete-dark-blue.svg"
+                                            alt=""><span>Delete</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-information-container">
+                            <div class="contact-information">Contact Information</div>
+                            <div class="email-view-contact-container">
+                                <div class="email-phone-heading-view-contact">E-Mail</div>
+                                <div class="email-view-contact">AntonMayer@gmail.com</div>
+                            </div>
+                            <div>
+                                <div class="email-phone-heading-view-contact">Phone</div>
+                                <div class="phone-noumber-view-contact">+49 1111 111 11 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dialog-bg">
+                    <div class="dialog" onclick="doNotClose(event)">
+                        <div class="information-container">
+                            <div class="logo-container">
+                                <img class="information-logo-icon" src="assets/img/logo-blue.svg" alt="">
+                            </div>
+                            <div class="information-text-container">
+                                <span class="heading-information-text">Add contact</span>
+                                <span class="subheading-information-text">Tasks are better with a team!</span>
+                            </div>
+                        </div>
+
+                        <div class="add-container">
+                            <div>
+                                <img src="" alt="">
+                            </div>
+                            <div>
+                                <div>
+                                    <img src="assets/img/close.svg" alt="">
+                                </div>
+                                <div class="input-container">
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                </div>
+                                <div class="add-contacts-btn-container">
+                                    <button class="cancel-btn">
+                                        <span class="cancel-btn-text">Cancel</span>
+                                        <img src="assets/img/close.svg" alt="">
+                                    </button>
+
+                                    <button class="create-contact-btn">
+                                        <span class="create-contact-btn-text">Create Contact</span>
+                                        <img src="assets/img/check.svg" alt="">
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
