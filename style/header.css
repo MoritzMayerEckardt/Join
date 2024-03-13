@@ -1,4 +1,6 @@
 header {
+    position: fixed;
+    left: 232px;
     display: flex;
     height: 96px;
     width: calc(100vw - 232px);
