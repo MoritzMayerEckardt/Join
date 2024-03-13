@@ -14,99 +14,101 @@
         <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
         <section id="content-right">
             <header w3-include-html="\assets\templates\header.html"></header>
-            <section id="board" class="board1">
-                <div class="headline">
-                    Add Task
-                </div>
-                <div class="buttons">
-                    <button class="clearBtn">
-                        <p class="clear">Clear</p>
-                        <img src="assets/img/cancel.png">
-                    </button>
-                    <button class="createBtn">
-                        <p class="create">Create Task</p>
-                        <img src="assets/img/check.png">
-                    </button>
-                </div>
-                <div class="leftSide">
-                    <div class="titleFrame">
-                        <p class="title">Title <span class="star">*</span></p>
-                        <div class="inputTitle">
-                            <input type="text" class="inputfieldTitle" placeholder="Enter a title">
-                            <p class="requiredTitle">This field is required </p>
+            <form action="#">
+                <section id="board" class="board1">
+                    <div class="headline">
+                        Add Task
+                    </div>
+                    <div class="buttons">
+                        <button class="clearBtn">
+                            <p class="clear">Clear</p>
+                            <img src="assets/img/cancel.png">
+                        </button>
+                        <button class="createBtn">
+                            <p class="create">Create Task</p>
+                            <img src="assets/img/check.png">
+                        </button>
+                    </div>
+                    <div class="leftSide">
+                        <div class="titleFrame">
+                            <p class="title">Title <span class="star">*</span></p>
+                            <div class="inputTitle">
+                                <input type="text" class="inputfieldTitle" placeholder="Enter a title">
+                                <p class="requiredTitle">This field is required </p>
+                            </div>
+                        </div>
+                        <div class="descriptionFrame">
+                            <p class="description">Description</p>
+                            <div class="inputfieldDescription">
+                                <textarea name="smallinputfieldDescription" id="" placeholder="Enter a Description"
+                                    class="smallinputfieldDescription" cols="30" rows="10"></textarea>
+                                <p class="requiredTitle">This field is required </p>
+                            </div>
+                        </div>
+                        <div class="assignedToFrame">
+                            <p class="assignedTo">Assigned to</p>
+                            <select class="select">
+                                <option value="option1">Select contacts to assign</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="descriptionFrame">
-                        <p class="description">Description</p>
-                        <div class="inputfieldDescription">
-                            <textarea name="smallinputfieldDescription" id="" placeholder="Enter a Description"
-                                class="smallinputfieldDescription" cols="30" rows="10"></textarea>
-                            <p class="requiredTitle">This field is required </p>
+                    <div class="rightSide">
+                        <div class="titleFrame">
+                            <p class="title">Due Date <span class="star">*</span></p>
+                            <div class="inputTitle">
+                                <input type="date" name="date" class="inputfieldTitle">
+                                <p class="requiredTitle">This field is required </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="assignedToFrame">
-                        <p class="assignedTo">Assigned to</p>
-                        <select class="select">
-                            <option value="option1">Select contacts to assign</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="rightSide">
-                    <div class="titleFrame">
-                        <p class="title">Due Date <span class="star">*</span></p>
-                        <div class="inputTitle">
-                            <input type="date" name="date" class="inputfieldTitle">
-                            <p class="requiredTitle">This field is required </p>
-                        </div>
-                    </div>
-                    <div class="buttonsFrame">
-                        <p class="title">Prio</p>
-                        <div class="smallButtonsFrame">
-                            <button class="urgent">
-                                <div class="urgentText">
-                                    Urgent
-                                </div>
-                                <div class="arrows">
-                                    <img src="assets/img/redArrow.svg" alt="svg">
-                                </div>
-                            </button>
-                            <button class="medium">
-                                <div class="mediumText">
-                                    Medium
-                                </div>
-                                <div class="arrows">
-                                    <img src="assets/img/hypen.svg" alt="svg">
-                                </div>
+                        <div class="buttonsFrame">
+                            <p class="title">Prio</p>
+                            <div class="smallButtonsFrame">
                                 <button class="urgent">
-                                    <div class="lowText">
-                                        Low
+                                    <div class="urgentText">
+                                        Urgent
                                     </div>
                                     <div class="arrows">
-                                        <img src="assets/img/greenArrow.svg" alt="svg">
+                                        <img src="assets/img/redArrow.svg" alt="svg">
                                     </div>
                                 </button>
-                        </div>
+                                <button class="medium">
+                                    <div class="mediumText">
+                                        Medium
+                                    </div>
+                                    <div class="arrows">
+                                        <img src="assets/img/hypen.svg" alt="svg">
+                                    </div>
+                                    <button class="urgent">
+                                        <div class="lowText">
+                                            Low
+                                        </div>
+                                        <div class="arrows">
+                                            <img src="assets/img/greenArrow.svg" alt="svg">
+                                        </div>
+                                    </button>
+                            </div>
 
+                        </div>
+                        <div class="categoryFrame">
+                            <p class="category">Category <span class="star">*</span></p>
+                            <select class="select">
+                                <option value="option1">Select task category</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
+                        </div>
+                        <div class="subtaskFrame">
+                            <p class="subtask">Subtask</p>
+                            <input type="text" class="inputfieldTitle" placeholder="Add new subtask">
+                        </div>
                     </div>
-                    <div class="categoryFrame">
-                        <p class="category">Category <span class="star">*</span></p>
-                        <select class="select">
-                            <option value="option1">Select task category</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </select>
-                    </div>
-                    <div class="subtaskFrame">
-                        <p class="subtask">Subtask</p>
-                        <input type="text" class="inputfieldTitle" placeholder="Add new subtask">
-                    </div>
-                </div>
-                <svg class="svg" height="424px">
-                    <line class="vector" x1="0" y1="0" x2="0" y2="424" />
-                </svg>
-            </section>
+                    <svg class="svg" height="424px">
+                        <line class="vector" x1="0" y1="0" x2="0" y2="424" />
+                    </svg>
+                </section>
+            </form>
         </section>
     </div>
 </body>
