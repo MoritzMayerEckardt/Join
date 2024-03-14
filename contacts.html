@@ -137,29 +137,27 @@
                 <div class="dialog-bg">
                     <div class="dialog" onclick="doNotClose(event)">
                         <div class="information-container">
-                            <div class="logo-container">
-                                <img class="information-logo-icon" src="assets/img/logo-blue.svg" alt="">
-                            </div>
-                            <div class="information-text-container">
-                                <span class="heading-information-text">Add contact</span>
-                                <span class="subheading-information-text">Tasks are better with a team!</span>
-                            </div>
+                            <img class="information-logo-icon" src="assets/img/logo-blue.svg" alt="">
+                            <span class="heading-information-text">Add contact</span>
+                            <span class="subheading-information-text">Tasks are better with a team!</span>
+                            <img class="img-blue-line" src="assets/img/blue-line.svg" alt="">
                         </div>
-
                         <div class="add-container">
                             <div class="close-container">
                                 <img src="assets/img/close.svg" alt="">
                             </div>
                             <div class="add-information-overview-container">
                                 <div class="person-icon-container">
-                                    <img src="assets/img/person-white.svg" alt="">
+                                    <div class="person-icon-content">
+                                        <img src="assets/img/person-white.svg" alt="">
+                                    </div>
                                 </div>
 
                                 <div class="add-information-container">
                                     <div class="input-container">
-                                        <input class="input-add-information" placeholder="Name" type="text">
-                                        <input class="input-add-information" placeholder="Email" type="text">
-                                        <input class="input-add-information" placeholder="Phone" type="text">
+                                        <input id="name-input-field-add-contact" class="input-add-information input-icon" placeholder="Name" type="text">
+                                        <input id="email-input-field-add-contact" class="input-add-information input-icon" placeholder="Email" type="text">
+                                        <input id="phone-input-field-add-contact" class="input-add-information input-icon" placeholder="Phone" type="text">
                                     </div>
                                     <div class="add-contacts-btn-container">
                                         <button class="cancel-btn">
@@ -177,9 +175,10 @@
                         </div>
                     </div>
                 </div>
+    </div>
 
-            </section>
-        </section>
+    </section>
+    </section>
     </div>
 </body>
 

@@ -264,7 +264,7 @@ body {
 
 
 .dialog-bg {
-    background-color: rgba(184, 185, 186, 0.2);
+    background-color: rgba(184, 185, 186, 0.5);
     z-index: 999;
     position: fixed;
     left: 0;
@@ -286,20 +286,27 @@ body {
 }
 
 .information-container {
-    width: 30vw;
-    background-color: #2A3647;
+    background-color: #2b3647;
+    padding: 66px 48px 66px 48px;
+    width: 467px;
+    height: 100%;
     border-top-left-radius: 24px;
     border-bottom-left-radius: 24px;
     display: flex;
     flex-direction: column;
+    align-items: start;
     justify-content: center;
-    align-items: center;
+    color: white;
+    min-width: max-content;
+}
+
+.img-blue-line {
+    margin-top: 8px;
 }
 
 .information-logo-icon {
     width: 55.6px;
     height: 66.48px;
-
 }
 
 .information-text-container {
@@ -330,17 +337,23 @@ body {
 }
 
 .add-container {
-    width: 50vw;
+    width: 100%;
+    padding-right: 48px;
 }
 
 .close-container {
     display: flex;
     justify-content: flex-end;
-    margin-right: 32px;
     margin-top: 32px;
 }
 
 .person-icon-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.person-icon-content {
     background-color: #D1D1D1;
     border-radius: 100px;
     padding: 38.67px;
@@ -348,7 +361,6 @@ body {
 
 .add-information-container {
     width: 422px;
-    margin-right: 32px;
 }
 
 .add-information-overview-container {
@@ -357,6 +369,7 @@ body {
     margin-top: 32px;
     justify-content: space-between;
     padding-left: 8px;
+
 }
 
 .input-container {
@@ -369,17 +382,34 @@ body {
 
 .input-add-information {
     height: 50px;
-    padding: 13px, 21px, 13px, 21px;
+    padding: 13px 21px 13px 21px;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
-    gap: 10px;
     padding-left: 16px;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
     letter-spacing: 0em;
-    text-align: left;
+}
 
+.input-icon {
+    text-align: left;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-sizing: border-box;
+    background-position: right 10px center;
+}
+
+#name-input-field-add-contact {
+    background-image: url(/assets/img/person-grey.svg);
+}
+
+#email-input-field-add-contact {
+    background-image: url(/assets/img/mail-grey.svg);
+}
+
+#phone-input-field-add-contact {
+    background-image: url(/assets/img/call-grey.svg);
 }
 
 .add-contacts-btn-container {
