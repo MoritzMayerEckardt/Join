@@ -36,7 +36,7 @@
                         <div class="titleFrame">
                             <p class="title">Title <span class="star">*</span></p>
                             <div class="inputTitle">
-                                <input id="title" type="text" class="inputfieldTitle" placeholder="Enter a title">
+                                <input id="title" type="text" class="inputfieldTitle" placeholder="Enter a title" required>
                                 <p class="requiredTitle">This field is required </p>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                         <div class="titleFrame">
                             <p class="title">Due Date <span class="star">*</span></p>
                             <div class="inputTitle">
-                                <input id="date" type="date" name="date" class="inputfieldTitle">
+                                <input id="date" type="date" name="date" class="inputfieldTitle" required>
                                 <p class="requiredTitle">This field is required </p>
                             </div>
                         </div>
@@ -96,10 +96,10 @@
                         </div>
                         <div class="categoryFrame">
                             <p class="category">Category <span class="star">*</span></p>
-                            <select id="category" class="select">
-                                <option value="option1">Select task category</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
+                            <select id="category" class="select" required>
+                                <option value="">Select task category</option>
+                                <option value="User Stoy">User Story</option>
+                                <option value="Technical Task">User Story</option>
                             </select>
                         </div>
                         <div class="subtaskFrame">

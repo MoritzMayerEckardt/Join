@@ -2,6 +2,7 @@ let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorag
 
 async function initAddTask() {
     await includeHTML();
+    await loadTasks();
     addBackgroundColor(1);
 }
 

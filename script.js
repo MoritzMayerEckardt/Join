@@ -18,6 +18,14 @@ async function loadData(path="") {
     return responseAsJson = await response.json();
 }
 
+async function loadTasks() {
+    try {
+        tasks = await loadData(TASKS_PATH);
+    } catch (error) {
+        console.error("Loading users error:", error);
+    }
+}
+
 async function loadUsers() {
     try {
         users = await loadData(USERS_PATH);
