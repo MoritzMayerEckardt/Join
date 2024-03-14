@@ -1,7 +1,7 @@
 let currentDraggedElement;
 
-async function init() {
-    includeHTML();
+async function initBoard() {
+    await includeHTML();
     await loadTasks();
     addBackgroundColor(2);
     renderBoard(); 

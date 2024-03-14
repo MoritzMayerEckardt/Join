@@ -11,7 +11,7 @@
     <script src="/js/add_task.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="init()">
+<body onload="initBoard()">
     <div class="flex">
         <aside class="w-232" w3-include-html="\assets\templates\aside.html"></aside>
         <section style="max-width: 1440px;">
@@ -62,7 +62,7 @@
             </section>
         </section>
     </div>
-    <form onsubmit="addTask(); return false">
+    <!-- <form style="padding: 40px 0px 0px 300px;" onsubmit="addTask(); return false">
         <input required type="text" id="title" placeholder="Enter a title">
         <input required type="text" id="description" placeholder="Enter a description">
         <select id="assigned">
@@ -81,6 +81,6 @@
         </select>
         <input type="text" id="subtasks" placeholder="Add new subtask">
         <input type="submit" value="Add task">
-    </form>
+    </form> -->
 </body>
 </html>

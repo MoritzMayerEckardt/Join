@@ -1,10 +1,14 @@
 let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
 
+async function initAddTask() {
+    await includeHTML();
+    addBackgroundColor(1);
+}
+
 async function addTask() {
     createTasksIfNotCreated();
     pushValuesToTasks();
     await postData();
-    renderBoard();
     saveTaskIdCounter();
 }
 
