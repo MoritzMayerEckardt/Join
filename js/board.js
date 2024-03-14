@@ -1,5 +1,3 @@
-let currentDraggedElement;
-
 async function initBoard() {
     await includeHTML();
     await loadTasks();
@@ -174,28 +172,4 @@ function getNameFromContacts() {
     let name = contacts[0].name;
     let firstLetter = name.charAt(0);
     return firstLetter;
-}
-
-function startDragging(task) {
-    currentDraggedElement = task;
-}
-
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-async function moveTo(category) {
-    let task = tasks.find(task => task.id === currentDraggedElement);
-    task.boardCategory = category;
-    await postData(); 
-    renderBoard();
-}
-
-function highlight(id) {
-    document.getElementById(id).classList.add('drag-area-highlight');
-    document.getElementById(id).innerHTML = '';
-}
-
-function removeHighlight(id) {
-    document.getElementById(id).classList.remove('drag-area-highlight');
 }
