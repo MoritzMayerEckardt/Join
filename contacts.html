@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contacts</title>
     <script src="js/includeHTML.js"></script>
+    <script src="js/contact.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style/contacts.css">
 </head>
@@ -19,8 +20,9 @@
                 <div class="contacts-container">
                     <div class="contacts-list-container">
                         <div class="button-container">
-                            <button class="add-contacts-btn">Add new contact <img class="person-add-svg"
-                                    src="assets/img/person_add.svg" alt=""></button>
+                            <button onclick="openDialogAddContacts()" class="add-contacts-btn">
+                                Add new contact <img class="person-add-svg" src="assets/img/person_add.svg" alt="">
+                            </button>
                         </div>
                         <ol class="list-container">
 
@@ -131,11 +133,12 @@
                                 <div class="phone-noumber-view-contact">+49 1111 111 11 1</div>
                             </div>
                         </div>
+                        <div>Contact successfully created</div>
                     </div>
                 </div>
 
-                <div class="dialog-bg">
-                    <div class="dialog" onclick="doNotClose(event)">
+                <div id="dialog-add-contacts" class="dialog-bg d-none" onclick="closeDialog()">
+                    <div id="inner-dialog" class="dialog" onclick="doNotClose(event)">
                         <div class="information-container">
                             <img class="information-logo-icon" src="assets/img/logo-blue.svg" alt="">
                             <span class="heading-information-text">Add contact</span>
@@ -144,7 +147,7 @@
                         </div>
                         <div class="add-container">
                             <div class="close-container">
-                                <img src="assets/img/close.svg" alt="">
+                                <img class="closeDialog" onclick="closeDialog()" src="assets/img/close.svg" alt="">
                             </div>
                             <div class="add-information-overview-container">
                                 <div class="person-icon-container">
@@ -154,22 +157,29 @@
                                 </div>
 
                                 <div class="add-information-container">
-                                    <div class="input-container">
-                                        <input id="name-input-field-add-contact" class="input-add-information input-icon" placeholder="Name" type="text">
-                                        <input id="email-input-field-add-contact" class="input-add-information input-icon" placeholder="Email" type="text">
-                                        <input id="phone-input-field-add-contact" class="input-add-information input-icon" placeholder="Phone" type="text">
-                                    </div>
-                                    <div class="add-contacts-btn-container">
-                                        <button class="cancel-btn">
-                                            <span class="cancel-btn-text">Cancel</span>
-                                            <img class="icon-in-btn" src="assets/img/close.svg" alt="">
-                                        </button>
+                                    <form onsubmit="addContact(); return false">
+                                        <div class="input-container">
+                                            <input required type="text" id="name-input-field-add-contact"
+                                                class="input-add-information input-icon" placeholder="Name" type="text">
+                                            <input required type="email" id="email-input-field-add-contact"
+                                                class="input-add-information input-icon" placeholder="Email"
+                                                type="text">
+                                            <input required type="number" id="phone-input-field-add-contact"
+                                                class="input-add-information input-icon" placeholder="Phone"
+                                                type="text">
+                                        </div>
+                                        <div class="add-contacts-btn-container">
+                                            <button class="cancel-btn" type="button" onclick="closeDialog()">
+                                                <span class="cancel-btn-text">Cancel</span>
+                                                <img class="icon-in-btn" src="assets/img/close.svg" alt="">
+                                            </button>
 
-                                        <button class="create-contact-btn">
-                                            <span class="create-contact-btn-text">Create Contact</span>
-                                            <img class="icon-in-btn" src="assets/img/check.svg" alt="">
-                                        </button>
-                                    </div>
+                                            <button class="create-contact-btn">
+                                                <span class="create-contact-btn-text">Create Contact</span>
+                                                <img class="icon-in-btn" src="assets/img/check.svg" alt="">
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

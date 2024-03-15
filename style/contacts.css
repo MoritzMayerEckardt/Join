@@ -44,6 +44,13 @@ body {
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
+    cursor: pointer;
+}
+
+.add-contacts-btn:hover {
+    background-color: #29abe2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: none;
 }
 
 .person-add-svg {
@@ -262,6 +269,9 @@ body {
     padding-top: 15px;
 }
 
+.d-none {
+    display: none !important;
+}
 
 .dialog-bg {
     background-color: rgba(184, 185, 186, 0.5);
@@ -274,6 +284,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: fixed;
+    top: 50%;
+    right: -100%;  /* Startposition: Außerhalb des Bildschirms rechts */
+    transform: translate(0, -50%);
+    background: transparent;
+    padding: 20px;
+    transition: right 0.250s ease-in-out;
 }
 
 .dialog {
@@ -283,6 +301,26 @@ body {
     background-color: white;
     border-radius: 24px;
     display: flex;
+}
+
+/* Keyframe-Animation: von rechts nach links gleiten */
+@keyframes slideInFromRight {
+    from {
+        right: -100%;  /* Startposition außerhalb des Bildschirms rechts */
+    }
+    to {
+        right: 0;  /* Endposition: Anzeige von rechts nach links */
+    }
+}
+
+/* Keyframe-Animation: von links nach rechts gleiten */
+@keyframes slideOutToRight {
+    from {
+        right: 0;  /* Startposition: Anzeige von rechts nach links */
+    }
+    to {
+        right: -200%;  /* Endposition: Außerhalb des Bildschirms rechts */
+    }
 }
 
 .information-container {
@@ -345,6 +383,15 @@ body {
     display: flex;
     justify-content: flex-end;
     margin-top: 32px;
+}
+
+.closeDialog {
+    cursor: pointer;
+}
+
+.closeDialog:hover {
+    background-color: lightgrey;
+    border-radius: 100%;
 }
 
 .person-icon-container {
