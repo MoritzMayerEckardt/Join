@@ -1,3 +1,8 @@
+async function initContacts(){
+    await includeHTML();
+    addBackgroundColor(3);
+}
+
 function openDialogAddContacts() {
     let dialog = document.getElementById('dialog-add-contacts')
     dialog.classList.remove('d-none');
