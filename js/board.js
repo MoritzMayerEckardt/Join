@@ -20,7 +20,7 @@ function renderToDo() {
         if (toDo && toDo.length >= 1) {
             for (let index = 0; index < toDo.length; index++) {
                 const task = toDo[index];
-                toDoContainer.innerHTML += renderCard(task);
+                toDoContainer.innerHTML += renderDetailedCard(task);
             }
         } else {
             toDoContainer.innerHTML = renderEmptyToDoColumn();
@@ -142,8 +142,8 @@ function renderCard(task) {
     return /*html*/`
             <div draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
                 <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
-                    <span class="task-title">${task.title}</span>
-                    <div class="task-description">${task.description}</div>  
+                <span class="task-title">${task.title}</span>
+                <div class="task-description">${task.description}</div>  
                 <div class="task-subtasks-container">
                     <div class="task-progress-bar">
                         <div class="task-progress-bar-progress"></div>
@@ -172,4 +172,41 @@ function getNameFromContacts() {
     let name = contacts[0].name;
     let firstLetter = name.charAt(0);
     return firstLetter;
+}
+
+function renderDetailedCard(task) {
+    let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
+    return /*html*/`
+        <div class="detailed-card-container">
+            <div class="detailed-card-top-container">
+                <div style="background-color: ${backgroundColor}" class="detailed-card-category">${task.category}</div>
+                <div class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></div>
+            </div>
+            <span class="detailed-card-title">${task.title}</span>
+            <span class="detailed-card-description">${task.description}</span>
+            <div class="detailed-card-date">
+                <span style="font-size: 20px">Due date:</span>
+                <span style="font-size: 19px">${task.date}</span>
+            </div>
+            <div class="detailed-card-priority">
+                <span style="font-size: 20px">Priority:</span>
+                <span style="font-size: 19px">${task.priority}</span>
+            </div>
+            <div class="detailed-card-assigned">
+                <span style="font-size: 20px">Assigned To:</span>
+                <div class="detailed-card-contact-container">
+                    <div class="task-contacts-ellipse flex-center" style="background-color: #1FD7C1; margin-left: -10px; border: 1px solid white">
+                        <span class="task-contacts-letters">M</span><span class="task-contacts-letters">B</span>
+                    </div>
+                    <span style="font-size: 19px">Florian Müller</span>
+                </div>
+            </div>
+            <div class="detailed-card-subtasks-container">
+                <span style="font-size: 20px">Subtasks</span>
+                <div>
+                    <span style="font-size: 19px">${task.subtasks}</span>
+                </div>                
+            </div>
+        </div>
+    `
 }

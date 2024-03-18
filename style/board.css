@@ -260,3 +260,94 @@
 .drag-area-highlight {
     background-color: white;
 }
+
+.detailed-card-container {
+    width: 525px;
+    background: green;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 323px;
+    padding: 48px 40px 48px 40px;
+    border-radius: 30px;
+    display: inline-block;
+    position: relative;
+}
+
+.detailed-card-title {
+    font-size: 61px;
+    font-weight: 700;
+    width: 445px;
+    height: 219px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3; 
+    white-space: normal;
+}
+
+.detailed-card-description {
+    color: #000000;
+    width: 445px;
+    height: 24px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+.detailed-card-category {
+    max-width: 160px;
+    height: 36px;
+    border-radius: 8px;
+    background: #0038FF;
+    padding: 4px 16px 4px 16px;
+    color: white;
+    font-size: 23px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.detailed-card-top-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailed-card-date {
+    margin-bottom: 24px;
+    display: flex;
+    gap: 25px;
+}
+
+.detailed-card-priority {
+    margin-bottom: 24px;
+    display: flex;
+    gap: 25px;
+}
+
+.detailed-card-assigned {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detailed-card-contact-container {
+    display: flex;
+    align-items: center;
+    padding: 7px 16px 7px 16px;
+    gap: 16px;
+}
+
+.detailed-card-subtasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
