@@ -12,7 +12,7 @@
     <script src="/js/aside.js"></script>
 </head>
 
-<body onload="initContacts()">
+<body class="body-contacts" onload="initContacts()">
     <div class="content-container">
         <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
         <section id="content-right">
@@ -27,7 +27,7 @@
                         </div>
                         <ol class="list-container">
 
-                            <li class="contact-in-list">
+                            <li class="contact-in-list" onclick="openFullCard()">
                                 <div class="name-initials">AM</div>
                                 <div>
                                     <div>Anton Mayer</div>
@@ -108,7 +108,7 @@
                         <div class="seperator-contacts-heading"></div>
                         <div class="contact-subheading">Better with a team</div>
                     </div>
-                    <div class="view-contact-container">
+                    <div class="view-contact-container d-none" id="view-contact-container">
                         <div class="name-container">
                             <div class="name-initials-container-view-contact">
                                 <div class="name-initials-view-contact">AM</div>
@@ -134,8 +134,8 @@
                                 <div class="phone-noumber-view-contact">+49 1111 111 11 1</div>
                             </div>
                         </div>
-                        <div id="confirmation-field" class="confirmation-field">Contact successfully created</div>
                     </div>
+                    <div id="confirmation-field" class="confirmation-field">Contact successfully created</div>
                 </div>
 
                 <div id="dialog-add-contacts" class="dialog-bg d-none" onclick="closeDialog()">

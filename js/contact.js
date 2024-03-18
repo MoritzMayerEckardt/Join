@@ -1,3 +1,6 @@
+
+
+
 async function initContacts(){
     await includeHTML();
     addBackgroundColor(3);
@@ -44,10 +47,15 @@ function showSlideContainer() {
     slideContainer.classList.add('confirmation-field-active');
     setTimeout(function () {
         slideContainer.classList.remove('confirmation-field-active');
-    }, 1500); // Die Gesamtdauer der Animation beträgt 2,5 Sekunden
+    }, 1500); // Die Gesamtdauer der Animation beträgt 1,5 Sekunden
 }
 
-// function openFullCard() {
-    
 
-// }
+let showFullContact = false;
+
+async function openFullCard() {
+    let showFullContact = document.getElementById('view-contact-container');
+    await showFullContact.classList.remove('d-none');
+    await showFullContact.classList.add('view-contact-container-slide-in');
+
+}

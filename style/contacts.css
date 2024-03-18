@@ -1,3 +1,7 @@
+.body-contacts {
+    overflow: hidden;
+}
+
 .contacts-section {
     display: flex;
     margin-left: 232px;
@@ -145,16 +149,37 @@
     width: 461px;
     height: 364px;
     margin-top: 52.5px;
-
-    position: fixed;
-    top: 50%;
-    right: -100%;  /* Startposition: Außerhalb des Bildschirms rechts */
-    transform: translate(0, -50%);
-    background: transparent;
-    padding: 20px;
-    transition: right 0.250s ease-in-out;
+    transform: translateY(0px);
+    position: absolute;
+    /* display: none; */
 }
 
+.view-contact-container-slide-in {
+    display: block;
+    animation: slideInContact 1.5s forwards;
+}
+
+@keyframes slideInContact {
+    0% {
+        left: 100%;
+    }
+
+    40% {
+        left: 688px;
+    }
+
+    50% {
+        left: 688px;
+    }
+
+    90% {
+        left: 688px;
+    }
+
+    100% {
+        left: 688px;
+    }
+}
 
 
 
@@ -282,12 +307,7 @@
     padding: 16px;
     border-radius: 10px;
     margin-top: 24px;
-
     position: absolute;
-    top: 90%;
-    left: 100%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
     display: none;
 }
 
@@ -300,15 +320,19 @@
     0% {
         left: 100%;
     }
+
     40% {
-        left: 55%;
+        left: 688px;
     }
+
     50% {
-        left: 55%;
+        left: 688px;
     }
+
     90% {
-        left: 55%;
+        left: 688px;
     }
+
     100% {
         left: 100%;
     }
@@ -333,15 +357,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    position: fixed;
     top: 50%;
-    right: -100%;  /* Startposition: Außerhalb des Bildschirms rechts */
+    right: -100%;
     transform: translate(0, -50%);
     background: transparent;
     padding: 20px;
     transition: right 0.250s ease-in-out;
 }
+
+
 
 .dialog {
     height: 500px;
@@ -355,20 +379,26 @@
 /* Keyframe-Animation: von rechts nach links gleiten */
 @keyframes slideInFromRight {
     from {
-        right: -100%;  /* Startposition außerhalb des Bildschirms rechts */
+        right: -100%;
+        /* Startposition außerhalb des Bildschirms rechts */
     }
+
     to {
-        right: 0;  /* Endposition: Anzeige von rechts nach links */
+        right: 0;
+        /* Endposition: Anzeige von rechts nach links */
     }
 }
 
 /* Keyframe-Animation: von links nach rechts gleiten */
 @keyframes slideOutToRight {
     from {
-        right: 0;  /* Startposition: Anzeige von rechts nach links */
+        right: 0;
+        /* Startposition: Anzeige von rechts nach links */
     }
+
     to {
-        right: -200%;  /* Endposition: Außerhalb des Bildschirms rechts */
+        right: -200%;
+        /* Endposition: Außerhalb des Bildschirms rechts */
     }
 }
 
@@ -568,3 +598,4 @@
     letter-spacing: 0em;
     color: white;
 }
+
