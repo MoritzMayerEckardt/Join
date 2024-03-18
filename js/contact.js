@@ -10,6 +10,8 @@ function openDialogAddContacts() {
     dialog.style.right = '0';
 }
 
+
+
 function closeDialog() {
     let dialog = document.getElementById('dialog-add-contacts');
     dialog.style.animation = 'slideOutToRight 0.3s ease-in-out';
@@ -31,6 +33,12 @@ function addContact() {
     clearAddContactForm();
 }
 
+function clearAddContactForm() {
+    document.getElementById('name-input-field-add-contact').value = '';
+    document.getElementById('email-input-field-add-contact').value = '';
+    document.getElementById('phone-input-field-add-contact').value = '';
+}
+
 function showSlideContainer() {
     let slideContainer = document.getElementById('confirmation-field');
     slideContainer.classList.add('confirmation-field-active');
@@ -39,8 +47,7 @@ function showSlideContainer() {
     }, 1500); // Die Gesamtdauer der Animation beträgt 2,5 Sekunden
 }
 
-function clearAddContactForm() {
-    document.getElementById('name-input-field-add-contact').value = '';
-    document.getElementById('email-input-field-add-contact').value = '';
-    document.getElementById('phone-input-field-add-contact').value = '';
-}
+// function openFullCard() {
+    
+
+// }

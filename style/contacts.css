@@ -151,7 +151,18 @@ body {
     height: 364px;
     margin-top: 52.5px;
 
+    position: fixed;
+    top: 50%;
+    right: -100%;  /* Startposition: Außerhalb des Bildschirms rechts */
+    transform: translate(0, -50%);
+    background: transparent;
+    padding: 20px;
+    transition: right 0.250s ease-in-out;
 }
+
+
+
+
 
 .name-container {
     display: flex;
