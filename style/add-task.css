@@ -3,7 +3,7 @@ body {
 }
 
 .headline {
-    position: absolute;
+    position: relative;
     width: 278px;
     height: 73px;
     top: 206px;
@@ -12,6 +12,10 @@ body {
     font-weight: 700;
 }
 
+.board1{
+    bottom: 80px;
+    width: 100vw;
+}
 .about-container {
     padding: 243px, 0px, 0px, 52px;
     justify-content: flex-end;
@@ -21,14 +25,14 @@ body {
 }
 
 .buttons {
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    top: 889px;
     left: calc(995.25px - 232px);
     width: 309px;
     height: 56px;
+    bottom: 60px;
 }
 
 .clearBtn {
@@ -86,10 +90,10 @@ body {
 }
 
 .leftSide {
-    position: absolute;
+    position: relative;
     width: 440px;
     height: 376px;
-    top: 327px;
+    top: 205px;
     left: 327px;
 }
 
@@ -244,12 +248,12 @@ body {
 .svg {
 
     width: 1px;
-    position: absolute;
+    position: relative;
     left: 816.25px;
-    top: 327px;
     border-width: 1px;
     transform-origin: center;
     transform: rotate(-0deg);
+    bottom: 480px;
 }
 
 .vector {
@@ -261,8 +265,8 @@ body {
     position: relative;
     width: 440px;
     height: 416px;
-    top: 230px;
-    left: 632.25px;
+    left: 864.25px;
+    bottom: 190px;
 }
 
 .smallButtonsFrame {
@@ -359,4 +363,18 @@ body {
     font-size: 20px;
     line-height: 24px;
     padding-top: 10px;
+}
+
+.subtaskPlus{
+    position: absolute;
+    right: 15px;
+    top: 392px;
+}
+
+.newSubtask{
+    position: relative;
+    left: 870px;
+    bottom: 170px;
+    height: 100px;
+    width: 440px;
 }
