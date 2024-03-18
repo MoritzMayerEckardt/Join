@@ -141,7 +141,7 @@ function renderCard(task) {
     let taskJson = JSON.stringify(task);
     taskJson = taskJson.replace(/"/g, '&quot;');
     return /*html*/`
-            <div onclick="openDetailedCard('${taskJson}')" draggable="true" ondragstart="startDragging('${task.id}')" class="task-card">
+            <div onclick="openDetailedCard('${taskJson}')" draggable="true" onclick="startDragging('${task.id}')" class="task-card">
                 <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
                 <span class="task-title">${task.title}</span>
                 <div class="task-description">${task.description}</div>  
@@ -176,8 +176,8 @@ function getNameFromContacts() {
 }
 
 function openDetailedCard(task) {
-    let popupOverlay = document.getElementById('popup-overlay');
-    let popupContent = document.getElementById('popup-content');
+    let popupOverlay = document.getElementById('popup-board-overlay');
+    let popupContent = document.getElementById('popup-board-content');
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderDetailedCard(task);
@@ -222,6 +222,6 @@ function renderDetailedCard(taskJson) {
 }
 
 function closePopup() {
-    let popupOverlay = document.getElementById('popup-overlay');
+    let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
 }
