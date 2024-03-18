@@ -141,7 +141,7 @@ function renderCard(task) {
     let taskJson = JSON.stringify(task);
     taskJson = taskJson.replace(/"/g, '&quot;');
     return /*html*/`
-            <div onclick="openDetailedCard('${taskJson}')" draggable="true" onclick="startDragging('${task.id}')" class="task-card">
+            <div onclick="openDetailedCard('${taskJson}')" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
                 <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
                 <span class="task-title">${task.title}</span>
                 <div class="task-description">${task.description}</div>  
