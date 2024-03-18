@@ -1,18 +1,8 @@
-let currentDraggedElement;
-
-async function init() {
-    includeHTML();
+async function initBoard() {
+    await includeHTML();
     await loadTasks();
     addBackgroundColor(2);
     renderBoard(); 
-}
-
-async function loadTasks() {
-    try {
-        tasks = await loadData(TASKS_PATH);
-    } catch (error) {
-        console.error("Loading users error:", error);
-    }
 }
 
 function renderBoard() {
@@ -30,24 +20,15 @@ function renderToDo() {
         if (toDo && toDo.length >= 1) {
             for (let index = 0; index < toDo.length; index++) {
                 const task = toDo[index];
-                toDoContainer.innerHTML += renderCard(task, index);
+                toDoContainer.innerHTML += renderCard(task);
             }
         } else {
-            toDoContainer.innerHTML = /*html*/`
-                <div class="no-tasks-container">
-                    <span class="no-tasks-text">No tasks to do</span>
-                </div>
-            `;
+            toDoContainer.innerHTML = renderEmptyToDoColumn();
         }
     } else {
-        toDoContainer.innerHTML = /*html*/`
-            <div class="no-tasks-container">
-                <span class="no-tasks-text">No tasks available</span>
-            </div>
-        `;
+        toDoContainer.innerHTML = renderEmptyToDoColumn();
     }
 }
-
 
 function renderInProgress() {
     let inProgressContainer = document.getElementById('in-progress-column');
@@ -59,21 +40,13 @@ function renderInProgress() {
         if (inProgress && inProgress.length >= 1) {
             for (let index = 0; index < inProgress.length; index++) {
                 const task = inProgress[index];
-                inProgressContainer.innerHTML += renderCard(task, index);
+                inProgressContainer.innerHTML += renderCard(task);
             }
         } else {
-            inProgressContainer.innerHTML = /*html*/`
-                <div class="no-tasks-container">
-                    <span class="no-tasks-text">No tasks in progress</span>
-                </div>
-            `;
+            inProgressContainer.innerHTML = renderEmptyInProgressColumn();
         }
     } else {
-        inProgressContainer.innerHTML = /*html*/`
-            <div class="no-tasks-container">
-                <span class="no-tasks-text">No tasks available</span>
-            </div>
-        `;
+        inProgressContainer.innerHTML = renderEmptyInProgressColumn();
     }
 }
 
@@ -87,21 +60,13 @@ function renderAwaitFeedback() {
         if (awaitFeedback && awaitFeedback.length >= 1) {
             for (let index = 0; index < awaitFeedback.length; index++) {
                 const task = awaitFeedback[index];
-                awaitFeedbackContainer.innerHTML += renderCard(task, index);
+                awaitFeedbackContainer.innerHTML += renderCard(task);
             }
         } else {
-            awaitFeedbackContainer.innerHTML = /*html*/`
-                <div class="no-tasks-container">
-                    <span class="no-tasks-text">No feedback to get</span>
-                </div>
-            `;
+            awaitFeedbackContainer.innerHTML = renderEmptyAwaitFeedbackColumn();
         }
     } else {
-        awaitFeedbackContainer.innerHTML = /*html*/`
-            <div class="no-tasks-container">
-                <span class="no-tasks-text">No tasks available</span>
-            </div>
-        `;
+        awaitFeedbackContainer.innerHTML = renderEmptyAwaitFeedbackColumn();
     }
 }
 
@@ -114,44 +79,69 @@ function renderDone() {
         if (done && done.length >= 1) {
             for (let index = 0; index < done.length; index++) {
                 const task = done[index];
-                doneContainer.innerHTML += renderCard(task, index);
+                doneContainer.innerHTML += renderCard(task);
             }
         } else {
-            doneContainer.innerHTML = /*html*/`
-                <div class="no-tasks-container">
-                    <span class="no-tasks-text">No tasks done</span>
-                </div>
-            `;
+            doneContainer.innerHTML = renderEmptyDoneColumn();
         }
     } else {
-        doneContainer.innerHTML = /*html*/`
-            <div class="no-tasks-container">
-                <span class="no-tasks-text">No tasks available</span>
-            </div>
-        `;
+        doneContainer.innerHTML = renderEmptyDoneColumn();
     }
 }
 
+function renderEmptyToDoColumn() {
+    return /*html*/`
+            <div class="no-tasks-container">
+                <span class="no-tasks-text">No tasks to do</span>
+            </div>     
+    `;
+}
 
-function getBackgroundColorTaskCategory(type) {
-    switch (type) {
+function renderEmptyDoneColumn() {
+    return /*html*/`
+            <div class="no-tasks-container">
+                <span class="no-tasks-text">No tasks done</span>
+            </div>     
+    `;
+}
+
+function renderEmptyInProgressColumn() {
+    return /*html*/`
+    <div class="no-tasks-container">
+        <span class="no-tasks-text">No tasks in progress</span>
+    </div>     
+`;
+}
+
+function renderEmptyAwaitFeedbackColumn() {
+    return /*html*/`
+    <div class="no-tasks-container">
+        <span class="no-tasks-text">No feedback awaited</span>
+    </div>     
+`;
+}
+
+function getBackgroundColorFromTaskCategory(category) {
+    switch (category) {
         case 'User Story':
             return '#0038FF';
         case 'Technical Task':
             return '#1FD7C1';
+        default:
+            return '';
+    }
 }
 
-}
-function prepareBackgroundColorTaskCategory(index) {
-    let category = tasks[index].category;
-    let backgroundColor = getBackgroundColorTaskCategory(category);
+function prepareBackgroundColorTaskCategory(category) {
+    let backgroundColor = getBackgroundColorFromTaskCategory(category);
     return backgroundColor;
 }
 
-function renderCard(task, index) {
+function renderCard(task) {
+    let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
     return /*html*/`
-            <div draggable="true" ondragstart="startDragging(${index})" class="task-card">
-                <div class="task-category">${task.category}</div>
+            <div draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
+                <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
                     <span class="task-title">${task.title}</span>
                     <div class="task-description">${task.description}</div>  
                 <div class="task-subtasks-container">
@@ -182,19 +172,4 @@ function getNameFromContacts() {
     let name = contacts[0].name;
     let firstLetter = name.charAt(0);
     return firstLetter;
-}
-
-function startDragging(index) {
-    currentDraggedElement = index;
-    console.log("Current dragged element index:", index)
-}
-
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-async function moveTo(category) {
-        tasks[currentDraggedElement].boardCategory = category;
-        await postData();
-        renderBoard();
 }

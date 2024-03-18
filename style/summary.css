@@ -3,8 +3,12 @@ body {
     font-family: 'Inter';
 }
 
+
+
+
 .summary {
-    margin-left: 96px;
+    margin-left: 328px;
+    margin-top: 96px;
     display: flex;
 }
 

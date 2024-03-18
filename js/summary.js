@@ -1,4 +1,4 @@
 async function initSummary() {
     await includeHTML();
-    addBackgroundColor(0)
+    addBackgroundColor(0);
 }

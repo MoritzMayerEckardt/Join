@@ -7,16 +7,19 @@
     <title>Add Task</title>
     <script src="js/add_task.js"></script>
     <script src="js/includeHTML.js"></script>
-
+    <script src="/js/aside.js"></script>
+    <script src="script.js"></script>
+    <script src="/js/add_task.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="includeHTML()">
+<body onload="initAddTask()">
     <div class="content-container">
         <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
         <section id="content-right">
             <header w3-include-html="\assets\templates\header.html"></header>
-            <form action="#" class="board1">
+            <form onsubmit="addTask(); return false">
+                <section id="board" class="board1">
                     <div class="headline">
                         Add Task
                     </div>
@@ -24,21 +27,21 @@
                         <div class="titleFrame">
                             <p class="title">Title <span class="star">*</span></p>
                             <div class="inputTitle">
-                                <input type="text" class="inputfieldTitle" placeholder="Enter a title" required>
+                                <input id="title" type="text" class="inputfieldTitle" placeholder="Enter a title" required>
                                 <p class="requiredTitle">This field is required </p>
                             </div>
                         </div>
                         <div class="descriptionFrame">
                             <p class="description">Description</p>
                             <div class="inputfieldDescription">
-                                <textarea name="smallinputfieldDescription" id="" placeholder="Enter a Description"
+                                <textarea name="smallinputfieldDescription" id="description" placeholder="Enter a Description"
                                     class="smallinputfieldDescription" cols="30" rows="10"></textarea>
                                 <p class="requiredTitle">This field is required </p>
                             </div>
                         </div>
                         <div class="assignedToFrame">
                             <p class="assignedTo">Assigned to</p>
-                            <select class="select">
+                            <select id="assigned" class="select">
                                 <option value="option1">Select contacts to assign</option>
                                 <option value="option2">Option 2</option>
                                 <option value="option3">Option 3</option>
@@ -49,7 +52,8 @@
                         <div class="titleFrame">
                             <p class="title">Due Date <span class="star">*</span></p>
                             <div class="inputTitle">
-                                <input type="date" name="date" class="inputfieldTitle" required>
+                                <input id="date" type="date" name="date" class="inputfieldTitle" required>
+                                <p class="requiredTitle">This field is required </p>
                             </div>
                         </div>
                         <div class="buttonsFrame">
@@ -83,18 +87,16 @@
                         </div>
                         <div class="categoryFrame">
                             <p class="category">Category <span class="star">*</span></p>
-                            <select class="select" id="category"required>
+                            <select id="category" class="select" required>
                                 <option value="">Select task category</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
+                                <option value="User Stoy">User Story</option>
+                                <option value="Technical Task">Technical Task</option>
                             </select>
                         </div>
                         
                         <div class="subtaskFrame">
                             <p class="subtask">Subtask</p>
-                            <input type="text" id="addSubtask" class="inputfieldTitle" placeholder="Add new subtask">
-                            <img src="assets/img/+.svg" class="subtaskPlus" onclick="addNewSubtask()">
+                            <input id="subtasks" type="text" class="inputfieldTitle" placeholder="Add new subtask">
                         </div>
                     </div>
                     <div id="newSubtask" class="newSubtask">
