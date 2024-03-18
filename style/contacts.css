@@ -1,7 +1,3 @@
-body {
-    overflow: hidden;
-}
-
 .contacts-section {
     display: flex;
     margin-left: 232px;
@@ -18,7 +14,6 @@ body {
     height: 100%;
     padding: 0px 24px 32px 24px;
     background-color: white;
-
 }
 
 .button-container {
