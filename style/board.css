@@ -122,6 +122,9 @@
     gap: 10px;
 }
 
+.task-card:hover {
+    cursor: pointer;
+}
 #board-content {
     margin-top: 16px;
     gap: 16px;
@@ -164,7 +167,6 @@
     max-width: 144px;
     height: 27px;
     border-radius: 8px;
-    background: #0038FF;
     padding: 4px 16px 4px 16px;
     color: white;
     font-size: 16px;
@@ -263,15 +265,11 @@
 
 .detailed-card-container {
     width: 525px;
-    background: green;
+    background: white;
     z-index: 999;
-    position: absolute;
-    top: 0;
-    left: 323px;
     padding: 48px 40px 48px 40px;
     border-radius: 30px;
     display: inline-block;
-    position: relative;
 }
 
 .detailed-card-title {
@@ -303,10 +301,8 @@
 }
 
 .detailed-card-category {
-    max-width: 160px;
     height: 36px;
     border-radius: 8px;
-    background: #0038FF;
     padding: 4px 16px 4px 16px;
     color: white;
     font-size: 23px;
@@ -351,3 +347,17 @@
     flex-direction: column;
     gap: 8px;
 }
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+.detailed-card-close-button:hover {
+    cursor: pointer;
+}
+

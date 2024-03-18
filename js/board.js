@@ -20,7 +20,7 @@ function renderToDo() {
         if (toDo && toDo.length >= 1) {
             for (let index = 0; index < toDo.length; index++) {
                 const task = toDo[index];
-                toDoContainer.innerHTML += renderDetailedCard(task);
+                toDoContainer.innerHTML += renderCard(task);
             }
         } else {
             toDoContainer.innerHTML = renderEmptyToDoColumn();
@@ -136,11 +136,12 @@ function prepareBackgroundColorTaskCategory(category) {
     let backgroundColor = getBackgroundColorFromTaskCategory(category);
     return backgroundColor;
 }
-
 function renderCard(task) {
     let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
+    let taskJson = JSON.stringify(task);
+    taskJson = taskJson.replace(/"/g, '&quot;');
     return /*html*/`
-            <div draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
+            <div onclick="openDetailedCard('${taskJson}')" draggable="true" ondragstart="startDragging('${task.id}')" class="task-card">
                 <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
                 <span class="task-title">${task.title}</span>
                 <div class="task-description">${task.description}</div>  
@@ -174,13 +175,22 @@ function getNameFromContacts() {
     return firstLetter;
 }
 
-function renderDetailedCard(task) {
+function openDetailedCard(task) {
+    let popupOverlay = document.getElementById('popup-overlay');
+    let popupContent = document.getElementById('popup-content');
+    popupOverlay.classList.remove('d-none');
+    popupContent.innerHTML = '';
+    popupContent.innerHTML = renderDetailedCard(task);
+}
+
+function renderDetailedCard(taskJson) {
+    let task = JSON.parse(taskJson);
     let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
     return /*html*/`
         <div class="detailed-card-container">
             <div class="detailed-card-top-container">
                 <div style="background-color: ${backgroundColor}" class="detailed-card-category">${task.category}</div>
-                <div class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></div>
+                <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
             </div>
             <span class="detailed-card-title">${task.title}</span>
             <span class="detailed-card-description">${task.description}</span>
@@ -208,5 +218,10 @@ function renderDetailedCard(task) {
                 </div>                
             </div>
         </div>
-    `
+    `;
+}
+
+function closePopup() {
+    let popupOverlay = document.getElementById('popup-overlay');
+    popupOverlay.classList.add('d-none');
 }
