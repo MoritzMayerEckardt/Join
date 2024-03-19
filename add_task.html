@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
+    <script src="js/add_task.js"></script>
     <script src="js/includeHTML.js"></script>
     <script src="/js/aside.js"></script>
     <script src="script.js"></script>
-    <script src="/js/add_task.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,15 +26,17 @@
                         <div class="titleFrame">
                             <p class="title">Title <span class="star">*</span></p>
                             <div class="inputTitle">
-                                <input id="title" type="text" class="inputfieldTitle" placeholder="Enter a title" required>
+                                <input id="title" type="text" class="inputfieldTitle" placeholder="Enter a title"
+                                    required>
                                 <p class="requiredTitle">This field is required </p>
                             </div>
                         </div>
                         <div class="descriptionFrame">
                             <p class="description">Description</p>
                             <div class="inputfieldDescription">
-                                <textarea name="smallinputfieldDescription" id="description" placeholder="Enter a Description"
-                                    class="smallinputfieldDescription" cols="30" rows="10"></textarea>
+                                <textarea name="smallinputfieldDescription" id="description"
+                                    placeholder="Enter a Description" class="smallinputfieldDescription" cols="30"
+                                    rows="10"></textarea>
                                 <p class="requiredTitle">This field is required </p>
                             </div>
                         </div>
@@ -92,22 +94,25 @@
                                 <option value="Technical Task">Technical Task</option>
                             </select>
                         </div>
-                        
+
                         <div class="subtaskFrame">
                             <p class="subtask">Subtask</p>
                             <input id="subtasks" type="text" class="inputfieldTitle" placeholder="Add new subtask">
+                            <img src="assets/img/+.svg" class="subtaskPlus" onclick="addNewSubtask()">
                         </div>
                     </div>
                     <div id="newSubtask" class="newSubtask">
-
                     </div>
-                    
+
+                    <div class="requiredField">
+                        <p><span class="star">*</span>This field is required</p>
+                    </div>
                     <div class="buttons">
                         <button class="clearBtn" onclick="clearForm()">
                             <p class="clear">Clear</p>
                             <img src="assets/img/cancel.png">
                         </button>
-                        
+
                         <button class="createBtn">
                             <p class="create">Create Task</p>
                             <img src="assets/img/check.png">

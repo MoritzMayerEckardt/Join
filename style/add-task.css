@@ -2,15 +2,17 @@
     position: relative;
     width: 278px;
     height: 73px;
-    top: 206px;
+    top: 105px;
     left: 328px;
     font-size: 61px;
     font-weight: 700;
 }
 
 .board1{
-    bottom: 80px;
     width: 100vw;
+    position: relative;
+    height: 70vw;
+    padding-top: 96px;
 }
 .about-container {
     padding: 243px, 0px, 0px, 52px;
@@ -21,7 +23,7 @@
 }
 
 .buttons {
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -89,7 +91,7 @@
     position: relative;
     width: 440px;
     height: 376px;
-    top: 205px;
+    top: 105px;
     left: 327px;
 }
 
@@ -262,9 +264,12 @@
     width: 440px;
     height: 416px;
     left: 864.25px;
-    bottom: 190px;
+    bottom: 290px;
 }
-
+.buttonsFrame{
+    position: relative;
+    top: 17px;
+}
 .smallButtonsFrame {
     display: flex;
     gap: 8px
@@ -333,6 +338,8 @@
 .categoryFrame {
     width: 440px;
     height: 80px;
+    position: relative;
+    top: 20px;
 }
 
 .category {
@@ -350,6 +357,8 @@
 .subtaskFrame{
     width: 440px;
     height: 80px;
+    position: relative;
+    top: 24px;
 }
 
 .subtask{
@@ -363,14 +372,25 @@
 
 .subtaskPlus{
     position: absolute;
-    right: 15px;
-    top: 392px;
+    right: 20px;
+    bottom: 1px;
 }
 
 .newSubtask{
     position: relative;
     left: 870px;
-    bottom: 170px;
+    bottom: 245px;
     height: 100px;
     width: 440px;
+}
+
+.requiredField{
+    position: absolute;
+    left: 328px;
+    width: 170px;
+    height: 27px;
+    top: 926px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
 }

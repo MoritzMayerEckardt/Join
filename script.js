@@ -5,6 +5,7 @@ const CONTACTS_PATH = "/contacts";
 let users = [];
 let tasks = [];
 let contacts = [];
+let subtaskArray = [];
 
 async function initLogin() {
     await loadUsers();
@@ -13,7 +14,7 @@ async function initLogin() {
     }, 1500);
 }
 
-async function loadData(path="") {
+async function loadData(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
     return responseAsJson = await response.json();
 }
@@ -34,8 +35,8 @@ async function loadUsers() {
     }
 }
 
-async function postData(path="", users={}) {
-    let response = await fetch(BASE_URL + path + ".json",{
+async function postData(path = "", users = {}) {
+    let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {
             "content-Type": "application/json",
@@ -46,7 +47,7 @@ async function postData(path="", users={}) {
 }
 
 function getDataFromInput() {
-    let userName= document.getElementById('name');
+    let userName = document.getElementById('name');
     let userEmail = document.getElementById('email');
     let userPassword = document.getElementById('password');
     let userId;
@@ -55,7 +56,7 @@ function getDataFromInput() {
     } else {
         userId = 0;
     }
-    let data = {"name": userName.value, "email": userEmail.value, "password": userPassword.value, "id": userId};
+    let data = { "name": userName.value, "email": userEmail.value, "password": userPassword.value, "id": userId };
     return data;
 }
 
@@ -82,6 +83,50 @@ async function deleteUser() {
     users.splice(1, 1);
     await postData(USERS_PATH, users);
 }
+
+function addNewSubtask() {
+    let addNewSubtask = document.getElementById('subtasks').value;
+
+    if (subtaskArray.length < 2) {
+        subtaskArray.push(addNewSubtask);
+        getNewSubtask();
+    } else {
+        alert("You can only add a maximum of two subtasks.");
+    }
+}
+
+
+
+function getNewSubtask() {
+    console.log("getNewSubtask() wird aufgerufen")
+    let newSubtask = document.getElementById('newSubtask');
+
+    newSubtask.innerHTML = ``;
+
+    for (i = 0; i < subtaskArray.length; i++) {
+        newSubtask.innerHTML += `
+        <div> 
+             <b> •${subtaskArray[i]} </b> 
+         </div>`
+
+    }
+
+    document.getElementById('subtasks').value = ``;
+}
+
+function clearForm() {
+
+    document.getElementById('title').value = ""; // Titel löschen
+    document.getElementById('description').value = ""; // Beschreibung löschen
+    document.getElementById('assigned').selectedIndex = 0; // Auswahl zurücksetzen
+    document.getElementById('date').value = ""; // Datum löschen
+    document.getElementById('category').selectedIndex = 0; // Auswahl zurücksetzen
+    document.getElementById('subtasks').value = ""; // Subtasks löschen
+    subtaskArray = []; // Subtask-Array leeren
+    getNewSubtask(); // Anzeige der Subtasks aktualisieren
+
+}
+
 
 
 
