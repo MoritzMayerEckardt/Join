@@ -248,7 +248,9 @@ function closePopup() {
 document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (event) {
         let card = document.getElementById('card');
+        let taskForm = document.getElementById('task-form');
         if (card && card.contains(event.target)) {
+        } else if (taskForm && taskForm.contains(event.target)) {
         } else {
             closePopup();
         }
@@ -256,6 +258,115 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function showAddTaskForm(event) {
+    let popupOverlay = document.getElementById('popup-board-overlay');
+    let popupContent = document.getElementById('popup-board-content');
+    popupOverlay.classList.remove('d-none');
+    popupContent.innerHTML = '';
+    popupContent.innerHTML = renderAddTaskForm();
+    event.stopPropagation();
+}
+
+function renderAddTaskForm() {
+    return /*html*/`
+        <form id="task-form" class="add-task-template" onsubmit="addTask(); return false">
+        <div class="headline-template">
+            Add Task
+        </div>
+        <a class="close-button-template" onclick="closePopup()"><img src="../assets/img/close.svg" alt=""></a>
+        <div class="left-side-template">
+            <div class="titleFrame">
+                <p class="title">Title <span class="star">*</span></p>
+                <div class="inputTitle">
+                    <input id="title" type="text" class="inputfieldTitle" placeholder="Enter a title"
+                        required>
+                </div>
+            </div>
+            <div class="descriptionFrame">
+                <p class="description">Description</p>
+                <div class="inputfieldDescription">
+                    <textarea name="smallinputfieldDescription" id="description"
+                        placeholder="Enter a Description" class="smallinputfieldDescription" cols="30"
+                        rows="10"></textarea>
+                </div>
+            </div>
+            <div class="assignedToFrame">
+                <p class="assignedTo">Assigned to</p>
+                <select id="assigned" class="select">
+                    <option value="option1">Select contacts to assign</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="right-side-template">
+            <div class="titleFrame">
+                <p class="title">Due Date <span class="star">*</span></p>
+                <div class="inputTitle">
+                    <input id="date" type="date" name="date" class="inputfieldTitle" required>
+                </div>
+            </div>
+            <div class="buttonsFrame">
+                <p class="title">Prio</p>
+                <div class="smallButtonsFrame">
+                    <button class="urgent">
+                        <div class="urgentText">
+                            Urgent
+                        </div>
+                        <div class="arrows">
+                            <img src="assets/img/redArrow.svg" alt="svg">
+                        </div>
+                    </button>
+                    <button class="medium">
+                        <div class="mediumText">
+                            Medium
+                        </div>
+                        <div class="arrows">
+                            <img src="assets/img/hypen.svg" alt="svg">
+                        </div>
+                        <button class="urgent">
+                            <div class="lowText">
+                                Low
+                            </div>
+                            <div class="arrows">
+                                <img src="assets/img/greenArrow.svg" alt="svg">
+                            </div>
+                        </button>
+                </div>
+            </div>
+            <div class="categoryFrame">
+                <p class="category">Category <span class="star">*</span></p>
+                <select id="category" class="select" required>
+                    <option value="">Select task category</option>
+                    <option value="User Story">User Story</option>
+                    <option value="Technical Task">Technical Task</option>
+                </select>
+            </div>
+
+            <div class="subtaskFrame">
+                <p class="subtask">Subtask</p>
+                <input id="subtasks" type="text" class="inputfieldTitle" placeholder="Add new subtask">
+                <img src="assets/img/+.svg" class="subtaskPlus" onclick="addNewSubtask()">
+            </div>
+        </div>
+        <div id="newSubtask" class="new-subtask-container">
+        </div>
+        <div class="required-field-template">
+            <p><span class="star">*</span>This field is required</p>
+        </div>
+        <div class="buttons-template">
+            <a class="clear-button-template" onclick="clearForm()">
+                <p>Cancel</p>
+                <img src="assets/img/cancel.png">
+            </a>
+            <a class="create-task-button-template">
+                <p>Create Task</p>
+                <img src="assets/img/check.png">
+            </a>
+        </div>
+</form>
+    `;
+}
 
 
 
