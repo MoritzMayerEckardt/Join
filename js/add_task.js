@@ -1,4 +1,5 @@
 let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
+let subtaskArray = [];
 
 async function initAddTask() {
     await includeHTML();
@@ -39,7 +40,7 @@ function pushValuesToTasks() {
         assigned: assigned.value,
         date: date.value,
         category: category.value,
-        subtasks: subtasks.value,
+        subtasks: subtaskArray,
         boardCategory: boardCategory,
     });
 }
@@ -57,4 +58,45 @@ async function postData(path = "/tasks") {
 
 function saveTaskIdCounter() {
     localStorage.setItem('taskIdCounter', taskIdCounter.toString());
+}
+
+function addNewSubtask() {
+    let addNewSubtask = document.getElementById('subtasks').value;
+
+    if (subtaskArray.length < 2) {
+        subtaskArray.push(addNewSubtask);
+        getNewSubtask();
+    } else {
+        alert("You can only add a maximum of two subtasks.");
+    }
+}
+
+function getNewSubtask() {
+    console.log("getNewSubtask() wird aufgerufen")
+    let newSubtask = document.getElementById('newSubtask');
+
+    newSubtask.innerHTML = ``;
+
+    for (i = 0; i < subtaskArray.length; i++) {
+        newSubtask.innerHTML += `
+        <div> 
+             <b> •${subtaskArray[i]} </b> 
+         </div>`
+
+    }
+
+    document.getElementById('subtasks').value = ``;
+}
+
+function clearForm() {
+
+    document.getElementById('title').value = ""; // Titel löschen
+    document.getElementById('description').value = ""; // Beschreibung löschen
+    document.getElementById('assigned').selectedIndex = 0; // Auswahl zurücksetzen
+    document.getElementById('date').value = ""; // Datum löschen
+    document.getElementById('category').selectedIndex = 0; // Auswahl zurücksetzen
+    document.getElementById('subtasks').value = ""; // Subtasks löschen
+    subtaskArray = []; // Subtask-Array leeren
+    getNewSubtask(); // Anzeige der Subtasks aktualisieren
+
 }

@@ -5,7 +5,6 @@ const CONTACTS_PATH = "/contacts";
 let users = [];
 let tasks = [];
 let contacts = [];
-let subtaskArray = [];
 
 async function initLogin() {
     await loadUsers();
@@ -90,49 +89,6 @@ async function deleteAllUsers() {
 async function deleteUser() {
     users.splice(1, 1);
     await postData(USERS_PATH, users);
-}
-
-function addNewSubtask() {
-    let addNewSubtask = document.getElementById('subtasks').value;
-
-    if (subtaskArray.length < 2) {
-        subtaskArray.push(addNewSubtask);
-        getNewSubtask();
-    } else {
-        alert("You can only add a maximum of two subtasks.");
-    }
-}
-
-
-
-function getNewSubtask() {
-    console.log("getNewSubtask() wird aufgerufen")
-    let newSubtask = document.getElementById('newSubtask');
-
-    newSubtask.innerHTML = ``;
-
-    for (i = 0; i < subtaskArray.length; i++) {
-        newSubtask.innerHTML += `
-        <div> 
-             <b> •${subtaskArray[i]} </b> 
-         </div>`
-
-    }
-
-    document.getElementById('subtasks').value = ``;
-}
-
-function clearForm() {
-
-    document.getElementById('title').value = ""; // Titel löschen
-    document.getElementById('description').value = ""; // Beschreibung löschen
-    document.getElementById('assigned').selectedIndex = 0; // Auswahl zurücksetzen
-    document.getElementById('date').value = ""; // Datum löschen
-    document.getElementById('category').selectedIndex = 0; // Auswahl zurücksetzen
-    document.getElementById('subtasks').value = ""; // Subtasks löschen
-    subtaskArray = []; // Subtask-Array leeren
-    getNewSubtask(); // Anzeige der Subtasks aktualisieren
-
 }
 
 
