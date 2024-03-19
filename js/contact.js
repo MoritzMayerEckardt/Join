@@ -33,6 +33,8 @@ function addContact() {
     showSlideContainer();
     addContactToArray();
     clearAddContactForm();
+
+    addContacts();
 }
 
 function clearAddContactForm() {
@@ -73,15 +75,13 @@ function addContactToArray() {
 
     let nameParts = name.value.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
-    let result = firstLetters.join("");
+    let initials = firstLetters.join("");
 
 
     contact[0]['name'].push(name.value);
     contact[0]['email'].push(email.value);
     contact[0]['phone'].push(phone.value);
-    contact[0]['initials'].push(result);
-
-
+    contact[0]['initials'].push(initials);
 
     addContactToList();
 }
@@ -89,12 +89,11 @@ function addContactToArray() {
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
-    
+
     for (let i = 0; i < contact[0]['name'].length; i++) {
         let name = contact[0]['name'][i];
         let email = contact[0]['email'][i];
         let initials = contact[0]['initials'][i];
-        // let phone = contacts[0]['phone'][i];
 
         listContainer.innerHTML += createHtmlTemplateForList(name, email, initials);
     }
@@ -109,4 +108,64 @@ function createHtmlTemplateForList(name, email, initials) {
                 <div>${email}</div>
             </div>
         </li>`
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function addContacts() {
+    createContactsIfNotCreated();
+    pushValuesToContacts();
+    await postData();
+    saveTaskIdCounter();
+}
+
+
+function createContactsIfNotCreated() {
+    if (!contacts) {
+        contacts = []; 
+    }
+}
+
+function pushValuesToContacts() {
+    getValuesFromInputAddContact();
+    contacts.push({
+        name: name.value,
+        email: email.value,
+        phone: phone.value,
+        initials: initials,
+    });
+}
+
+function getValuesFromInputAddContact() {
+    let name = document.getElementById('name-input-field-add-contact');
+    let email = document.getElementById('email-input-field-add-contact');
+    let phone = document.getElementById('phone-input-field-add-contact');
+
+    let nameParts = name.value.split(" ");
+    let firstLetters = nameParts.map(namePart => namePart.charAt(0));
+    let initials = firstLetters.join("");
+    return (name, email, phone, initials);
+}
+
+
+
+async function postData(path = "/contacts") {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "PUT",
+        header: {
+            "content-Type": "application/json",
+        },
+        body: JSON.stringify(contacts)
+    });
+    return responseAsJson = await response.json();
 }
