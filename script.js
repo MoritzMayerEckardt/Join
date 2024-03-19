@@ -34,6 +34,14 @@ async function loadUsers() {
     }
 }
 
+async function loadContacts() {
+    try {
+        contacts = await loadData(CONTACTS_PATH);
+    } catch (error) {
+        console.error("Loading users error:", error);
+    }
+}
+
 async function postData(path="", users={}) {
     let response = await fetch(BASE_URL + path + ".json",{
         method: "PUT",
@@ -82,7 +90,6 @@ async function deleteUser() {
     users.splice(1, 1);
     await postData(USERS_PATH, users);
 }
-
 
 
 

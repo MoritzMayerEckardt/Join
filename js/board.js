@@ -20,7 +20,7 @@ function renderToDo() {
         if (toDo && toDo.length >= 1) {
             for (let index = 0; index < toDo.length; index++) {
                 const task = toDo[index];
-                toDoContainer.innerHTML += renderCard(task);
+                toDoContainer.innerHTML += renderCard(task, index);
             }
         } else {
             toDoContainer.innerHTML = renderEmptyToDoColumn();
@@ -40,7 +40,7 @@ function renderInProgress() {
         if (inProgress && inProgress.length >= 1) {
             for (let index = 0; index < inProgress.length; index++) {
                 const task = inProgress[index];
-                inProgressContainer.innerHTML += renderCard(task);
+                inProgressContainer.innerHTML += renderCard(task, index);
             }
         } else {
             inProgressContainer.innerHTML = renderEmptyInProgressColumn();
@@ -60,7 +60,7 @@ function renderAwaitFeedback() {
         if (awaitFeedback && awaitFeedback.length >= 1) {
             for (let index = 0; index < awaitFeedback.length; index++) {
                 const task = awaitFeedback[index];
-                awaitFeedbackContainer.innerHTML += renderCard(task);
+                awaitFeedbackContainer.innerHTML += renderCard(task, index);
             }
         } else {
             awaitFeedbackContainer.innerHTML = renderEmptyAwaitFeedbackColumn();
@@ -79,7 +79,7 @@ function renderDone() {
         if (done && done.length >= 1) {
             for (let index = 0; index < done.length; index++) {
                 const task = done[index];
-                doneContainer.innerHTML += renderCard(task);
+                doneContainer.innerHTML += renderCard(task, index);
             }
         } else {
             doneContainer.innerHTML = renderEmptyDoneColumn();
@@ -136,12 +136,16 @@ function prepareBackgroundColorTaskCategory(category) {
     let backgroundColor = getBackgroundColorFromTaskCategory(category);
     return backgroundColor;
 }
-function renderCard(task) {
+function renderCard(task, index) {
     let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
     let taskJson = JSON.stringify(task);
     taskJson = taskJson.replace(/"/g, '&quot;');
+    let name = task.assigned;
+    let allsubtasks = task.subtasks.length;
+    let firstLetterName = getInitialsFromName(name);
+    let firstLetterLastName = getInitialsFromLastName(name);
     return /*html*/`
-            <div onclick="openDetailedCard('${taskJson}')" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
+            <div onclick="openDetailedCard('${taskJson}', ${index}, event)" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
                 <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
                 <span class="task-title">${task.title}</span>
                 <div class="task-description">${task.description}</div>  
@@ -149,12 +153,12 @@ function renderCard(task) {
                     <div class="task-progress-bar">
                         <div class="task-progress-bar-progress"></div>
                     </div>
-                    <span class="task-subtasks-text">1/2 Subtasks</span>
+                    <span class="task-subtasks-text">1/${allsubtasks} Subtasks</span>
                 </div>
                 <div class="task-card-bottom">
                     <div class="task-assigned-container">
                         <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
-                            <span class="task-contacts-letters">M</span><span class="task-contacts-letters">M</span>
+                            <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
                         </div>
                         <div class="task-contacts-ellipse flex-center" style="background-color: #1FD7C1; margin-left: -10px; border: 1px solid white">
                             <span class="task-contacts-letters">M</span><span class="task-contacts-letters">B</span>
@@ -169,25 +173,39 @@ function renderCard(task) {
         `;
 }
 
-function getNameFromContacts() {
-    let name = contacts[0].name;
-    let firstLetter = name.charAt(0);
-    return firstLetter;
+function getInitialsFromName(name) {
+    let firstLetterName = name.charAt(0);
+    return firstLetterName;
 }
 
-function openDetailedCard(task) {
+function getInitialsFromLastName(name) {
+    let spaceIndex = name.indexOf(' ');
+    let lastName = name.substring(spaceIndex + 1);
+    let firstLetterLastName = lastName.charAt(0);
+    return firstLetterLastName;
+}
+
+function getProgressOfSubtasks(subtask) {
+   
+}
+
+function openDetailedCard(task, index, event) {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
-    popupContent.innerHTML = renderDetailedCard(task);
+    popupContent.innerHTML = renderDetailedCard(task, index);
+    event.stopPropagation();
 }
 
-function renderDetailedCard(taskJson) {
+function renderDetailedCard(taskJson, index) {
     let task = JSON.parse(taskJson);
     let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
+    let name = task.assigned;
+    let firstLetter = getInitialsFromName(name);
+    let secondLetter = getInitialsFromLastName(name);
     return /*html*/`
-        <div class="detailed-card-container">
+        <div id="card" class="detailed-card-container">
             <div class="detailed-card-top-container">
                 <div style="background-color: ${backgroundColor}" class="detailed-card-category">${task.category}</div>
                 <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
@@ -203,12 +221,13 @@ function renderDetailedCard(taskJson) {
                 <span style="font-size: 19px">${task.priority}</span>
             </div>
             <div class="detailed-card-assigned">
-                <span style="font-size: 20px">Assigned To:</span>
+                <div style="font-size: 20px">Assigned To:
+                </div>
                 <div class="detailed-card-contact-container">
                     <div class="task-contacts-ellipse flex-center" style="background-color: #1FD7C1; margin-left: -10px; border: 1px solid white">
-                        <span class="task-contacts-letters">M</span><span class="task-contacts-letters">B</span>
+                        <span class="task-contacts-letters">${firstLetter}</span><span class="task-contacts-letters">${secondLetter}</span>
                     </div>
-                    <span style="font-size: 19px">Florian Müller</span>
+                    <span style="font-size: 19px">${name}</span>
                 </div>
             </div>
             <div class="detailed-card-subtasks-container">
@@ -225,3 +244,19 @@ function closePopup() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('click', function (event) {
+        let card = document.getElementById('card');
+        if (card && card.contains(event.target)) {
+        } else {
+            closePopup();
+        }
+    });
+});
+
+
+
+
+
+
