@@ -32,9 +32,10 @@ function addContact() {
     dialog.classList.add('d-none');
     showSlideContainer();
     addContactToArray();
-    clearAddContactForm();
+    
 
     addContacts();
+    clearAddContactForm();
 }
 
 function clearAddContactForm() {
@@ -128,7 +129,6 @@ function addContacts() {
     createContactsIfNotCreated();
     pushValuesToContacts();
     postData();
-    // saveTaskIdCounter();
 }
 
 function createContactsIfNotCreated() {
