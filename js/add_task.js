@@ -98,7 +98,34 @@ function clearForm() {
     document.getElementById('subtasks').value = "";
     subtaskArray = [];
     getNewSubtask();
+    resetButtonStyles();
+}
 
+function resetButtonStyles() {
+    const urgentButton = document.getElementById('urgentButton');
+    const mediumButton = document.getElementById('mediumButton');
+    const mediumButtonText = document.getElementById('mediumText');
+    const prioMedium = document.getElementById('prioMedium');
+    const lowButton = document.getElementById('lowButton');
+    const redArrow = document.getElementById('redArrow');
+    const greenArrow = document.getElementById('greenArrow');
+    const whiteArrow = document.getElementById('whiteArrow');
+    const whiteArrowLow = document.getElementById('whiteArrowLow');
+
+    urgentButton.style.backgroundColor = '';
+    urgentButton.style.color = '';
+    redArrow.style.display = '';
+    whiteArrow.style.display = '';
+
+    mediumButton.style.backgroundColor = '';
+    mediumButton.style.color = '';
+    mediumButtonText.style.fontWeight = '';
+    prioMedium.style.display = '';
+
+    lowButton.style.backgroundColor = '';
+    lowButton.style.color = '';
+    greenArrow.style.display = '';
+    whiteArrowLow.style.display = '';
 }
 
 function changeBackgroundColor(clickedButton) {
