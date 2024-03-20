@@ -1,6 +1,7 @@
 async function initContacts() {
     await includeHTML();
     addBackgroundColor(3);
+    loadContacts();
 }
 
 function openDialogAddContacts() {
@@ -160,13 +161,49 @@ function getValuesFromInputAddContact() {
     return { name, email, phone, initials };
 }
 
+// async function postData(path = "/contacts") {
+//     let response = await fetch(BASE_URL + path + ".json", {
+//         method: "PUT",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(contacts)
+//     });
+//     return await response.json();
+// }
+
+
+// async function loadTasks() {
+//     try {
+//         tasks = await loadData(TASKS_PATH);
+//     } catch (error) {
+//         console.error("Loading users error:", error);
+//     }
+// }
+
+
+
+
+
+
+
 async function postData(path = "/contacts") {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contacts)
-    });
-    return await response.json();
+    try {
+        let response = await fetch(BASE_URL + path + ".json", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contacts) // Daten im JSON-Format
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        let data = await response.json();
+        console.log("Daten erfolgreich gesendet:", data);
+    } catch (error) {
+        console.error("Fehler beim Senden der Daten:", error);
+    }
 }
