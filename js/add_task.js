@@ -27,13 +27,12 @@ function getValuesFromInput() {
     let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
     let category = document.getElementById('category');
-    let subtasks = document.getElementById('subtasks');
-    return (title, description, assigned, date, category, subtasks);
+    return { title, description, assigned, date, category };
 }
 
 function pushValuesToTasks() {
     let boardCategory = "toDo";
-    getValuesFromInput();
+    let { title, description, assigned, date, category } = getValuesFromInput();
     tasks.push({
         id: taskIdCounter++,
         title: title.value,
