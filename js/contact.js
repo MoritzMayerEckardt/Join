@@ -122,13 +122,14 @@ function createHtmlTemplateForList(name, email, initials) {
 
 
 
-async function addContacts() {
+
+
+function addContacts() {
     createContactsIfNotCreated();
     pushValuesToContacts();
-    await postData();
-    saveTaskIdCounter();
+    postData();
+    // saveTaskIdCounter();
 }
-
 
 function createContactsIfNotCreated() {
     if (!contacts) {
@@ -137,35 +138,35 @@ function createContactsIfNotCreated() {
 }
 
 function pushValuesToContacts() {
-    getValuesFromInputAddContact();
+    let { name, email, phone, initials } = getValuesFromInputAddContact();
+
     contacts.push({
-        name: name.value,
-        email: email.value,
-        phone: phone.value,
+        name: name,
+        email: email,
+        phone: phone,
         initials: initials,
     });
 }
 
 function getValuesFromInputAddContact() {
-    let name = document.getElementById('name-input-field-add-contact');
-    let email = document.getElementById('email-input-field-add-contact');
-    let phone = document.getElementById('phone-input-field-add-contact');
+    let name = document.getElementById('name-input-field-add-contact').value;
+    let email = document.getElementById('email-input-field-add-contact').value;
+    let phone = document.getElementById('phone-input-field-add-contact').value;
 
-    let nameParts = name.value.split(" ");
+    let nameParts = name.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
     let initials = firstLetters.join("");
-    return (name, email, phone, initials);
+
+    return { name, email, phone, initials };
 }
-
-
 
 async function postData(path = "/contacts") {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
-        header: {
-            "content-Type": "application/json",
+        headers: {
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(contacts)
     });
-    return responseAsJson = await response.json();
+    return await response.json();
 }
