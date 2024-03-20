@@ -1,6 +1,7 @@
 let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
 let subtaskArray = [];
 
+
 async function initAddTask() {
     await includeHTML();
     await loadTasks();
@@ -16,7 +17,7 @@ async function addTask() {
 
 function createTasksIfNotCreated() {
     if (!tasks) {
-        tasks = []; 
+        tasks = [];
     }
 }
 
@@ -90,13 +91,78 @@ function getNewSubtask() {
 
 function clearForm() {
 
-    document.getElementById('title').value = ""; // Titel löschen
-    document.getElementById('description').value = ""; // Beschreibung löschen
-    document.getElementById('assigned').selectedIndex = 0; // Auswahl zurücksetzen
-    document.getElementById('date').value = ""; // Datum löschen
-    document.getElementById('category').selectedIndex = 0; // Auswahl zurücksetzen
-    document.getElementById('subtasks').value = ""; // Subtasks löschen
-    subtaskArray = []; // Subtask-Array leeren
-    getNewSubtask(); // Anzeige der Subtasks aktualisieren
+    document.getElementById('title').value = "";
+    document.getElementById('description').value = "";
+    document.getElementById('assigned').selectedIndex = 0;
+    document.getElementById('date').value = "";
+    document.getElementById('category').selectedIndex = 0;
+    document.getElementById('subtasks').value = "";
+    subtaskArray = [];
+    getNewSubtask();
 
 }
+
+function changeBackgroundColor(clickedButton) {
+    let urgentButton = document.getElementById('urgentButton');
+    let mediumButton = document.getElementById('mediumButton');
+    let mediumButtonText = document.getElementById('mediumText');
+    let prioMedium = document.getElementById('prioMedium');
+    let lowButton = document.getElementById('lowButton');
+    let redArrow = document.getElementById('redArrow');
+    let greenArrow = document.getElementById('greenArrow');
+    let whiteArrow = document.getElementById('whiteArrow');
+    let whiteArrowLow = document.getElementById('whiteArrowLow')
+
+
+
+    if (clickedButton === 'urgent') {
+        urgentButton.style.backgroundColor = 'rgba(255, 61, 0, 1)';
+        urgentButton.style.color = 'white';
+        redArrow.style.display = 'none';
+        whiteArrow.style.display = 'flex';
+
+        lowButton.style.backgroundColor = 'white';
+        lowButton.style.color = 'black';
+        greenArrow.style.display = 'flex';
+        whiteArrowLow.style.display = 'none';
+
+        mediumButton.style.backgroundColor = 'white';
+        mediumButton.style.color = 'black';
+        mediumButtonText.style.fontWeight = 'normal';
+        prioMedium.style.display ='flex';
+
+
+    } else if (clickedButton === 'medium') {
+        mediumButton.style.backgroundColor = 'rgba(255, 168, 0, 1)';
+        mediumButton.style.color = 'white';
+        mediumButtonText.style.fontWeight = '700';
+        prioMedium.style.display ='none';
+
+        urgentButton.style.backgroundColor = 'white';
+        urgentButton.style.color = 'black';
+        redArrow.style.display = 'flex';
+        whiteArrow.style.display = 'none';
+
+        lowButton.style.backgroundColor = 'white';
+        lowButton.style.color = 'black';
+        greenArrow.style.display = 'flex';
+        whiteArrowLow.style.display = 'none';
+
+    } else if (clickedButton === 'low') {
+        lowButton.style.backgroundColor = 'rgba(122, 226, 41, 1)';
+        lowButton.style.color = 'white';
+        greenArrow.style.display = 'none';
+        whiteArrowLow.style.display = 'flex';
+
+        mediumButton.style.backgroundColor = 'white';
+        mediumButton.style.color = 'black';
+        mediumButtonText.style.fontWeight = 'normal';
+        prioMedium.style.display ='flex';
+
+        urgentButton.style.backgroundColor = 'white';
+        urgentButton.style.color = 'black';
+        redArrow.style.display = 'flex';
+        whiteArrow.style.display = 'none';
+    }
+}
+

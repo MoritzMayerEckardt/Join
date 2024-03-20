@@ -301,12 +301,30 @@
 
 .medium {
     color: #FFFFFF;
-    background-color: orange;
+    background-color: rgba(255, 168, 0, 1);
 }
 
 .arrows {
     width: 20px;
     height: 14.51px;
+}
+
+.whiteArrow{
+    display: none;
+    position: absolute;
+    bottom: 19px;
+    right: 325px;
+    width: 22px;
+    height: 18px;
+}
+
+.whiteArrowLow{
+    display: none;
+    position: absolute;
+    width: 22px;
+    height: 18px;
+    right: 52px;
+    bottom: 19px;
 }
 
 .urgentText {
@@ -325,6 +343,13 @@
     font-weight: 700;
     font-size: 21px;
     line-height: 25.2px;
+}
+
+.priomedium{
+    display: none;
+    position: absolute;
+    right: 179px;
+    bottom: 22px;
 }
 
 .lowText {

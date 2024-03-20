@@ -60,29 +60,36 @@
                         <div class="buttonsFrame">
                             <p class="title">Prio</p>
                             <div class="smallButtonsFrame">
-                                <button class="urgent">
+                                <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent')">
                                     <div class="urgentText">
                                         Urgent
                                     </div>
                                     <div class="arrows">
-                                        <img src="assets/img/redArrow.svg" alt="svg">
+                                        <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
+                                        <img id="whiteArrow" class="whiteArrow" src="assets/img/prioUrgent.svg"
+                                            alt="svg">
                                     </div>
                                 </button>
-                                <button class="medium">
-                                    <div class="mediumText">
+                                <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium')">
+                                    <div id="mediumText" class="mediumText">
                                         Medium
                                     </div>
                                     <div class="arrows">
-                                        <img src="assets/img/hypen.svg" alt="svg">
+                                        <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
+                                        <img id="prioMedium" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
+
                                     </div>
-                                    <button class="urgent">
-                                        <div class="lowText">
-                                            Low
-                                        </div>
-                                        <div class="arrows">
-                                            <img src="assets/img/greenArrow.svg" alt="svg">
-                                        </div>
-                                    </button>
+                                </button>
+                                <button id="lowButton" class="low" onclick="changeBackgroundColor('low')">
+                                    <div class="lowText">
+                                        Low
+                                    </div>
+                                    <div class="arrows">
+                                        <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
+                                        <img id="whiteArrowLow" class="whiteArrowLow" src="assets/img/prioLow.svg">
+
+                                    </div>
+                                </button>
                             </div>
 
                         </div>
