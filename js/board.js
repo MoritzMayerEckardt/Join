@@ -213,15 +213,15 @@ function renderDetailedCard(taskJson, index) {
             <span class="detailed-card-title">${task.title}</span>
             <span class="detailed-card-description">${task.description}</span>
             <div class="detailed-card-date">
-                <span style="font-size: 20px">Due date:</span>
+                <span style="font-size: 20px; color: #42526E">Due date:</span>
                 <span style="font-size: 19px">${task.date}</span>
             </div>
             <div class="detailed-card-priority">
-                <span style="font-size: 20px">Priority:</span>
+                <span style="font-size: 20px; color: #42526E">Priority:</span>
                 <span style="font-size: 19px">${task.priority}</span>
             </div>
             <div class="detailed-card-assigned">
-                <div style="font-size: 20px">Assigned To:
+                <div style="font-size: 20px; color: #42526E">Assigned To:
                 </div>
                 <div class="detailed-card-contact-container">
                     <div class="task-contacts-ellipse flex-center" style="background-color: #1FD7C1; margin-left: -10px; border: 1px solid white">
@@ -231,9 +231,10 @@ function renderDetailedCard(taskJson, index) {
                 </div>
             </div>
             <div class="detailed-card-subtasks-container">
-                <span style="font-size: 20px">Subtasks</span>
+                <span style="font-size: 20px; color: #42526E">Subtasks</span>
                 <div>
-                    <span style="font-size: 19px">${task.subtasks}</span>
+                    <li style="font-size: 19px">${task.subtasks[0]}</li>
+                    <li style="font-size: 19px">${task.subtasks[1]}</li>
                 </div>                
             </div>
         </div>
@@ -243,6 +244,16 @@ function renderDetailedCard(taskJson, index) {
 function closePopup() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
+}
+
+function closeAddTaskForm() {
+    let popupOverlay = document.getElementById('popup-board-overlay');
+    let taskForm = document.getElementById('task-form');
+    taskForm.style.animation = 'slideOutToRight 0.3s ease-in-out';
+    taskForm.style.right = '-200%';
+    setTimeout(() => {
+        popupOverlay.classList.add('d-none');
+    }, 200);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -257,7 +268,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 function showAddTaskForm(event) {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
@@ -269,105 +279,169 @@ function showAddTaskForm(event) {
 
 function renderAddTaskForm() {
     return /*html*/`
-        <form id="task-form" class="add-task-template" onsubmit="addTask(); return false">
-        <div class="headline-template">
-            Add Task
-        </div>
-        <a class="close-button-template" onclick="closePopup()"><img src="../assets/img/close.svg" alt=""></a>
-        <div class="left-side-template">
-            <div class="titleFrame">
-                <p class="title">Title <span class="star">*</span></p>
-                <div class="inputTitle">
-                    <input id="title" type="text" class="inputfieldTitle" placeholder="Enter a title"
-                        required>
+        <form style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false">
+            <div class="headline-template">
+                Add Task
+            </div>
+            <a class="close-button-template" onclick="closePopup()"><img src="../assets/img/close.svg" alt=""></a>
+            <div class="left-side-template">
+                <div class="titleFrame">
+                    <p class="title">Title <span class="star">*</span></p>
+                    <div class="inputTitle">
+                        <input id="title-template" type="text" class="inputfieldTitle" placeholder="Enter a title"
+                            required>
+                    </div>
+                </div>
+                <div class="descriptionFrame">
+                    <p class="description">Description</p>
+                    <div class="inputfieldDescription">
+                        <textarea name="smallinputfieldDescription" id="description-template"
+                            placeholder="Enter a Description" class="smallinputfieldDescription" cols="30"
+                            rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="assignedToFrame">
+                    <p class="assignedTo">Assigned to</p>
+                    <select id="assigned-template" class="select">
+                        <option value="option1">Select contacts to assign</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
                 </div>
             </div>
-            <div class="descriptionFrame">
-                <p class="description">Description</p>
-                <div class="inputfieldDescription">
-                    <textarea name="smallinputfieldDescription" id="description"
-                        placeholder="Enter a Description" class="smallinputfieldDescription" cols="30"
-                        rows="10"></textarea>
+            <div class="right-side-template">
+                <div class="titleFrame">
+                    <p class="title">Due Date <span class="star">*</span></p>
+                    <div class="inputTitle">
+                        <input id="date-template" type="date" name="date" class="inputfieldTitle" required>
+                    </div>
                 </div>
-            </div>
-            <div class="assignedToFrame">
-                <p class="assignedTo">Assigned to</p>
-                <select id="assigned" class="select">
-                    <option value="option1">Select contacts to assign</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                </select>
-            </div>
-        </div>
-        <div class="right-side-template">
-            <div class="titleFrame">
-                <p class="title">Due Date <span class="star">*</span></p>
-                <div class="inputTitle">
-                    <input id="date" type="date" name="date" class="inputfieldTitle" required>
-                </div>
-            </div>
-            <div class="buttonsFrame">
-                <p class="title">Prio</p>
-                <div class="smallButtonsFrame">
-                    <button class="urgent">
-                        <div class="urgentText">
-                            Urgent
-                        </div>
-                        <div class="arrows">
-                            <img src="assets/img/redArrow.svg" alt="svg">
-                        </div>
-                    </button>
-                    <button class="medium">
-                        <div class="mediumText">
-                            Medium
-                        </div>
-                        <div class="arrows">
-                            <img src="assets/img/hypen.svg" alt="svg">
-                        </div>
+                <div class="buttonsFrame">
+                    <p class="title">Prio</p>
+                    <div class="smallButtonsFrame">
                         <button class="urgent">
-                            <div class="lowText">
-                                Low
+                            <div class="urgentText">
+                                Urgent
                             </div>
                             <div class="arrows">
-                                <img src="assets/img/greenArrow.svg" alt="svg">
+                                <img src="assets/img/redArrow.svg" alt="svg">
                             </div>
                         </button>
+                        <button class="medium">
+                            <div class="mediumText">
+                                Medium
+                            </div>
+                            <div class="arrows">
+                                <img src="assets/img/hypen.svg" alt="svg">
+                            </div>
+                            <button class="urgent">
+                                <div class="lowText">
+                                    Low
+                                </div>
+                                <div class="arrows">
+                                    <img src="assets/img/greenArrow.svg" alt="svg">
+                                </div>
+                            </button>
+                    </div>
+                </div>
+                <div class="categoryFrame">
+                    <p class="category">Category <span class="star">*</span></p>
+                    <select id="category-template" class="select" required>
+                        <option value="">Select task category</option>
+                        <option value="User Story">User Story</option>
+                        <option value="Technical Task">Technical Task</option>
+                    </select>
+                </div>
+                <div class="subtaskFrame">
+                    <p class="subtask">Subtask</p>
+                    <input id="subtasks-template" type="text" class="inputfieldTitle" placeholder="Add new subtask">
+                    <img src="assets/img/+.svg" class="subtaskPlus" onclick="addNewSubtaskInTemplate()">
                 </div>
             </div>
-            <div class="categoryFrame">
-                <p class="category">Category <span class="star">*</span></p>
-                <select id="category" class="select" required>
-                    <option value="">Select task category</option>
-                    <option value="User Story">User Story</option>
-                    <option value="Technical Task">Technical Task</option>
-                </select>
+            <div id="new-subtask-template" class="new-subtask-container">
             </div>
-
-            <div class="subtaskFrame">
-                <p class="subtask">Subtask</p>
-                <input id="subtasks" type="text" class="inputfieldTitle" placeholder="Add new subtask">
-                <img src="assets/img/+.svg" class="subtaskPlus" onclick="addNewSubtask()">
+            <div class="required-field-template">
+                <p><span class="star">*</span>This field is required</p>
             </div>
-        </div>
-        <div id="newSubtask" class="new-subtask-container">
-        </div>
-        <div class="required-field-template">
-            <p><span class="star">*</span>This field is required</p>
-        </div>
-        <div class="buttons-template">
-            <a class="clear-button-template" onclick="clearForm()">
-                <p>Cancel</p>
-                <img src="assets/img/cancel.png">
-            </a>
-            <a class="create-task-button-template">
-                <p>Create Task</p>
-                <img src="assets/img/check.png">
-            </a>
-        </div>
-</form>
+            <div class="buttons-template">
+                <a onclick="clearFormInTemplate()" class="clear-button-template">
+                    <p>Cancel</p>
+                    <img src="assets/img/cancel.png">
+                </a>
+                <button class="create-task-button-template">
+                    <p>Create Task</p>
+                    <img src="assets/img/check.png">
+                </button>
+            </div>
+        </form>
     `;
 }
 
+async function addTaskFromTemplate() {
+    createTasksIfNotCreated();
+    pushValuesToTasksFromTemplate();
+    await postData();
+    saveTaskIdCounter();
+    closeAddTaskForm();
+    renderBoard();
+}
 
+function getValuesFromInputFromTemplate() {
+    let title = document.getElementById('title-template').value;
+    let description = document.getElementById('description-template');
+    let assigned = document.getElementById('assigned-template');
+    let date = document.getElementById('date-template');
+    let category = document.getElementById('category-template');
+    return { title, description, assigned, date, category };
+}
+
+function pushValuesToTasksFromTemplate() {
+    let boardCategory = "toDo";
+    let { title, description, assigned, date, category } = getValuesFromInputFromTemplate();
+    tasks.push({
+        id: taskIdCounter++,
+        title: title,
+        description: description.value,
+        assigned: assigned.value,
+        date: date.value,
+        subtasks: subtaskArray,
+        category: category.value,
+        boardCategory: boardCategory,
+    });
+}
+
+function addNewSubtaskInTemplate() {
+    let addNewSubtask = document.getElementById('subtasks-template').value;
+
+    if (subtaskArray.length < 2) {
+        subtaskArray.push(addNewSubtask);
+        getNewSubtaskInTemplate();
+    } else {
+        alert("You can only add a maximum of two subtasks.");
+    }
+}
+
+function getNewSubtaskInTemplate() {
+    let newSubtask = document.getElementById('new-subtask-template');
+    newSubtask.innerHTML = ``;
+    for (i = 0; i < subtaskArray.length; i++) {
+        newSubtask.innerHTML += `
+        <div> 
+             <b> •${subtaskArray[i]} </b> 
+         </div>`
+    }
+    document.getElementById('subtasks-template').value = ``;
+}
+
+function clearFormInTemplate() {
+    document.getElementById('title-template').value = ""; 
+    document.getElementById('description-template').value = ""; 
+    document.getElementById('assigned-template').selectedIndex = 0; 
+    document.getElementById('date-template').value = "";
+    document.getElementById('category-template').selectedIndex = 0;
+    document.getElementById('subtasks-template').value = "";
+    subtaskArray = [];
+    getNewSubtaskInTemplate();
+}
 
 
