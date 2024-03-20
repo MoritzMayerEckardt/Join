@@ -1,7 +1,8 @@
 async function initContacts() {
     await includeHTML();
     addBackgroundColor(3);
-    loadContacts();
+    await loadContacts();
+    addContactToList();
 }
 
 function openDialogAddContacts() {
@@ -26,17 +27,17 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
-function addContact() {
+async function addContact() {
 
-    console.log('Kontakt wurde erfolgreich hinzugefügt')
     let dialog = document.getElementById('dialog-add-contacts');
     dialog.classList.add('d-none');
-    showSlideContainer();
+
+    showConfirmation();
     addContactToArray();
     
-
     addContacts();
     clearAddContactForm();
+    initContacts();
 }
 
 function clearAddContactForm() {
@@ -45,7 +46,7 @@ function clearAddContactForm() {
     document.getElementById('phone-input-field-add-contact').value = '';
 }
 
-function showSlideContainer() {
+function showConfirmation() {
     let slideContainer = document.getElementById('confirmation-field');
     slideContainer.classList.add('confirmation-field-active');
     setTimeout(function () {
@@ -92,10 +93,11 @@ function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
 
-    for (let i = 0; i < contact[0]['name'].length; i++) {
-        let name = contact[0]['name'][i];
-        let email = contact[0]['email'][i];
-        let initials = contact[0]['initials'][i];
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
+        let name = contact['name'];
+        let email = contact['email'];
+        let initials = contact['initials'];
 
         listContainer.innerHTML += createHtmlTemplateForList(name, email, initials);
     }
@@ -160,31 +162,6 @@ function getValuesFromInputAddContact() {
 
     return { name, email, phone, initials };
 }
-
-// async function postData(path = "/contacts") {
-//     let response = await fetch(BASE_URL + path + ".json", {
-//         method: "PUT",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(contacts)
-//     });
-//     return await response.json();
-// }
-
-
-// async function loadTasks() {
-//     try {
-//         tasks = await loadData(TASKS_PATH);
-//     } catch (error) {
-//         console.error("Loading users error:", error);
-//     }
-// }
-
-
-
-
-
 
 
 async function postData(path = "/contacts") {
