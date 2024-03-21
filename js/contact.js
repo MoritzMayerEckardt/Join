@@ -176,3 +176,8 @@ function showDataFromCurrentContact(name, email, phone, initials) {
     document.getElementById('email-view-contact').innerHTML = email;
     document.getElementById('phone-noumber-view-contact').innerHTML = phone;
 }
+
+function showEditForm() {
+    document.getElementById('dialog-edit-contacts').classList.remove('d-none')
+
+}
