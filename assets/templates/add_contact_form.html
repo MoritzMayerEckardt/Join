@@ -1,0 +1,44 @@
+<div id="inner-dialog" class="dialog" onclick="doNotClose(event)">
+    <div class="information-container">
+        <img class="information-logo-icon" src="assets/img/logo-blue.svg" alt="">
+        <span class="heading-information-text">Add contact</span>
+        <span class="subheading-information-text">Tasks are better with a team!</span>
+        <img class="img-blue-line" src="assets/img/blue-line.svg" alt="">
+    </div>
+    <div class="add-container">
+        <div class="close-container">
+            <img class="closeDialog" onclick="closeDialog()" src="assets/img/close.svg" alt="">
+        </div>
+        <div class="add-information-overview-container">
+            <div class="person-icon-container">
+                <div class="person-icon-content">
+                    <img src="assets/img/person-white.svg" alt="">
+                </div>
+            </div>
+
+            <div class="add-information-container">
+                <form onsubmit="addContact(); return false">
+                    <div class="input-container">
+                        <input required type="text" id="name-input-field-add-contact"
+                            class="input-add-information input-icon" placeholder="Name" type="text">
+                        <input required type="email" id="email-input-field-add-contact"
+                            class="input-add-information input-icon" placeholder="Email" type="text">
+                        <input required type="number" id="phone-input-field-add-contact"
+                            class="input-add-information input-icon" placeholder="Phone" type="text">
+                    </div>
+                    <div class="add-contacts-btn-container">
+                        <button class="cancel-btn" type="button" onclick="closeDialog()">
+                            <span class="cancel-btn-text">Cancel</span>
+                            <img class="icon-in-btn" src="assets/img/close.svg" alt="">
+                        </button>
+
+                        <button class="create-contact-btn">
+                            <span class="create-contact-btn-text">Create Contact</span>
+                            <img class="icon-in-btn" src="assets/img/check.svg" alt="">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

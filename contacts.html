@@ -7,7 +7,7 @@
     <title>contacts</title>
     <link rel="stylesheet" href="style.css">
     <script src="js/includeHTML.js"></script>
-    
+
     <script src="script.js"></script>
     <script src="js/contact.js"></script>
     <script src="/js/aside.js"></script>
@@ -15,10 +15,15 @@
 
 <body class="body-contacts" onload="initContacts()">
     <div class="content-container">
+        
         <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
+
         <section id="content-right">
+
             <header w3-include-html="\assets\templates\header.html"></header>
+
             <section class="contacts-section" id="contacts">
+
                 <div class="contacts-container">
                     <div class="contacts-list-container">
                         <div class="button-container">
@@ -27,112 +32,16 @@
                             </button>
                         </div>
                         <ol class="list-container" id="list-container">
-                            <li class="contact-in-list" onclick="openFullCard()">
-                                <div class="name-initials">AM</div>
-                                <div>
-                                    <div>Anton Mayer</div>
-                                    <div>antonmayer@gmail.com</div>
-                                </div>
-                            </li>
-                            <li class="contact-in-list" onclick="openFullCard()">
-                                <div class="name-initials">AM</div>
-                                <div>
-                                    <div>Hans Horst</div>
-                                    <div>antonmayer@gmail.com</div>
-                                </div>
-                            </li>
                         </ol>
                     </div>
                 </div>
 
+                <div w3-include-html="\assets\templates\show_complete_contact_data.html"></div>
 
-                <div>
-                    <div class="contacts-heading-container">
-                        <div class="main-contact-heading">Contacts</div>
-                        <div class="seperator-contacts-heading"></div>
-                        <div class="contact-subheading">Better with a team</div>
-                    </div>
-
-                    <div class="view-contact-container d-none" id="view-contact-container">
-                        <div class="name-container">
-                            <div class="name-initials-container-view-contact">
-                                <div class="name-initials-view-contact" id="name-initials-view-contact">AM</div>
-                            </div>
-                            <div class="name-view-contact-container">
-                                <div class="name-view-contact" id="name-view-contact">Anton Mayer</div>
-                                <div class="edit-container-view-contact editIcon">
-                                    <a href="#" class="edit-icon-full-contact">
-                                        Edit
-                                    </a>
-                                    <a href="#" class="delete-icon-full-contact">
-                                        Delete
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contact-information-container">
-                            <div class="contact-information">Contact Information</div>
-                            <div class="email-view-contact-container">
-                                <div class="email-phone-heading-view-contact">E-Mail</div>
-                                <div class="email-view-contact" id="email-view-contact">AntonMayer@gmail.com</div>
-                            </div>
-                            <div>
-                                <div class="email-phone-heading-view-contact">Phone</div>
-                                <div class="phone-noumber-view-contact" id="phone-noumber-view-contact">+49 1111 111 11 1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="confirmation-field" class="confirmation-field">Contact successfully created</div>
+                <div w3-include-html="\assets\templates\add_contact_form.html" id="dialog-add-contacts"
+                    class="dialog-bg d-none" onclick="closeDialog()">
                 </div>
 
-                <div id="dialog-add-contacts" class="dialog-bg d-none" onclick="closeDialog()">
-                    <div id="inner-dialog" class="dialog" onclick="doNotClose(event)">
-                        <div class="information-container">
-                            <img class="information-logo-icon" src="assets/img/logo-blue.svg" alt="">
-                            <span class="heading-information-text">Add contact</span>
-                            <span class="subheading-information-text">Tasks are better with a team!</span>
-                            <img class="img-blue-line" src="assets/img/blue-line.svg" alt="">
-                        </div>
-                        <div class="add-container">
-                            <div class="close-container">
-                                <img class="closeDialog" onclick="closeDialog()" src="assets/img/close.svg" alt="">
-                            </div>
-                            <div class="add-information-overview-container">
-                                <div class="person-icon-container">
-                                    <div class="person-icon-content">
-                                        <img src="assets/img/person-white.svg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="add-information-container">
-                                    <form onsubmit="addContact(); return false">
-                                        <div class="input-container">
-                                            <input required type="text" id="name-input-field-add-contact"
-                                                class="input-add-information input-icon" placeholder="Name" type="text">
-                                            <input required type="email" id="email-input-field-add-contact"
-                                                class="input-add-information input-icon" placeholder="Email"
-                                                type="text">
-                                            <input required type="number" id="phone-input-field-add-contact"
-                                                class="input-add-information input-icon" placeholder="Phone"
-                                                type="text">
-                                        </div>
-                                        <div class="add-contacts-btn-container">
-                                            <button class="cancel-btn" type="button" onclick="closeDialog()">
-                                                <span class="cancel-btn-text">Cancel</span>
-                                                <img class="icon-in-btn" src="assets/img/close.svg" alt="">
-                                            </button>
-
-                                            <button class="create-contact-btn">
-                                                <span class="create-contact-btn-text">Create Contact</span>
-                                                <img class="icon-in-btn" src="assets/img/check.svg" alt="">
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </section>
     </div>
 
