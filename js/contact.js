@@ -1,9 +1,10 @@
 async function initContacts() {
     await includeHTML();
     addBackgroundColor(3);
-    await loadContacts();
-    addContactToList();
+    renderContactList()
 }
+
+// **********************OPEN AND CLOSE ADD CONTACT WINDOW**********************
 
 function openDialogAddContacts() {
     let dialog = document.getElementById('dialog-add-contacts')
@@ -11,8 +12,6 @@ function openDialogAddContacts() {
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
     dialog.style.right = '0';
 }
-
-
 
 function closeDialog() {
     let dialog = document.getElementById('dialog-add-contacts');
@@ -27,117 +26,38 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
+// **********************ADD CONTACT**********************
+
+
 async function addContact() {
-
-    let dialog = document.getElementById('dialog-add-contacts');
-    dialog.classList.add('d-none');
-
-    showConfirmation();
+    document.getElementById('dialog-add-contacts').classList.add('d-none');
+    createContactsIfNotCreated();
     addContactToArray();
-    
-    addContacts();
+    pushValuesToContacts();
+    await postData();
     clearAddContactForm();
-    initContacts();
+    renderContactList();
+    showConfirmation();
 }
 
-function clearAddContactForm() {
-    document.getElementById('name-input-field-add-contact').value = '';
-    document.getElementById('email-input-field-add-contact').value = '';
-    document.getElementById('phone-input-field-add-contact').value = '';
+function createContactsIfNotCreated() {
+    if (!contacts) {
+        contacts = [];
+    }
 }
-
-function showConfirmation() {
-    let slideContainer = document.getElementById('confirmation-field');
-    slideContainer.classList.add('confirmation-field-active');
-    setTimeout(function () {
-        slideContainer.classList.remove('confirmation-field-active');
-    }, 1500); // Die Gesamtdauer der Animation beträgt 1,5 Sekunden
-}
-
-
-let showFullContact = false;
-let contact = [{
-    'name': [],
-    'email': [],
-    'phone': [],
-    'initials': [],
-}
-]
-
-function openFullCard() {
-    let showFullContact = document.getElementById('view-contact-container');
-    showFullContact.classList.remove('d-none');
-    showFullContact.classList.add('view-contact-container-slide-in');
-}
-
 
 function addContactToArray() {
     let name = document.getElementById('name-input-field-add-contact');
     let email = document.getElementById('email-input-field-add-contact');
     let phone = document.getElementById('phone-input-field-add-contact');
-
     let nameParts = name.value.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
     let initials = firstLetters.join("");
-
 
     contact[0]['name'].push(name.value);
     contact[0]['email'].push(email.value);
     contact[0]['phone'].push(phone.value);
     contact[0]['initials'].push(initials);
-
-    addContactToList();
-}
-
-function addContactToList() {
-    let listContainer = document.getElementById('list-container');
-    listContainer.innerHTML = '';
-
-    for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        let name = contact['name'];
-        let email = contact['email'];
-        let initials = contact['initials'];
-
-        listContainer.innerHTML += createHtmlTemplateForList(name, email, initials);
-    }
-}
-
-function createHtmlTemplateForList(name, email, initials) {
-    return `
-        <li class="contact-in-list" onclick="openFullCard()">
-            <div class="name-initials">${initials}</div>
-            <div>
-                <div>${name}</div>
-                <div>${email}</div>
-            </div>
-        </li>`
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function addContacts() {
-    createContactsIfNotCreated();
-    pushValuesToContacts();
-    postData();
-}
-
-function createContactsIfNotCreated() {
-    if (!contacts) {
-        contacts = []; 
-    }
 }
 
 function pushValuesToContacts() {
@@ -163,7 +83,6 @@ function getValuesFromInputAddContact() {
     return { name, email, phone, initials };
 }
 
-
 async function postData(path = "/contacts") {
     try {
         let response = await fetch(BASE_URL + path + ".json", {
@@ -183,4 +102,77 @@ async function postData(path = "/contacts") {
     } catch (error) {
         console.error("Fehler beim Senden der Daten:", error);
     }
+}
+
+function clearAddContactForm() {
+    document.getElementById('name-input-field-add-contact').value = '';
+    document.getElementById('email-input-field-add-contact').value = '';
+    document.getElementById('phone-input-field-add-contact').value = '';
+}
+
+async function renderContactList() {
+    await loadContacts();
+    addContactToList();
+}
+
+function addContactToList() {
+    let listContainer = document.getElementById('list-container');
+    listContainer.innerHTML = '';
+
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
+        let name = contact['name'];
+        let email = contact['email'];
+        let phone = contact['phone'];
+        let initials = contact['initials'];
+
+        listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials);
+    }
+}
+
+function createHtmlTemplateForList(name, email, phone, initials) {
+    return `
+        <li class="contact-in-list" onclick="openFullCard('${name}', '${email}', '${phone}', '${initials}')">
+            <div class="name-initials">${initials}</div>
+            <div>
+                <div>${name}</div>
+                <div>${email}</div>
+            </div>
+        </li>`
+}
+
+function showConfirmation() {
+    let slideContainer = document.getElementById('confirmation-field');
+    slideContainer.classList.add('confirmation-field-active');
+    setTimeout(function () {
+        slideContainer.classList.remove('confirmation-field-active');
+    }, 1500); // Die Gesamtdauer der Animation beträgt 1,5 Sekunden
+}
+
+
+// **********************SHCOW ALL DATA FROM CONTACT**********************
+
+
+let showFullContact = false;
+let contact = [{
+    'name': [],
+    'email': [],
+    'phone': [],
+    'initials': [],
+}
+]
+
+function openFullCard(name, email, phone, initials) {
+    let showFullContact = document.getElementById('view-contact-container');
+    showFullContact.classList.remove('d-none');
+    showFullContact.classList.add('view-contact-container-slide-in');
+
+    showDataFromCurrentContact(name, email, phone, initials);
+}
+
+function showDataFromCurrentContact(name, email, phone, initials) {
+    document.getElementById('name-initials-view-contact').innerHTML = initials;
+    document.getElementById('name-view-contact').innerHTML = name;
+    document.getElementById('email-view-contact').innerHTML = email;
+    document.getElementById('phone-noumber-view-contact').innerHTML = phone;
 }
