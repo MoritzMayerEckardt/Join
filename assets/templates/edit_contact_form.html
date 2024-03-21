@@ -6,7 +6,7 @@
     </div>
     <div class="add-container">
         <div class="close-container">
-            <img class="closeDialog" onclick="closeDialog()" src="assets/img/close.svg" alt="">
+            <img class="closeDialog" onclick="closeEditContactDialog()" src="assets/img/close.svg" alt="">
         </div>
         <div class="add-information-overview-container">
             <div class="person-icon-container">
@@ -18,15 +18,15 @@
             <div class="add-information-container">
                 <form onsubmit="addContact(); return false">
                     <div class="input-container">
-                        <input required type="text" id="name-input-field-add-contact"
+                        <input required type="text" id="name-input-field-edit-contact"
                             class="input-add-information input-icon" placeholder="Name" type="text">
-                        <input required type="email" id="email-input-field-add-contact"
+                        <input required type="email" id="email-input-field-edit-contact"
                             class="input-add-information input-icon" placeholder="Email" type="text">
-                        <input required type="number" id="phone-input-field-add-contact"
+                        <input required type="number" id="phone-input-field-edit-contact"
                             class="input-add-information input-icon" placeholder="Phone" type="text">
                     </div>
                     <div class="add-contacts-btn-container">
-                        <button class="delete-edit-contact-btn" type="button" onclick="closeDialog()">
+                        <button class="delete-edit-contact-btn" type="button" onclick="closeEditContactDialog()">
                             <span class="delete-edit-contact-btn-text">Delete</span>
                         </button>
 
