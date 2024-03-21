@@ -136,42 +136,47 @@ function prepareBackgroundColorTaskCategory(category) {
     let backgroundColor = getBackgroundColorFromTaskCategory(category);
     return backgroundColor;
 }
+
 function renderCard(task, index) {
     let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
     let taskJson = JSON.stringify(task);
     taskJson = taskJson.replace(/"/g, '&quot;');
     let name = task.assigned;
-    let allsubtasks = task.subtasks.length;
+    let allsubtasks = task.subtasks ? task.subtasks.length : 0;
     let firstLetterName = getInitialsFromName(name);
     let firstLetterLastName = getInitialsFromLastName(name);
+    let subtasksText = allsubtasks > 0 ? `${allsubtasks}/${allsubtasks} Subtasks` : 'No Subtasks';
+    let progressBarClass = allsubtasks === 0 ? "empty" : allsubtasks === 1 ? "half-filled" : "full";
     return /*html*/`
-            <div onclick="openDetailedCard('${taskJson}', ${index}, event)" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
-                <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
-                <span class="task-title">${task.title}</span>
-                <div class="task-description">${task.description}</div>  
-                <div class="task-subtasks-container">
-                    <div class="task-progress-bar">
-                        <div class="task-progress-bar-progress"></div>
-                    </div>
-                    <span class="task-subtasks-text">1/${allsubtasks} Subtasks</span>
+        <div onclick="openDetailedCard('${taskJson}', ${index}, event)" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
+            <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
+            <span class="task-title">${task.title}</span>
+            <div class="task-description">${task.description}</div>  
+            <div class="task-subtasks-container">
+                <div class="task-progress-bar">
+                    <div class="task-progress-bar-progress ${progressBarClass}"></div>
                 </div>
-                <div class="task-card-bottom">
-                    <div class="task-assigned-container">
-                        <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
-                            <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
-                        </div>
-                        <div class="task-contacts-ellipse flex-center" style="background-color: #1FD7C1; margin-left: -10px; border: 1px solid white">
-                            <span class="task-contacts-letters">M</span><span class="task-contacts-letters">B</span>
-                        </div>
-                        <div class="task-contacts-ellipse flex-center" style="background-color: #462F8A; margin-left: -10px; border: 1px solid white">
-                            <span class="task-contacts-letters">F</span><span class="task-contacts-letters">K</span>
-                        </div>
+                <span class="task-subtasks-text">${subtasksText}</span>
+            </div>
+            <div class="task-card-bottom">
+                <div class="task-assigned-container">
+                    <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
+                        <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
                     </div>
-                    <div><img style="width: 17px" src="../assets/img/prio_urgent.svg" alt=""></div>
+                    <div class="task-contacts-ellipse flex-center" style="background-color: #1FD7C1; margin-left: -10px; border: 1px solid white">
+                        <span class="task-contacts-letters">M</span><span class="task-contacts-letters">B</span>
+                    </div>
+                    <div class="task-contacts-ellipse flex-center" style="background-color: #462F8A; margin-left: -10px; border: 1px solid white">
+                        <span class="task-contacts-letters">F</span><span class="task-contacts-letters">K</span>
+                    </div>
                 </div>
-            </div>      
-        `;
+                <div><img style="width: 17px" src="../assets/img/prio_urgent.svg" alt=""></div>
+            </div>
+        </div>      
+    `;
 }
+
+
 
 function getInitialsFromName(name) {
     let firstLetterName = name.charAt(0);
@@ -204,8 +209,20 @@ function renderDetailedCard(taskJson, index) {
     let name = task.assigned;
     let firstLetter = getInitialsFromName(name);
     let secondLetter = getInitialsFromLastName(name);
+    let subtasksHTML = /*html*/`
+    <div class="detailed-card-subtasks-container">
+        <span style="font-size: 20px; color: #42526E">Subtasks</span>
+        <div>
+    `;
+    if (task.subtasks && task.subtasks.length > 0) {
+        for (let i = 0; i < task.subtasks.length; i++) {
+            subtasksHTML += `<li style="font-size: 19px">${task.subtasks[i]}</li>`;
+        }
+    } else {
+        subtasksHTML += `<div style="font-size: 19px">No subtasks</div>`;
+    }
     return /*html*/`
-        <div id="card" class="detailed-card-container">
+        <div style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="card" class="detailed-card-container">
             <div class="detailed-card-top-container">
                 <div style="background-color: ${backgroundColor}" class="detailed-card-category">${task.category}</div>
                 <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
@@ -221,8 +238,7 @@ function renderDetailedCard(taskJson, index) {
                 <span style="font-size: 19px">${task.priority}</span>
             </div>
             <div class="detailed-card-assigned">
-                <div style="font-size: 20px; color: #42526E">Assigned To:
-                </div>
+                <div style="font-size: 20px; color: #42526E">Assigned To:</div>
                 <div class="detailed-card-contact-container">
                     <div class="task-contacts-ellipse flex-center" style="background-color: #1FD7C1; margin-left: -10px; border: 1px solid white">
                         <span class="task-contacts-letters">${firstLetter}</span><span class="task-contacts-letters">${secondLetter}</span>
@@ -230,15 +246,25 @@ function renderDetailedCard(taskJson, index) {
                     <span style="font-size: 19px">${name}</span>
                 </div>
             </div>
-            <div class="detailed-card-subtasks-container">
-                <span style="font-size: 20px; color: #42526E">Subtasks</span>
-                <div>
-                    <li style="font-size: 19px">${task.subtasks[0]}</li>
-                    <li style="font-size: 19px">${task.subtasks[1]}</li>
-                </div>                
+            ${subtasksHTML}
+            <div class="detailed-card-bottom">
+                <div class="flex-center" style="width: 159px; gap: 8px;">
+                    <div onclick="deleteTask(${task.id})" class="detailed-card-delete-container"><img src="../assets/img/delete.svg" alt=""><span>Delete</span></div>
+                    <div onclick="editTask('${taskJson}')" class="detailed-card-edit-container"><img src="../assets/img/edit-dark-blue.svg" alt=""><span>Edit</span></div>
+                </div>
             </div>
         </div>
     `;
+}
+
+async function deleteTask(taskId) {
+    let selectedTask = tasks.findIndex(task => task.id === taskId);
+    if (selectedTask !== -1) {
+        tasks.splice(selectedTask, 1);
+        await postData();
+        renderBoard();
+        closePopup();
+    }
 }
 
 function closePopup() {
@@ -283,7 +309,7 @@ function renderAddTaskForm() {
             <div class="headline-template">
                 Add Task
             </div>
-            <a class="close-button-template" onclick="closePopup()"><img src="../assets/img/close.svg" alt=""></a>
+            <a class="close-button-template" onclick="closeAddTaskForm()"><img src="../assets/img/close.svg" alt=""></a>
             <div class="left-side-template">
                 <div class="titleFrame">
                     <p class="title">Title <span class="star">*</span></p>
@@ -303,7 +329,7 @@ function renderAddTaskForm() {
                 <div class="assignedToFrame">
                     <p class="assignedTo">Assigned to</p>
                     <select id="assigned-template" class="select">
-                        <option value="option1">Select contacts to assign</option>
+                        <option value="">Select contacts to assign</option>
                         <option value="option2">Option 2</option>
                         <option value="option3">Option 3</option>
                     </select>
@@ -364,7 +390,7 @@ function renderAddTaskForm() {
                 <p><span class="star">*</span>This field is required</p>
             </div>
             <div class="buttons-template">
-                <a onclick="clearFormInTemplate()" class="clear-button-template">
+                <a onclick="closeAddTaskForm()" class="clear-button-template">
                     <p>Cancel</p>
                     <img src="assets/img/cancel.png">
                 </a>
@@ -443,5 +469,6 @@ function clearFormInTemplate() {
     subtaskArray = [];
     getNewSubtaskInTemplate();
 }
+
 
 

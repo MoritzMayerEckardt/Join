@@ -224,6 +224,23 @@
     position: relative;
 }
 
+.task-progress-bar-progress {
+    height: 8px;
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+}
+
+.full {
+    width: 128px;
+    background-color: #4589FF;
+}
+
+.half-filled {
+    width: 64px;
+    background-color: #4589FF;
+}
+
 .task-subtasks-text {
     font-size: 12px;
     width: 73px;
@@ -245,15 +262,6 @@
 .task-contacts-letters {
     color: white;
     font-size: 12px;
-}
-
-.task-progress-bar-progress {
-    width: 64px;
-    background-color: #4589FF;
-    height: 8px;
-    border-radius: 8px;
-    position: absolute;
-    left: 0;
 }
 
 .task-card-bottom {
@@ -351,6 +359,29 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-bottom: 24px;
+}
+
+.detailed-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.detailed-card-delete-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detailed-card-delete-container:hover {
+    color: rgb(0, 124, 238);
+}
+
+.detailed-card-edit-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .popup-board-overlay {
@@ -362,8 +393,16 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
 }
+
+.detailed-card-close-button {
+    height: 32px;
+    width: 32px;
+}
+
 .detailed-card-close-button:hover {
     cursor: pointer;
+    background-color: lightgrey;
+    border-radius: 100%;
 }
 
 .add-task-template {
@@ -489,4 +528,10 @@
     background-color: lightgrey;
     border-radius: 100%;
 }
+
+.detailed-card-delete-container {
+    cursor: pointer;
+}
+
+
 
