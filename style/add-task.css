@@ -420,3 +420,15 @@
     font-size: 16px;
     line-height: 19.2px;
 }
+
+.vector{
+    position: absolute;
+    left: 816.25px;
+    width: 1px;
+    height: 55px;
+    top: 310px;
+}
+
+.vectorPic{
+    height: 450px;
+}
