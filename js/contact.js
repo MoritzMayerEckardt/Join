@@ -1,3 +1,5 @@
+let currentIndex;
+
 async function initContacts() {
     await includeHTML();
     addBackgroundColor(3);
@@ -34,7 +36,6 @@ function doNotClose(event) {
 async function addContact() {
     document.getElementById('dialog-add-contacts').classList.add('d-none');
     createContactsIfNotCreated();
-    addContactToArray();
     pushValuesToContacts();
     await postData();
     clearAddContactForm();
@@ -46,20 +47,6 @@ function createContactsIfNotCreated() {
     if (!contacts) {
         contacts = [];
     }
-}
-
-function addContactToArray() {
-    let name = document.getElementById('name-input-field-add-contact');
-    let email = document.getElementById('email-input-field-add-contact');
-    let phone = document.getElementById('phone-input-field-add-contact');
-    let nameParts = name.value.split(" ");
-    let firstLetters = nameParts.map(namePart => namePart.charAt(0));
-    let initials = firstLetters.join("");
-
-    contact[0]['name'].push(name.value);
-    contact[0]['email'].push(email.value);
-    contact[0]['phone'].push(phone.value);
-    contact[0]['initials'].push(initials);
 }
 
 function pushValuesToContacts() {
@@ -120,21 +107,25 @@ async function renderContactList() {
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
+    if (Array.isArray(contacts) && contacts.length > 0) {
+        for (let i = 0; i < contacts.length; i++) {
+            let contact = contacts[i];
+            let name = contact['name'];
+            let email = contact['email'];
+            let phone = contact['phone'];
+            let initials = contact['initials'];
+            let index = i;
 
-    for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        let name = contact['name'];
-        let email = contact['email'];
-        let phone = contact['phone'];
-        let initials = contact['initials'];
-
-        listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials);
+            listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials, index);
+        }
+    } else {
+        listContainer.innerHTML = '';
     }
 }
 
-function createHtmlTemplateForList(name, email, phone, initials) {
+function createHtmlTemplateForList(name, email, phone, initials, index) {
     return `
-        <li class="contact-in-list" onclick="openFullCard('${name}', '${email}', '${phone}', '${initials}')">
+        <li class="contact-in-list" onclick="openFullCard('${name}', '${email}', '${phone}', '${initials}', ${index})">
             <div class="name-initials">${initials}</div>
             <div>
                 <div>${name}</div>
@@ -155,20 +146,20 @@ function showConfirmation() {
 // **********************SHCOW ALL DATA FROM CONTACT**********************
 
 
-let showFullContact = false;
-let contact = [{
-    'name': [],
-    'email': [],
-    'phone': [],
-    'initials': [],
-}
-]
+// let showFullContact = false;
+// let contact = [{
+//     'name': [],
+//     'email': [],
+//     'phone': [],
+//     'initials': [],
+// }
+// ]
 
-function openFullCard(name, email, phone, initials) {
+function openFullCard(name, email, phone, initials, index) {
     let showFullContact = document.getElementById('view-contact-container');
     showFullContact.classList.remove('d-none');
     showFullContact.classList.add('view-contact-container-slide-in');
-
+    currentIndex = index;
     showDataFromCurrentContact(name, email, phone, initials);
 }
 
@@ -189,7 +180,7 @@ function showEditForm() {
     document.getElementById('name-input-field-edit-contact').value = name;
     document.getElementById('email-input-field-edit-contact').value = email;
     document.getElementById('phone-input-field-edit-contact').value = phone;
-    
+
 
 }
 
@@ -217,3 +208,52 @@ function closeEditContactDialog() {
 
 
 
+
+async function deleteContact() {
+    contacts.splice(currentIndex, 1);
+    await postData();
+    renderContactList();
+    closeEditContactDialog();
+    clearEditContact();
+
+    console.log(contacts)
+}
+
+function clearEditContact() {
+    let showFullContact = document.getElementById('view-contact-container');
+    showFullContact.classList.add('d-none');
+}
+
+
+
+
+
+function saveEditContact() {
+
+    let contactToEdit = contacts[currentIndex]
+    let name = document.getElementById('name-input-field-edit-contact').value;
+    let email = document.getElementById('email-input-field-edit-contact').value;
+    let phone = document.getElementById('phone-input-field-edit-contact').value;
+    let nameParts = name.split(" ");
+    let firstLetters = nameParts.map(namePart => namePart.charAt(0));
+    let initials = firstLetters.join("");
+    
+    contactToEdit['name'] = name;
+    contactToEdit['email'] = email;
+    contactToEdit['phone'] = phone;
+    contactToEdit['initials'] = initials;
+
+
+
+    console.log(contacts);
+    closeEditContactDialog();
+
+
+}
+
+
+// function test(){
+//     // postData();
+//     // renderContactList();
+//     // closeEditContactDialog()
+// }
