@@ -6,13 +6,6 @@ let users = [];
 let tasks = [];
 let contacts = [];
 
-async function initLogin() {
-    await loadUsers();
-    setTimeout(() => {
-        includeHTML();
-    }, 1500);
-}
-
 async function loadData(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
     return responseAsJson = await response.json();
@@ -53,43 +46,7 @@ async function postData(path = "", users = {}) {
     return responseAsJson = await response.json();
 }
 
-function getDataFromInput() {
-    let userName = document.getElementById('name');
-    let userEmail = document.getElementById('email');
-    let userPassword = document.getElementById('password');
-    let userId;
-    if (users && users.length > 0) {
-        userId = users.length;
-    } else {
-        userId = 0;
-    }
-    let data = { "name": userName.value, "email": userEmail.value, "password": userPassword.value, "id": userId };
-    return data;
-}
 
-async function register() {
-    await pushDataToUsers();
-    await postData(USERS_PATH, users);
-}
-
-async function pushDataToUsers() {
-    let data = getDataFromInput();
-    if (!users) {
-        users = [];
-    }
-    users.push(data);
-    return users;
-}
-
-async function deleteAllUsers() {
-    users = [];
-    await postData(USERS_PATH, users);
-}
-
-async function deleteUser() {
-    users.splice(1, 1);
-    await postData(USERS_PATH, users);
-}
 
 
 

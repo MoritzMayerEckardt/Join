@@ -45,7 +45,7 @@ function pushValuesToTasks() {
     });
 }
 
-async function postData(path = "/tasks") {
+async function postData(path = "tasks") {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {

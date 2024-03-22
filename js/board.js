@@ -1,6 +1,7 @@
 async function initBoard() {
     await includeHTML();
     await loadTasks();
+    await loadContacts();
     addBackgroundColor(2);
     renderBoard(); 
 }
@@ -33,10 +34,8 @@ function renderToDo() {
 function renderInProgress() {
     let inProgressContainer = document.getElementById('in-progress-column');
     inProgressContainer.innerHTML = '';
-
     if (tasks && tasks.length >= 1) {
         let inProgress = tasks.filter(task => task.boardCategory === "inProgress");
-        
         if (inProgress && inProgress.length >= 1) {
             for (let index = 0; index < inProgress.length; index++) {
                 const task = inProgress[index];
@@ -53,10 +52,8 @@ function renderInProgress() {
 function renderAwaitFeedback() {
     let awaitFeedbackContainer = document.getElementById('await-feedback-column');
     awaitFeedbackContainer.innerHTML = '';
-
     if (tasks && tasks.length >= 1) {
         let awaitFeedback = tasks.filter(task => task.boardCategory === "awaitFeedback");
-        
         if (awaitFeedback && awaitFeedback.length >= 1) {
             for (let index = 0; index < awaitFeedback.length; index++) {
                 const task = awaitFeedback[index];
@@ -74,8 +71,7 @@ function renderDone() {
     let doneContainer = document.getElementById('done-column');
     doneContainer.innerHTML = '';
     if (tasks && tasks.length >= 1) {
-        let done = tasks.filter(task => task.boardCategory === "done");
-        
+        let done = tasks.filter(task => task.boardCategory === "done"); 
         if (done && done.length >= 1) {
             for (let index = 0; index < done.length; index++) {
                 const task = done[index];
@@ -304,6 +300,11 @@ function showAddTaskForm(event) {
 }
 
 function renderAddTaskForm() {
+    let contactOptions = '';
+    for (let index = 0; index < contacts.length; index++) {
+        const contact = contacts[index];
+        contactOptions += `<option value="${contact.name}">${contact.name}</option>`;
+    }
     return /*html*/`
         <form style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false">
             <div class="headline-template">
@@ -330,8 +331,7 @@ function renderAddTaskForm() {
                     <p class="assignedTo">Assigned to</p>
                     <select id="assigned-template" class="select">
                         <option value="">Select contacts to assign</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
+                        ${contactOptions}
                     </select>
                 </div>
             </div>
@@ -345,29 +345,33 @@ function renderAddTaskForm() {
                 <div class="buttonsFrame">
                     <p class="title">Prio</p>
                     <div class="smallButtonsFrame">
-                        <button class="urgent">
+                        <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent')">
                             <div class="urgentText">
                                 Urgent
                             </div>
                             <div class="arrows">
-                                <img src="assets/img/redArrow.svg" alt="svg">
+                                <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
+                                <img id="whiteArrow" class="whiteArrow" src="assets/img/prioUrgent.svg" alt="svg">
                             </div>
                         </button>
-                        <button class="medium">
-                            <div class="mediumText">
+                        <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium')">
+                            <div id="mediumText" class="mediumText">
                                 Medium
                             </div>
                             <div class="arrows">
-                                <img src="assets/img/hypen.svg" alt="svg">
+                                <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
+                                <img id="prioMedium" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
                             </div>
-                            <button class="urgent">
-                                <div class="lowText">
-                                    Low
-                                </div>
-                                <div class="arrows">
-                                    <img src="assets/img/greenArrow.svg" alt="svg">
-                                </div>
-                            </button>
+                        </button>
+                        <button id="lowButton" class="low" onclick="changeBackgroundColor('low')">
+                            <div class="lowText">
+                                Low
+                            </div>
+                            <div class="arrows">
+                                <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
+                                <img id="whiteArrowLow" class="whiteArrowLow" src="assets/img/prioLow.svg">
+                            </div>
+                        </button>
                     </div>
                 </div>
                 <div class="categoryFrame">
