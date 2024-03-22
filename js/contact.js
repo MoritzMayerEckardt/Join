@@ -184,23 +184,32 @@ function showEditForm() {
 
 }
 
-// **********************OPEN AND CLOSE ADD CONTACT WINDOW**********************
+// **********************OPEN AND CLOSE EDIT CONTACT WINDOW**********************
 
 function closeEditContactDialog() {
     let dialog = document.getElementById('dialog-edit-contacts')
-    dialog.classList.remove('d-none');
+    dialog.classList.add('d-none');
     // dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
     // dialog.style.right = '0';
 }
 
-function closeEditContactDialog() {
-    dialog = document.getElementById('dialog-edit-contacts');
-    // dialog.style.animation = 'slideOutToRight 0.3s ease-in-out';
-    // dialog.style.right = '-200%';
-    setTimeout(() => {
-        dialog.classList.add('d-none');
-    }, 250);
-}
+// function closeEditContactDialog() {
+//     dialog = document.getElementById('dialog-edit-contacts');
+//     // dialog.style.animation = 'slideOutToRight 0.3s ease-in-out';
+//     // dialog.style.right = '-200%';
+//     setTimeout(() => {
+//         dialog.classList.add('d-none');
+//     }, 250);
+// }
+
+// function closeAddContactDialog() {
+//     dialog = document.getElementById('dialog-add-contacts');
+//     dialog.style.animation = 'slideOutToRight 0.3s ease-in-out';
+//     dialog.style.right = '-200%';
+//     setTimeout(() => {
+//         dialog.classList.add('d-none');
+//     }, 250);
+// }
 
 // function doNotClose(event) {
 //     event.stopPropagation();
@@ -228,7 +237,7 @@ function clearEditContact() {
 
 
 
-function saveEditContact() {
+async function saveEditContact() {
 
     let contactToEdit = contacts[currentIndex]
     let name = document.getElementById('name-input-field-edit-contact').value;
@@ -237,19 +246,26 @@ function saveEditContact() {
     let nameParts = name.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
     let initials = firstLetters.join("");
-    
+
     contactToEdit['name'] = name;
     contactToEdit['email'] = email;
     contactToEdit['phone'] = phone;
     contactToEdit['initials'] = initials;
+    await postData();
+    renderContactList();
 
 
 
-    console.log(contacts);
     closeEditContactDialog();
-
+    console.log(contacts);
 
 }
+
+// function doNotCloseEdit(event){
+//     event.stopPropagation();
+// }
+
+
 
 
 // function test(){
