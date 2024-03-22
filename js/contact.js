@@ -145,16 +145,6 @@ function showConfirmation() {
 
 // **********************SHCOW ALL DATA FROM CONTACT**********************
 
-
-// let showFullContact = false;
-// let contact = [{
-//     'name': [],
-//     'email': [],
-//     'phone': [],
-//     'initials': [],
-// }
-// ]
-
 function openFullCard(name, email, phone, initials, index) {
     let showFullContact = document.getElementById('view-contact-container');
     showFullContact.classList.remove('d-none');
@@ -193,39 +183,12 @@ function closeEditContactDialog() {
     // dialog.style.right = '0';
 }
 
-// function closeEditContactDialog() {
-//     dialog = document.getElementById('dialog-edit-contacts');
-//     // dialog.style.animation = 'slideOutToRight 0.3s ease-in-out';
-//     // dialog.style.right = '-200%';
-//     setTimeout(() => {
-//         dialog.classList.add('d-none');
-//     }, 250);
-// }
-
-// function closeAddContactDialog() {
-//     dialog = document.getElementById('dialog-add-contacts');
-//     dialog.style.animation = 'slideOutToRight 0.3s ease-in-out';
-//     dialog.style.right = '-200%';
-//     setTimeout(() => {
-//         dialog.classList.add('d-none');
-//     }, 250);
-// }
-
-// function doNotClose(event) {
-//     event.stopPropagation();
-// }
-
-
-
-
 async function deleteContact() {
     contacts.splice(currentIndex, 1);
     await postData();
     renderContactList();
     closeEditContactDialog();
     clearEditContact();
-
-    console.log(contacts)
 }
 
 function clearEditContact() {
@@ -233,12 +196,7 @@ function clearEditContact() {
     showFullContact.classList.add('d-none');
 }
 
-
-
-
-
 async function saveEditContact() {
-
     let contactToEdit = contacts[currentIndex]
     let name = document.getElementById('name-input-field-edit-contact').value;
     let email = document.getElementById('email-input-field-edit-contact').value;
@@ -246,30 +204,12 @@ async function saveEditContact() {
     let nameParts = name.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
     let initials = firstLetters.join("");
-
     contactToEdit['name'] = name;
     contactToEdit['email'] = email;
     contactToEdit['phone'] = phone;
     contactToEdit['initials'] = initials;
     await postData();
     renderContactList();
-
-
-
     closeEditContactDialog();
-    console.log(contacts);
-
 }
 
-// function doNotCloseEdit(event){
-//     event.stopPropagation();
-// }
-
-
-
-
-// function test(){
-//     // postData();
-//     // renderContactList();
-//     // closeEditContactDialog()
-// }
