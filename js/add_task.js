@@ -1,5 +1,6 @@
 let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
 let subtaskArray = [];
+let lastClickedButton = '';
 
 
 async function initAddTask() {
@@ -27,12 +28,25 @@ function getValuesFromInput() {
     let assigned = document.getElementById('assigned');
     let date = document.getElementById('date');
     let category = document.getElementById('category');
-    return { title, description, assigned, date, category };
+    let priority;
+
+    if (lastClickedButton === 'urgent') {
+        priority = 'urgent';
+    } else if (lastClickedButton === 'medium') {
+        priority = 'medium';
+    } else if (lastClickedButton === 'low') {
+        priority = 'low';
+    } else {
+        priority = 'notSet'; 
+    }
+
+    return { title, description, assigned, date, category, priority };
 }
+
 
 function pushValuesToTasks() {
     let boardCategory = "toDo";
-    let { title, description, assigned, date, category } = getValuesFromInput();
+    let { title, description, assigned, date, category, priority } = getValuesFromInput();
     tasks.push({
         id: taskIdCounter++,
         title: title.value,
@@ -42,10 +56,12 @@ function pushValuesToTasks() {
         category: category.value,
         subtasks: subtaskArray,
         boardCategory: boardCategory,
+        priority: priority 
     });
 }
 
-async function postData(path = "tasks") {
+
+async function postData(path = "/tasks") {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {
@@ -190,5 +206,6 @@ function changeBackgroundColor(clickedButton) {
         redArrow.style.display = 'flex';
         whiteArrow.style.display = 'none';
     }
+    lastClickedButton = clickedButton;
 }
 

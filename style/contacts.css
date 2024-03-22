@@ -370,7 +370,7 @@
     display: none !important;
 }
 
-.dialog-bg {
+.dialog-add-bg {
     background-color: rgba(184, 185, 186, 0.5);
     z-index: 999;
     position: fixed;
@@ -383,6 +383,25 @@
     align-items: center;
     top: 50%;
     right: -100%;
+    transform: translate(0, -50%);
+    background: transparent;
+    padding: 20px;
+    transition: right 0.250s ease-in-out;
+}
+
+.dialog-edit-bg {
+    background-color: rgba(184, 185, 186, 0.5);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    right: 0;
     transform: translate(0, -50%);
     background: transparent;
     padding: 20px;
@@ -621,4 +640,59 @@
     line-height: 25px;
     letter-spacing: 0em;
     color: white;
+}
+
+
+
+.save-edit-contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 111px;
+    height: 57px;
+    padding: 16px;
+    border-radius: 10px;
+    gap: 4px;
+    background-color: #2A3647;
+    border: none;
+}
+
+.save-edit-contact-btn:hover {
+    background-color: #29abe2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.save-edit-contact-btn-text {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0em;
+    color: white;
+}
+
+
+.delete-edit-contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 113px;
+    height: 56px;
+    padding: 16px;
+    border-radius: 10px;
+    gap: 4px;
+    border: 1px solid #2A3647;
+    background-color: white;
+}
+
+.delete-edit-contact-btn:hover {
+    border: 1px solid #29abe2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.delete-edit-contact-btn-text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    color: #2A3647;
 }
