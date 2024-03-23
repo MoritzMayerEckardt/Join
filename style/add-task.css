@@ -1,9 +1,14 @@
+.content-right{
+    padding-left: 232px;
+    overflow-x: hidden;
+}
+
 .headline {
     position: relative;
     width: 278px;
     height: 73px;
     top: 105px;
-    left: 328px;
+    left: 96px;
     font-size: 61px;
     font-weight: 700;
 }
@@ -92,7 +97,7 @@
     width: 440px;
     height: 376px;
     top: 105px;
-    left: 327px;
+    left: 96px;
 }
 
 .titleFrame {
@@ -264,7 +269,7 @@
     position: relative;
     width: 440px;
     height: 416px;
-    left: 864.25px;
+    left: 632.25px;
     bottom: 290px;
 }
 .buttonsFrame{
@@ -412,7 +417,7 @@
 
 .requiredField{
     position: absolute;
-    left: 328px;
+    left: 96px;
     width: 170px;
     height: 27px;
     top: 926px;
@@ -423,7 +428,7 @@
 
 .vector{
     position: absolute;
-    left: 816.25px;
+    left: 584.25px;
     width: 1px;
     height: 55px;
     top: 310px;
