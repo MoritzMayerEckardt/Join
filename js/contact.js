@@ -116,8 +116,13 @@ function clearAddContactForm() {
 
 async function renderContactList() {
     await loadContacts();
-    contacts.sort(sortList);
-    addContactToList();
+    if (Array.isArray(contacts) && contacts.length > 0) {
+        contacts.sort(sortList);
+        addContactToList();
+    }
+    else {
+        document.getElementById('list-container').innerHTML = '';
+    }
 }
 
 function sortList(a, b) {
@@ -136,26 +141,27 @@ function sortList(a, b) {
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
-    if (Array.isArray(contacts) && contacts.length > 0) {
-        for (let i = 0; i < contacts.length; i++) {
-            let contact = contacts[i];
-            let name = contact['name'];
-            let email = contact['email'];
-            let phone = contact['phone'];
-            let initials = contact['initials'];
-            let index = i;
 
-            listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials, index);
-        }
-    } else {
-        listContainer.innerHTML = '';
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
+        let name = contact['name'];
+        let email = contact['email'];
+        let phone = contact['phone'];
+        let initials = contact['initials'];
+        let color = contact['color'];
+        let index = i;
+
+        listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials, index);
+
+        let addBgCollorInContactList = document.getElementById(`name-initials${index}`);
+        addBgCollorInContactList.style.backgroundColor = color;
     }
 }
 
 function createHtmlTemplateForList(name, email, phone, initials, index) {
     return `
         <li class="contact-in-list" onclick="openFullCard('${name}', '${email}', '${phone}', '${initials}', ${index})">
-            <div class="name-initials">${initials}</div>
+            <div class="name-initials" id="name-initials${index}">${initials}</div>
             <div>
                 <div>${name}</div>
                 <div>${email}</div>
