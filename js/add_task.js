@@ -100,6 +100,13 @@ function getNewSubtask() {
     document.getElementById('subtasks').value = ``;
 }
 
+function handleKeyPress(event) {
+    if (event.keyCode === 13) { // 13 entspricht der Enter-Taste
+        event.preventDefault(); // Standardverhalten unterdrücken
+        addNewSubtask();
+    }
+}
+
 function clearForm() {
 
     document.getElementById('title').value = "";

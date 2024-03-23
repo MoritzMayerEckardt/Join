@@ -407,6 +407,10 @@
     bottom: 1px;
 }
 
+.subtaskPlus:hover{
+    cursor: pointer;
+}
+
 .newSubtask{
     position: relative;
     left: 632.25px;
