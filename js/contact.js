@@ -1,4 +1,6 @@
 let currentIndex;
+const colors = ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#FFDC00", "#39CCCC", "#B10DC9", "#FF69B4", "#001f3f", "#85144b", "#3D9970", "#FF6347", "#7FDBFF", "#FFD700", "#01FF70", "#F012BE", "#7FDBFF", "#001f3f", "#85144b", "#AAAAAA"];
+
 
 async function initContacts() {
     await includeHTML();
@@ -51,14 +53,27 @@ function createContactsIfNotCreated() {
 
 function pushValuesToContacts() {
     let { name, email, phone, initials } = getValuesFromInputAddContact();
+    let randomIndex = getRandomIndexFromColors();
+    let color = colors[randomIndex];
 
     contacts.push({
         name: name,
         email: email,
         phone: phone,
         initials: initials,
+        color: color,
     });
 }
+
+
+
+function getRandomIndexFromColors() {
+    return Math.floor(Math.random() * colors.length);
+}
+
+
+
+
 
 function getValuesFromInputAddContact() {
     let name = document.getElementById('name-input-field-add-contact').value;
@@ -109,14 +124,14 @@ function sortList(a, b) {
     let nameA = a.name.toUpperCase();
     let nameB = b.name.toUpperCase();
     if (nameA < nameB) {
-      return -1;
+        return -1;
     }
     if (nameA > nameB) {
-      return 1;
+        return 1;
     }
     return 0;
-  }
-  
+}
+
 
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
