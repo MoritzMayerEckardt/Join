@@ -29,7 +29,6 @@ function getValuesFromInput() {
     let date = document.getElementById('date');
     let category = document.getElementById('category');
     let priority;
-
     if (lastClickedButton === 'urgent') {
         priority = 'urgent';
     } else if (lastClickedButton === 'medium') {
@@ -39,8 +38,7 @@ function getValuesFromInput() {
     } else {
         priority = 'notSet'; 
     }
-
-    return { title, description, assigned, date, category, priority };
+    return { title, description, assigned, date, category, priority, };
 }
 
 
@@ -60,7 +58,6 @@ function pushValuesToTasks() {
     });
 }
 
-
 async function postData(path = "/tasks") {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
@@ -78,7 +75,6 @@ function saveTaskIdCounter() {
 
 function addNewSubtask() {
     let addNewSubtask = document.getElementById('subtasks').value;
-
     if (subtaskArray.length < 2) {
         subtaskArray.push(addNewSubtask);
         getNewSubtask();

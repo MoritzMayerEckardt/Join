@@ -3,85 +3,47 @@ async function initBoard() {
     await loadTasks();
     await loadContacts();
     addBackgroundColor(2);
-    renderBoard(); 
+    renderColumns(); 
 }
 
-function renderBoard() {
-    renderToDo();
-    renderInProgress();
-    renderAwaitFeedback();
-    renderDone();
+function filterTasksByCategory(tasks, category) {
+    return tasks.filter(task => task.boardCategory === category);
 }
 
-function renderToDo() {
-    let toDoContainer = document.getElementById('to-do-column');
-    toDoContainer.innerHTML = '';
-    if (tasks && tasks.length >= 1) {
-        let toDo = tasks.filter(task => task.boardCategory === "toDo");
-        if (toDo && toDo.length >= 1) {
-            for (let index = 0; index < toDo.length; index++) {
-                const task = toDo[index];
-                toDoContainer.innerHTML += renderCard(task, index);
-            }
-        } else {
-            toDoContainer.innerHTML = renderEmptyToDoColumn();
-        }
-    } else {
-        toDoContainer.innerHTML = renderEmptyToDoColumn();
+function renderEmptyColumns(columns) {
+    for (const column of columns) {
+        let container = document.getElementById(column.containerId);
+        container.innerHTML = column.emptyRenderer();
     }
 }
 
-function renderInProgress() {
-    let inProgressContainer = document.getElementById('in-progress-column');
-    inProgressContainer.innerHTML = '';
-    if (tasks && tasks.length >= 1) {
-        let inProgress = tasks.filter(task => task.boardCategory === "inProgress");
-        if (inProgress && inProgress.length >= 1) {
-            for (let index = 0; index < inProgress.length; index++) {
-                const task = inProgress[index];
-                inProgressContainer.innerHTML += renderCard(task, index);
-            }
-        } else {
-            inProgressContainer.innerHTML = renderEmptyInProgressColumn();
-        }
-    } else {
-        inProgressContainer.innerHTML = renderEmptyInProgressColumn();
+function renderTasksInColumn(tasksInColumn, container) {
+    for (let index = 0; index < tasksInColumn.length; index++) {
+        const task = tasksInColumn[index];
+        container.innerHTML += renderCard(task, index);
     }
 }
 
-function renderAwaitFeedback() {
-    let awaitFeedbackContainer = document.getElementById('await-feedback-column');
-    awaitFeedbackContainer.innerHTML = '';
-    if (tasks && tasks.length >= 1) {
-        let awaitFeedback = tasks.filter(task => task.boardCategory === "awaitFeedback");
-        if (awaitFeedback && awaitFeedback.length >= 1) {
-            for (let index = 0; index < awaitFeedback.length; index++) {
-                const task = awaitFeedback[index];
-                awaitFeedbackContainer.innerHTML += renderCard(task, index);
-            }
-        } else {
-            awaitFeedbackContainer.innerHTML = renderEmptyAwaitFeedbackColumn();
-        }
-    } else {
-        awaitFeedbackContainer.innerHTML = renderEmptyAwaitFeedbackColumn();
+function renderColumns() {
+    let columns = [
+        { category: "toDo", containerId: "to-do-column", emptyRenderer: renderEmptyToDoColumn },
+        { category: "inProgress", containerId: "in-progress-column", emptyRenderer: renderEmptyInProgressColumn },
+        { category: "awaitFeedback", containerId: "await-feedback-column", emptyRenderer: renderEmptyAwaitFeedbackColumn },
+        { category: "done", containerId: "done-column", emptyRenderer: renderEmptyDoneColumn }
+    ];
+    if (!tasks || tasks.length === 0) {
+        renderEmptyColumns(columns);
+        return;
     }
-}
-
-function renderDone() {
-    let doneContainer = document.getElementById('done-column');
-    doneContainer.innerHTML = '';
-    if (tasks && tasks.length >= 1) {
-        let done = tasks.filter(task => task.boardCategory === "done"); 
-        if (done && done.length >= 1) {
-            for (let index = 0; index < done.length; index++) {
-                const task = done[index];
-                doneContainer.innerHTML += renderCard(task, index);
-            }
+    for (const column of columns) {
+        let container = document.getElementById(column.containerId);
+        container.innerHTML = '';
+        let tasksInColumn = filterTasksByCategory(tasks, column.category);
+        if (tasksInColumn && tasksInColumn.length >= 1) {
+            renderTasksInColumn(tasksInColumn, container);
         } else {
-            doneContainer.innerHTML = renderEmptyDoneColumn();
+            container.innerHTML = column.emptyRenderer();
         }
-    } else {
-        doneContainer.innerHTML = renderEmptyDoneColumn();
     }
 }
 
@@ -138,11 +100,13 @@ function renderCard(task, index) {
     let taskJson = JSON.stringify(task);
     taskJson = taskJson.replace(/"/g, '&quot;');
     let name = task.assigned;
+    let priority = task.priority;
+    let subtasksCompleted = task.subtasks ? task.subtasks.filter(subtask => subtask.isChecked).length : 0;
     let allsubtasks = task.subtasks ? task.subtasks.length : 0;
     let firstLetterName = getInitialsFromName(name);
     let firstLetterLastName = getInitialsFromLastName(name);
-    let subtasksText = allsubtasks > 0 ? `${allsubtasks}/${allsubtasks} Subtasks` : 'No Subtasks';
-    let progressBarClass = allsubtasks === 0 ? "empty" : allsubtasks === 1 ? "half-filled" : "full";
+    let subtasksText = allsubtasks > 0 ? `${subtasksCompleted}/${allsubtasks} Subtasks` : 'No Subtasks';
+    let progressBarClass = allsubtasks === 0 ? "empty" : subtasksCompleted === 0 ? "empty" : subtasksCompleted === allsubtasks ? "full" : "half-filled";
     return /*html*/`
         <div onclick="openDetailedCard('${taskJson}', ${index}, event)" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
             <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
@@ -166,13 +130,11 @@ function renderCard(task, index) {
                         <span class="task-contacts-letters">F</span><span class="task-contacts-letters">K</span>
                     </div>
                 </div>
-                <div><img style="width: 17px" src="../assets/img/prio_urgent.svg" alt=""></div>
+                <div><img style="width: 17px" src="../assets/img/prio_${priority}.svg" alt=""></div>
             </div>
         </div>      
     `;
 }
-
-
 
 function getInitialsFromName(name) {
     let firstLetterName = name.charAt(0);
@@ -186,10 +148,6 @@ function getInitialsFromLastName(name) {
     return firstLetterLastName;
 }
 
-function getProgressOfSubtasks(subtask) {
-   
-}
-
 function openDetailedCard(task, index, event) {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
@@ -199,23 +157,43 @@ function openDetailedCard(task, index, event) {
     event.stopPropagation();
 }
 
-function renderDetailedCard(taskJson, index) {
+function handleCheckBox(taskId, index) {
+    let task = tasks.find(task => task.id === taskId);
+    let subtask = task.subtasks[index];
+    let checkBox = document.getElementById(`check-box${index}`);
+    if (subtask.isChecked) {
+        checkBox.setAttribute('src', '../assets/img/check_button_empty.svg');
+    } else {
+        checkBox.setAttribute('src', '../assets/img/check_button_check.svg');
+    }
+    subtask.isChecked = !subtask.isChecked;
+    postData("/tasks", task);
+    renderColumns();
+}
+
+
+function renderDetailedCard(taskJson) {
     let task = JSON.parse(taskJson);
     let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
     let name = task.assigned;
+    let subtasks = task.subtasks;
     let firstLetter = getInitialsFromName(name);
     let secondLetter = getInitialsFromLastName(name);
-    let subtasksHTML = /*html*/`
-    <div class="detailed-card-subtasks-container">
-        <span style="font-size: 20px; color: #42526E">Subtasks</span>
-        <div>
-    `;
-    if (task.subtasks && task.subtasks.length > 0) {
-        for (let i = 0; i < task.subtasks.length; i++) {
-            subtasksHTML += `<li style="font-size: 19px">${task.subtasks[i]}</li>`;
+    let subtasksHTML = "";
+    if (task.subtasks && subtasks.length > 0) {
+        for (let i = 0; i < subtasks.length; i++) {
+            const subtask = subtasks[i].title;
+            const isChecked = subtasks[i].isChecked; 
+            const checkBoxImage = isChecked ? '../assets/img/check_button_check.svg' : '../assets/img/check_button_empty.svg'; // Determine image based on isChecked
+            subtasksHTML += /*html*/`
+                <div class="flex check-box-container-subtasks">
+                    <img class="check-box-img" id="check-box${i}" onclick="handleCheckBox(${task.id}, ${i})" style="width: 16px; height: 16px;" src="${checkBoxImage}" alt="">
+                    <span style="font-size: 16px">${subtask}</span>
+                </div>
+            `;
         }
     } else {
-        subtasksHTML += `<div style="font-size: 19px">No subtasks</div>`;
+        subtasksHTML = `<div style="font-size: 16px">No subtasks</div>`;
     }
     return /*html*/`
         <div style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="card" class="detailed-card-container">
@@ -231,7 +209,7 @@ function renderDetailedCard(taskJson, index) {
             </div>
             <div class="detailed-card-priority">
                 <span style="font-size: 20px; color: #42526E">Priority:</span>
-                <span style="font-size: 19px">${task.priority}</span>
+                <div class="detailed-card-priority-text"><span style="font-size: 19px">${task.priority}</span><img src="../assets/img/prio_${task.priority}.svg" alt=""></div>
             </div>
             <div class="detailed-card-assigned">
                 <div style="font-size: 20px; color: #42526E">Assigned To:</div>
@@ -242,25 +220,54 @@ function renderDetailedCard(taskJson, index) {
                     <span style="font-size: 19px">${name}</span>
                 </div>
             </div>
-            ${subtasksHTML}
+            <div class="detailed-card-subtasks-container">
+                <span style="font-size: 20px; color: #42526E">Subtasks</span>
+                <div id="subtasks-container-detailed-card">${subtasksHTML}</div>
+            </div>
             <div class="detailed-card-bottom">
                 <div class="flex-center" style="width: 159px; gap: 8px;">
-                    <div onclick="deleteTask(${task.id})" class="detailed-card-delete-container"><img src="../assets/img/delete.svg" alt=""><span>Delete</span></div>
-                    <div onclick="editTask('${taskJson}')" class="detailed-card-edit-container"><img src="../assets/img/edit-dark-blue.svg" alt=""><span>Edit</span></div>
+                    <div onmouseover="changeColorOfDeleteButton()" onmouseout="changeColorOfDeleteButton2()" onclick="deleteTask(${task.id})" class="detailed-card-delete-container"><img id="delete-img" src="../assets/img/delete-dark-blue.svg" alt=""><span>Delete</span></div>
+                    <div style="height: 24px; width: 1px; background: #D1D1D1"></div>
+                    <div onmouseover="changeColorOfEditButton()" onmouseout="changeColorOfEditButton2()" onclick="editTask(${task.id})" class="detailed-card-edit-container"><img id="edit-img" src="../assets/img/edit-dark-blue.svg" alt=""><span>Edit</span></div>
                 </div>
             </div>
         </div>
     `;
 }
 
+function searchTask() {
+
+}
+
+
 async function deleteTask(taskId) {
     let selectedTask = tasks.findIndex(task => task.id === taskId);
     if (selectedTask !== -1) {
         tasks.splice(selectedTask, 1);
         await postData();
-        renderBoard();
+        renderColumns();
         closePopup();
     }
+}
+
+function changeColorOfDeleteButton() {
+    let deleteButton = document.getElementById('delete-img');
+    deleteButton.setAttribute('src', '../assets/img/delete-light-blue.svg')
+}
+
+function changeColorOfDeleteButton2() {
+    let deleteButton = document.getElementById('delete-img');
+    deleteButton.setAttribute('src', '../assets/img/delete-dark-blue.svg')
+}
+
+function changeColorOfEditButton() {
+    let editButton = document.getElementById('edit-img');
+    editButton.setAttribute('src', '../assets/img/edit-light-blue.svg')
+}
+
+function changeColorOfEditButton2() {
+    let editButton = document.getElementById('edit-img');
+    editButton.setAttribute('src', '../assets/img/edit-dark-blue.svg')
 }
 
 function closePopup() {
@@ -413,7 +420,7 @@ async function addTaskFromTemplate() {
     await postData();
     saveTaskIdCounter();
     closeAddTaskForm();
-    renderBoard();
+    renderColumns();
 }
 
 function getValuesFromInputFromTemplate() {
@@ -422,12 +429,22 @@ function getValuesFromInputFromTemplate() {
     let assigned = document.getElementById('assigned-template');
     let date = document.getElementById('date-template');
     let category = document.getElementById('category-template');
-    return { title, description, assigned, date, category };
+    let priority;
+    if (lastClickedButton === 'urgent') {
+        priority = 'urgent';
+    } else if (lastClickedButton === 'medium') {
+        priority = 'medium';
+    } else if (lastClickedButton === 'low') {
+        priority = 'low';
+    } else {
+        priority = 'notSet'; 
+    }
+    return { title, description, assigned, date, category, priority };
 }
 
 function pushValuesToTasksFromTemplate() {
     let boardCategory = "toDo";
-    let { title, description, assigned, date, category } = getValuesFromInputFromTemplate();
+    let { title, description, assigned, date, category, priority } = getValuesFromInputFromTemplate();
     tasks.push({
         id: taskIdCounter++,
         title: title,
@@ -437,14 +454,17 @@ function pushValuesToTasksFromTemplate() {
         subtasks: subtaskArray,
         category: category.value,
         boardCategory: boardCategory,
+        priority: priority,
     });
 }
 
 function addNewSubtaskInTemplate() {
     let addNewSubtask = document.getElementById('subtasks-template').value;
-
     if (subtaskArray.length < 2) {
-        subtaskArray.push(addNewSubtask);
+        subtaskArray.push({
+            title: addNewSubtask,
+            isChecked: false
+        });
         getNewSubtaskInTemplate();
     } else {
         alert("You can only add a maximum of two subtasks.");
@@ -457,7 +477,7 @@ function getNewSubtaskInTemplate() {
     for (i = 0; i < subtaskArray.length; i++) {
         newSubtask.innerHTML += `
         <div> 
-             <b> •${subtaskArray[i]} </b> 
+             <b> •${subtaskArray[i].title} </b> 
          </div>`
     }
     document.getElementById('subtasks-template').value = ``;

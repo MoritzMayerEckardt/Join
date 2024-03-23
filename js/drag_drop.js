@@ -12,7 +12,7 @@ async function moveTo(category) {
     let task = tasks.find(task => task.id === currentDraggedElement);
     task.boardCategory = category;
     await postData(); 
-    renderBoard();
+    renderColumns();
 }
 
 function highlight(id) {
