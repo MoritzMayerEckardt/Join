@@ -153,8 +153,8 @@ function addContactToList() {
 
         listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials, index);
 
-        let addBgCollorInContactList = document.getElementById(`name-initials${index}`);
-        addBgCollorInContactList.style.backgroundColor = color;
+        let addBgColorInContactList = document.getElementById(`name-initials${index}`);
+        addBgColorInContactList.style.backgroundColor = color;
     }
 }
 
@@ -185,14 +185,19 @@ function openFullCard(name, email, phone, initials, index) {
     showFullContact.classList.remove('d-none');
     showFullContact.classList.add('view-contact-container-slide-in');
     currentIndex = index;
-    showDataFromCurrentContact(name, email, phone, initials);
+
+    showDataFromCurrentContact(name, email, phone, initials, index);
 }
 
-function showDataFromCurrentContact(name, email, phone, initials) {
+function showDataFromCurrentContact(name, email, phone, initials, index) {
     document.getElementById('name-initials-view-contact').innerHTML = initials;
     document.getElementById('name-view-contact').innerHTML = name;
     document.getElementById('email-view-contact').innerHTML = email;
     document.getElementById('phone-noumber-view-contact').innerHTML = phone;
+
+    let color = contacts[index]['color'];
+    let bgColorInitials = document.getElementById('name-initials-container-view-contact');
+    bgColorInitials.style.backgroundColor = color;
 }
 
 function showEditForm() {
