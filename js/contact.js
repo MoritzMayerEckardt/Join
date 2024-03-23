@@ -9,7 +9,7 @@ async function initContacts() {
 // **********************OPEN AND CLOSE ADD CONTACT WINDOW**********************
 
 function openDialogAddContacts() {
-    let dialog = document.getElementById('dialog-add-contacts')
+    let dialog = document.getElementById('dialog-add-contacts');
     dialog.classList.remove('d-none');
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
     dialog.style.right = '0';
@@ -17,7 +17,7 @@ function openDialogAddContacts() {
 
 function closeAddContactDialog() {
     dialog = document.getElementById('dialog-add-contacts');
-    dialog.style.animation = 'slideOutToRight 0.3s ease-in-out';
+    dialog.style.animation = 'slideOutToRight 0.250s ease-in-out';
     dialog.style.right = '-200%';
     setTimeout(() => {
         dialog.classList.add('d-none');
@@ -161,7 +161,10 @@ function showDataFromCurrentContact(name, email, phone, initials) {
 }
 
 function showEditForm() {
-    document.getElementById('dialog-edit-contacts').classList.remove('d-none')
+    let dialog = document.getElementById('dialog-edit-contacts');
+    dialog.classList.remove('d-none');
+    dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
+    dialog.style.right = '0';
 
     let name = document.getElementById('name-view-contact').innerHTML;
     let email = document.getElementById('email-view-contact').innerHTML;
@@ -172,16 +175,21 @@ function showEditForm() {
     document.getElementById('phone-input-field-edit-contact').value = phone;
 
 
+    dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
 }
+
 
 // **********************OPEN AND CLOSE EDIT CONTACT WINDOW**********************
 
 function closeEditContactDialog() {
     let dialog = document.getElementById('dialog-edit-contacts')
-    dialog.classList.add('d-none');
-    // dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
-    // dialog.style.right = '0';
+    dialog.style.animation = 'slideOutToRight 0.250s ease-in-out';
+    dialog.style.right = '-200%';
+    setTimeout(() => {
+        dialog.classList.add('d-none');
+    }, 250);
 }
+
 
 async function deleteContact() {
     contacts.splice(currentIndex, 1);
@@ -211,5 +219,6 @@ async function saveEditContact() {
     await postData();
     renderContactList();
     closeEditContactDialog();
+    openFullCard(name, email, phone, initials, currentIndex);
 }
 
