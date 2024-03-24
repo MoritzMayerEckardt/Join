@@ -206,13 +206,20 @@ function showEditForm() {
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
     dialog.style.right = '0';
 
+    let initials = document.getElementById('name-initials-view-contact').innerHTML;
     let name = document.getElementById('name-view-contact').innerHTML;
     let email = document.getElementById('email-view-contact').innerHTML;
     let phone = document.getElementById('phone-noumber-view-contact').innerHTML;
+    let color = document.getElementById('name-initials-container-view-contact').style.backgroundColor;
+    
 
+    document.getElementById('initals-field-edit-contact').innerHTML = initials;
     document.getElementById('name-input-field-edit-contact').value = name;
     document.getElementById('email-input-field-edit-contact').value = email;
     document.getElementById('phone-input-field-edit-contact').value = phone;
+
+
+    document.getElementById('initals-field-edit-contact').style.backgroundColor = color;
 
 
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';

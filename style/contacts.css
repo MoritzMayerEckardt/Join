@@ -643,6 +643,21 @@
 }
 
 
+.initals-field-edit-contact {
+    background-color: orange;
+    border-radius: 100px;
+    padding: 38.67px;
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56.4px;
+    text-align: center;
+    color: white;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .save-edit-contact-btn {
     display: flex;
