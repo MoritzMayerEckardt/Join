@@ -44,10 +44,9 @@ function renderTasksInColumn(tasksInColumn, container) {
     for (let index = 0; index < tasksInColumn.length; index++) {
         const task = tasksInColumn[index];
         let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
-        let firstLetterName = getInitialsFromName(task.assigned);
-        let firstLetterLastName = getInitialsFromLastName(task.assigned);
         let progressBarHTML = generateProgressBarHTML(task);
-        container.innerHTML += renderCard(task, backgroundColor, firstLetterName ,firstLetterLastName, progressBarHTML);
+        let assignedContactsHTML = generateAssignedContactsHTML(task);
+        container.innerHTML += renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML);
     }
 }
 
@@ -116,7 +115,7 @@ async function deleteTask(taskId) {
 }
 
 function pushValuesToTasksFromTemplate() {
-    let boardCategory = "toDo";
+    let boardCategory = 'toDo'
     let { title, description, assigned, date, category, priority } = getValuesFromInputFromTemplate();
     tasks.push({
         id: taskIdCounter++,

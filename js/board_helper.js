@@ -42,6 +42,16 @@ function generateProgressBarHTML(task) {
     return progressBarHTML;
 }
 
+function generateAssignedContactsHTML(task) {
+    let firstLetterName = getInitialsFromName(task.assigned);
+    let firstLetterLastName = getInitialsFromLastName(task.assigned);
+    let assignedContactsHTML = '';
+    if (task.assigned && task.assigned.length > 0) {
+        assignedContactsHTML = renderAssignedContactsHTML(firstLetterName, firstLetterLastName)
+    }
+    return assignedContactsHTML;
+}
+
 function getInitialsFromName(name) {
     let firstLetterName = name.charAt(0);
     return firstLetterName;
@@ -120,6 +130,16 @@ function changeColorOfEditButton() {
 function changeColorOfEditButton2() {
     let editButton = document.getElementById('edit-img');
     editButton.setAttribute('src', '../assets/img/edit-dark-blue.svg')
+}
+
+function changeColorOfAddTaskImg(id) {
+    let addTaskImg = document.getElementById(`add-task-img${id}`);
+    addTaskImg.setAttribute('src', '../assets/img/add_task_button_blue.svg')
+}
+
+function changeColorOfAddTaskImg2(id) {
+    let addTaskImg = document.getElementById(`add-task-img${id}`);
+    addTaskImg.setAttribute('src', '../assets/img/add_task_button.svg')
 }
 
 

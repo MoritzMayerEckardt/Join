@@ -119,6 +119,10 @@
     border: none;
 }
 
+.add-task-img:hover {
+    cursor: pointer;
+}
+
 .task-card {
     width: 252px;
     display: inline-block;
@@ -202,15 +206,16 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     -webkit-line-clamp: 2;
+    margin-bottom: 24px;
 }
 
 .task-subtasks-container {
     width: 220px;
     height: 16px;
-    margin-top: 24px;
     align-items: center;
     gap: 10px;
     display: flex;
+    margin-bottom: 24px;
 }
 
 .task-progress-bar {
@@ -247,7 +252,8 @@
 .task-assigned-container {
     height: 32px;
     display: flex;
-    width: 80px;
+    width: 220px;
+    position: relative;
 }
 
 .task-contacts-ellipse {
@@ -268,6 +274,12 @@
     align-items: center;
     margin-top: 24px;
     padding-right: 10px;
+}
+
+.priority-img-card {
+    position: absolute;
+    right: 16px;
+    bottom: 8px;
 }
 
 .drag-area-highlight {
@@ -561,16 +573,43 @@
     z-index: 999;
     padding: 48px 40px 48px 40px;
     border-radius: 30px;
-    display: inline-block;
+    display: flex;
     max-height: 700px;
     overflow-y: scroll;
+    flex-direction: column;
+    gap: 24px;
+    overflow: auto;
+}
+
+.priority-container-edit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.assigned-container-edit-card {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+}
+
+.subtasks-container-edit-card {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+    margin-bottom: -8px;
 }
 
 .edit-card-top {
     flex-direction: column;
     display: flex;
     gap: 8px;
-    margin-bottom: 24px;
+}
+
+.edit-card-top-container {
+    display: flex;
+    justify-content: space-between;
+    height: 24px;
 }
 
 .edit-card-input-field {
@@ -593,3 +632,24 @@
     position: relative;
     width: 100%;
 }
+
+.edit-card-container::-webkit-scrollbar {
+    width: 0; 
+    height: 0; 
+  }
+
+.arrow-white {
+    display: none;
+    bottom: 19px;
+    right: 325px;
+    width: 22px;
+    height: 18px;
+  }
+
+.arrow-white-medium {
+    display: none;
+    position: absolute;
+    bottom: -2px;
+    width: 22px;
+    height: 18px;
+  }

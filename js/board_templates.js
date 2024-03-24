@@ -1,22 +1,17 @@
-function renderCard(task, backgroundColor, firstLetterName ,firstLetterLastName, progressBarHTML) {
+function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML) {
     return /*html*/`
         <div onclick="openDetailedCard(${task.id}, event)" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
             <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
             <span class="task-title">${task.title}</span>
             <div class="task-description">${task.description}</div>
-            ${progressBarHTML}
-            <div class="task-card-bottom">
-                <div class="task-assigned-container">
-                    <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
-                        <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
-                    </div>
-                </div>
-                <div><img style="width: 17px" src="../assets/img/prio_${task.priority}.svg" alt=""></div>
+                ${progressBarHTML}
+            <div class="task-assigned-container">
+                ${assignedContactsHTML}
+                <img class="priority-img-card" style="width: 17px" src="../assets/img/prio_${task.priority}.svg" alt="">
             </div>
         </div>      
     `;
 }
-
 
 function renderDetailedCard(task, backgroundColor, firstLetter, secondLetter, subtasksHTML) { 
     return /*html*/`
@@ -62,24 +57,24 @@ function renderDetailedCard(task, backgroundColor, firstLetter, secondLetter, su
 function renderEditCard(task, contactOptions) {
     return /*html*/`
         <div style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="card" class="edit-card-container">
-            <div class="detailed-card-top-container">
+            <div class="edit-card-top-container">
                 <div class="detailed-card-category"></div>
                 <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
             </div>
             <div class="edit-card-top">
-                <span>Title</span>
-                <input class="edit-card-input-field" type="text" value="${task.title}">
+                <span style="font-size: 20px; color: #2A3647">Title</span>
+                <input id="date-edit-card" class="edit-card-input-field" type="text" value="${task.title}">
             </div>
             <div class="edit-card-top">
-                <span>Description</span>
-                <input class="edit-card-input-field" style="height: 168px" type="text" value="${task.description}">
+                <span style="font-size: 20px; color: #2A3647">Description</span>
+                <input id="description-edit-card" class="edit-card-input-field" style="height: 168px" type="text" value="${task.description}">
             </div>
             <div class="edit-card-top">
-                <span>Due date</span>
-                <input class="edit-card-input-field" type="date" value="${task.date}"> 
+                <span style="font-size: 20px; color: #2A3647">Due date</span>
+                <input id="date-edit-card" class="edit-card-input-field" type="date" value="${task.date}"> 
             </div>
-            <div class="buttonsFrame">
-                <p class="title">Priority</p>
+            <div class="priority-container-edit-card">
+                <span class="title">Priority</span>
                 <div class="smallButtonsFrame">
                     <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent')">
                         <div class="urgentText">
@@ -87,16 +82,16 @@ function renderEditCard(task, contactOptions) {
                         </div>
                         <div class="arrows">
                             <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
-                            <img id="whiteArrow" class="whiteArrow" src="assets/img/prioUrgent.svg" alt="svg">
+                            <img id="whiteArrow" class="arrow-white" src="assets/img/prioUrgent.svg" alt="svg">
                         </div>
                     </button>
                     <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium')">
                         <div id="mediumText" class="mediumText">
                             Medium
                         </div>
-                        <div class="arrows">
+                        <div class="arrows" style="position: relative">
                             <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
-                            <img id="prioMedium" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
+                            <img id="prioMedium" class="arrow-white-medium" src="assets/img/prio_medium.svg" alt="svg">
                         </div>
                     </button>
                     <button id="lowButton" class="low" onclick="changeBackgroundColor('low')">
@@ -105,26 +100,26 @@ function renderEditCard(task, contactOptions) {
                         </div>
                         <div class="arrows">
                             <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
-                            <img id="whiteArrowLow" class="whiteArrowLow" src="assets/img/prioLow.svg">
+                            <img id="whiteArrowLow" class="arrow-white" src="assets/img/prioLow.svg">
                         </div>
                     </button>
                 </div>
             </div>
-            <div class="assignedToFrame d-none">
-                <p class="assignedTo">Assigned to</p>
-                <select id="assigned-template" class="select">
+            <div class="assigned-container-edit-card">
+                <span style="font-size: 20px; color: #2A3647">Assigned to</span>
+                <select id="assigned-edit-card" class="select">
                     <option value="">Select contacts to assign</option>
                     ${contactOptions}
                 </select>
             </div>
-            <div>
-                <p class="subtask">Subtask</p>
+            <div class="subtasks-container-edit-card">
+                <span style="font-size: 20px; color: #2A3647">Subtask</span>
                 <div class="subtasks-input-edit-card">
-                    <input id="subtasks-template" type="text" class="inputfieldTitle" placeholder="Add new subtask">
-                    <img class="plus-button-edit-card" src="assets/img/+.svg" onclick="addNewSubtaskInTemplate()">
+                    <input id="subtasks-edit-card" type="text" class="inputfieldTitle" placeholder="Add new subtask">
+                    <img class="plus-button-edit-card" src="assets/img/+.svg" onclick="addNewSubtaskInEditCard()">
                 </div>
             </div>
-            <div id="new-subtask-template">
+            <div id="new-subtask-edit-card">
             </div>
         </div>
     `;
@@ -288,4 +283,12 @@ function renderSubtaskHTML(task, subtask, checkBoxImage, index) {
             <span style="font-size: 16px">${subtask}</span>
         </div>
     `;
+}
+
+function renderAssignedContactsHTML(firstLetterName, firstLetterLastName) {
+    return /*html*/`
+        <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
+            <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
+        </div>
+`;
 }
