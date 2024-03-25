@@ -1,4 +1,4 @@
-.content-right{
+.content-right {
     padding-left: 232px;
     overflow-x: hidden;
 }
@@ -13,12 +13,13 @@
     font-weight: 700;
 }
 
-.board1{
+.board1 {
     width: 100vw;
     position: relative;
     height: 70vw;
     padding-top: 96px;
 }
+
 .about-container {
     padding: 243px, 0px, 0px, 52px;
     justify-content: flex-end;
@@ -229,20 +230,82 @@
     height: 53px;
     border-radius: 10px;
     border-width: 1px;
+    border-style: solid;
     justify-content: space-between;
     padding-top: 12px;
     padding-right: 16px;
     padding-bottom: 12px;
     padding-left: 16px;
-    border-color: #D1D1D1;
     font-family: 'Inter' !important;
     font-size: 20px;
     line-height: 24px;
     font-weight: 400;
+    background-color: white;
+    border-color: rgba(209, 209, 209, 1);
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .select:hover {
     cursor: pointer !important;
+}
+
+.standardOption {
+    position: relative;
+    bottom: 19px;
+}
+
+.dropdownArrow {
+    position: relative;
+    width: 12.21px;
+    height: 9px;
+    top: 10px;
+    left: 1.39px;
+}
+
+.showContactsToAssign {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid rgba(95, 92, 92, 0.2);
+    border-radius: 10px;
+    border-top: none;
+    max-height: 200px;
+    overflow: auto;
+    background-color: white;
+    z-index: 100;
+}
+
+.newcontact{
+    display: flex;
+    width: 100%;
+}
+
+.circle {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 7px;
+    padding-right: 20px;
+}
+
+.nameAndCheckbox{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.contactName {
+    padding-right: 130px;
+}
+
+.checkBox {
+    margin-right: 30px;
 }
 
 .star {
@@ -272,10 +335,12 @@
     left: 632.25px;
     bottom: 290px;
 }
-.buttonsFrame{
+
+.buttonsFrame {
     position: relative;
     top: 17px;
 }
+
 .smallButtonsFrame {
     display: flex;
     gap: 8px
@@ -314,7 +379,7 @@
     height: 14.51px;
 }
 
-.whiteArrow{
+.whiteArrow {
     display: none;
     position: absolute;
     bottom: 19px;
@@ -323,7 +388,7 @@
     height: 18px;
 }
 
-.whiteArrowLow{
+.whiteArrowLow {
     display: none;
     position: absolute;
     width: 22px;
@@ -350,7 +415,7 @@
     line-height: 25.2px;
 }
 
-.priomedium{
+.priomedium {
     display: none;
     position: absolute;
     right: 179px;
@@ -385,14 +450,14 @@
     padding-top: 10px;
 }
 
-.subtaskFrame{
+.subtaskFrame {
     width: 440px;
     height: 80px;
     position: relative;
     top: 24px;
 }
 
-.subtask{
+.subtask {
     width: 88px;
     height: 24px;
     font-weight: 400;
@@ -401,17 +466,17 @@
     padding-top: 10px;
 }
 
-.subtaskPlus{
+.subtaskPlus {
     position: absolute;
     right: 20px;
     bottom: 1px;
 }
 
-.subtaskPlus:hover{
+.subtaskPlus:hover {
     cursor: pointer;
 }
 
-.newSubtask{
+.newSubtask {
     position: relative;
     left: 632.25px;
     bottom: 245px;
@@ -419,7 +484,7 @@
     width: 440px;
 }
 
-.requiredField{
+.requiredField {
     position: absolute;
     left: 96px;
     width: 170px;
@@ -430,7 +495,7 @@
     line-height: 19.2px;
 }
 
-.vector{
+.vector {
     position: absolute;
     left: 584.25px;
     width: 1px;
@@ -438,6 +503,6 @@
     top: 310px;
 }
 
-.vectorPic{
+.vectorPic {
     height: 450px;
 }
