@@ -6,6 +6,8 @@ let lastClickedButton = '';
 async function initAddTask() {
     await includeHTML();
     await loadTasks();
+    await loadContacts(); // Lade Kontakte
+    fillAssignedToDropdown()
     addBackgroundColor(1);
 }
 
@@ -210,5 +212,15 @@ function changeBackgroundColor(clickedButton) {
         whiteArrow.style.display = 'none';
     }
     lastClickedButton = clickedButton;
+}
+
+function fillAssignedToDropdown() {
+    let selectElement = document.getElementById('assigned');
+    selectElement.innerHTML = ''; // Alle vorhandenen Optionen löschen
+    selectElement.appendChild(new Option('Select contacts to assign', '')); // Standardoption hinzufügen
+    contacts.forEach(contact => {
+        let option = new Option(`${contact.initials}  ${contact.name}`);
+        selectElement.appendChild(option);
+    });
 }
 
