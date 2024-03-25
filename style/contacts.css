@@ -107,6 +107,10 @@
     background-color: lightgrey;
 }
 
+.contact-in-list.contactActive:hover {
+    background-color: #2a3647; /* Oder hier die Hintergrundfarbe für den aktiven Kontakt einfügen */
+  }
+
 .name-initials {
     display: flex;
     justify-content: center;

@@ -180,18 +180,6 @@ function showConfirmation() {
 
 // **********************SHCOW ALL DATA FROM CONTACT**********************
 
-// function openFullCard(name, email, phone, initials, index) {
-//     let showFullContact = document.getElementById('view-contact-container');
-//     showFullContact.classList.remove('d-none');
-//     showFullContact.classList.add('view-contact-container-slide-in');
-//     currentIndex = index;
-
-//     document.getElementById(`contact-in-list${index}`).classList.add('contactActive');
-
-
-//     showDataFromCurrentContact(name, email, phone, initials, index);
-// }
-
 function openFullCard(name, email, phone, initials, index) {
     let showFullContact = document.getElementById('view-contact-container');
     showFullContact.classList.remove('d-none');
