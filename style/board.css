@@ -619,7 +619,8 @@
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     font-size: 20px;
-    color: #D1D1D1;
+    color: black;
+    font-family: 'Inter' !important;
 }
 
 .plus-button-edit-card {
@@ -668,10 +669,30 @@
     align-items: center;
 }
 
-
-
+.no-subtasks-container {
+    padding: 7px 16px 7px 16px;
+    gap: 16px;
+}
 
 .subtask-container-edit-card:hover {
     cursor: pointer;
     background-color: #F4F4F4;
+}
+
+.button-edit-card {
+    position: absolute;
+    right: 24px;
+    height: 40px;
+    width: 48px;
+    border-radius: 10px;
+    border: 0px;
+    background: #2A3647;
+    bottom: -24px;
+}
+
+.form-edit-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }

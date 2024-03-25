@@ -90,7 +90,7 @@ function generateSubtasksHTML(task) {
             subtasksHTML += renderSubtaskHTML(task, subtask, checkBoxImage, index);
         }
     } else {
-        subtasksHTML = `<div style="font-size: 16px">No subtasks</div>`;
+        subtasksHTML = /*html*/` <div class="no-subtasks-container" style="font-size: 16px">No subtasks</div>`;
     }
     return subtasksHTML;
 }
@@ -123,13 +123,37 @@ function generateContactOptionsHTML() {
 
 function generateSubtasksHTMLEditCard(task) {
     let subtasksHTMLEditCard = '';
-    for (let index = 0; index < task.subtasks.length; index++) {
-        const subtask = task.subtasks[index].title;
-        subtasksHTMLEditCard += /*html*/`
-            <div onmouseover="showEditImages(${index})" onmouseout="removeEditImages(${index})" class="subtask-container-edit-card"><li class="subtask-list-edit-card" id="subtask${index}">${subtask}</li><div class="edit-card-edit-container d-none" id="edit-container${index}"><img style="height: 18px" src="../assets/img/edit-dark-blue.svg" alt=""><div style="height: 18px; width: 1px; background: lightgrey"></div><img style="height: 18px" src="../assets/img/delete-dark-blue.svg" alt=""></div></div>
+    if (task.subtasks && task.subtasks.length > 0) {
+        for (let index = 0; index < task.subtasks.length; index++) {
+            const subtask = task.subtasks[index].title;
+            subtasksHTMLEditCard += /*html*/`
+                <div onmouseover="showEditImages(${index + subtaskArray.length})" onmouseout="removeEditImages(${index + subtaskArray.length})" class="subtask-container-edit-card">
+                    <li class="subtask-list-edit-card" id="subtask${index + subtaskArray.length}">${subtask}</li>
+                    <div class="edit-card-edit-container d-none" id="edit-container${index + subtaskArray.length}">
+                        <img style="height: 18px" src="../assets/img/edit-dark-blue.svg" alt="">
+                        <div style="height: 18px; width: 1px; background: lightgrey"></div>
+                        <img onclick="deleteSubtask(${task.id}, ${index}, event)" style="height: 18px" src="../assets/img/delete-dark-blue.svg" alt="">
+                    </div>
+                </div>
+            `;
+        }
+    } else {
+        subtasksHTMLEditCard = /*html*/`
+            <div class="no-subtasks-container">No subtasks</div>
         `
     }
     return subtasksHTMLEditCard;
+}
+
+
+
+async function deleteSubtask(taskId, index, event) {
+    let task = tasks.find(task => task.id === taskId); 
+    task.subtasks.splice(index, 1);
+    subtaskArray.splice(index, 1);
+    await postData();
+    await loadTasks();
+    openEditCard(taskId, event); 
 }
 
 function showEditImages(index) {
@@ -217,15 +241,14 @@ function getNewSubtaskInTemplate() {
     let newSubtask = document.getElementById('new-subtask-template');
     newSubtask.innerHTML = ``;
     for (i = 0; i < subtaskArray.length; i++) {
-        newSubtask.innerHTML += `
-        <div> 
-             <b> •${subtaskArray[i].title} </b> 
-         </div>`
+        newSubtask.innerHTML += /*html*/`
+             <li><b>${subtaskArray[i].title}</b></li> 
+         `
     }
     document.getElementById('subtasks-template').value = ``;
 }
 
-function addNewSubtaskInEditCard() {
+async function addNewSubtaskInEditCard() {
     let addNewSubtask = document.getElementById('subtasks-edit-card').value;
     if (subtaskArray.length < 2) {
         subtaskArray.push({
@@ -241,12 +264,18 @@ function addNewSubtaskInEditCard() {
 function getNewSubtaskInEditCard() {
     let newSubtask = document.getElementById('new-subtask-edit-card');
     newSubtask.innerHTML = '';
-    for (i = 0; i < subtaskArray.length; i++) {
-        newSubtask.innerHTML += `
-        <li${subtaskArray[i].title} </b> 
-         </div>`
+    for (index = 0; index < subtaskArray.length; index++) {
+        newSubtask.innerHTML += /*html*/`
+        <div onmouseover="showEditImages(${index + subtaskArray.length})" onmouseout="removeEditImages(${index + subtaskArray.length})" class="subtask-container-edit-card">
+            <li class="subtask-list-edit-card" id="subtask${index + subtaskArray.length}">${subtaskArray[index].title}</li>
+            <div class="edit-card-edit-container d-none" id="edit-container${index + subtaskArray.length}">
+                <img style="height: 18px" src="../assets/img/edit-dark-blue.svg" alt="">
+                <div style="height: 18px; width: 1px; background: lightgrey"></div>
+                <img style="height: 18px" src="../assets/img/delete-dark-blue.svg" alt="">
+            </div>
+        </div>
+        `
     }
-    document.getElementById('subtasks-edit-card').value = ``;
 }
 
 function handleKeyPressInTemplate(event) {

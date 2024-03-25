@@ -76,9 +76,10 @@ function openEditCard(taskId, event) {
     let popupContent = document.getElementById('popup-board-content');
     let contactOptions = generateContactOptionsHTML();
     let subtasksHTMLEditCard = generateSubtasksHTMLEditCard(task);
+    let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
-    popupContent.innerHTML = renderEditCard(task, contactOptions, subtasksHTMLEditCard);
+    popupContent.innerHTML = renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedContactsHTML);
     event.stopPropagation();
 }
 
@@ -104,41 +105,6 @@ async function addTaskFromTemplate() {
     renderColumns();
     subtaskArray = [];
 }
-
-function renderTaskCard(task, container) {
-    let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
-    let progressBarHTML = generateProgressBarHTML(task);
-    let assignedContactsHTML = generateAssignedContactsHTML(task);
-    container.innerHTML += renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML);
-}
-
-function searchTasks() {
-    const search = document.getElementById('search').value.toLowerCase();
-    for (const column of columns) {
-        const container = document.getElementById(column.containerId);
-        container.innerHTML = '';
-        let tasksInColumn = filterTasksByCategory(tasks, column.category);
-        const foundTasksInColumn = renderTasksForColumn(tasksInColumn, search, container);
-        if (!foundTasksInColumn) {
-            container.innerHTML = column.emptyRenderer();
-        }
-    }
-}
-
-function renderTasksForColumn(tasksInColumn, search, container) {
-    let foundTasks = false;
-    if (tasksInColumn && tasksInColumn.length >= 1) {
-        tasksInColumn.forEach(task => {
-            const title = task.title.toLowerCase();
-            if (title.includes(search)) {
-                renderTaskCard(task, container);
-                foundTasks = true;
-            }
-        });
-    }
-    return foundTasks;
-}
-
 
 async function deleteTask(taskId) {
     let selectedTask = tasks.findIndex(task => task.id === taskId);
@@ -166,6 +132,33 @@ function pushValuesToTasksFromTemplate() {
     });
 }
 
+async function editTask(taskId) {
+    let { title, description, date, priority, subtasks, assigned } = getValuesFromInputFromEditCard();
+    updateTask(taskId, { title, description, date, priority, subtasks, assigned });
+    await postData();
+    await loadTasks();
+    closePopup();
+    renderColumns();
+}
+
+function updateTask(taskId, updatedTask) {
+    let index = tasks.findIndex(task => task.id === taskId);
+    if (index !== -1) {
+        tasks[index] = { ...tasks[index], ...updatedTask };
+    }
+}
+
+function getValuesFromInputFromEditCard() {
+    let title = document.getElementById('title-edit-card').value;
+    let description = document.getElementById('description-edit-card').value;
+    let date = document.getElementById('date-edit-card').value;
+    let priority = getVAlueOfPriority();
+    let assigned = document.getElementById('assigned-edit-card').value;
+    let subtasks = subtaskArray;
+    return { title, description, date, priority, subtasks, assigned};
+}
+
+
 function closeAddTaskForm() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let taskForm = document.getElementById('task-form');
@@ -179,6 +172,7 @@ function closeAddTaskForm() {
 function closePopup() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
+    renderColumns();
 }
 
 

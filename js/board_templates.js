@@ -51,75 +51,81 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
     `;
 }
 
-function renderEditCard(task, contactOptions, subtasksHTMLEditCard) {
+function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedContactsHTML) {
     return /*html*/`
         <div style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="card" class="edit-card-container">
-            <div class="edit-card-top-container">
-                <div class="detailed-card-category"></div>
-                <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
-            </div>
-            <div class="edit-card-top">
-                <span style="font-size: 20px; color: #2A3647">Title</span>
-                <input id="date-edit-card" class="edit-card-input-field" type="text" value="${task.title}">
-            </div>
-            <div class="edit-card-top">
-                <span style="font-size: 20px; color: #2A3647">Description</span>
-                <input id="description-edit-card" class="edit-card-input-field" style="height: 168px" type="text" value="${task.description}">
-            </div>
-            <div class="edit-card-top">
-                <span style="font-size: 20px; color: #2A3647">Due date</span>
-                <input id="date-edit-card" class="edit-card-input-field" type="date" value="${task.date}"> 
-            </div>
-            <div class="priority-container-edit-card">
-                <span class="title">Priority</span>
-                <div class="smallButtonsFrame">
-                    <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent')">
-                        <div class="urgentText">
-                            Urgent
-                        </div>
-                        <div class="arrows">
-                            <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
-                            <img id="whiteArrow" class="arrow-white" src="assets/img/prioUrgent.svg" alt="svg">
-                        </div>
-                    </button>
-                    <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium')">
-                        <div id="mediumText" class="mediumText">
-                            Medium
-                        </div>
-                        <div class="arrows" style="position: relative">
-                            <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
-                            <img id="prioMedium" class="arrow-white-medium" src="assets/img/prio_medium.svg" alt="svg">
-                        </div>
-                    </button>
-                    <button id="lowButton" class="low" onclick="changeBackgroundColor('low')">
-                        <div class="lowText">
-                            Low
-                        </div>
-                        <div class="arrows">
-                            <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
-                            <img id="whiteArrowLow" class="arrow-white" src="assets/img/prioLow.svg">
-                        </div>
-                    </button>
+            <form class="form-edit-card" onsubmit="editTask(${task.id}); return false">    
+                <div class="edit-card-top-container">
+                    <div class="detailed-card-category"></div>
+                    <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
                 </div>
-            </div>
-            <div class="assigned-container-edit-card">
-                <span style="font-size: 20px; color: #2A3647">Assigned to</span>
-                <select id="assigned-edit-card" class="select">
-                    <option value="">Select contacts to assign</option>
-                    ${contactOptions}
-                </select>
-            </div>
-            <div class="subtasks-container-edit-card">
-                <span style="font-size: 20px; color: #2A3647">Subtask</span>
-                <div class="subtasks-input-edit-card">
-                    <input id="subtasks-edit-card" type="text" class="inputfieldTitle" placeholder="Add new subtask">
-                    <img class="plus-button-edit-card" src="assets/img/+.svg" onclick="addNewSubtaskInEditCard()">
+                <div class="edit-card-top">
+                    <span style="font-size: 20px; color: #2A3647">Title</span>
+                    <input placeholder="Enter a title" id="title-edit-card" class="edit-card-input-field" type="text" value="${task.title}" required>
                 </div>
-            </div>
-            <div id="new-subtask-edit-card" style="position: relative">
-                ${subtasksHTMLEditCard}
-            </div>
+                <div class="edit-card-top">
+                    <span style="font-size: 20px; color: #2A3647">Description</span>
+                    <textarea placeholder="Enter a description" id="description-edit-card" class="edit-card-input-field" style="height: 168px" type="text">${task.description}</textarea>
+                </div>
+                <div class="edit-card-top">
+                    <span style="font-size: 20px; color: #2A3647">Due date</span>
+                    <input id="date-edit-card" class="edit-card-input-field" type="date" value="${task.date}" required> 
+                </div>
+                <div class="priority-container-edit-card">
+                    <span class="title">Priority</span>
+                    <div class="smallButtonsFrame">
+                        <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent')">
+                            <div class="urgentText">
+                                Urgent
+                            </div>
+                            <div class="arrows">
+                                <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
+                                <img id="whiteArrow" class="arrow-white" src="assets/img/prioUrgent.svg" alt="svg">
+                            </div>
+                        </button>
+                        <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium')">
+                            <div id="mediumText" class="mediumText">
+                                Medium
+                            </div>
+                            <div class="arrows" style="position: relative">
+                                <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
+                                <img id="prioMedium" class="arrow-white-medium" src="assets/img/prio_medium.svg" alt="svg">
+                            </div>
+                        </button>
+                        <button id="lowButton" class="low" onclick="changeBackgroundColor('low')">
+                            <div class="lowText">
+                                Low
+                            </div>
+                            <div class="arrows">
+                                <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
+                                <img id="whiteArrowLow" class="arrow-white" src="assets/img/prioLow.svg">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="assigned-container-edit-card">
+                    <span style="font-size: 20px; color: #2A3647">Assigned to</span>
+                    <select id="assigned-edit-card" class="select">
+                        <option value="${task.assigned}">Select contacts to assign</option>
+                        ${contactOptions}
+                    </select>
+                    <div class="detailed-card-contact-container">${assignedContactsHTML}</div>
+                </div>
+                <div class="subtasks-container-edit-card">
+                    <span style="font-size: 20px; color: #2A3647">Subtask</span>
+                    <div class="subtasks-input-edit-card">
+                        <input id="subtasks-edit-card" type="text" class="inputfieldTitle" placeholder="Add new subtask">
+                        <img class="plus-button-edit-card" src="assets/img/+.svg" onclick="addNewSubtaskInEditCard(${task.id})">
+                    </div>
+                </div>
+                <div id="new-subtask-edit-card" style="position: relative; min-height: 64px">
+                    ${subtasksHTMLEditCard}
+                </div>
+                <button class="button-edit-card"><img src="../assets/img/check.svg" alt=""></button>
+            </form>
         </div>
+        
+
     `;
 }
 
