@@ -78,7 +78,10 @@ function saveTaskIdCounter() {
 function addNewSubtask() {
     let addNewSubtask = document.getElementById('subtasks').value;
     if (subtaskArray.length < 2) {
-        subtaskArray.push(addNewSubtask);
+        subtaskArray.push({
+            title: addNewSubtask,
+            isChecked: false
+        });
         getNewSubtask();
     } else {
         alert("You can only add a maximum of two subtasks.");
@@ -94,7 +97,7 @@ function getNewSubtask() {
     for (i = 0; i < subtaskArray.length; i++) {
         newSubtask.innerHTML += `
         <div> 
-             <b> •${subtaskArray[i]} </b> 
+             <b> •${subtaskArray[i].title} </b> 
          </div>`
 
     }

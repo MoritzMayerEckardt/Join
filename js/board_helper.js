@@ -48,6 +48,18 @@ function generateAssignedContactsHTML(task) {
     let assignedContactsHTML = '';
     if (task.assigned && task.assigned.length > 0) {
         assignedContactsHTML = renderAssignedContactsHTML(firstLetterName, firstLetterLastName)
+    } 
+    return assignedContactsHTML;
+}
+
+function generateAssignedContactsInDetailedCard(task) {
+    let firstLetterName = getInitialsFromName(task.assigned);
+    let firstLetterLastName = getInitialsFromLastName(task.assigned);
+    let assignedContactsHTML = '';
+    if (task.assigned && task.assigned.length > 0) {
+        assignedContactsHTML = renderAssignedContactsInDetailedCard(task, firstLetterName, firstLetterLastName)
+    } else {
+        assignedContactsHTML = /*html*/`<span>No contacts assigned</span>`
     }
     return assignedContactsHTML;
 }
@@ -109,6 +121,26 @@ function generateContactOptionsHTML() {
     return contactOptions;
 }
 
+function generateSubtasksHTMLEditCard(task) {
+    let subtasksHTMLEditCard = '';
+    for (let index = 0; index < task.subtasks.length; index++) {
+        const subtask = task.subtasks[index].title;
+        subtasksHTMLEditCard += /*html*/`
+            <div onmouseover="showEditImages(${index})" onmouseout="removeEditImages(${index})" class="subtask-container-edit-card"><li class="subtask-list-edit-card" id="subtask${index}">${subtask}</li><div class="edit-card-edit-container d-none" id="edit-container${index}"><img style="height: 18px" src="../assets/img/edit-dark-blue.svg" alt=""><div style="height: 18px; width: 1px; background: lightgrey"></div><img style="height: 18px" src="../assets/img/delete-dark-blue.svg" alt=""></div></div>
+        `
+    }
+    return subtasksHTMLEditCard;
+}
+
+function showEditImages(index) {
+    let editContainer = document.getElementById(`edit-container${index}`)
+    editContainer.classList.remove('d-none');
+}
+
+function removeEditImages(index) {
+    let editContainer = document.getElementById(`edit-container${index}`)
+    editContainer.classList.add('d-none');
+}
 
 // **********************CHANGE COLOR OF BUTTONS**********************
 
@@ -191,6 +223,37 @@ function getNewSubtaskInTemplate() {
          </div>`
     }
     document.getElementById('subtasks-template').value = ``;
+}
+
+function addNewSubtaskInEditCard() {
+    let addNewSubtask = document.getElementById('subtasks-edit-card').value;
+    if (subtaskArray.length < 2) {
+        subtaskArray.push({
+            title: addNewSubtask,
+            isChecked: false
+        });
+        getNewSubtaskInEditCard();
+    } else {
+        alert("You can only add a maximum of two subtasks.");
+    }
+}
+
+function getNewSubtaskInEditCard() {
+    let newSubtask = document.getElementById('new-subtask-edit-card');
+    newSubtask.innerHTML = '';
+    for (i = 0; i < subtaskArray.length; i++) {
+        newSubtask.innerHTML += `
+        <li${subtaskArray[i].title} </b> 
+         </div>`
+    }
+    document.getElementById('subtasks-edit-card').value = ``;
+}
+
+function handleKeyPressInTemplate(event) {
+    if (event.keyCode === 13) { 
+        event.preventDefault(); 
+        addNewSubtaskInTemplate();
+    }
 }
 
 function clearFormInTemplate() {

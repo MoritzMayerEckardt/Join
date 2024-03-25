@@ -62,12 +62,11 @@ function openDetailedCard(taskId, event) {
     let popupContent = document.getElementById('popup-board-content');
     let task = tasks.find(task => task.id === taskId);
     let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
-    let firstLetter = getInitialsFromName(task.assigned);
-    let secondLetter = getInitialsFromLastName(task.assigned);
-    let subtasksHTML = generateSubtasksHTML(task);   
+    let subtasksHTML = generateSubtasksHTML(task); 
+    let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)  
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
-    popupContent.innerHTML = renderDetailedCard(task, backgroundColor, firstLetter, secondLetter, subtasksHTML);
+    popupContent.innerHTML = renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML);
     event.stopPropagation();
 }
 
@@ -76,9 +75,10 @@ function openEditCard(taskId, event) {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
     let contactOptions = generateContactOptionsHTML();
+    let subtasksHTMLEditCard = generateSubtasksHTMLEditCard(task);
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
-    popupContent.innerHTML = renderEditCard(task, contactOptions);
+    popupContent.innerHTML = renderEditCard(task, contactOptions, subtasksHTMLEditCard);
     event.stopPropagation();
 }
 
@@ -102,7 +102,43 @@ async function addTaskFromTemplate() {
     saveTaskIdCounter();
     closeAddTaskForm();
     renderColumns();
+    subtaskArray = [];
 }
+
+function renderTaskCard(task, container) {
+    let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
+    let progressBarHTML = generateProgressBarHTML(task);
+    let assignedContactsHTML = generateAssignedContactsHTML(task);
+    container.innerHTML += renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML);
+}
+
+function searchTasks() {
+    const search = document.getElementById('search').value.toLowerCase();
+    for (const column of columns) {
+        const container = document.getElementById(column.containerId);
+        container.innerHTML = '';
+        let tasksInColumn = filterTasksByCategory(tasks, column.category);
+        const foundTasksInColumn = renderTasksForColumn(tasksInColumn, search, container);
+        if (!foundTasksInColumn) {
+            container.innerHTML = column.emptyRenderer();
+        }
+    }
+}
+
+function renderTasksForColumn(tasksInColumn, search, container) {
+    let foundTasks = false;
+    if (tasksInColumn && tasksInColumn.length >= 1) {
+        tasksInColumn.forEach(task => {
+            const title = task.title.toLowerCase();
+            if (title.includes(search)) {
+                renderTaskCard(task, container);
+                foundTasks = true;
+            }
+        });
+    }
+    return foundTasks;
+}
+
 
 async function deleteTask(taskId) {
     let selectedTask = tasks.findIndex(task => task.id === taskId);
@@ -144,6 +180,44 @@ function closePopup() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
 }
+
+
+// **********************SEARCH-TASK-FUNCTION**********************
+
+function searchTasks() {
+    let search = document.getElementById('search').value.toLowerCase();
+    for (const column of columns) {
+        const container = document.getElementById(column.containerId);
+        container.innerHTML = '';
+        const tasksInColumn = filterTasksByCategory(tasks, column.category);
+        const foundTasksInColumn = renderTasksForColumn(tasksInColumn, search, container);
+        if (!foundTasksInColumn) {
+            container.innerHTML = column.emptyRenderer();
+        }
+    }
+}
+
+function renderTaskCard(task, container) {
+    let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
+    let progressBarHTML = generateProgressBarHTML(task);
+    let assignedContactsHTML = generateAssignedContactsHTML(task);
+    container.innerHTML += renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML);
+}
+
+function renderTasksForColumn(tasksInColumn, search, container) {
+    let foundTasks = false;
+    if (tasksInColumn && tasksInColumn.length >= 1) {
+        tasksInColumn.forEach(task => {
+            const title = task.title.toLowerCase();
+            if (title.includes(search)) {
+                renderTaskCard(task, container);
+                foundTasks = true;
+            }
+        });
+    }
+    return foundTasks;
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (event) {

@@ -36,16 +36,6 @@ async function loadContacts() {
     }
 }
 
-async function postData(path = "", users = {}) {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "PUT",
-        header: {
-            "content-Type": "application/json",
-        },
-        body: JSON.stringify(users)
-    });
-    return responseAsJson = await response.json();
-}
 
 
 

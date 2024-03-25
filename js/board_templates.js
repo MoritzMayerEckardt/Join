@@ -13,7 +13,7 @@ function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML
     `;
 }
 
-function renderDetailedCard(task, backgroundColor, firstLetter, secondLetter, subtasksHTML) { 
+function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML) { 
     return /*html*/`
         <div style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="card" class="detailed-card-container">
             <div class="detailed-card-top-container">
@@ -33,10 +33,7 @@ function renderDetailedCard(task, backgroundColor, firstLetter, secondLetter, su
             <div class="detailed-card-assigned">
                 <div style="font-size: 20px; color: #42526E">Assigned To:</div>
                 <div class="detailed-card-contact-container">
-                    <div class="task-contacts-ellipse flex-center" style="background-color: #1FD7C1; margin-left: -10px; border: 1px solid white">
-                        <span class="task-contacts-letters">${firstLetter}</span><span class="task-contacts-letters">${secondLetter}</span>
-                    </div>
-                    <span style="font-size: 19px">${task.assigned}</span>
+                    ${assignedContactsHTML}
                 </div>
             </div>
             <div class="detailed-card-subtasks-container">
@@ -54,7 +51,7 @@ function renderDetailedCard(task, backgroundColor, firstLetter, secondLetter, su
     `;
 }
 
-function renderEditCard(task, contactOptions) {
+function renderEditCard(task, contactOptions, subtasksHTMLEditCard) {
     return /*html*/`
         <div style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="card" class="edit-card-container">
             <div class="edit-card-top-container">
@@ -119,11 +116,14 @@ function renderEditCard(task, contactOptions) {
                     <img class="plus-button-edit-card" src="assets/img/+.svg" onclick="addNewSubtaskInEditCard()">
                 </div>
             </div>
-            <div id="new-subtask-edit-card">
+            <div id="new-subtask-edit-card" style="position: relative">
+                ${subtasksHTMLEditCard}
             </div>
         </div>
     `;
 }
+
+
 
 function renderAddTaskForm(contactOptions) {
     return /*html*/`
@@ -205,7 +205,7 @@ function renderAddTaskForm(contactOptions) {
                 </div>
                 <div class="subtaskFrame">
                     <p class="subtask">Subtask</p>
-                    <input id="subtasks-template" type="text" class="inputfieldTitle" placeholder="Add new subtask">
+                    <input onkeydown="handleKeyPressInTemplate(event)" id="subtasks-template" type="text" class="inputfieldTitle" placeholder="Add new subtask">
                     <img src="assets/img/+.svg" class="subtaskPlus" onclick="addNewSubtaskInTemplate()">
                 </div>
             </div>
@@ -290,5 +290,14 @@ function renderAssignedContactsHTML(firstLetterName, firstLetterLastName) {
         <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
             <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
         </div>
+`;
+}
+
+function renderAssignedContactsInDetailedCard(task, firstLetterName, firstLetterLastName) {
+    return /*html*/`
+        <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
+            <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
+        </div>
+        <span style="font-size: 19px">${task.assigned}</span>
 `;
 }

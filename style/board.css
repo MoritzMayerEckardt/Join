@@ -653,3 +653,25 @@
     width: 22px;
     height: 18px;
   }
+
+.edit-card-edit-container {
+    display: flex;
+    gap: 4px;
+}
+
+.subtask-container-edit-card {
+    display: flex;
+    justify-content: space-between;
+    height: 32px;
+    padding: 8px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+
+
+
+.subtask-container-edit-card:hover {
+    cursor: pointer;
+    background-color: #F4F4F4;
+}
