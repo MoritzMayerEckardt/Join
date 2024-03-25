@@ -1,5 +1,6 @@
 let currentIndex;
-const colors = ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#FFDC00", "#39CCCC", "#B10DC9", "#FF69B4", "#001f3f", "#85144b", "#3D9970", "#FF6347", "#7FDBFF", "#FFD700", "#01FF70", "#F012BE", "#7FDBFF", "#001f3f", "#85144b", "#AAAAAA"];
+// const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#b3b3b3", "#cccccc", "#e6e6e6", "#ffffff", "#1a1a8d", "#3333a1", "#4d4db5", "#6666c8", "#8080dc", "#9999f0", "#b3b3f4", "#ccccf8", "#e6e6fc", "#ffffff"];
+const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#b3b3b3", "#cccccc", "#e6e6e6", "#ffffff", "#1a1a8d", "#3333a1", "#4d4db5", "#6666c8", "#8080dc", "#9999f0", "#b3b3f4", "#ccccf8", "#e6e6fc", "#ffffff"];
 
 
 async function initContacts() {
@@ -137,10 +138,11 @@ function sortList(a, b) {
     return 0;
 }
 
-
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
+
+    let currentLetter = null;
 
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
@@ -151,12 +153,25 @@ function addContactToList() {
         let color = contact['color'];
         let index = i;
 
+        let firstLetter = name.charAt(0).toUpperCase();
+
+        // Überprüfen, ob der aktuelle Kontakt einen anderen Anfangsbuchstaben hat
+        if (firstLetter !== currentLetter) {
+            currentLetter = firstLetter;
+
+            // Füge einen Header für den aktuellen Buchstaben hinzu
+            listContainer.innerHTML += `<div class="contact-letter">${currentLetter}</div>`;
+        }
+
+        // Füge den Kontakt zur Liste hinzu
         listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials, index);
 
+        // Hintergrundfarbe setzen
         let addBgColorInContactList = document.getElementById(`name-initials${index}`);
         addBgColorInContactList.style.backgroundColor = color;
     }
 }
+
 
 function createHtmlTemplateForList(name, email, phone, initials, index) {
     return `
@@ -179,18 +194,6 @@ function showConfirmation() {
 
 
 // **********************SHCOW ALL DATA FROM CONTACT**********************
-
-// function openFullCard(name, email, phone, initials, index) {
-//     let showFullContact = document.getElementById('view-contact-container');
-//     showFullContact.classList.remove('d-none');
-//     showFullContact.classList.add('view-contact-container-slide-in');
-//     currentIndex = index;
-
-//     document.getElementById(`contact-in-list${index}`).classList.add('contactActive');
-
-
-//     showDataFromCurrentContact(name, email, phone, initials, index);
-// }
 
 function openFullCard(name, email, phone, initials, index) {
     let showFullContact = document.getElementById('view-contact-container');

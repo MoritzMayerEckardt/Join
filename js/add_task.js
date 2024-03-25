@@ -7,8 +7,8 @@ async function initAddTask() {
     await includeHTML();
     await loadTasks();
     await loadContacts(); // Lade Kontakte
-    fillAssignedToDropdown()
     addBackgroundColor(1);
+
 }
 
 async function addTask() {
@@ -16,6 +16,7 @@ async function addTask() {
     pushValuesToTasks();
     await postData();
     saveTaskIdCounter();
+    jumpToBoard()
 }
 
 function createTasksIfNotCreated() {
@@ -38,7 +39,7 @@ function getValuesFromInput() {
     } else if (lastClickedButton === 'low') {
         priority = 'low';
     } else {
-        priority = 'notSet'; 
+        priority = 'medium';
     }
     return { title, description, assigned, date, category, priority, };
 }
@@ -56,7 +57,7 @@ function pushValuesToTasks() {
         category: category.value,
         subtasks: subtaskArray,
         boardCategory: boardCategory,
-        priority: priority 
+        priority: priority
     });
 }
 
@@ -179,14 +180,14 @@ function changeBackgroundColor(clickedButton) {
         mediumButton.style.backgroundColor = 'white';
         mediumButton.style.color = 'black';
         mediumButtonText.style.fontWeight = 'normal';
-        prioMedium.style.display ='flex';
+        prioMedium.style.display = 'flex';
 
 
     } else if (clickedButton === 'medium') {
         mediumButton.style.backgroundColor = 'rgba(255, 168, 0, 1)';
         mediumButton.style.color = 'white';
         mediumButtonText.style.fontWeight = '700';
-        prioMedium.style.display ='none';
+        prioMedium.style.display = 'none';
 
         urgentButton.style.backgroundColor = 'white';
         urgentButton.style.color = 'black';
@@ -207,7 +208,7 @@ function changeBackgroundColor(clickedButton) {
         mediumButton.style.backgroundColor = 'white';
         mediumButton.style.color = 'black';
         mediumButtonText.style.fontWeight = 'normal';
-        prioMedium.style.display ='flex';
+        prioMedium.style.display = 'flex';
 
         urgentButton.style.backgroundColor = 'white';
         urgentButton.style.color = 'black';
@@ -217,13 +218,25 @@ function changeBackgroundColor(clickedButton) {
     lastClickedButton = clickedButton;
 }
 
-function fillAssignedToDropdown() {
-    let selectElement = document.getElementById('assigned');
-    selectElement.innerHTML = ''; // Alle vorhandenen Optionen löschen
-    selectElement.appendChild(new Option('Select contacts to assign', '')); // Standardoption hinzufügen
-    contacts.forEach(contact => {
-        let option = new Option(`${contact.initials}  ${contact.name}`);
-        selectElement.appendChild(option);
-    });
+function jumpToBoard() {
+    window.location.href = "../board.html";
+}
+
+function showContactsForAssign() {
+    let showContacts = document.getElementById('showContactsToAssign')
+    showContacts.innerHTML = '';
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[i];
+        showContacts.innerHTML += `
+        <div class="newcontact">
+          <div class="circle">
+              <p>Cirle</p>
+          </div>
+          <div class ="nameAndCheckbox">    
+              <p class= "contactName">${contact.name}</p>
+              <input type="checkbox" id="checkbox" class= "checkBox">
+          </div> 
+        </div>`
+    }
 }
 

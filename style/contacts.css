@@ -20,6 +20,19 @@
     background-color: white;
 }
 
+.contact-letter {
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    border-bottom: 1px solid lightgray;
+    padding: 17px 36px 17px 36px;
+
+}
+
 .button-container {
     height: 101px;
     display: flex;
@@ -105,6 +118,11 @@
 
 .contact-in-list:hover {
     background-color: lightgrey;
+}
+
+.contact-in-list.contactActive:hover {
+    background-color: #2a3647;
+    /* Oder hier die Hintergrundfarbe für den aktiven Kontakt einfügen */
 }
 
 .name-initials {
@@ -719,3 +737,5 @@
     letter-spacing: 0em;
     color: #2A3647;
 }
+
+
