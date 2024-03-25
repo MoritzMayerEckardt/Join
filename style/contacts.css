@@ -94,6 +94,15 @@
     cursor: pointer;
 }
 
+.contactActive {
+    background-color: #2a3647;
+    color: white;
+}
+
+.email-in-Contact-list {
+    color: #007CEE;
+}
+
 .contact-in-list:hover {
     background-color: lightgrey;
 }

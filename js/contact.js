@@ -160,11 +160,11 @@ function addContactToList() {
 
 function createHtmlTemplateForList(name, email, phone, initials, index) {
     return `
-        <li class="contact-in-list" onclick="openFullCard('${name}', '${email}', '${phone}', '${initials}', ${index})">
+        <li class="contact-in-list" id="contact-in-list${index}" onclick="openFullCard('${name}', '${email}', '${phone}', '${initials}', ${index})">
             <div class="name-initials" id="name-initials${index}">${initials}</div>
             <div>
                 <div>${name}</div>
-                <div>${email}</div>
+                <div class="email-in-Contact-list">${email}</div>
             </div>
         </li>`
 }
@@ -180,14 +180,38 @@ function showConfirmation() {
 
 // **********************SHCOW ALL DATA FROM CONTACT**********************
 
+// function openFullCard(name, email, phone, initials, index) {
+//     let showFullContact = document.getElementById('view-contact-container');
+//     showFullContact.classList.remove('d-none');
+//     showFullContact.classList.add('view-contact-container-slide-in');
+//     currentIndex = index;
+
+//     document.getElementById(`contact-in-list${index}`).classList.add('contactActive');
+
+
+//     showDataFromCurrentContact(name, email, phone, initials, index);
+// }
+
 function openFullCard(name, email, phone, initials, index) {
     let showFullContact = document.getElementById('view-contact-container');
     showFullContact.classList.remove('d-none');
     showFullContact.classList.add('view-contact-container-slide-in');
     currentIndex = index;
 
+    // Alle Kontakt-Elemente zurücksetzen
+    let allContactElements = document.querySelectorAll('.contact-in-list');
+    allContactElements.forEach(function(contactElement) {
+        contactElement.classList.remove('contactActive');
+    });
+
+    // Den aktuellen Kontakt aktiv markieren
+    document.getElementById(`contact-in-list${index}`).classList.add('contactActive');
+
     showDataFromCurrentContact(name, email, phone, initials, index);
 }
+
+
+
 
 function showDataFromCurrentContact(name, email, phone, initials, index) {
     document.getElementById('name-initials-view-contact').innerHTML = initials;
