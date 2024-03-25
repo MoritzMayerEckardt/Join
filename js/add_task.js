@@ -38,7 +38,7 @@ function getValuesFromInput() {
     } else if (lastClickedButton === 'low') {
         priority = 'low';
     } else {
-        priority = 'notSet'; 
+        priority = 'medium'; 
     }
     return { title, description, assigned, date, category, priority, };
 }
