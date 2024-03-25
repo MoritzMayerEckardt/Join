@@ -138,27 +138,6 @@ function sortList(a, b) {
     return 0;
 }
 
-
-// function addContactToList() {
-//     let listContainer = document.getElementById('list-container');
-//     listContainer.innerHTML = '';
-
-//     for (let i = 0; i < contacts.length; i++) {
-//         let contact = contacts[i];
-//         let name = contact['name'];
-//         let email = contact['email'];
-//         let phone = contact['phone'];
-//         let initials = contact['initials'];
-//         let color = contact['color'];
-//         let index = i;
-
-//         listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials, index);
-
-//         let addBgColorInContactList = document.getElementById(`name-initials${index}`);
-//         addBgColorInContactList.style.backgroundColor = color;
-//     }
-// }
-
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
@@ -192,13 +171,6 @@ function addContactToList() {
         addBgColorInContactList.style.backgroundColor = color;
     }
 }
-
-
-
-
-
-
-
 
 
 function createHtmlTemplateForList(name, email, phone, initials, index) {
