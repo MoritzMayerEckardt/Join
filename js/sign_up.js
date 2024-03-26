@@ -19,34 +19,73 @@ async function pushDataToUsers() {
     return users;
 }
 
+// function getDataFromInput() {
+//     let userName = document.getElementById('inputSingUpName');
+//     let userEmail = document.getElementById('inputSingUpEmail');
+//     let userPassword = document.getElementById('password');
+//     let confirmationPassword = document.getElementById('confirmationPassword');
+//     let emailExists = false;
+
+//     users.forEach(function (user) {
+//         if (user.email == userEmail.value) {
+//             emailExists = true;
+//         }
+//     });
+
+//     if(!emailExists){
+//     if (userPassword.value === confirmationPassword.value) {
+//         if (users && users.length > 0) {
+//             userId = users.length;
+//         } else {
+//             userId = 0;
+//         }
+//         let data = { "name": userName.value, "email": userEmail.value, "password": userPassword.value, "id": userId, "contacts": "", "tasks": "" };
+//         return data;
+//     } else {
+//         alert("The passwords you provided do not match. Please try again.")
+//     }}else {
+//         alert("Your email is already registered.")
+//     }
+// }
+
+
 function getDataFromInput() {
-    let userName = document.getElementById('inputSingUpName');
-    let userEmail = document.getElementById('inputSingUpEmail');
-    let userPassword = document.getElementById('password');
-    let confirmationPassword = document.getElementById('confirmationPassword');
+    let userName = document.getElementById('inputSingUpName').value;
+    let userEmail = document.getElementById('inputSingUpEmail').value;
+    let userPassword = document.getElementById('password').value;
+    let confirmationPassword = document.getElementById('confirmationPassword').value;
     let emailExists = false;
 
-    users.forEach(function (user) {
-        if (user.email == userEmail.value) {
-            emailExists = true;
-        }
-    });
-
-    if(!emailExists){
-    if (userPassword.value === confirmationPassword.value) {
-        if (users && users.length > 0) {
-            userId = users.length;
-        } else {
-            userId = 0;
-        }
-        let data = { "name": userName.value, "email": userEmail.value, "password": userPassword.value, "id": userId, "contacts": "", "tasks": "" };
-        return data;
+    if (users && users.length > 0) {
+        users.forEach(function (user) {
+            if (user.email === userEmail) {
+                emailExists = true;
+            }
+        });
     } else {
-        alert("The passwords you provided do not match. Please try again.")
-    }}else {
-        alert("Your email is already registered.")
+        // Handle den Fall, wenn users nicht definiert ist oder keine Daten enthält
+        console.error("No users data available!");
+        return;
+    }
+
+    if (!emailExists) {
+        if (userPassword === confirmationPassword) {
+            let userId;
+            if (users && users.length > 0) {
+                userId = users.length;
+            } else {
+                userId = 0;
+            }
+            let data = { "name": userName, "email": userEmail, "password": userPassword, "id": userId, "contacts": "", "tasks": "" };
+            return data;
+        } else {
+            alert("The passwords you provided do not match. Please try again.");
+        }
+    } else {
+        alert("Your email is already registered.");
     }
 }
+
 
 
 async function postData(path = "/users") {
@@ -58,16 +97,29 @@ async function postData(path = "/users") {
             },
             body: JSON.stringify(users) // Daten im JSON-Format
         });
-
+        
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         let data = await response.json();
         console.log("Daten erfolgreich gesendet:", data);
+        if (response.ok) {
+            resetSignUpForm();
+            window.location.href = `login.html?msg=successfully_registered`;
+        }
+
     } catch (error) {
         console.error("Fehler beim Senden der Daten:", error);
     }
+}
+
+
+function resetSignUpForm(){
+    document.getElementById('inputSingUpName').value = '';
+    document.getElementById('inputSingUpEmail').value = '';
+    document.getElementById('password').value = '';
+    confirmationPassword = document.getElementById('confirmationPassword').value = '';
 }
 
 

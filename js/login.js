@@ -6,20 +6,14 @@ async function initLogin() {
 }
 
 function loginUser() {
-    let inputEmail = document.getElementById('inputEmail');
-    let inputPassword = document.getElementById('inputPassword');
-    let userFound = false;
+    let email = document.getElementById('inputEmail');
+    let password = document.getElementById('inputPassword');
+    let user = users.find(user => user.email == email.value && user.password == password.value);
 
-    users.forEach(function (user) {
-        if (user.email == inputEmail.value && user.password == inputPassword.value) {
-            userFound = true;
-        }
-    });
-
-    if (userFound) {
-        window.location.href = "../summary.html";
-        console.log("Erfolgreich eingeloggt!");
-    } else {
-        alert("Ungültige E-Mail oder Passwort.");
+    if(user) {
+        console.log('user gefunden')
+    } else{
+        console.log('nichtgefunden')
     }
+
 }
