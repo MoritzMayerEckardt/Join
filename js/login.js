@@ -11,7 +11,8 @@ function loginUser() {
     let user = users.find(user => user.email == email.value && user.password == password.value);
 
     if(user) {
-        console.log('user gefunden')
+        console.log('user id', user.id)
+        window.location.href = `contacts.html?msg=${user.id}`;
     } else{
         console.log('nichtgefunden')
     }
