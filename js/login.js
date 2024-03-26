@@ -23,23 +23,3 @@ function loginUser() {
         alert("Ungültige E-Mail oder Passwort.");
     }
 }
-
-
-// // Eingegebene Login-Daten
-// var inputEmail = "max@example.com";
-// var inputPassword = "pass123";
-
-// // Überprüfen, ob die eingegebenen Daten übereinstimmen
-// var userFound = false;
-// users.forEach(function(user) {
-//   if (user.email === inputEmail && user.password === inputPassword) {
-//     userFound = true;
-//   }
-// });
-
-// // if-Abfrage, um zu prüfen, ob ein passender Benutzer gefunden wurde
-// if (userFound) {
-//     console.log("Erfolgreich eingeloggt!");
-// } else {
-//     console.log("Ungültige E-Mail oder Passwort.");
-// }
