@@ -20,14 +20,14 @@ async function pushDataToUsers() {
 }
 
 function getDataFromInput() {
-    let userName = document.getElementById('name');
-    let userEmail = document.getElementById('email');
+    let userName = document.getElementById('inputSingUpName');
+    let userEmail = document.getElementById('inputSingUpEmail');
     let userPassword = document.getElementById('password');
     let confirmationPassword = document.getElementById('confirmationPassword');
     let emailExists = false;
 
     users.forEach(function (user) {
-        if (user.email === userEmail.value) {
+        if (user.email == userEmail.value) {
             emailExists = true;
         }
     });
