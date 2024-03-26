@@ -11,10 +11,10 @@ async function register() {
 
 
 async function pushDataToUsers() {
-    let data = getDataFromInput();
     if (!users) {
         users = [];
     }
+    let data = getDataFromInput();
     users.push(data);
     return users;
 }
