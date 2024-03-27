@@ -4,9 +4,11 @@ const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999"
 
 async function initContacts() {
     await includeHTML();
+    await loadCurrentUserId()
     addBackgroundColor(3);
     renderContactList()
 }
+
 
 // **********************OPEN AND CLOSE ADD CONTACT WINDOW**********************
 

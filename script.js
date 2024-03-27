@@ -36,6 +36,15 @@ async function loadContacts() {
     }
 }
 
+async function loadCurrentUserId() {
+    try {
+        currentUserId = await loadData('/currentUserId');
+        console.log(currentUserId)
+    } catch (error) {
+        console.error("Loading currentUserId error:", error);
+    }
+}
+
 
 
 
