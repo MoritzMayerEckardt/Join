@@ -1,5 +1,4 @@
 let currentIndex;
-// const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#b3b3b3", "#cccccc", "#e6e6e6", "#ffffff", "#1a1a8d", "#3333a1", "#4d4db5", "#6666c8", "#8080dc", "#9999f0", "#b3b3f4", "#ccccf8", "#e6e6fc", "#ffffff"];
 const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#b3b3b3", "#cccccc", "#e6e6e6", "#ffffff", "#1a1a8d", "#3333a1", "#4d4db5", "#6666c8", "#8080dc", "#9999f0", "#b3b3f4", "#ccccf8", "#e6e6fc", "#ffffff"];
 
 
@@ -46,11 +45,13 @@ async function addContact() {
     showConfirmation();
 }
 
+
 function createContactsIfNotCreated() {
     if (!contacts) {
         contacts = [];
     }
 }
+
 
 function pushValuesToContacts() {
     let { name, email, phone, initials } = getValuesFromInputAddContact();
@@ -67,13 +68,9 @@ function pushValuesToContacts() {
 }
 
 
-
 function getRandomIndexFromColors() {
     return Math.floor(Math.random() * colors.length);
 }
-
-
-
 
 
 function getValuesFromInputAddContact() {
@@ -115,6 +112,7 @@ function clearAddContactForm() {
     document.getElementById('phone-input-field-add-contact').value = '';
 }
 
+
 async function renderContactList() {
     await loadContacts();
     if (Array.isArray(contacts) && contacts.length > 0) {
@@ -125,6 +123,7 @@ async function renderContactList() {
         document.getElementById('list-container').innerHTML = '';
     }
 }
+
 
 function sortList(a, b) {
     let nameA = a.name.toUpperCase();
@@ -137,6 +136,7 @@ function sortList(a, b) {
     }
     return 0;
 }
+
 
 function addContactToList() {
     let listContainer = document.getElementById('list-container');

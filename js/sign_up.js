@@ -1,19 +1,26 @@
-async function init() {
+let emailExists = false;
+
+
+async function initSignUp() {
     await loadUsers();
+}
+
+function createUsersIfNotCreated() {
+    if (!users) {
+        users = [];
+    }
 }
 
 
 async function register() {
-    await pushDataToUsers();
+    createUsersIfNotCreated();
+    pushDataToUsers();
     await postData(USERS_PATH, users);
 }
 
 
 
 async function pushDataToUsers() {
-    if (!users) {
-        users = [];
-    }
     let data = getDataFromInput();
     users.push(data);
     return users;
@@ -54,19 +61,10 @@ function getDataFromInput() {
     let userEmail = document.getElementById('inputSingUpEmail').value;
     let userPassword = document.getElementById('password').value;
     let confirmationPassword = document.getElementById('confirmationPassword').value;
-    let emailExists = false;
 
-    if (users && users.length > 0) {
-        users.forEach(function (user) {
-            if (user.email === userEmail) {
-                emailExists = true;
-            }
-        });
-    } else {
-        // Handle den Fall, wenn users nicht definiert ist oder keine Daten enthält
-        console.error("No users data available!");
-        return;
-    }
+
+    checkIfEmailExists(userEmail);
+
 
     if (!emailExists) {
         if (userPassword === confirmationPassword) {
@@ -86,6 +84,23 @@ function getDataFromInput() {
     }
 }
 
+function checkIfEmailExists() {
+
+    if (users && users.length > 0) {
+        users.forEach(function (user) {
+
+            if (user.email === userEmail) {
+                emailExists = true;
+            } else {
+                emailExists = false;
+            }
+        });
+    } else {
+        emailExists = false;
+    }
+}
+
+
 
 
 async function postData(path = "/users") {
@@ -97,7 +112,7 @@ async function postData(path = "/users") {
             },
             body: JSON.stringify(users) // Daten im JSON-Format
         });
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -106,7 +121,7 @@ async function postData(path = "/users") {
         console.log("Daten erfolgreich gesendet:", data);
         if (response.ok) {
             resetSignUpForm();
-            window.location.href = `login.html?msg=successfully_registered`;
+            // window.location.href = `login.html?msg=successfully_registered`;
         }
 
     } catch (error) {
@@ -115,7 +130,7 @@ async function postData(path = "/users") {
 }
 
 
-function resetSignUpForm(){
+function resetSignUpForm() {
     document.getElementById('inputSingUpName').value = '';
     document.getElementById('inputSingUpEmail').value = '';
     document.getElementById('password').value = '';
