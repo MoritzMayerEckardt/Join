@@ -2,7 +2,7 @@ const BASE_URL = "https://remotestorage-346a1-default-rtdb.europe-west1.firebase
 const USERS_PATH = "/users";
 const TASKS_PATH = "/tasks";
 const CONTACTS_PATH = "/contacts";
-let currentUser;
+let currentUserId;
 let users = [];
 let tasks = [];
 let contacts = [];
