@@ -4,6 +4,7 @@ let columns = [
     { category: "awaitFeedback", containerId: "await-feedback-column", emptyRenderer: renderEmptyAwaitFeedbackColumn },
     { category: "done", containerId: "done-column", emptyRenderer: renderEmptyDoneColumn }
 ];
+let currentColumnId;
 
 async function initBoard() {
     await includeHTML();
@@ -57,7 +58,7 @@ function filterTasksByCategory(tasks, category) {
 
 // **********************SHOW DETAILED-CARD, EDIT-CARD AND ADD-TASK-FORM**********************
 
-function openDetailedCard(taskId, event) {
+function openDetailedCard(taskId) {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
     let task = tasks.find(task => task.id === taskId);
@@ -70,7 +71,7 @@ function openDetailedCard(taskId, event) {
     event.stopPropagation();
 }
 
-function openEditCard(taskId, event) {
+function openEditCard(taskId) {
     let task = tasks.find(task => task.id === taskId);
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
@@ -83,7 +84,8 @@ function openEditCard(taskId, event) {
     event.stopPropagation();
 }
 
-function showAddTaskForm(event) {
+function showAddTaskForm(columnId) {
+    currentColumnId = columnId
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
     let contactOptions = generateContactOptionsHTML();
@@ -117,7 +119,7 @@ async function deleteTask(taskId) {
 }
 
 function pushValuesToTasksFromTemplate() {
-    let boardCategory = 'toDo'
+    let boardCategory = currentColumnId;
     let { title, description, assigned, date, category, priority } = getValuesFromInputFromTemplate();
     tasks.push({
         id: taskIdCounter++,
@@ -139,6 +141,7 @@ async function editTask(taskId) {
     await loadTasks();
     closePopup();
     renderColumns();
+    subtasksHTML = [];
 }
 
 function updateTask(taskId, updatedTask) {
@@ -211,19 +214,6 @@ function renderTasksForColumn(tasksInColumn, search, container) {
     }
     return foundTasks;
 }
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.addEventListener('click', function (event) {
-        let card = document.getElementById('card');
-        let taskForm = document.getElementById('task-form');
-        if (card && card.contains(event.target)) {
-        } else if (taskForm && taskForm.contains(event.target)) {
-        } else {
-            closePopup();
-        }
-    });
-});
 
 
 

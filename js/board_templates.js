@@ -61,7 +61,7 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
                 </div>
                 <div class="edit-card-top">
                     <span style="font-size: 20px; color: #2A3647">Title</span>
-                    <input placeholder="Enter a title" id="title-edit-card" class="edit-card-input-field" type="text" value="${task.title}" required>
+                    <input required placeholder="Enter a title" id="title-edit-card" class="edit-card-input-field" type="text" value="${task.title}">
                 </div>
                 <div class="edit-card-top">
                     <span style="font-size: 20px; color: #2A3647">Description</span>
@@ -74,7 +74,7 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
                 <div class="priority-container-edit-card">
                     <span class="title">Priority</span>
                     <div class="smallButtonsFrame">
-                        <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent')">
+                        <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent'); return false">
                             <div class="urgentText">
                                 Urgent
                             </div>
@@ -83,7 +83,7 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
                                 <img id="whiteArrow" class="arrow-white" src="assets/img/prioUrgent.svg" alt="svg">
                             </div>
                         </button>
-                        <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium')">
+                        <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium'); return false">
                             <div id="mediumText" class="mediumText">
                                 Medium
                             </div>
@@ -92,7 +92,7 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
                                 <img id="prioMedium" class="arrow-white-medium" src="assets/img/prio_medium.svg" alt="svg">
                             </div>
                         </button>
-                        <button id="lowButton" class="low" onclick="changeBackgroundColor('low')">
+                        <button id="lowButton" class="low" onclick="changeBackgroundColor('low'); return false">
                             <div class="lowText">
                                 Low
                             </div>
@@ -118,10 +118,10 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
                         <img class="plus-button-edit-card" src="assets/img/+.svg" onclick="addNewSubtaskInEditCard(${task.id})">
                     </div>
                 </div>
-                <div id="new-subtask-edit-card" style="position: relative; min-height: 64px">
+                <div id="new-subtask-edit-card">
                     ${subtasksHTMLEditCard}
                 </div>
-                <button class="button-edit-card"><img src="../assets/img/check.svg" alt=""></button>
+                <div class="button-edit-card-container"><button type="submit" class="button-edit-card"><span class="button-edit-card-text">Ok</span><img src="../assets/img/check.svg" alt=""></button></div>
             </form>
         </div>
         
@@ -172,7 +172,7 @@ function renderAddTaskForm(contactOptions) {
                 <div class="buttonsFrame">
                     <p class="title">Prio</p>
                     <div class="smallButtonsFrame">
-                        <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent')">
+                        <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent'); return false">
                             <div class="urgentText">
                                 Urgent
                             </div>
@@ -181,7 +181,7 @@ function renderAddTaskForm(contactOptions) {
                                 <img id="whiteArrow" class="whiteArrow" src="assets/img/prioUrgent.svg" alt="svg">
                             </div>
                         </button>
-                        <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium')">
+                        <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium'); return false">
                             <div id="mediumText" class="mediumText">
                                 Medium
                             </div>
@@ -190,7 +190,7 @@ function renderAddTaskForm(contactOptions) {
                                 <img id="prioMedium" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
                             </div>
                         </button>
-                        <button id="lowButton" class="low" onclick="changeBackgroundColor('low')">
+                        <button id="lowButton" class="low" onclick="changeBackgroundColor('low'); return false">
                             <div class="lowText">
                                 Low
                             </div>

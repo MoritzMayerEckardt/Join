@@ -145,15 +145,13 @@ function generateSubtasksHTMLEditCard(task) {
     return subtasksHTMLEditCard;
 }
 
-
-
-async function deleteSubtask(taskId, index, event) {
+async function deleteSubtask(taskId, index) {
     let task = tasks.find(task => task.id === taskId); 
     task.subtasks.splice(index, 1);
     subtaskArray.splice(index, 1);
     await postData();
     await loadTasks();
-    openEditCard(taskId, event); 
+    openEditCard(taskId); 
 }
 
 function showEditImages(index) {
@@ -259,6 +257,7 @@ async function addNewSubtaskInEditCard() {
     } else {
         alert("You can only add a maximum of two subtasks.");
     }
+    await postData();
 }
 
 function getNewSubtaskInEditCard() {

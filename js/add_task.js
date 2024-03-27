@@ -216,6 +216,7 @@ function changeBackgroundColor(clickedButton) {
         whiteArrow.style.display = 'none';
     }
     lastClickedButton = clickedButton;
+    return false;
 }
 
 function jumpToBoard() {
