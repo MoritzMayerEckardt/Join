@@ -1,5 +1,6 @@
 let emailExists;
 let currentUserdata;
+let comparePasswords;
 
 async function initSignUp() {
     await loadUsers();
@@ -10,6 +11,7 @@ async function register() {
     createUsersIfNotCreated();
     pushDataToUsers();
     await postData(USERS_PATH, users);
+    forwardingToLogin();
     resetVariables();
 }
 
@@ -53,7 +55,8 @@ function checkIfEmailExists(userEmail) {
 }
 
 function createJsonForUsers(userName, userEmail, userPassword, confirmationPassword) {
-    if (userPassword === confirmationPassword) {
+    checkPassword(userPassword, confirmationPassword);
+    if (comparePasswords) {
         let userId;
         if (users && users.length > 0) {
             userId = users.length;
@@ -73,6 +76,12 @@ function createJsonForUsers(userName, userEmail, userPassword, confirmationPassw
     }
 }
 
+function checkPassword(userPassword, confirmationPassword) {
+    if (userPassword === confirmationPassword) {
+        comparePasswords = true;
+    }
+}
+
 async function postData(path = "/users") {
     try {
         let response = await fetch(BASE_URL + path + ".json", {
@@ -89,19 +98,24 @@ async function postData(path = "/users") {
 
         let data = await response.json();
         console.log("Daten erfolgreich gesendet:", data);
-        if (response.ok) {
-            resetSignUpForm();
-            window.location.href = `login.html?msg=successfully_registered`;
-        }
+
 
     } catch (error) {
         console.error("Fehler beim Senden der Daten:", error);
     }
 }
 
-function resetVariables(){
+function forwardingToLogin(){
+    if (!emailExists && comparePasswords) {
+        resetSignUpForm();
+        window.location.href = `login.html?msg=successfully_registered`;
+    }
+}
+
+function resetVariables() {
     emailExists = false;
     currentUserdata = '';
+    comparePasswords = false;
 }
 
 function resetSignUpForm() {
