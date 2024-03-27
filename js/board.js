@@ -68,7 +68,6 @@ function openDetailedCard(taskId) {
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML);
-    event.stopPropagation();
 }
 
 function openEditCard(taskId) {
@@ -81,7 +80,6 @@ function openEditCard(taskId) {
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedContactsHTML);
-    event.stopPropagation();
 }
 
 function showAddTaskForm(columnId) {
@@ -92,7 +90,6 @@ function showAddTaskForm(columnId) {
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderAddTaskForm(contactOptions);
-    event.stopPropagation();
 }
 
 
@@ -102,6 +99,7 @@ async function addTaskFromTemplate() {
     createTasksIfNotCreated();
     pushValuesToTasksFromTemplate();
     await postData();
+    await loadTasks();
     saveTaskIdCounter();
     closeAddTaskForm();
     renderColumns();
@@ -135,13 +133,12 @@ function pushValuesToTasksFromTemplate() {
 }
 
 async function editTask(taskId) {
-    let { title, description, date, priority, subtasks, assigned } = getValuesFromInputFromEditCard();
-    updateTask(taskId, { title, description, date, priority, subtasks, assigned });
+    let { title, description, date, priority, assigned } = getValuesFromInputFromEditCard();
+    updateTask(taskId, { title, description, date, priority, assigned });
     await postData();
     await loadTasks();
     closePopup();
     renderColumns();
-    subtasksHTML = [];
 }
 
 function updateTask(taskId, updatedTask) {
@@ -157,8 +154,7 @@ function getValuesFromInputFromEditCard() {
     let date = document.getElementById('date-edit-card').value;
     let priority = getVAlueOfPriority();
     let assigned = document.getElementById('assigned-edit-card').value;
-    let subtasks = subtaskArray;
-    return { title, description, date, priority, subtasks, assigned};
+    return { title, description, date, priority, assigned};
 }
 
 
@@ -215,5 +211,8 @@ function renderTasksForColumn(tasksInColumn, search, container) {
     return foundTasks;
 }
 
+function doNotClose(event) {
+    event.stopPropagation();
+}
 
 

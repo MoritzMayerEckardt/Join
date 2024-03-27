@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="initBoard()">
-    <div id="popup-board-overlay" class="flex-center d-none popup-board-overlay">
-        <div id="popup-board-content"></div>
+    <div id="popup-board-overlay" class="flex-center d-none popup-board-overlay" onclick="closePopup()">
+        <div id="popup-board-content" onclick="doNotClose(event)"></div>
     </div>
     <div class="flex">
         <aside class="w-232" w3-include-html="\assets\templates\aside.html"></aside>
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button onclick="showAddTaskForm(event)" id="add-task-button">
+                            <button onclick="showAddTaskForm('toDo')" id="add-task-button">
                                 <span>Add task</span>
                                 <div class="flex-center w-32"><img style="width: 18.67px;" src="./assets/img/add.png" alt=""></div>
                             </button>
@@ -45,15 +45,15 @@
                 <div class="board-subheadlines">
                     <div class="subheadline-container">
                         <span>To do</span>
-                        <img class="add-task-img" id="add-task-img0" onclick="showAddTaskForm('toDo', event)" onmouseover="changeColorOfAddTaskImg(0)" onmouseout="changeColorOfAddTaskImg2(0)" src="./assets/img/add_task_button.svg" alt="">
+                        <img class="add-task-img" id="add-task-img0" onclick="showAddTaskForm('toDo')" onmouseover="changeColorOfAddTaskImg(0)" onmouseout="changeColorOfAddTaskImg2(0)" src="./assets/img/add_task_button.svg" alt="">
                     </div>
                     <div class="subheadline-container">
                         <span>In progress</span>
-                        <img class="add-task-img" id="add-task-img1" onclick="showAddTaskForm('inProgress', event)" onmouseover="changeColorOfAddTaskImg(1)" onmouseout="changeColorOfAddTaskImg2(1)" src="./assets/img/add_task_button.svg" alt="">
+                        <img class="add-task-img" id="add-task-img1" onclick="showAddTaskForm('inProgress')" onmouseover="changeColorOfAddTaskImg(1)" onmouseout="changeColorOfAddTaskImg2(1)" src="./assets/img/add_task_button.svg" alt="">
                     </div>
                     <div class="subheadline-container">
                         <span>Await feedback</span>
-                        <img class="add-task-img" id="add-task-img2" onclick="showAddTaskForm('awaitFeedback', event)" onmouseover="changeColorOfAddTaskImg(2)" onmouseout="changeColorOfAddTaskImg2(2)" src="./assets/img/add_task_button.svg" alt="">
+                        <img class="add-task-img" id="add-task-img2" onclick="showAddTaskForm('awaitFeedback')" onmouseover="changeColorOfAddTaskImg(2)" onmouseout="changeColorOfAddTaskImg2(2)" src="./assets/img/add_task_button.svg" alt="">
                     </div>
                     <div class="subheadline-container">
                         <span>Done</span>

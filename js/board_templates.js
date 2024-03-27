@@ -1,6 +1,6 @@
 function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML) {
     return /*html*/`
-        <div onclick="openDetailedCard(${task.id}, event)" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
+        <div onclick="openDetailedCard(${task.id})" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
             <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
             <span class="task-title">${task.title}</span>
             <div class="task-description">${task.description}</div>
@@ -44,7 +44,7 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
                 <div class="flex-center" style="width: 159px; gap: 8px;">
                     <div onmouseover="changeColorOfDeleteButton()" onmouseout="changeColorOfDeleteButton2()" onclick="deleteTask(${task.id})" class="detailed-card-delete-container"><img id="delete-img" src="../assets/img/delete-dark-blue.svg" alt=""><span>Delete</span></div>
                     <div style="height: 24px; width: 1px; background: #D1D1D1"></div>
-                    <div onmouseover="changeColorOfEditButton()" onmouseout="changeColorOfEditButton2()" onclick="openEditCard(${task.id}, event)" class="detailed-card-edit-container"><img id="edit-img" src="../assets/img/edit-dark-blue.svg" alt=""><span>Edit</span></div>
+                    <div onmouseover="changeColorOfEditButton()" onmouseout="changeColorOfEditButton2()" onclick="openEditCard(${task.id})" class="detailed-card-edit-container"><img id="edit-img" src="../assets/img/edit-dark-blue.svg" alt=""><span>Edit</span></div>
                 </div>
             </div>
         </div>
@@ -284,8 +284,8 @@ function renderProgressBar(progressBarClass, subtasksText) {
 
 function renderSubtaskHTML(task, subtask, checkBoxImage, index) {
     return /*html*/`
-        <div class="flex check-box-container-subtasks">
-            <img class="check-box-img" id="check-box${index}" onclick="handleCheckBox(${task.id}, ${index})" style="width: 16px; height: 16px;" src="${checkBoxImage}" alt="">
+        <div onclick="handleCheckBox(${task.id}, ${index})" class="flex check-box-container-subtasks">
+            <img class="check-box-img" id="check-box${index}" style="width: 16px; height: 16px;" src="${checkBoxImage}" alt="">
             <span style="font-size: 16px">${subtask}</span>
         </div>
     `;
