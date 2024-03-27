@@ -244,10 +244,34 @@
     border-color: rgba(209, 209, 209, 1);
     display: flex;
     justify-content: space-between;
-
 }
 
 .select:hover {
+    cursor: pointer !important;
+}
+
+.selection{
+    width: 440px;
+    height: 53px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    font-family: 'Inter' !important;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    background-color: white;
+    border-color: rgba(209, 209, 209, 1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.selection:hover{
     cursor: pointer !important;
 }
 
@@ -287,6 +311,11 @@
     width: 100%;
 }
 
+.newcontact:hover{
+    background-color: #D1D1D1;
+    cursor: pointer;
+}
+
 .circle {
     display: flex;
     justify-content: space-between;
@@ -306,6 +335,10 @@
 
 .checkBox {
     margin-right: 30px;
+}
+
+.checkBox:hover{
+    cursor: pointer !important;
 }
 
 .star {

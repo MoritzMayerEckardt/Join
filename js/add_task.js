@@ -1,12 +1,14 @@
 let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
 let subtaskArray = [];
 let lastClickedButton = '';
+let contactsVisible = false;
+
 
 
 async function initAddTask() {
     await includeHTML();
     await loadTasks();
-    await loadContacts(); // Lade Kontakte
+    await loadContacts(); 
     addBackgroundColor(1);
 
 }
@@ -223,21 +225,70 @@ function jumpToBoard() {
     window.location.href = "../board.html";
 }
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('assigned').addEventListener('click', toggleContactsVisibility);
+});
+
+
+function toggleContactsVisibility() {
+    let showContacts = document.getElementById('showContactsToAssign');
+    let arrowImage = document.getElementById('dropdownArrow');
+
+    if (contactsVisible) {
+        showContacts.innerHTML = ''; 
+        contactsVisible = false;
+        arrowImage.style.transform = 'rotate(0deg)';
+    } else {
+        showContactsForAssign(); 
+        contactsVisible = true;
+        arrowImage.style.transform = 'rotate(180deg)';
+    }
+}
+
 function showContactsForAssign() {
-    let showContacts = document.getElementById('showContactsToAssign')
+    let showContacts = document.getElementById('showContactsToAssign');
     showContacts.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         showContacts.innerHTML += `
-        <div class="newcontact">
-          <div class="circle">
-              <p>Cirle</p>
-          </div>
-          <div class ="nameAndCheckbox">    
-              <p class= "contactName">${contact.name}</p>
-              <input type="checkbox" id="checkbox" class= "checkBox">
-          </div> 
-        </div>`
+        <div id="newcontact${i}" class="newcontact">
+            <div class="circle">
+                <p>Cirle</p>
+            </div>
+            <div class ="nameAndCheckbox">    
+                <p class= "contactName">${contact.name}</p>
+                <input type="checkbox" id="checkbox" class= "checkBox">
+            </div> 
+        </div>`;
+    }
+    chosenContact();
+}
+
+function chosenContact() {
+    for (let i = 0; i < contacts.length; i++) {
+        let contactElement = document.getElementById(`newcontact${i}`);
+        contactElement.style.backgroundColor = ''; 
+        contactElement.addEventListener('click', function() {
+
+            let currentBackgroundColor = window.getComputedStyle(contactElement).getPropertyValue('background-color');
+            if (currentBackgroundColor === 'rgb(42, 54, 71)') { 
+                contactElement.style.backgroundColor = '';
+                contactElement.style.color = 'black';
+                let checkbox = contactElement.querySelector('.checkBox');
+                checkbox.checked = false;
+            } else {
+                contactElement.style.backgroundColor = '#2A3647';
+                contactElement.style.color = 'white';
+                let checkbox = contactElement.querySelector('.checkBox');
+                checkbox.checked = true;
+            }
+        });
     }
 }
+
+
+
+
+
 
