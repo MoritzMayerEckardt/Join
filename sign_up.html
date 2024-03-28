@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,10 @@
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body onload="initSignUp()">
-        <section><img class="join-logo" src="./assets/img/logo.png" alt=""></section>
-        <section id="content-sign-up">
+    <section><img class="join-logo" src="./assets/img/logo.png" alt=""></section>
+    <section id="content-sign-up">
         <div class="sign-up-container">
             <a href="./index.html" class="back-button-sign-up"><img src="./assets/img/back_signup.png" alt=""></a>
             <div class="sign-up-headline-container">
@@ -20,20 +22,28 @@
             </div>
             <form class="login-form" onsubmit="register(); return false">
                 <div class="login-input-container">
-                    <input class="login-input-field" type="text" required placeholder="Name" id="inputSingUpName" style="border: unset; width: 100%;">
-                    <img class="login-img-wrapper" src="/assets/img/person_input.png" alt="" style="width: 16px; height: 16px">
+                    <input class="login-input-field" type="text" required placeholder="Name" id="inputSingUpName"
+                        style="border: unset; width: 100%;">
+                    <img class="login-img-wrapper" src="/assets/img/person_input.png" alt=""
+                        style="width: 16px; height: 16px">
                 </div>
                 <div class="login-input-container">
-                    <input class="login-input-field" type="email" required placeholder="Email" id="inputSingUpEmail" style="border: unset; width: 100%;">
-                    <img class="login-img-wrapper" src="/assets/img/mail_input.png" alt="" style="width: 24px; height: 16px">
+                    <input class="login-input-field" type="email" required placeholder="Email" id="inputSingUpEmail"
+                        style="border: unset; width: 100%;">
+                    <img class="login-img-wrapper" src="/assets/img/mail_input.png" alt=""
+                        style="width: 24px; height: 16px">
                 </div>
                 <div class="login-input-container">
-                    <input class="login-input-field" type="password" required placeholder="Password" id="password" style="border: unset; width: 100%;">
-                    <img class="login-img-wrapper" src="/assets/img/lock_input.png" alt="" style="margin-right: 2px; width: 16px; height: 21px;">
+                    <input class="login-input-field" type="password" required placeholder="Password" id="password"
+                        style="border: unset; width: 100%;">
+                    <img class="login-img-wrapper" src="/assets/img/lock_input.png" alt=""
+                        style="margin-right: 2px; width: 16px; height: 21px;">
                 </div>
                 <div class="login-input-container">
-                    <input class="login-input-field" type="password" placeholder="Confirm Password" id="confirmationPassword" style="border: unset; width: 100%;">
-                    <div class="login-img-wrapper"><img src="/assets/img/lock_input.png" alt="" style="width: 16px; height: 21px;"></div>
+                    <input class="login-input-field" type="password" placeholder="Confirm Password"
+                        id="confirmationPassword" style="border: unset; width: 100%;">
+                    <div class="login-img-wrapper"><img src="/assets/img/lock_input.png" alt=""
+                            style="width: 16px; height: 21px;"></div>
                 </div>
                 <div class="remember-me-container">
                     <div class="remember-me">
@@ -42,10 +52,15 @@
                     </div>
                 </div>
                 <div class="login-buttons-container">
-                    <button class="sign-up-button">Sign up</button>
+                    <button class="sign-up-button">
+                        <span class="sign-up-button-text">
+                            Sign up
+                        </span>
+                    </button>
                 </div>
             </form>
         </div>
     </section>
 </body>
+
 </html>
