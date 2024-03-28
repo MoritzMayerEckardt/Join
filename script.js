@@ -1,8 +1,8 @@
 const BASE_URL = "https://remotestorage-346a1-default-rtdb.europe-west1.firebasedatabase.app/";
+let currentUserIndex;
 const USERS_PATH = "/users";
 const TASKS_PATH = "/tasks";
-const CONTACTS_PATH = "/contacts";
-let currentUserId;
+let CONTACTS_PATH;
 let users = [];
 let tasks = [];
 let contacts = [];
@@ -31,27 +31,22 @@ async function loadUsers() {
 async function loadContacts() {
     try {
         contacts = await loadData(CONTACTS_PATH);
+        `/users/1/contacts`
     } catch (error) {
         console.error("Loading users error:", error);
     }
 }
 
-async function loadCurrentUserId() {
+async function loadCurrentUserIndex() {
     try {
-        currentUserId = await loadData('/currentUserId');
-        console.log(currentUserId)
+        let currentUserId = await loadData('/currentUserId');
+        console.log(`${currentUserId}`)
+        currentUserIndex = `${currentUserId}`;
+        CONTACTS_PATH = `/users/${currentUserIndex}/contacts`;
     } catch (error) {
         console.error("Loading currentUserId error:", error);
     }
-}
-
-
-
-
-
-
-
-
+} 
 
 
 

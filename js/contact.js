@@ -1,10 +1,11 @@
 let currentIndex;
 const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#b3b3b3", "#cccccc", "#e6e6e6", "#ffffff", "#1a1a8d", "#3333a1", "#4d4db5", "#6666c8", "#8080dc", "#9999f0", "#b3b3f4", "#ccccf8", "#e6e6fc", "#ffffff"];
-
+let path = `/users/${currentUserIndex}/contacts`
 
 async function initContacts() {
     await includeHTML();
-    await loadCurrentUserId()
+    await loadUsers();
+    await loadCurrentUserIndex()
     addBackgroundColor(3);
     renderContactList()
 }
@@ -41,7 +42,7 @@ async function addContact() {
     document.getElementById('dialog-add-contacts').classList.add('d-none');
     createContactsIfNotCreated();
     pushValuesToContacts();
-    await postData();
+    await postData(`${CONTACTS_PATH}`);
     clearAddContactForm();
     renderContactList();
     showConfirmation();
@@ -87,7 +88,8 @@ function getValuesFromInputAddContact() {
     return { name, email, phone, initials };
 }
 
-async function postData(path = "/contacts") {
+async function postData(path) {
+    // path = `/users/1/contacts`
     try {
         let response = await fetch(BASE_URL + path + ".json", {
             method: "PUT",
@@ -269,7 +271,7 @@ function closeEditContactDialog() {
 
 async function deleteContact() {
     contacts.splice(currentIndex, 1);
-    await postData();
+    await postData(`${CONTACTS_PATH}`);
     renderContactList();
     closeEditContactDialog();
     clearEditContact();
@@ -292,7 +294,7 @@ async function saveEditContact() {
     contactToEdit['email'] = email;
     contactToEdit['phone'] = phone;
     contactToEdit['initials'] = initials;
-    await postData();
+    await postData(`${CONTACTS_PATH}`);
     renderContactList();
     closeEditContactDialog();
     openFullCard(name, email, phone, initials, currentIndex);
