@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="initLogin()">
+<body class="body-login" onload="initLogin()">
     <div class="login-container">
         <div class="login-headline-container">
             <h1 class="login-headline">Log in</h1>
@@ -39,8 +39,8 @@
                 </div>
             </div>
             <div class="login-buttons-container">
-                <button class="login-button-left" id="login-user-btn">Log In</button>
-                <a class="login-button-right" onclick="loginGuest()">Guest Log In</a>
+                <button class="login-button-left" id="login-user-btn">Log in</button>
+                <button type="button" class="login-button-right" onclick="loginGuest()">Guest Log in</button>
             </div>
         </form>
     </div>

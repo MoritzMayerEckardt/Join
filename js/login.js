@@ -18,7 +18,12 @@ async function loginUser() {
     } else {
         alert('Login failed. Check your username and password.')
     }
+}
 
+async function loginGuest(){
+    await postData('/currentUserId', `guestLogin`)
+    console.log('guest login klappt')
+    window.location.href = `contacts.html?msg=successfully_logged_in_as_guest`;
 }
 
 async function postData(path, currentUser) {

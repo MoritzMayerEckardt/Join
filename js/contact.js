@@ -1,6 +1,6 @@
 let currentIndex;
 const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#b3b3b3", "#cccccc", "#e6e6e6", "#ffffff", "#1a1a8d", "#3333a1", "#4d4db5", "#6666c8", "#8080dc", "#9999f0", "#b3b3f4", "#ccccf8", "#e6e6fc", "#ffffff"];
-let path = `/users/${currentUserIndex}/contacts`
+
 
 async function initContacts() {
     await includeHTML();

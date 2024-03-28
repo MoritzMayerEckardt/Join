@@ -39,11 +39,15 @@ async function loadContacts() {
 async function loadCurrentUserIndex() {
     try {
         currentUserIndex = await loadData('/currentUserId');
-        CONTACTS_PATH = `/users/${currentUserIndex}/contacts`;
+        if (currentUserIndex == 'guestLogin') {
+            CONTACTS_PATH = `/guest/contacts`;
+        } else {
+            CONTACTS_PATH = `/users/${currentUserIndex}/contacts`;
+        }
     } catch (error) {
         console.error("Loading currentUserId error:", error);
     }
-} 
+}
 
 
 
