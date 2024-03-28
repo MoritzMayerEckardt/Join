@@ -31,7 +31,6 @@ async function loadUsers() {
 async function loadContacts() {
     try {
         contacts = await loadData(CONTACTS_PATH);
-        `/users/1/contacts`
     } catch (error) {
         console.error("Loading users error:", error);
     }
