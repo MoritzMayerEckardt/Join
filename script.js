@@ -39,9 +39,7 @@ async function loadContacts() {
 
 async function loadCurrentUserIndex() {
     try {
-        let currentUserId = await loadData('/currentUserId');
-        console.log(`${currentUserId}`)
-        currentUserIndex = `${currentUserId}`;
+        currentUserIndex = await loadData('/currentUserId');
         CONTACTS_PATH = `/users/${currentUserIndex}/contacts`;
     } catch (error) {
         console.error("Loading currentUserId error:", error);
