@@ -1,7 +1,7 @@
 const BASE_URL = "https://remotestorage-346a1-default-rtdb.europe-west1.firebasedatabase.app/";
 let currentUserIndex;
 const USERS_PATH = "/users";
-const TASKS_PATH = "/tasks";
+let TASKS_PATH;
 let CONTACTS_PATH;
 let users = [];
 let tasks = [];
@@ -43,6 +43,7 @@ async function loadCurrentUserIndex() {
             CONTACTS_PATH = `/guest/contacts`;
         } else {
             CONTACTS_PATH = `/users/${currentUserIndex}/contacts`;
+            TASKS_PATH = `/users/${currentUserIndex}/tasks`;
         }
     } catch (error) {
         console.error("Loading currentUserId error:", error);

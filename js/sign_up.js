@@ -121,7 +121,7 @@ async function postData(path = "/users") {
 }
 
 function forwardingToLogin() {
-    if (!emailExists && comparePasswords) {
+    if (!emailExists && comparePasswords && privacyAccepted) {
         resetSignUpForm();
         window.location.href = `login.html?msg=successfully_registered`;
     }
