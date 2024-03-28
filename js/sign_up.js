@@ -1,6 +1,7 @@
 let emailExists;
 let currentUserdata;
 let comparePasswords;
+let privacyAccepted;
 
 async function initSignUp() {
     await loadUsers();
@@ -33,11 +34,16 @@ function getDataFromInput() {
     let confirmationPassword = document.getElementById('confirmationPassword').value;
 
     checkIfEmailExists(userEmail);
+    checkIfPrivacyAccepted()
 
-    if (!emailExists) {
-        createJsonForUsers(userName, userEmail, userPassword, confirmationPassword)
+    if (privacyAccepted) {
+        if (!emailExists) {
+            createJsonForUsers(userName, userEmail, userPassword, confirmationPassword)
+        } else {
+            alert("Your email is already registered.");
+        }
     } else {
-        alert("Your email is already registered.");
+        alert("Please accept the Privacy Policy to proceed with the registration.");
     }
 }
 
@@ -51,6 +57,15 @@ function checkIfEmailExists(userEmail) {
         });
     } else {
         emailExists = false;
+    }
+}
+
+
+function checkIfPrivacyAccepted() {
+    let privacyCheckbox = document.getElementById('checkbox-for-privacy-policy');
+
+    if (privacyCheckbox.checked) {
+        privacyAccepted = true;
     }
 }
 
@@ -105,7 +120,7 @@ async function postData(path = "/users") {
     }
 }
 
-function forwardingToLogin(){
+function forwardingToLogin() {
     if (!emailExists && comparePasswords) {
         resetSignUpForm();
         window.location.href = `login.html?msg=successfully_registered`;
@@ -116,6 +131,7 @@ function resetVariables() {
     emailExists = false;
     currentUserdata = '';
     comparePasswords = false;
+    privacyAccepted = false;
 }
 
 function resetSignUpForm() {

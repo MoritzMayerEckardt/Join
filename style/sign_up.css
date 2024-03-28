@@ -11,6 +11,15 @@
     position: relative;
 }
 
+.checkbox {
+    width: 24px;
+    height: 24px;
+    padding: 4px 0px 0px 0px;
+    gap: 0px;
+    border-radius: 3px 0px 0px 0px;
+    opacity: 0px;    
+}
+
 .sign-up-button {
     width: 126px;
     height: 55px;

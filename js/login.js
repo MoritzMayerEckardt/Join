@@ -23,7 +23,7 @@ async function loginUser() {
 async function loginGuest(){
     await postData('/currentUserId', `guestLogin`)
     console.log('guest login klappt')
-    window.location.href = `contacts.html?msg=successfully_logged_in_as_guest`;
+    window.location.href = `contacts.html?msg=successfully_logged_in_as`;
 }
 
 async function postData(path, currentUser) {
