@@ -105,7 +105,7 @@ function handleCheckBox(taskId, index) {
         checkBox.setAttribute('src', '../assets/img/check_button_check.svg');
     }
     subtask.isChecked = !subtask.isChecked;
-    postData("/tasks");
+    postData(TASKS_PATH);
     renderColumns();
 }
 
@@ -149,7 +149,7 @@ function generateSubtasksHTMLEditCard(task) {
 async function deleteSubtask(taskId, index) {
     let task = tasks.find(task => task.id === taskId); 
     task.subtasks.splice(index, 1);
-    await postData();
+    await postData(TASKS_PATH);
     await loadTasks();
     openEditCard(taskId);
     document.getElementById('new-subtask-edit-card').scrollIntoView({ behavior: 'instant' });
@@ -263,7 +263,7 @@ async function addNewSubtaskInEditCard(taskId) {
         });
         getNewSubtaskInEditCard(task);
     } 
-    await postData();
+    await postData(TASKS_PATH);
     renderColumns();
 }
 
@@ -327,7 +327,7 @@ async function saveSubtask(taskId, index) {
             isChecked: subtasks[index].isChecked
         };   
     } 
-    await postData();
+    await postData(TASKS_PATH);
     await loadTasks();
     showSubtasksInList(task.id, index);
 }

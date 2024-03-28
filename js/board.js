@@ -8,6 +8,7 @@ let currentColumnId;
 
 async function initBoard() {
     await includeHTML();
+    await loadCurrentUserIndex();
     await loadTasks();
     await loadContacts();
     addBackgroundColor(2);
@@ -98,7 +99,7 @@ function showAddTaskForm(columnId) {
 async function addTaskFromTemplate() {
     createTasksIfNotCreated();
     pushValuesToTasksFromTemplate();
-    await postData();
+    await postData(TASKS_PATH);
     await loadTasks();
     saveTaskIdCounter();
     closeAddTaskForm();
@@ -110,7 +111,7 @@ async function deleteTask(taskId) {
     let selectedTask = tasks.findIndex(task => task.id === taskId);
     if (selectedTask !== -1) {
         tasks.splice(selectedTask, 1);
-        await postData();
+        await postData(TASKS_PATH);
         renderColumns();
         closePopup();
     }
@@ -135,7 +136,7 @@ function pushValuesToTasksFromTemplate() {
 async function editTask(taskId) {
     let { title, description, date, priority, assigned } = getValuesFromInputFromEditCard();
     updateTask(taskId, { title, description, date, priority, assigned });
-    await postData();
+    await postData(TASKS_PATH);
     await loadTasks();
     closePopup();
     renderColumns();

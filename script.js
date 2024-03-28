@@ -41,6 +41,7 @@ async function loadCurrentUserIndex() {
         currentUserIndex = await loadData('/currentUserId');
         if (currentUserIndex == 'guestLogin') {
             CONTACTS_PATH = `/guest/contacts`;
+            TASKS_PATH = `/guest/tasks`;
         } else {
             CONTACTS_PATH = `/users/${currentUserIndex}/contacts`;
             TASKS_PATH = `/users/${currentUserIndex}/tasks`;

@@ -1,8 +1,8 @@
 async function initLogin() {
     await loadUsers();
-    // setTimeout(() => {
-    //     includeHTML();
-    // }, 1500);
+    setTimeout(() => {
+         includeHTML();
+     }, 1500);
 }
 
 async function loginUser() {
