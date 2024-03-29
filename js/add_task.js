@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (showContacts.style.display !== 'none') {
           
-            if (!showContacts.contains(event.target) && event.target.id !== 'assigned') {
+            if (!showContacts.contains(event.target) && event.target.id !== 'assigned' && event.target.id !== 'standardOption' && event.target.id !== 'dropdownArrow') {
                 showContacts.innerHTML = '';
                 contactsVisible = false;
                 arrowImage.style.transform = 'rotate(0deg)';
