@@ -317,10 +317,18 @@
 }
 
 .circle {
+    margin-right: 30px;
+    margin-left: 15px;
+    border-radius: 100%;
     display: flex;
-    justify-content: space-between;
-    padding-left: 7px;
-    padding-right: 20px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 59px;
+    height: 51px;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .nameAndCheckbox{

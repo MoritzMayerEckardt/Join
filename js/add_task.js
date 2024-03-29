@@ -253,8 +253,8 @@ function showContactsForAssign() {
         const contact = contacts[i];
         showContacts.innerHTML += `
         <div id="newcontact${i}" class="newcontact">
-            <div class="circle">
-                <p>Cirle</p>
+            <div class="circle" style="background-color: ${contact.color};">
+                <p>${contact.initials}</p>
             </div>
             <div class ="nameAndCheckbox">    
                 <p class= "contactName">${contact.name}</p>
@@ -264,6 +264,7 @@ function showContactsForAssign() {
     }
     chosenContact();
 }
+
 
 function chosenContact() {
     for (let i = 0; i < contacts.length; i++) {
