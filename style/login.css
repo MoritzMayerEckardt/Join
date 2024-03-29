@@ -151,6 +151,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+}
+
+.login-button-left:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .login-button-right {
@@ -165,6 +171,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.login-button-right:hover {
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .join-logo-start {
