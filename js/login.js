@@ -14,7 +14,7 @@ async function loginUser() {
         console.log('user id', user.id)
         currentUserId = user.id;
         await postData('/currentUserId', `${user.id}`)
-        window.location.href = `contacts.html?msg=successfully_logged_in`;
+        window.location.href = `summary.html?msg=successfully_logged_in`;
     } else {
         alert('Login failed. Check your username and password.')
     }
@@ -23,7 +23,7 @@ async function loginUser() {
 async function loginGuest(){
     await postData('/currentUserId', `guestLogin`)
     console.log('guest login klappt')
-    window.location.href = `contacts.html?msg=successfully_logged_in_as`;
+    window.location.href = `summary.html?msg=successfully_logged_in_as_guest`;
 }
 
 async function postData(path, currentUser) {
