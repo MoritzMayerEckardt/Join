@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="initSignUp()">
+<body id="signUpBody" onload="initSignUp()">
     <section><img class="join-logo" src="./assets/img/logo.png" alt=""></section>
     <section id="content-sign-up">
         <div class="sign-up-container">
@@ -61,6 +61,11 @@
             </form>
         </div>
     </section>
+    <div class="successfully-signed-up-message-container" id="successfully-signed-up-message">
+        <span class="successfully-signed-up-message-text">
+          You signed Up successfully
+        </span>
+      </div>
 </body>
 
 </html>

@@ -77,3 +77,43 @@
     font-size: 61px;
     font-weight: 700;
 }
+
+.successfully-signed-up-message-container {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    bottom: 0;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    animation: slideUpAndDown 2s ease-in-out;
+  }
+  
+  .successfully-signed-up-message-text {
+    background-color: #2A3647;
+    padding: 15px 24px 15px 24px;
+    border-radius: 8px;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25.2px;
+    text-align: left;
+  }
+  
+  
+  @keyframes slideUpAndDown {
+    0% {
+      transform: translateX(-50%) translateY(100%);
+      bottom: 0;
+    }
+  
+    10%, 90% {
+      transform: translateX(-50%) translateY(0%);
+      bottom: 50vh;
+    }
+  
+    100% {
+      transform: translateX(-50%) translateY(100%);
+      bottom: -100%;
+    }
+  }

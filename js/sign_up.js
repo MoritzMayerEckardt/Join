@@ -122,10 +122,25 @@ async function postData(path = "/users") {
 
 function forwardingToLogin() {
     if (!emailExists && comparePasswords && privacyAccepted) {
-        resetSignUpForm();
-        window.location.href = `login.html?msg=successfully_registered`;
+        showSuccessfullySignedUpMessage()
+        setTimeout(() => {
+            resetSignUpForm();
+            window.location.href = `index.html?msg=successfully_registered`;
+        }, 2000);
     }
 }
+
+function showSuccessfullySignedUpMessage() { 
+    document.getElementById("signUpBody").style.overflow = 'hidden';
+
+    const successMessage = document.getElementById('successfully-signed-up-message');
+    successMessage.style.display = 'block';
+
+    setTimeout(() => {
+      successMessage.style.display = 'none';
+      document.getElementById("signUpBody").style.overflow = 'visible';
+    }, 2000);
+  }
 
 function resetVariables() {
     emailExists = false;
