@@ -46,3 +46,7 @@ async function postData(path, currentUser) {
         console.error("Fehler beim Senden der Daten:", error);
     }
 }
+
+function forwardingToSignup(){
+    window.location.href = `sign_up.html`;
+}
