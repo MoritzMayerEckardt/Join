@@ -7,6 +7,7 @@ let contactsVisible = false;
 
 async function initAddTask() {
     await includeHTML();
+    await loadCurrentUserIndex(); // Hier aufrufen
     await loadTasks();
     await loadContacts(); 
     addBackgroundColor(1);
@@ -63,7 +64,7 @@ function pushValuesToTasks() {
     });
 }
 
-async function postData(path) {
+async function postData(path = "/tasks") {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {
@@ -218,7 +219,6 @@ function changeBackgroundColor(clickedButton) {
         whiteArrow.style.display = 'none';
     }
     lastClickedButton = clickedButton;
-    return false;
 }
 
 function jumpToBoard() {
@@ -286,9 +286,3 @@ function chosenContact() {
         });
     }
 }
-
-
-
-
-
-
