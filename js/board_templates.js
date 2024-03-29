@@ -15,7 +15,7 @@ function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML
 
 function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML) { 
     return /*html*/`
-        <div style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="card" class="detailed-card-container">
+        <div id="card" class="detailed-card-container" style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;">
             <div class="detailed-card-top-container">
                 <div style="background-color: ${backgroundColor}" class="detailed-card-category">${task.category}</div>
                 <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
@@ -50,6 +50,7 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
         </div>
     `;
 }
+
 
 function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedContactsHTML) {
     return /*html*/`
@@ -128,8 +129,6 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
 
     `;
 }
-
-
 
 function renderAddTaskForm(contactOptions) {
     return /*html*/`
@@ -230,7 +229,11 @@ function renderAddTaskForm(contactOptions) {
                     <img src="assets/img/check.png">
                 </button>
             </div>
-        </form>
+            <div id="task-added-container" class="d-none">
+                <span>Task added to board</span>
+                <img src="../assets/img/task_added.svg" alt="">
+            </div>
+        </form> 
     `;
 }
 
@@ -270,6 +273,42 @@ function renderEmptyAwaitFeedbackColumn() {
 }
 
 // **********************SUBTASKS-TEMPLATES**********************
+
+function renderSubtasksListInEditCard(task, subtasks, subtask, index) {
+    return /*html*/`
+    <div>
+        <div id="subtask${index}" onmouseover="showEditImages(${index})" onmouseout="removeEditImages(${index})" class="subtask-container-edit-card">
+            <li class="subtask-list-edit-card">${subtask}</li>
+            <div class="edit-card-edit-container d-none" id="edit-container${index}">
+                <div class="subtasks-img"><img class="subtask-img" onclick="editSubtask(${index})" style="height: 20px" src="../assets/img/edit-dark-blue.svg" alt=""></div>
+                <div style="height: 18px; width: 2px; background: lightgrey"></div>
+                <div class="subtasks-img"><img class="subtask-img" onclick="deleteSubtask(${task.id}, ${index})" style="height: 20px" src="../assets/img/delete-dark-blue.svg" alt=""></div>
+            </div>
+        </div>
+        <div id="edit-subtask-container${index}" class="edit-subtask-container d-none">
+            <input id="subtask-input${index}" class="subtask-input" value="${subtasks[index].title}">
+            <div class="edit-card-edit-container">
+                <div class="subtasks-img"><img onclick="emptyInputSubtask(${index})" style="height: 14px" src="../assets/img/delete.svg" alt=""></div>
+                <div style="width: 2px; height: 18px; background: lightgrey"></div>
+                <div class="subtasks-img"><img onclick="saveSubtask(${task.id}, ${index})" style="height: 14px" src="../assets/img/check_blue.svg" alt=""></div>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
+function renderSubtasksHTMLInEditCard(task, index, subtasks, subtask) {
+    return /*html*/`
+    <div onmouseover="showEditImages(${index + subtasks.length})" onmouseout="removeEditImages(${index + subtasks.length})" class="subtask-container-edit-card">
+        <li class="subtask-list-edit-card" id="subtask${index + subtasks.length}">${subtask}</li>
+        <div class="edit-card-edit-container d-none" id="edit-container${index + subtasks.length}">
+            <img style="height: 18px" src="../assets/img/edit-dark-blue.svg" alt="">
+            <div style="height: 18px; width: 1px; background: lightgrey"></div>
+            <img onclick="deleteSubtask(${task.id}, ${index})" style="height: 18px" src="../assets/img/delete-dark-blue.svg" alt="">
+        </div>
+    </div>
+`;
+}
 
 function renderProgressBar(progressBarClass, subtasksText) {
     return /*html*/`
