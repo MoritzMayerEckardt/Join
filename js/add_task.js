@@ -2,6 +2,7 @@ let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorag
 let subtaskArray = [];
 let lastClickedButton = '';
 let contactsVisible = false;
+let chosenContacts = [];
 
 
 
@@ -9,7 +10,7 @@ async function initAddTask() {
     await includeHTML();
     await loadCurrentUserIndex(); // Hier aufrufen
     await loadTasks();
-    await loadContacts(); 
+    await loadContacts();
     addBackgroundColor(1);
 
 }
@@ -226,25 +227,40 @@ function jumpToBoard() {
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('assigned').addEventListener('click', toggleContactsVisibility);
-});
 
+    // Eventlistener für Klicks auf das gesamte Dokument hinzufügen
+    document.addEventListener('click', function(event) {
+        let showContacts = document.getElementById('showContactsToAssign');
+        let arrowImage = document.getElementById('dropdownArrow');
+
+        if (showContacts.style.display !== 'none') {
+          
+            if (!showContacts.contains(event.target) && event.target.id !== 'assigned') {
+                showContacts.innerHTML = '';
+                contactsVisible = false;
+                arrowImage.style.transform = 'rotate(0deg)';
+            }
+        }
+    });
+});
 
 function toggleContactsVisibility() {
     let showContacts = document.getElementById('showContactsToAssign');
     let arrowImage = document.getElementById('dropdownArrow');
 
     if (contactsVisible) {
-        showContacts.innerHTML = ''; 
+        showContacts.innerHTML = '';
         contactsVisible = false;
         arrowImage.style.transform = 'rotate(0deg)';
     } else {
-        showContactsForAssign(); 
+        showContactsForAssign();
         contactsVisible = true;
         arrowImage.style.transform = 'rotate(180deg)';
     }
 }
+
 
 function showContactsForAssign() {
     let showContacts = document.getElementById('showContactsToAssign');
@@ -269,21 +285,58 @@ function showContactsForAssign() {
 function chosenContact() {
     for (let i = 0; i < contacts.length; i++) {
         let contactElement = document.getElementById(`newcontact${i}`);
-        contactElement.style.backgroundColor = ''; 
-        contactElement.addEventListener('click', function() {
-
+        contactElement.style.backgroundColor = '';
+        contactElement.addEventListener('click', function () {
             let currentBackgroundColor = window.getComputedStyle(contactElement).getPropertyValue('background-color');
-            if (currentBackgroundColor === 'rgb(42, 54, 71)') { 
+            if (currentBackgroundColor === 'rgb(42, 54, 71)') {
                 contactElement.style.backgroundColor = '';
                 contactElement.style.color = 'black';
                 let checkbox = contactElement.querySelector('.checkBox');
                 checkbox.checked = false;
+
+                chosenContacts = chosenContacts.filter(c => c.name !== contacts[i].name);
             } else {
                 contactElement.style.backgroundColor = '#2A3647';
                 contactElement.style.color = 'white';
                 let checkbox = contactElement.querySelector('.checkBox');
                 checkbox.checked = true;
+
+
+                if (!chosenContacts.some(c => c.name === contacts[i].name)) {
+                    chosenContacts.push(contacts[i]);
+                }
             }
+            showChosenInitials();
         });
+        checkedContactStaysChecked(contactElement, i);
     }
 }
+
+function checkedContactStaysChecked(contactElement, i) {
+    if (chosenContacts.some(c => c.name === contacts[i].name)) {
+        contactElement.style.backgroundColor = '#2A3647';
+        contactElement.style.color = 'white';
+        let checkbox = contactElement.querySelector('.checkBox');
+        checkbox.checked = true;
+    }
+}
+
+function showChosenInitials() {
+    let showChosenInitials = document.getElementById('showChosenInitials');
+    showChosenInitials.innerHTML = ``;
+
+    chosenContacts.forEach(contact => {
+        if (chosenContacts.includes(contact)) {
+            showChosenInitials.innerHTML += `
+            <div class="circleSmall" style="background-color: ${contact.color};">
+                <p>${contact.initials}</p>
+            </div>`;
+        } else {
+            showChosenInitials.innerHTML += ``;
+        }
+    });
+}
+
+
+
+

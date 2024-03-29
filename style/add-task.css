@@ -331,6 +331,24 @@
     margin-bottom: 3px;
 }
 
+.circleSmall{
+    margin-left: 5px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 45px;
+    height: 42px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.showChosenInitials{
+    display: flex;
+}
+
 .nameAndCheckbox{
     display: flex;
     width: 100%;
