@@ -345,10 +345,7 @@ function showChosenInitials() {
     });
 }
 
-function showCurrentUserInButton() {
-    let userInitialsButton = document.getElementById('userInitials');
-    userInitialsButton.innerHTML = currentUserIndex;
-}
+
 
 
 

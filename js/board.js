@@ -13,7 +13,6 @@ async function initBoard() {
     await loadContacts();
     addBackgroundColor(2);
     renderColumns(); 
-    showCurrentUserInButton();
 }
 
 
@@ -236,8 +235,5 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
-function showCurrentUserInButton() {
-    let userInitialsButton = document.getElementById('userInitials');
-    userInitialsButton.innerHTML = currentUserIndex;
-}
+
 

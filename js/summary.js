@@ -7,7 +7,6 @@ async function initSummary() {
     addBackgroundColor(0);
     greetBasedOnTime();
     renderData();
-    showCurrentUserInButton();
 }
 
 
@@ -47,7 +46,3 @@ function renderCurrentUserName() {
     }
 }
 
-function showCurrentUserInButton() {
-    let userInitialsButton = document.getElementById('userInitials');
-    userInitialsButton.innerHTML = currentUserIndex;
-}
