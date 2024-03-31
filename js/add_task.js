@@ -234,13 +234,15 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function(event) {
         let showContacts = document.getElementById('showContactsToAssign');
         let arrowImage = document.getElementById('dropdownArrow');
+        let initialDIV = document.getElementById('showChosenInitials');
+        let assignedDIV = document.getElementById('assigned');
 
         if (showContacts.style.display !== 'none') {
-          
-            if (!showContacts.contains(event.target) && event.target.id !== 'assigned' && event.target.id !== 'standardOption' && event.target.id !== 'dropdownArrow') {
+            if (!showContacts.contains(event.target) && event.target !== assignedDIV && event.target.id !== 'assigned' && event.target.id !== 'standardOption' && event.target.id !== 'dropdownArrow') {
                 showContacts.innerHTML = '';
                 contactsVisible = false;
                 arrowImage.style.transform = 'rotate(0deg)';
+                initialDIV.style.display = 'block';
             }
         }
     });
@@ -249,17 +251,21 @@ document.addEventListener('DOMContentLoaded', function () {
 function toggleContactsVisibility() {
     let showContacts = document.getElementById('showContactsToAssign');
     let arrowImage = document.getElementById('dropdownArrow');
+    let initialDIV = document.getElementById('showChosenInitials');
 
     if (contactsVisible) {
         showContacts.innerHTML = '';
         contactsVisible = false;
         arrowImage.style.transform = 'rotate(0deg)';
+        initialDIV.style.display = 'block';
     } else {
         showContactsForAssign();
         contactsVisible = true;
         arrowImage.style.transform = 'rotate(180deg)';
+        initialDIV.style.display = 'none';
     }
 }
+
 
 
 function showContactsForAssign() {
