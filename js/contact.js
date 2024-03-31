@@ -8,6 +8,7 @@ async function initContacts() {
     await loadCurrentUserIndex()
     addBackgroundColor(3);
     renderContactList()
+    showCurrentUserInButton();
 }
 
 
@@ -300,3 +301,7 @@ async function saveEditContact() {
     openFullCard(name, email, phone, initials, currentIndex);
 }
 
+function showCurrentUserInButton() {
+    let userInitialsButton = document.getElementById('userInitials');
+    userInitialsButton.innerHTML = currentUserIndex;
+}

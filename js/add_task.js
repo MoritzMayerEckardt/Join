@@ -12,6 +12,7 @@ async function initAddTask() {
     await loadTasks();
     await loadContacts();
     addBackgroundColor(1);
+    showCurrentUserInButton();
 
 }
 
@@ -343,6 +344,10 @@ function showChosenInitials() {
     });
 }
 
+function showCurrentUserInButton() {
+    let userInitialsButton = document.getElementById('userInitials');
+    userInitialsButton.innerHTML = currentUserIndex;
+}
 
 
 

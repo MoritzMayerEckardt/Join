@@ -7,6 +7,7 @@ async function initSummary() {
     addBackgroundColor(0);
     greetBasedOnTime();
     renderData();
+    showCurrentUserInButton();
 }
 
 
@@ -44,4 +45,9 @@ function renderCurrentUserName() {
         greetingName.innerHTML = name;
         document.getElementById('greet').innerHTML = greeting + ',';
     }
+}
+
+function showCurrentUserInButton() {
+    let userInitialsButton = document.getElementById('userInitials');
+    userInitialsButton.innerHTML = currentUserIndex;
 }
