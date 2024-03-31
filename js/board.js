@@ -61,9 +61,9 @@ function filterTasksByCategory(tasks, category) {
 // **********************SHOW DETAILED-CARD, EDIT-CARD AND ADD-TASK-FORM**********************
 
 function openDetailedCard(taskId) {
+    let task = tasks.find(task => task.id === taskId);
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
-    let task = tasks.find(task => task.id === taskId);
     let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
     let subtasksHTML = generateSubtasksHTML(task); 
     let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)  
@@ -103,7 +103,8 @@ async function addTaskFromTemplate() {
     await postData(TASKS_PATH);
     await loadTasks();
     saveTaskIdCounter();
-    closeAddTaskForm();
+    showTaskAddedTemplate();
+    closeAddTaskFormAfterAddedTask();
     renderColumns();
     subtaskArray = [];
 }
@@ -159,21 +160,36 @@ function getValuesFromInputFromEditCard() {
     return { title, description, date, priority, assigned};
 }
 
+function closeAddTaskFormAfterAddedTask() {
+    let popupOverlay = document.getElementById('popup-board-overlay');
+    let taskForm = document.getElementById('task-form');
+    setTimeout(() => {
+        taskForm.style.animation = 'slideOutToRight 0.3s ease-in-out'; 
+        taskForm.style.right = '-200%';
+        setTimeout(() => {
+            popupOverlay.classList.add('d-none');
+        }, 200);
+    }, 1200);
+}
 
 function closeAddTaskForm() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let taskForm = document.getElementById('task-form');
-    taskForm.style.animation = 'slideOutToRight 0.3s ease-in-out';
+    taskForm.style.animation = 'slideOutToRight 0.3s ease-in-out'; 
     taskForm.style.right = '-200%';
     setTimeout(() => {
         popupOverlay.classList.add('d-none');
-    }, 200);
+    }, 300);
 }
 
 function closePopup() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
     renderColumns();
+}
+
+function showTaskAddedTemplate() {
+    document.getElementById('task-added-container').classList.remove('d-none');
 }
 
 
@@ -212,6 +228,9 @@ function renderTasksForColumn(tasksInColumn, search, container) {
     }
     return foundTasks;
 }
+
+
+// **********************STOP-PROPAGATION**********************
 
 function doNotClose(event) {
     event.stopPropagation();

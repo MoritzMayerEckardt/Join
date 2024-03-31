@@ -11,7 +11,7 @@ function allowDrop(ev) {
 async function moveTo(category) {
     let task = tasks.find(task => task.id === currentDraggedElement);
     task.boardCategory = category;
-    await postData(); 
+    await postData(TASKS_PATH); 
     renderColumns();
 }
 

@@ -6,6 +6,7 @@ let chosenContacts = [];
 
 
 
+
 async function initAddTask() {
     await includeHTML();
     await loadCurrentUserIndex(); // Hier aufrufen
@@ -19,7 +20,7 @@ async function initAddTask() {
 async function addTask() {
     createTasksIfNotCreated();
     pushValuesToTasks();
-    await postData();
+    await postData(TASKS_PATH);
     saveTaskIdCounter();
     jumpToBoard()
 }
@@ -52,12 +53,12 @@ function getValuesFromInput() {
 
 function pushValuesToTasks() {
     let boardCategory = "toDo";
-    let { title, description, assigned, date, category, priority } = getValuesFromInput();
+    let { title, description, date, category, priority } = getValuesFromInput();
     tasks.push({
         id: taskIdCounter++,
         title: title.value,
         description: description.value,
-        assigned: assigned.value,
+        assigned: chosenContacts,
         date: date.value,
         category: category.value,
         subtasks: subtaskArray,
@@ -66,7 +67,7 @@ function pushValuesToTasks() {
     });
 }
 
-async function postData(path = "/tasks") {
+async function postData(path) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {
