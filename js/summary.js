@@ -31,6 +31,7 @@ function greetBasedOnTime() {
 function renderData() {
     renderCurrentUserName();
     loadAmountTodo();
+    loadAmountDone();
 }
 
 function renderCurrentUserName() {
@@ -62,4 +63,22 @@ function loadAmountTodo() {
         }
     }
     document.getElementById('amount-todo').innerHTML = todoCount;
+}
+
+function loadAmountDone() {
+    let doneCount = 0;
+    let tasks;
+
+    if (currentUserIndex === 'guestLogin') {
+        tasks = 'guest';
+    } else {
+        tasks = users[currentUserIndex].tasks;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].boardCategory === "done") {
+            doneCount++;
+        }
+    }
+    document.getElementById('amount-done').innerHTML = doneCount;
 }
