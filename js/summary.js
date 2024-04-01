@@ -32,6 +32,11 @@ function renderData() {
     renderCurrentUserName();
     loadAmountTodo();
     loadAmountDone();
+    loadAmountAllTasks();
+    loadAmountInProgress();
+    loadAmountAwaitingFeedback();
+
+    loadAmountUrgentTasks()
 }
 
 function renderCurrentUserName() {
@@ -81,4 +86,86 @@ function loadAmountDone() {
         }
     }
     document.getElementById('amount-done').innerHTML = doneCount;
+}
+
+function loadAmountAllTasks() {
+    let allTasks = users[currentUserIndex]['tasks'];
+
+    if (allTasks.length) {
+        document.getElementById('tasks-amount').innerHTML = allTasks.length;
+    } else {
+        document.getElementById('tasks-amount').innerHTML = 0;
+    }
+}
+
+function loadAmountInProgress() {
+    let inProgressCount = 0;
+    let tasks;
+
+    if (currentUserIndex === 'guestLogin') {
+        tasks = 'guest';
+    } else {
+        tasks = users[currentUserIndex].tasks;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].boardCategory === "inProgress") {
+            inProgressCount++;
+        }
+    }
+    document.getElementById('tasks-in-progress').innerHTML = inProgressCount;
+}
+
+function loadAmountAwaitingFeedback() {
+    let awaitFeedbackCount = 0;
+    let tasks;
+
+    if (currentUserIndex === 'guestLogin') {
+        tasks = 'guest';
+    } else {
+        tasks = users[currentUserIndex].tasks;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].boardCategory === "awaitFeedback") {
+            awaitFeedbackCount++;
+        }
+    }
+    document.getElementById('tasks-await-feedback').innerHTML = awaitFeedbackCount;
+}
+
+function loadAmountAwaitingFeedback() {
+    let awaitFeedbackCount = 0;
+    let tasks;
+
+    if (currentUserIndex === 'guestLogin') {
+        tasks = 'guest';
+    } else {
+        tasks = users[currentUserIndex].tasks;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].boardCategory === "awaitFeedback") {
+            awaitFeedbackCount++;
+        }
+    }
+    document.getElementById('tasks-await-feedback').innerHTML = awaitFeedbackCount;
+}
+
+function loadAmountUrgentTasks() {
+    let urgentCount = 0;
+    let tasks;
+
+    if (currentUserIndex === 'guestLogin') {
+        tasks = 'guest';
+    } else {
+        tasks = users[currentUserIndex].tasks;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].priority === "urgent") {
+            urgentCount++;
+        }
+    }
+    document.getElementById('urgent-tasks-amount').innerHTML = urgentCount;
 }
