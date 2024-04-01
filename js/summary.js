@@ -2,6 +2,7 @@ let greeting;
 
 async function initSummary() {
     await includeHTML();
+    await loadGuestLogin();
     await loadUsers();
     await loadCurrentUserIndex();
     addBackgroundColor(0);
@@ -59,7 +60,7 @@ function loadAmountTodo() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = 'guest';
+        tasks = guest['tasks'];
     } else {
         tasks = users[currentUserIndex].tasks;
     }
@@ -77,7 +78,7 @@ function loadAmountDone() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = 'guest';
+        tasks = guest.tasks;
     } else {
         tasks = users[currentUserIndex].tasks;
     }
@@ -91,7 +92,12 @@ function loadAmountDone() {
 }
 
 function loadAmountAllTasks() {
-    let allTasks = users[currentUserIndex]['tasks'];
+    let allTasks;
+    if (currentUserIndex === 'guestLogin') {
+        allTasks = guest['tasks'];
+    } else {
+        allTasks = users[currentUserIndex]['tasks'];
+    }
 
     if (allTasks.length) {
         document.getElementById('tasks-amount').innerHTML = allTasks.length;
@@ -105,7 +111,7 @@ function loadAmountInProgress() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = 'guest';
+        tasks = guest.tasks;
     } else {
         tasks = users[currentUserIndex].tasks;
     }
@@ -123,7 +129,7 @@ function loadAmountAwaitingFeedback() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = 'guest';
+        tasks = guest.tasks;
     } else {
         tasks = users[currentUserIndex].tasks;
     }
@@ -141,7 +147,7 @@ function loadAmountAwaitingFeedback() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = 'guest';
+        tasks = guest.tasks;
     } else {
         tasks = users[currentUserIndex].tasks;
     }
@@ -159,7 +165,7 @@ function loadAmountUrgentTasks() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = 'guest';
+        tasks = guest.tasks;
     } else {
         tasks = users[currentUserIndex].tasks;
     }
@@ -174,25 +180,30 @@ function loadAmountUrgentTasks() {
 
 
 function loadUrgentDeadline() {
-    // Filtere nach Objekten mit priority: "urgent"
-    let urgentDates = users[currentUserIndex]['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
+    let urgentDates;
+    if (currentUserIndex === 'guestLogin') {
+        urgentDates = guest['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
+    } else {
+        urgentDates = users[currentUserIndex]['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
+    }
+
     let formattedDate;
-    
-    if(urgentDates){
-    // Sortiere die Datumswerte absteigend
-    urgentDates.sort((a, b) => a - b);
 
-    // Das jüngste Datum auswählen
-    let juengstesDatum = urgentDates[0];
+    if (urgentDates) {
+        // Sortiere die Datumswerte absteigend
+        urgentDates.sort((a, b) => a - b);
 
-    formattedDate = juengstesDatum.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric"
-      });
+        // Das jüngste Datum auswählen
+        let juengstesDatum = urgentDates[0];
+
+        formattedDate = juengstesDatum.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        });
     } else {
         formattedDate = '...'
     }
-      
-      document.getElementById('urgent-deadline').innerHTML = formattedDate;
+
+    document.getElementById('urgent-deadline').innerHTML = formattedDate;
 }

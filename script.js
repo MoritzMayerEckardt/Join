@@ -3,9 +3,11 @@ let currentUserIndex;
 const USERS_PATH = "/users";
 let TASKS_PATH;
 let CONTACTS_PATH;
+let GUEST_LOGIN_PATH = "/guest";
 let users = [];
 let tasks = [];
 let contacts = [];
+let guest;
 
 async function loadData(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
@@ -25,6 +27,14 @@ async function loadUsers() {
         users = await loadData(USERS_PATH);
     } catch (error) {
         console.error("Loading users error:", error);
+    }
+}
+
+async function loadGuestLogin() {
+    try {
+        guest = await loadData(GUEST_LOGIN_PATH);
+    } catch (error) {
+        console.error("Loading guest login error:", error);
     }
 }
 
