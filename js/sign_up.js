@@ -11,7 +11,7 @@ async function register() {
     await loadUsers();
     createUsersIfNotCreated();
     pushDataToUsers();
-    await postData(USERS_PATH, users);
+    await postData(USERS_PATH);
     forwardingToLogin();
     resetVariables();
 }
@@ -32,19 +32,39 @@ function getDataFromInput() {
     let userEmail = document.getElementById('inputSingUpEmail').value;
     let userPassword = document.getElementById('password').value;
     let confirmationPassword = document.getElementById('confirmationPassword').value;
+    let initals = getInitials(userName);
 
     checkIfEmailExists(userEmail);
     checkIfPrivacyAccepted()
 
     if (privacyAccepted) {
         if (!emailExists) {
-            createJsonForUsers(userName, userEmail, userPassword, confirmationPassword)
+            createJsonForUsers(userName, userEmail, userPassword, confirmationPassword, initals)
         } else {
             alert("Your email is already registered.");
         }
     } else {
         alert("Please accept the Privacy Policy to proceed with the registration.");
     }
+}
+
+function getInitials(userName) {
+    // Teile den Namen in Wörter auf
+    const words = userName.split(' ');
+
+    // Initialen speichern
+    let initials = '';
+
+    // Durchlaufe jedes Wort
+    words.forEach(word => {
+        // Füge den ersten Buchstaben des Wortes den Initialen hinzu
+        initials += word.charAt(0);
+    });
+
+    console.log(initials);  // Ausgabe: "MM"
+
+    // Gib die Initialen zurück (in Großbuchstaben)
+    return initials.toUpperCase();
 }
 
 function checkIfEmailExists(userEmail) {
@@ -69,7 +89,7 @@ function checkIfPrivacyAccepted() {
     }
 }
 
-function createJsonForUsers(userName, userEmail, userPassword, confirmationPassword) {
+function createJsonForUsers(userName, userEmail, userPassword, confirmationPassword, initals) {
     checkPassword(userPassword, confirmationPassword);
     if (comparePasswords) {
         let userId;
@@ -80,11 +100,13 @@ function createJsonForUsers(userName, userEmail, userPassword, confirmationPassw
         }
         currentUserdata = {
             "name": userName,
+            "initials": initals,
             "email": userEmail,
             "password": userPassword,
             "id": userId,
             "contacts": "",
-            "tasks": ""
+            "tasks": "",
+
         };
     } else {
         alert("The passwords you provided do not match. Please try again.");
@@ -97,7 +119,7 @@ function checkPassword(userPassword, confirmationPassword) {
     }
 }
 
-async function postData(path = "/users") {
+async function postData(path) {
     try {
         let response = await fetch(BASE_URL + path + ".json", {
             method: "PUT",
@@ -130,17 +152,17 @@ function forwardingToLogin() {
     }
 }
 
-function showSuccessfullySignedUpMessage() { 
+function showSuccessfullySignedUpMessage() {
     document.getElementById("signUpBody").style.overflow = 'hidden';
 
     const successMessage = document.getElementById('successfully-signed-up-message');
     successMessage.style.display = 'block';
 
     setTimeout(() => {
-      successMessage.style.display = 'none';
-      document.getElementById("signUpBody").style.overflow = 'visible';
+        successMessage.style.display = 'none';
+        document.getElementById("signUpBody").style.overflow = 'visible';
     }, 2000);
-  }
+}
 
 function resetVariables() {
     emailExists = false;
