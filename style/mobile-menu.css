@@ -1,0 +1,41 @@
+.body-mobile-menu {
+    margin: 0;
+}
+
+.mobile-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #2a3647;
+    padding-left: 0;
+    margin-bottom: 0;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.link-menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+
+    width: 76px;
+    height: 76px;
+    padding: 15px 0px 15px 0px;
+    gap: 4px;
+    border-radius: 8px;
+}
+
+.mobile-menu-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.actives-section-mobile {
+    background-color: #091931;
+}
