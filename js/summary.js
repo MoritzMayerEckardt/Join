@@ -178,7 +178,7 @@ function loadUrgentDeadline() {
     let urgentDates = users[currentUserIndex]['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
 
     // Sortiere die Datumswerte absteigend
-    urgentDates.sort((a, b) => b - a);
+    urgentDates.sort((a, b) => a - b);
 
     // Das jüngste Datum auswählen
     let juengstesDatum = urgentDates[0];
@@ -190,6 +190,4 @@ function loadUrgentDeadline() {
       });
       
       document.getElementById('urgent-deadline').innerHTML = formattedDate;
-
-      console.log(formattedDate); // Ausgabe: October 16, 2022
 }
