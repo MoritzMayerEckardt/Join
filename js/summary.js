@@ -176,18 +176,23 @@ function loadAmountUrgentTasks() {
 function loadUrgentDeadline() {
     // Filtere nach Objekten mit priority: "urgent"
     let urgentDates = users[currentUserIndex]['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
-
+    let formattedDate;
+    
+    if(urgentDates){
     // Sortiere die Datumswerte absteigend
     urgentDates.sort((a, b) => a - b);
 
     // Das jüngste Datum auswählen
     let juengstesDatum = urgentDates[0];
 
-    let formattedDate = juengstesDatum.toLocaleDateString("en-US", {
+    formattedDate = juengstesDatum.toLocaleDateString("en-US", {
         month: "long",
         day: "numeric",
         year: "numeric"
       });
+    } else {
+        formattedDate = '...'
+    }
       
       document.getElementById('urgent-deadline').innerHTML = formattedDate;
 }
