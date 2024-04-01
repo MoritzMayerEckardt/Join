@@ -28,20 +28,38 @@ function greetBasedOnTime() {
 }
 
 
-function renderData(){
+function renderData() {
     renderCurrentUserName();
-    console.log('der aktuelle Nutzer ist')
+    loadAmountTodo();
 }
 
 function renderCurrentUserName() {
 
     let greetingName = document.getElementById('greeting-name');
 
-    if(currentUserIndex == 'guestLogin') {
+    if (currentUserIndex == 'guestLogin') {
         greetingName.innerHTML = '';
     } else {
         let name = users[currentUserIndex]['name']
         greetingName.innerHTML = name;
         document.getElementById('greet').innerHTML = greeting + ',';
     }
+}
+
+function loadAmountTodo() {
+    let todoCount = 0;
+    let tasks;
+
+    if (currentUserIndex === 'guestLogin') {
+        tasks = 'guest';
+    } else {
+        tasks = users[currentUserIndex].tasks;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].boardCategory === "toDo") {
+            todoCount++;
+        }
+    }
+    document.getElementById('amount-todo').innerHTML = todoCount;
 }
