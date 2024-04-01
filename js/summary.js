@@ -37,6 +37,8 @@ function renderData() {
     loadAmountAwaitingFeedback();
 
     loadAmountUrgentTasks()
+    loadUrgentDeadline();
+
 }
 
 function renderCurrentUserName() {
@@ -168,4 +170,26 @@ function loadAmountUrgentTasks() {
         }
     }
     document.getElementById('urgent-tasks-amount').innerHTML = urgentCount;
+}
+
+
+function loadUrgentDeadline() {
+    // Filtere nach Objekten mit priority: "urgent"
+    let urgentDates = users[currentUserIndex]['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
+
+    // Sortiere die Datumswerte absteigend
+    urgentDates.sort((a, b) => b - a);
+
+    // Das jüngste Datum auswählen
+    let juengstesDatum = urgentDates[0];
+
+    let formattedDate = juengstesDatum.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+      
+      document.getElementById('urgent-deadline').innerHTML = formattedDate;
+
+      console.log(formattedDate); // Ausgabe: October 16, 2022
 }
