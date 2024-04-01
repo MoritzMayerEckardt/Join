@@ -6,19 +6,21 @@ let chosenContacts = [];
 
 
 
+
 async function initAddTask() {
     await includeHTML();
     await loadCurrentUserIndex(); // Hier aufrufen
     await loadTasks();
     await loadContacts();
     addBackgroundColor(1);
+    showCurrentUserInButton();
 
 }
 
 async function addTask() {
     createTasksIfNotCreated();
     pushValuesToTasks();
-    await postData();
+    await postData(TASKS_PATH);
     saveTaskIdCounter();
     jumpToBoard()
 }
@@ -51,12 +53,12 @@ function getValuesFromInput() {
 
 function pushValuesToTasks() {
     let boardCategory = "toDo";
-    let { title, description, assigned, date, category, priority } = getValuesFromInput();
+    let { title, description, date, category, priority } = getValuesFromInput();
     tasks.push({
         id: taskIdCounter++,
         title: title.value,
         description: description.value,
-        assigned: assigned.value,
+        assigned: chosenContacts,
         date: date.value,
         category: category.value,
         subtasks: subtaskArray,
@@ -65,7 +67,7 @@ function pushValuesToTasks() {
     });
 }
 
-async function postData(path = "/tasks") {
+async function postData(path) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {
@@ -234,13 +236,15 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function(event) {
         let showContacts = document.getElementById('showContactsToAssign');
         let arrowImage = document.getElementById('dropdownArrow');
+        let initialDIV = document.getElementById('showChosenInitials');
+        let assignedDIV = document.getElementById('assigned');
 
         if (showContacts.style.display !== 'none') {
-          
-            if (!showContacts.contains(event.target) && event.target.id !== 'assigned' && event.target.id !== 'standardOption' && event.target.id !== 'dropdownArrow') {
+            if (!showContacts.contains(event.target) && event.target !== assignedDIV && event.target.id !== 'assigned' && event.target.id !== 'standardOption' && event.target.id !== 'dropdownArrow') {
                 showContacts.innerHTML = '';
                 contactsVisible = false;
                 arrowImage.style.transform = 'rotate(0deg)';
+                initialDIV.style.display = 'block';
             }
         }
     });
@@ -249,17 +253,21 @@ document.addEventListener('DOMContentLoaded', function () {
 function toggleContactsVisibility() {
     let showContacts = document.getElementById('showContactsToAssign');
     let arrowImage = document.getElementById('dropdownArrow');
+    let initialDIV = document.getElementById('showChosenInitials');
 
     if (contactsVisible) {
         showContacts.innerHTML = '';
         contactsVisible = false;
         arrowImage.style.transform = 'rotate(0deg)';
+        initialDIV.style.display = 'block';
     } else {
         showContactsForAssign();
         contactsVisible = true;
         arrowImage.style.transform = 'rotate(180deg)';
+        initialDIV.style.display = 'none';
     }
 }
+
 
 
 function showContactsForAssign() {
@@ -336,6 +344,7 @@ function showChosenInitials() {
         }
     });
 }
+
 
 
 

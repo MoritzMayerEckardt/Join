@@ -127,16 +127,7 @@ function generateSubtasksHTMLEditCard(task) {
     if (subtasks && subtasks.length > 0) {
         for (let index = 0; index < subtasks.length; index++) {
             const subtask = subtasks[index].title;
-            subtasksHTMLEditCard += /*html*/`
-                <div onmouseover="showEditImages(${index + subtasks.length})" onmouseout="removeEditImages(${index + subtasks.length})" class="subtask-container-edit-card">
-                    <li class="subtask-list-edit-card" id="subtask${index + subtasks.length}">${subtask}</li>
-                    <div class="edit-card-edit-container d-none" id="edit-container${index + subtasks.length}">
-                        <img style="height: 18px" src="../assets/img/edit-dark-blue.svg" alt="">
-                        <div style="height: 18px; width: 1px; background: lightgrey"></div>
-                        <img onclick="deleteSubtask(${task.id}, ${index})" style="height: 18px" src="../assets/img/delete-dark-blue.svg" alt="">
-                    </div>
-                </div>
-            `;
+            subtasksHTMLEditCard += renderSubtasksHTMLInEditCard(task, index, subtasks, subtask);
         }
     } else {
         subtasksHTMLEditCard = /*html*/`
@@ -144,27 +135,6 @@ function generateSubtasksHTMLEditCard(task) {
         `
     }
     return subtasksHTMLEditCard;
-}
-
-async function deleteSubtask(taskId, index) {
-    let task = tasks.find(task => task.id === taskId); 
-    task.subtasks.splice(index, 1);
-    await postData(TASKS_PATH);
-    await loadTasks();
-    openEditCard(taskId);
-    document.getElementById('new-subtask-edit-card').scrollIntoView({ behavior: 'instant' });
-    renderColumns(); 
-}
-
-
-function showEditImages(index) {
-    let editContainer = document.getElementById(`edit-container${index}`)
-    editContainer.classList.remove('d-none');
-}
-
-function removeEditImages(index) {
-    let editContainer = document.getElementById(`edit-container${index}`)
-    editContainer.classList.add('d-none');
 }
 
 // **********************CHANGE COLOR OF BUTTONS**********************
@@ -200,7 +170,20 @@ function changeColorOfAddTaskImg2(id) {
 }
 
 
-// **********************ADD SUBTASKS IN ADD-TASK-FORM AND CLEAR FORM**********************
+// **********************DELETE SUBTASK**********************
+
+
+async function deleteSubtask(taskId, index) {
+    let task = tasks.find(task => task.id === taskId); 
+    task.subtasks.splice(index, 1);
+    await postData(TASKS_PATH);
+    await loadTasks();
+    openEditCard(taskId);
+    document.getElementById('new-subtask-edit-card').scrollIntoView({ behavior: 'instant' });
+    renderColumns(); 
+}
+
+// **********************ADD SUBTASKS IN ADD-TASK-FORM**********************
 
 function getValuesFromInputFromTemplate() {
     let title = document.getElementById('title-template').value;
@@ -249,6 +232,9 @@ function getNewSubtaskInTemplate() {
     document.getElementById('subtasks-template').value = ``;
 }
 
+
+// **********************ADD AND EDIT SUBTASKS IN ADD-TASK-FORM**********************
+
 async function addNewSubtaskInEditCard(taskId) {
     let task = tasks.find(task => task.id === taskId);
     if (!task.subtasks) {
@@ -289,30 +275,6 @@ function generateSubtasksHTMLEditCard(task) {
     return subtasksHTMLEditCard;
 }
 
-
-function renderSubtasksListInEditCard(task, subtasks, subtask, index) {
-    return /*html*/`
-    <div>
-        <div id="subtask${index}" onmouseover="showEditImages(${index})" onmouseout="removeEditImages(${index})" class="subtask-container-edit-card">
-            <li class="subtask-list-edit-card">${subtask}</li>
-            <div class="edit-card-edit-container d-none" id="edit-container${index}">
-                <div class="subtasks-img"><img class="subtask-img" onclick="editSubtask(${index})" style="height: 20px" src="../assets/img/edit-dark-blue.svg" alt=""></div>
-                <div style="height: 18px; width: 2px; background: lightgrey"></div>
-                <div class="subtasks-img"><img class="subtask-img" onclick="deleteSubtask(${task.id}, ${index})" style="height: 20px" src="../assets/img/delete-dark-blue.svg" alt=""></div>
-            </div>
-        </div>
-        <div id="edit-subtask-container${index}" class="edit-subtask-container d-none">
-            <input id="subtask-input${index}" class="subtask-input" value="${subtasks[index].title}">
-            <div class="edit-card-edit-container">
-                <div class="subtasks-img"><img onclick="emptyInputSubtask(${index})" style="height: 14px" src="../assets/img/delete.svg" alt=""></div>
-                <div style="width: 2px; height: 18px; background: lightgrey"></div>
-                <div class="subtasks-img"><img onclick="saveSubtask(${task.id}, ${index})" style="height: 14px" src="../assets/img/check_blue.svg" alt=""></div>
-            </div>
-        </div>
-    </div>
-    `;
-}
-
 function emptyInputSubtask(index) {
     inputSubtask = document.getElementById(`subtask-input${index}`).value = '';
 }
@@ -343,8 +305,17 @@ function showSubtasksInList(taskId, index) {
 function editSubtask(index) {
     document.getElementById(`subtask${index}`).classList.add('d-none');
     document.getElementById(`edit-subtask-container${index}`).classList.remove('d-none');
-    document.getElementById(`edit-container${index}`).classList.add('d-none');
-    
+    document.getElementById(`edit-container${index}`).classList.add('d-none'); 
+}
+
+function showEditImages(index) {
+    let editContainer = document.getElementById(`edit-container${index}`)
+    editContainer.classList.remove('d-none');
+}
+
+function removeEditImages(index) {
+    let editContainer = document.getElementById(`edit-container${index}`)
+    editContainer.classList.add('d-none');
 }
 
 function handleKeyPressInTemplate(event) {

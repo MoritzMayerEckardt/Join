@@ -20,3 +20,13 @@ header {
     height: 56px;
     gap: 16px;
 }
+
+.userInitials {
+    color: rgba(41, 171, 226, 1);
+    border-radius: 100%;
+    position: fixed;
+    right: 38px;
+    width: 54px;
+    height: 55px;
+    border: 2px solid black; /* Border auf allen Seiten setzen */
+}
