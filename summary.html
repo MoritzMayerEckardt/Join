@@ -10,11 +10,12 @@
     <script src="js/summary.js"></script>
     <script src="script.js"></script>
     <script src="/js/aside.js"></script>
+    <script src="js/mobile_menu.js"></script>
 </head>
 <body onload="initSummary()">
     <div class="content-container flex">
         <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
-        <section id="content-right">
+        <section id="content-right" class="content-right-summary">
             <header w3-include-html="\assets\templates\header.html"></header>
             <section class="summary" id="summary">
                 
@@ -101,6 +102,9 @@
             </section>
         </section>
     </div>
+
+    <menu class="mobile-menu d-none" w3-include-html="\assets\templates\mobile_menu.html" ></menu>
+
 </body>
 
 </html>

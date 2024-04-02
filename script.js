@@ -9,9 +9,25 @@ let tasks = [];
 let contacts = [];
 let guest;
 let smallMenuOpen = false;
+let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
+let subtaskArray = [];
+let lastClickedButton = '';
+let contactsVisible = false;
+let chosenContacts = [];
 
 async function loadData(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
+    return responseAsJson = await response.json();
+}
+
+async function postData(path) {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "PUT",
+        header: {
+            "content-Type": "application/json",
+        },
+        body: JSON.stringify(tasks)
+    });
     return responseAsJson = await response.json();
 }
 
@@ -101,5 +117,8 @@ document.addEventListener('click', function(event) {
 });
 
 
+function saveTaskIdCounter() {
+    localStorage.setItem('taskIdCounter', taskIdCounter.toString());
+}
 
 

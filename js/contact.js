@@ -8,6 +8,7 @@ async function initContacts() {
     await loadCurrentUserIndex()
     addBackgroundColor(3);
     renderContactList()
+    loadMobileMenu()
 }
 
 
@@ -89,7 +90,6 @@ function getValuesFromInputAddContact() {
 }
 
 async function postData(path) {
-    // path = `/users/1/contacts`
     try {
         let response = await fetch(BASE_URL + path + ".json", {
             method: "PUT",

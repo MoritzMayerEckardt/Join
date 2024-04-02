@@ -1,12 +1,3 @@
-let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
-let subtaskArray = [];
-let lastClickedButton = '';
-let contactsVisible = false;
-let chosenContacts = [];
-
-
-
-
 async function initAddTask() {
     await includeHTML();
     await loadCurrentUserIndex(); // Hier aufrufen
@@ -51,7 +42,6 @@ function getValuesFromInput() {
     return { title, description, assigned, date, category, priority, };
 }
 
-
 function pushValuesToTasks() {
     let boardCategory = "toDo";
     let { title, description, date, category, priority } = getValuesFromInput();
@@ -66,21 +56,6 @@ function pushValuesToTasks() {
         boardCategory: boardCategory,
         priority: priority
     });
-}
-
-async function postData(path) {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "PUT",
-        header: {
-            "content-Type": "application/json",
-        },
-        body: JSON.stringify(tasks)
-    });
-    return responseAsJson = await response.json();
-}
-
-function saveTaskIdCounter() {
-    localStorage.setItem('taskIdCounter', taskIdCounter.toString());
 }
 
 function addNewSubtask() {
@@ -121,7 +96,6 @@ function handleKeyPress(event) {
 }
 
 function clearForm() {
-
     document.getElementById('title').value = "";
     document.getElementById('description').value = "";
     document.getElementById('assigned').selectedIndex = 0;

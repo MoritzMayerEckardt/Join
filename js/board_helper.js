@@ -43,23 +43,32 @@ function generateProgressBarHTML(task) {
 }
 
 function generateAssignedContactsHTML(task) {
-    let firstLetterName = getInitialsFromName(task.assigned);
-    let firstLetterLastName = getInitialsFromLastName(task.assigned);
     let assignedContactsHTML = '';
     if (task.assigned && task.assigned.length > 0) {
-        assignedContactsHTML = renderAssignedContactsHTML(firstLetterName, firstLetterLastName)
-    } 
+        for (let i = 0; i < task.assigned.length; i++) {
+            let assignedContact = task.assigned[i].name;
+            let contactColor = task.assigned[i].color;
+            let firstLetterName = getInitialsFromName(assignedContact);
+            let firstLetterLastName = getInitialsFromLastName(assignedContact);
+            let marginClass = i === 0 ? 'margin-0' : 'margin-8';
+            assignedContactsHTML += renderAssignedContactsHTML(firstLetterName, firstLetterLastName, contactColor, marginClass);
+        }
+    }
     return assignedContactsHTML;
 }
 
 function generateAssignedContactsInDetailedCard(task) {
-    let firstLetterName = getInitialsFromName(task.assigned);
-    let firstLetterLastName = getInitialsFromLastName(task.assigned);
     let assignedContactsHTML = '';
     if (task.assigned && task.assigned.length > 0) {
-        assignedContactsHTML = renderAssignedContactsInDetailedCard(task, firstLetterName, firstLetterLastName)
+        for (let i = 0; i < task.assigned.length; i++) {
+            let assignedContact = task.assigned[i].name;
+            let contactColor = task.assigned[i].color;
+            let firstLetterName = getInitialsFromName(assignedContact);
+            let firstLetterLastName = getInitialsFromLastName(assignedContact);
+            assignedContactsHTML += renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastName, assignedContact, contactColor);
+        }
     } else {
-        assignedContactsHTML = /*html*/`<span>No contacts assigned</span>`
+        assignedContactsHTML = /*html*/`<span>No contacts assigned</span>`;
     }
     return assignedContactsHTML;
 }
@@ -203,7 +212,7 @@ function getVAlueOfPriority() {
     } else if (lastClickedButton === 'low') {
         priority = 'low';
     } else {
-        priority = 'notSet'; 
+        priority = 'medium'; 
     }
     return priority;
 }
@@ -334,4 +343,96 @@ function clearFormInTemplate() {
     document.getElementById('subtasks-template').value = "";
     subtaskArray = [];
     getNewSubtaskInTemplate();
+}
+
+function resetButtonStyles() {
+    const urgentButton = document.getElementById('urgentButton');
+    const mediumButton = document.getElementById('mediumButton');
+    const mediumButtonText = document.getElementById('mediumText');
+    const prioMedium = document.getElementById('prioMedium');
+    const lowButton = document.getElementById('lowButton');
+    const redArrow = document.getElementById('redArrow');
+    const greenArrow = document.getElementById('greenArrow');
+    const whiteArrow = document.getElementById('whiteArrow');
+    const whiteArrowLow = document.getElementById('whiteArrowLow');
+
+    urgentButton.style.backgroundColor = '';
+    urgentButton.style.color = '';
+    redArrow.style.display = '';
+    whiteArrow.style.display = '';
+
+    mediumButton.style.backgroundColor = '';
+    mediumButton.style.color = '';
+    mediumButtonText.style.fontWeight = '';
+    prioMedium.style.display = '';
+
+    lowButton.style.backgroundColor = '';
+    lowButton.style.color = '';
+    greenArrow.style.display = '';
+    whiteArrowLow.style.display = '';
+}
+
+function changeBackgroundColor(clickedButton) {
+    let urgentButton = document.getElementById('urgentButton');
+    let mediumButton = document.getElementById('mediumButton');
+    let mediumButtonText = document.getElementById('mediumText');
+    let prioMedium = document.getElementById('prioMedium');
+    let lowButton = document.getElementById('lowButton');
+    let redArrow = document.getElementById('redArrow');
+    let greenArrow = document.getElementById('greenArrow');
+    let whiteArrow = document.getElementById('whiteArrow');
+    let whiteArrowLow = document.getElementById('whiteArrowLow')
+
+
+
+    if (clickedButton === 'urgent') {
+        urgentButton.style.backgroundColor = 'rgba(255, 61, 0, 1)';
+        urgentButton.style.color = 'white';
+        redArrow.style.display = 'none';
+        whiteArrow.style.display = 'flex';
+
+        lowButton.style.backgroundColor = 'white';
+        lowButton.style.color = 'black';
+        greenArrow.style.display = 'flex';
+        whiteArrowLow.style.display = 'none';
+
+        mediumButton.style.backgroundColor = 'white';
+        mediumButton.style.color = 'black';
+        mediumButtonText.style.fontWeight = 'normal';
+        prioMedium.style.display = 'flex';
+
+
+    } else if (clickedButton === 'medium') {
+        mediumButton.style.backgroundColor = 'rgba(255, 168, 0, 1)';
+        mediumButton.style.color = 'white';
+        mediumButtonText.style.fontWeight = '700';
+        prioMedium.style.display = 'none';
+
+        urgentButton.style.backgroundColor = 'white';
+        urgentButton.style.color = 'black';
+        redArrow.style.display = 'flex';
+        whiteArrow.style.display = 'none';
+
+        lowButton.style.backgroundColor = 'white';
+        lowButton.style.color = 'black';
+        greenArrow.style.display = 'flex';
+        whiteArrowLow.style.display = 'none';
+
+    } else if (clickedButton === 'low') {
+        lowButton.style.backgroundColor = 'rgba(122, 226, 41, 1)';
+        lowButton.style.color = 'white';
+        greenArrow.style.display = 'none';
+        whiteArrowLow.style.display = 'flex';
+
+        mediumButton.style.backgroundColor = 'white';
+        mediumButton.style.color = 'black';
+        mediumButtonText.style.fontWeight = 'normal';
+        prioMedium.style.display = 'flex';
+
+        urgentButton.style.backgroundColor = 'white';
+        urgentButton.style.color = 'black';
+        redArrow.style.display = 'flex';
+        whiteArrow.style.display = 'none';
+    }
+    lastClickedButton = clickedButton;
 }
