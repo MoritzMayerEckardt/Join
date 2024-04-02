@@ -190,7 +190,7 @@ function loadUrgentDeadline() {
 
     let formattedDate;
 
-    if (urgentDates) {
+    if (urgentDates.length) {
         // Sortiere die Datumswerte absteigend
         urgentDates.sort((a, b) => a - b);
 
@@ -203,7 +203,7 @@ function loadUrgentDeadline() {
             year: "numeric"
         });
     } else {
-        formattedDate = '...'
+        formattedDate = 'No'
     }
 
     document.getElementById('urgent-deadline').innerHTML = formattedDate;
