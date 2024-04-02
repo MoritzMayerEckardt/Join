@@ -114,18 +114,18 @@ async function deleteTask(taskId) {
         tasks.splice(selectedTask, 1);
         await postData(TASKS_PATH);
         renderColumns();
-        closePopup();
+        closePopup('card');
     }
 }
 
 function pushValuesToTasksFromTemplate() {
     let boardCategory = currentColumnId;
-    let { title, description, assigned, date, category, priority } = getValuesFromInputFromTemplate();
+    let { title, description, date, category, priority } = getValuesFromInputFromTemplate();
     tasks.push({
         id: taskIdCounter++,
         title: title,
         description: description.value,
-        assigned: assigned.value,
+        assigned: chosenContacts,
         date: date.value,
         subtasks: subtaskArray,
         category: category.value,
@@ -135,11 +135,11 @@ function pushValuesToTasksFromTemplate() {
 }
 
 async function editTask(taskId) {
-    let { title, description, date, priority, assigned } = getValuesFromInputFromEditCard();
+    let { title, description, date, priority, assigned } = getValuesFromInputFromEditCard(taskId);
     updateTask(taskId, { title, description, date, priority, assigned });
     await postData(TASKS_PATH);
     await loadTasks();
-    closePopup();
+    closePopup('card');
     renderColumns();
 }
 
@@ -150,12 +150,13 @@ function updateTask(taskId, updatedTask) {
     }
 }
 
-function getValuesFromInputFromEditCard() {
+function getValuesFromInputFromEditCard(taskId) {
+    let task = tasks.find(task => task.id === taskId);
     let title = document.getElementById('title-edit-card').value;
     let description = document.getElementById('description-edit-card').value;
     let date = document.getElementById('date-edit-card').value;
     let priority = getVAlueOfPriority();
-    let assigned = document.getElementById('assigned-edit-card').value;
+    let assigned = task.assigned;
     return { title, description, date, priority, assigned};
 }
 
@@ -171,20 +172,23 @@ function closeAddTaskFormAfterAddedTask() {
     }, 1200);
 }
 
-function closeAddTaskForm() {
+function closePopup(cardId) {
+    let popupContent = document.getElementById(cardId);
     let popupOverlay = document.getElementById('popup-board-overlay');
-    let taskForm = document.getElementById('task-form');
-    taskForm.style.animation = 'slideOutToRight 0.3s ease-in-out'; 
-    taskForm.style.right = '-200%';
+    popupContent.style.animation = 'slideOut 0.5s forwards';
+    popupOverlay.style.animation = 'fadeOutOverlay 0.5s forwards';
     setTimeout(() => {
+        popupContent.style.display = 'none';
+        popupContent.style.removeProperty('animation');
         popupOverlay.classList.add('d-none');
-    }, 300);
+        popupOverlay.style.removeProperty('animation');
+    }, 500); 
+    renderColumns();
 }
 
-function closePopup() {
+function closeFromClickOutside() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
-    renderColumns();
 }
 
 function showTaskAddedTemplate() {

@@ -293,6 +293,7 @@
     padding: 48px 40px 48px 40px;
     border-radius: 30px;
     display: inline-block;
+    animation: slideIn 0.2s ease-in-out;
 }
 
 .detailed-card-title {
@@ -359,9 +360,23 @@
 
 .detailed-card-contact-container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     padding: 7px 16px 7px 16px;
     gap: 16px;
+}
+
+.detailed-card-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.margin-0 {
+    margin-left: 0px;
+}
+
+.margin-8 {
+    margin-left: -8px;
 }
 
 .detailed-card-subtasks-container {
@@ -428,6 +443,8 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
+    opacity: 0;
+    animation: fadeInOverlay 0.3s forwards;
 }
 
 .detailed-card-close-button {
@@ -447,6 +464,7 @@
     width: 1116px;
     height: 870px;
     border-radius: 30px;
+    animation: slideInFromRight 0.2s ease-in-out;
 }
 
 .headline-template {
@@ -780,4 +798,40 @@
     justify-content: space-around;
     align-items: center;
     color: white;
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(300%);
+    }
+}
+
+@keyframes fadeOutOverlay {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(300%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

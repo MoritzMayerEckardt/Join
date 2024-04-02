@@ -43,23 +43,32 @@ function generateProgressBarHTML(task) {
 }
 
 function generateAssignedContactsHTML(task) {
-    let firstLetterName = getInitialsFromName(task.assigned);
-    let firstLetterLastName = getInitialsFromLastName(task.assigned);
     let assignedContactsHTML = '';
     if (task.assigned && task.assigned.length > 0) {
-        assignedContactsHTML = renderAssignedContactsHTML(firstLetterName, firstLetterLastName)
-    } 
+        for (let i = 0; i < task.assigned.length; i++) {
+            let assignedContact = task.assigned[i].name;
+            let contactColor = task.assigned[i].color;
+            let firstLetterName = getInitialsFromName(assignedContact);
+            let firstLetterLastName = getInitialsFromLastName(assignedContact);
+            let marginClass = i === 0 ? 'margin-0' : 'margin-8';
+            assignedContactsHTML += renderAssignedContactsHTML(firstLetterName, firstLetterLastName, contactColor, marginClass);
+        }
+    }
     return assignedContactsHTML;
 }
 
 function generateAssignedContactsInDetailedCard(task) {
-    let firstLetterName = getInitialsFromName(task.assigned);
-    let firstLetterLastName = getInitialsFromLastName(task.assigned);
     let assignedContactsHTML = '';
     if (task.assigned && task.assigned.length > 0) {
-        assignedContactsHTML = renderAssignedContactsInDetailedCard(task, firstLetterName, firstLetterLastName)
+        for (let i = 0; i < task.assigned.length; i++) {
+            let assignedContact = task.assigned[i].name;
+            let contactColor = task.assigned[i].color;
+            let firstLetterName = getInitialsFromName(assignedContact);
+            let firstLetterLastName = getInitialsFromLastName(assignedContact);
+            assignedContactsHTML += renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastName, assignedContact, contactColor);
+        }
     } else {
-        assignedContactsHTML = /*html*/`<span>No contacts assigned</span>`
+        assignedContactsHTML = /*html*/`<span>No contacts assigned</span>`;
     }
     return assignedContactsHTML;
 }
@@ -203,7 +212,7 @@ function getVAlueOfPriority() {
     } else if (lastClickedButton === 'low') {
         priority = 'low';
     } else {
-        priority = 'notSet'; 
+        priority = 'medium'; 
     }
     return priority;
 }
@@ -334,4 +343,115 @@ function clearFormInTemplate() {
     document.getElementById('subtasks-template').value = "";
     subtaskArray = [];
     getNewSubtaskInTemplate();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('assigned-template').addEventListener('click', toggleContactsVisibilityTemplate);
+    document.addEventListener('click', function(event) {
+        let showContacts = document.getElementById('show-contacts-assigned-template');
+        let arrowImage = document.getElementById('dropdown-arrow-template');
+        let initialDIV = document.getElementById('show-initials-template');
+        let assignedDIV = document.getElementById('assigned-template');
+
+        if (showContacts.style.display !== 'none') {
+            if (!showContacts.contains(event.target) && event.target !== assignedDIV && event.target.id !== 'assigned-template' && event.target.id !== 'standard-option-template' && event.target.id !== 'dropdown-arrow-template') {
+                showContacts.innerHTML = '';
+                contactsVisible = false;
+                arrowImage.style.transform = 'rotate(0deg)';
+                initialDIV.style.display = 'block';
+            }
+        }
+    });
+});
+
+function toggleContactsVisibilityTemplate() {
+    let showContacts = document.getElementById('show-contacts-assigned-template');
+    let arrowImage = document.getElementById('dropdown-arrow-template');
+    let initialDIV = document.getElementById('show-initials-template');
+
+    if (contactsVisible) {
+        showContacts.innerHTML = '';
+        contactsVisible = false;
+        arrowImage.style.transform = 'rotate(0deg)';
+        initialDIV.style.display = 'block';
+    } else {
+        showContactsForAssignTemplate();
+        contactsVisible = true;
+        arrowImage.style.transform = 'rotate(180deg)';
+        initialDIV.style.display = 'none';
+    }
+}
+
+function showContactsForAssignTemplate() {
+    let showContacts = document.getElementById('show-contacts-assigned-template');
+    showContacts.innerHTML = '';
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[i];
+        showContacts.innerHTML += `
+        <div id="new-contact-template${i}" class="newcontact">
+            <div class="circle" style="background-color: ${contact.color};">
+                <p>${contact.initials}</p>
+            </div>
+            <div class ="nameAndCheckbox">    
+                <p class= "contactName">${contact.name}</p>
+                <input type="checkbox" id="checkbox-template" class= "checkBox">
+            </div> 
+        </div>`;
+    }
+    chosenContactTemplate();
+}
+
+function chosenContactTemplate() {
+    for (let i = 0; i < contacts.length; i++) {
+        let contactElement = document.getElementById(`new-contact-template${i}`);
+        contactElement.style.backgroundColor = '';
+        contactElement.addEventListener('click', function () {
+            let currentBackgroundColor = window.getComputedStyle(contactElement).getPropertyValue('background-color');
+            if (currentBackgroundColor === 'rgb(42, 54, 71)') {
+                contactElement.style.backgroundColor = '';
+                contactElement.style.color = 'black';
+                let checkbox = contactElement.querySelector('.checkBox');
+                checkbox.checked = false;
+
+                chosenContacts = chosenContacts.filter(c => c.name !== contacts[i].name);
+            } else {
+                contactElement.style.backgroundColor = '#2A3647';
+                contactElement.style.color = 'white';
+                let checkbox = contactElement.querySelector('.checkBox');
+                checkbox.checked = true;
+
+
+                if (!chosenContacts.some(c => c.name === contacts[i].name)) {
+                    chosenContacts.push(contacts[i]);
+                }
+            }
+            showChosenInitialsTemplate();
+        });
+        checkedContactStaysCheckedTemplate(contactElement, i);
+    }
+}
+
+function checkedContactStaysCheckedTemplate(contactElement, i) {
+    if (chosenContacts.some(c => c.name === contacts[i].name)) {
+        contactElement.style.backgroundColor = '#2A3647';
+        contactElement.style.color = 'white';
+        let checkbox = contactElement.querySelector('.checkBox');
+        checkbox.checked = true;
+    }
+}
+
+function showChosenInitialsTemplate() {
+    let showChosenInitials = document.getElementById('show-initials-template');
+    showChosenInitials.innerHTML = ``;
+
+    chosenContacts.forEach(contact => {
+        if (chosenContacts.includes(contact)) {
+            showChosenInitials.innerHTML += `
+            <div class="circleSmall" style="background-color: ${contact.color};">
+                <p>${contact.initials}</p>
+            </div>`;
+        } else {
+            showChosenInitials.innerHTML += ``;
+        }
+    });
 }

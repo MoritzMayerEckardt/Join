@@ -15,10 +15,10 @@ function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML
 
 function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML) { 
     return /*html*/`
-        <div id="card" class="detailed-card-container" style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;">
+        <div id="card" class="detailed-card-container">
             <div class="detailed-card-top-container">
                 <div style="background-color: ${backgroundColor}" class="detailed-card-category">${task.category}</div>
-                <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
+                <a onclick="closePopup('card')" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
             </div>
             <span class="detailed-card-title">${task.title}</span>
             <span class="detailed-card-description">${task.description}</span>
@@ -54,11 +54,11 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
 
 function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedContactsHTML) {
     return /*html*/`
-        <div style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="card" class="edit-card-container">
+        <div id="card" class="edit-card-container">
             <form class="form-edit-card" onsubmit="editTask(${task.id}); return false">    
                 <div class="edit-card-top-container">
                     <div class="detailed-card-category"></div>
-                    <a onclick="closePopup()" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
+                    <a onclick="closePopup('card')" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
                 </div>
                 <div class="edit-card-top">
                     <span style="font-size: 20px; color: #2A3647">Title</span>
@@ -132,11 +132,11 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
 
 function renderAddTaskForm(contactOptions) {
     return /*html*/`
-        <form style="animation: 0.25s ease-in-out 0s 1 normal none running slideInFromRight; right: 0px;" id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false">
+        <form id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false">
             <div class="headline-template">
                 Add Task
             </div>
-            <a class="close-button-template" onclick="closeAddTaskForm()"><img src="../assets/img/close.svg" alt=""></a>
+            <a class="close-button-template" onclick="closePopup('task-form')"><img src="../assets/img/close.svg" alt=""></a>
             <div class="left-side-template">
                 <div class="titleFrame">
                     <p class="title">Title <span class="star">*</span></p>
@@ -155,10 +155,12 @@ function renderAddTaskForm(contactOptions) {
                 </div>
                 <div class="assignedToFrame">
                     <p class="assignedTo">Assigned to</p>
-                    <select id="assigned-template" class="select">
-                        <option value="">Select contacts to assign</option>
-                        ${contactOptions}
-                    </select>
+                    <div id="assigned-template" class="selection">
+                        <p id="standard-option-template" class="standardOption">Select contacts to assign</p>
+                        <img id="dropdown-arrow-template" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
+                    </div>
+                    <div id="show-contacts-assigned-template" class="showContactsToAssign"></div>
+                    <div id="show-initials-template" class="showChosenInitials"></div>
                 </div>
             </div>
             <div class="right-side-template">
@@ -220,7 +222,7 @@ function renderAddTaskForm(contactOptions) {
                 <p><span class="star">*</span>This field is required</p>
             </div>
             <div class="buttons-template">
-                <a onclick="closeAddTaskForm()" class="clear-button-template">
+                <a onclick="closePopup('task-form')" class="clear-button-template">
                     <p>Cancel</p>
                     <img src="assets/img/cancel.png">
                 </a>
@@ -330,19 +332,21 @@ function renderSubtaskHTML(task, subtask, checkBoxImage, index) {
     `;
 }
 
-function renderAssignedContactsHTML(firstLetterName, firstLetterLastName) {
+function renderAssignedContactsHTML(firstLetterName, firstLetterLastName, contactColor, marginClass) {
     return /*html*/`
-        <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
+        <div class="task-contacts-ellipse flex-center ${marginClass}" style="background-color: ${contactColor}">
             <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
         </div>
 `;
 }
 
-function renderAssignedContactsInDetailedCard(task, firstLetterName, firstLetterLastName) {
+function renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastName, assignedContact, contactColor) {
     return /*html*/`
-        <div class="task-contacts-ellipse flex-center" style="background-color: #FF7A00">
+    <div class="detailed-card-contact-item">
+        <div class="task-contacts-ellipse flex-center" style="background-color: ${contactColor}">
             <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
         </div>
-        <span style="font-size: 19px">${task.assigned}</span>
+        <span style="font-size: 19px">${assignedContact}</span>
+    </div>
 `;
 }
