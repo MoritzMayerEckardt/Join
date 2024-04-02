@@ -154,14 +154,12 @@ function renderAddTaskForm(contactOptions) {
                     </div>
                 </div>
                 <div class="assignedToFrame">
-                    <p class="assignedTo">Assigned to</p>
-                    <div id="assigned-template" class="selection">
-                        <p id="standard-option-template" class="standardOption">Select contacts to assign</p>
-                        <img id="dropdown-arrow-template" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
-                    </div>
-                    <div id="show-contacts-assigned-template" class="showContactsToAssign"></div>
-                    <div id="show-initials-template" class="showChosenInitials"></div>
-                </div>
+                <span class="assignedTo">Assigned to</span>
+                <select name="assignedToSelect" id="assignedToSelect" onchange="showSelectedContact()">
+                    <option value="" selected>Select a contact to assign</option>
+                    ${contactOptions}
+                </select>
+            </div>
             </div>
             <div class="right-side-template">
                 <div class="titleFrame">
