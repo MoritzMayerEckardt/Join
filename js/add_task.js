@@ -3,9 +3,10 @@ async function initAddTask() {
     await loadCurrentUserIndex(); // Hier aufrufen
     await loadTasks();
     await loadContacts();
+    await loadUsers();
+    await loadGuestLogin();
     addBackgroundColor(1);
     showCurrentUserInButton();
-
 }
 
 async function addTask() {
