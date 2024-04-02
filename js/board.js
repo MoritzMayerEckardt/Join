@@ -134,6 +134,12 @@ function pushValuesToTasksFromTemplate() {
     });
 }
 
+function createTasksIfNotCreated() {
+    if (!tasks) {
+        tasks = [];
+    }
+}
+
 async function editTask(taskId) {
     let { title, description, date, priority, assigned } = getValuesFromInputFromEditCard(taskId);
     updateTask(taskId, { title, description, date, priority, assigned });
