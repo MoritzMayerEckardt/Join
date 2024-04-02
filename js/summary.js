@@ -8,6 +8,7 @@ async function initSummary() {
     addBackgroundColor(0);
     greetBasedOnTime();
     renderData();
+    loadMobileMenu()
 }
 
 
