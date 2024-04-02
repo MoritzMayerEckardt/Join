@@ -8,6 +8,7 @@ let users = [];
 let tasks = [];
 let contacts = [];
 let guest;
+let smallMenuOpen = false;
 
 async function loadData(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
@@ -61,10 +62,44 @@ async function loadCurrentUserIndex() {
     }
 }
 
-function showCurrentUserInButton() {
-    let userInitialsButton = document.getElementById('userInitials');
-    userInitialsButton.innerHTML = currentUserIndex;
+async function showCurrentUserInButton() {
+    let button = document.getElementById('userInitials');
+    let currentUserInitials;
+
+    if (currentUserIndex == 'guestLogin') {
+         currentUserInitials = guest['initials']
+    }else{
+         currentUserInitials = users[currentUserIndex]['initials'];
+    }
+    button.innerHTML= currentUserInitials;
 }
+
+function openSmallMenu(){
+    let smallMenu = document.getElementById('smallMenu');
+
+    if (!smallMenuOpen) {
+            smallMenu.style.display = 'flex';
+            smallMenuOpen = true;
+    } else {
+        smallMenu.style.display = 'none';
+        smallMenuOpen = false;
+    }
+}
+
+// Eventlistener für Klicks auf den gesamten Bildschirm
+document.addEventListener('click', function(event) {
+    let smallMenu = document.getElementById('smallMenu');
+    let smallMenuBtn = document.getElementById('userInitials')
+    let targetElement = event.target; // Das geklickte Element
+
+    // Überprüfen, ob das geklickte Element nicht innerhalb des smallMenu liegt und ob das smallMenu geöffnet ist
+    if (targetElement !== smallMenuOpen && targetElement !== smallMenuBtn) {
+        // Schließe das smallMenu und setze smallMenuOpen auf false
+        smallMenu.style.display = 'none';
+        smallMenuOpen = false;
+    }
+});
+
 
 
 
