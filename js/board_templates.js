@@ -51,8 +51,7 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
     `;
 }
 
-
-function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedContactsHTML) {
+function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
     return /*html*/`
         <div id="card" class="edit-card-container">
             <form class="form-edit-card" onsubmit="editTask(${task.id}); return false">    
@@ -104,13 +103,16 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
                         </button>
                     </div>
                 </div>
-                <div class="assigned-container-edit-card">
+                <div>
                     <span style="font-size: 20px; color: #2A3647">Assigned to</span>
-                    <select id="assigned-edit-card" class="select">
-                        <option value="${task.assigned}">Select contacts to assign</option>
-                        ${contactOptions}
-                    </select>
-                    <div class="detailed-card-contact-container">${assignedContactsHTML}</div>
+                    <div style="margin-top: 14px; margin-bottom: 14px" id="assigned-edit-card" class="selection" onclick="toggleAssignedContainerEditCard()">
+                        <p id="standardOption" class="standardOption">Select contacts to assign</p>
+                        <img id="dropdown-arrow-edit-card" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
+                    </div>
+                    <div id="show-assigned-contacts-edit-card" class="assigned-contacts-container-edit-card">
+                        ${assignedContactsHTML}
+                    </div>
+                    <div style="margin-top: 8px" id="show-chosen-initials-edit-card" class="showChosenInitials"></div>
                 </div>
                 <div class="subtasks-container-edit-card">
                     <span style="font-size: 20px; color: #2A3647">Subtask</span>
@@ -130,7 +132,7 @@ function renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedCont
     `;
 }
 
-function renderAddTaskForm(contactOptions) {
+function renderAddTaskForm() {
     return /*html*/`
         <form id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false">
             <div class="headline-template">
@@ -154,11 +156,14 @@ function renderAddTaskForm(contactOptions) {
                     </div>
                 </div>
                 <div class="assignedToFrame">
-                <span class="assignedTo">Assigned to</span>
-                <select name="assignedToSelect" id="assignedToSelect" onchange="showSelectedContact()">
-                    <option value="" selected>Select a contact to assign</option>
-                    ${contactOptions}
-                </select>
+                    <p class="assignedTo">Assigned to</p>
+                    <div id="assigned-template" class="selection" onclick="toggleAssignedContainer()">
+                        <p id="standardOption" class="standardOption">Select contacts to assign</p>
+                        <img id="dropdown-arrow" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
+                    </div>
+                    <div id="show-assigned-contacts" class="showContactsToAssign"></div>
+                    <div id="show-chosen-initials" class="showChosenInitials"></div>
+                </div>
             </div>
             </div>
             <div class="right-side-template">
@@ -329,6 +334,9 @@ function renderSubtaskHTML(task, subtask, checkBoxImage, index) {
         </div>
     `;
 }
+
+
+// **********************ASSIGNED-CONTACTS-TEMPLATES**********************
 
 function renderAssignedContactsHTML(firstLetterName, firstLetterLastName, contactColor, marginClass) {
     return /*html*/`

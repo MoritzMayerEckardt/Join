@@ -75,22 +75,20 @@ function openEditCard(taskId) {
     let task = tasks.find(task => task.id === taskId);
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
-    let contactOptions = generateContactOptionsHTML();
     let subtasksHTMLEditCard = generateSubtasksHTMLEditCard(task);
     let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
-    popupContent.innerHTML = renderEditCard(task, contactOptions, subtasksHTMLEditCard, assignedContactsHTML);
+    popupContent.innerHTML = renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML);
 }
 
 function showAddTaskForm(columnId) {
     currentColumnId = columnId
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
-    let contactOptions = generateContactOptionsHTML();
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
-    popupContent.innerHTML = renderAddTaskForm(contactOptions);
+    popupContent.innerHTML = renderAddTaskForm();
 }
 
 
@@ -105,7 +103,9 @@ async function addTaskFromTemplate() {
     showTaskAddedTemplate();
     closeAddTaskFormAfterAddedTask();
     renderColumns();
+    chosenContacts = [];
     subtaskArray = [];
+    showChosenInitials();
 }
 
 async function deleteTask(taskId) {
@@ -147,6 +147,7 @@ async function editTask(taskId) {
     await loadTasks();
     closePopup('card');
     renderColumns();
+    chosenContacts = [];
 }
 
 function updateTask(taskId, updatedTask) {
@@ -162,7 +163,7 @@ function getValuesFromInputFromEditCard(taskId) {
     let description = document.getElementById('description-edit-card').value;
     let date = document.getElementById('date-edit-card').value;
     let priority = getVAlueOfPriority();
-    let assigned = task.assigned;
+    let assigned = chosenContacts;
     return { title, description, date, priority, assigned};
 }
 

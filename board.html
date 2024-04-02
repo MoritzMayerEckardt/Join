@@ -9,6 +9,7 @@
     <script src="script.js"></script>
     <script src="/js/board_templates.js"></script>
     <script src="/js/board_helper.js"></script>
+    <script src="/js/board_tasks.js"></script>
     <script src="/js/board.js"></script>
     <script src="/js/drag_drop.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -17,6 +18,7 @@
     <div id="popup-board-overlay" class="flex-center d-none popup-board-overlay" onclick="closeFromClickOutside()">
         <div id="popup-board-content" onclick="doNotClose(event)"></div>
     </div>
+    <menu class="mobile-menu" w3-include-html="\assets\templates\mobile_menu.html"></menu> 
     <div class="flex">
         <aside class="w-232" w3-include-html="\assets\templates\aside.html"></aside>
         <section style="max-width: 1440px;">

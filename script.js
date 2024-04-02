@@ -12,6 +12,7 @@ let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorag
 let subtaskArray = [];
 let lastClickedButton = '';
 let contactsVisible = false;
+let contactsVisibleEditCard = false;
 let chosenContacts = [];
 
 async function loadData(path = "") {
