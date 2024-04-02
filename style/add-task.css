@@ -346,7 +346,7 @@
 }
 
 .showChosenInitials{
-    display: flex;
+    display: none;
 }
 
 .nameAndCheckbox{
