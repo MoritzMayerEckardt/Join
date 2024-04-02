@@ -117,7 +117,6 @@ document.addEventListener('click', function(event) {
     }
 });
 
-
 function saveTaskIdCounter() {
     localStorage.setItem('taskIdCounter', taskIdCounter.toString());
 }
