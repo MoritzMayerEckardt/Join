@@ -1,5 +1,9 @@
 .body-contacts {
-    overflow: hidden;
+    overflow: auto;
+}
+
+.content-right-contacts {
+    overflow-x: hidden;
 }
 
 .contacts-section {
