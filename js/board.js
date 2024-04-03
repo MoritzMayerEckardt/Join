@@ -11,8 +11,11 @@ async function initBoard() {
     await loadCurrentUserIndex();
     await loadTasks();
     await loadContacts();
+    await loadUsers();
+    await loadGuestLogin();
     addBackgroundColor(2);
     renderColumns(); 
+    showCurrentUserInButton();
 }
 
 

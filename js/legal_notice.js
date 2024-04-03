@@ -5,6 +5,6 @@ async function initLegalNotice() {
     await loadContacts();
     await loadUsers();
     await loadGuestLogin();
-    addBackgroundColor(1);
+    addBackgroundColor();
     showCurrentUserInButton();
 }
