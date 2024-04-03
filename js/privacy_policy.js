@@ -8,3 +8,8 @@ async function initPrivacyPolicy() {
     addBackgroundColor();
     showCurrentUserInButton();
 }
+
+function goBack() {
+    window.history.back();
+  }
+  
