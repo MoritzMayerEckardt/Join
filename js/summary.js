@@ -65,10 +65,11 @@ function loadAmountTodo() {
     } else {
         tasks = users[currentUserIndex].tasks;
     }
-
-    for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].boardCategory === "toDo") {
-            todoCount++;
+    if (tasks.length) {
+        for (let i = 0; i < tasks.length; i++) {
+            if (tasks[i].boardCategory === "toDo") {
+                todoCount++;
+            }
         }
     }
     document.getElementById('amount-todo').innerHTML = todoCount;
@@ -182,6 +183,7 @@ function loadAmountUrgentTasks() {
 
 function loadUrgentDeadline() {
     let urgentDates;
+    if(guest['tasks'].length || users[currentUserIndex]['tasks'].length)
     if (currentUserIndex === 'guestLogin') {
         urgentDates = guest['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
     } else {
@@ -190,7 +192,7 @@ function loadUrgentDeadline() {
 
     let formattedDate;
 
-    if (urgentDates.length) {
+    if (!urgentDates == undefined) {
         // Sortiere die Datumswerte absteigend
         urgentDates.sort((a, b) => a - b);
 

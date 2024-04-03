@@ -6,11 +6,16 @@
     display: flex;
     margin-left: 232px;
     margin-top: 96px;
+    height: calc(100vh - 96px);
 }
 
 .contacts-container {
     width: 456px;
-    height: 928px;
+    height: calc(100vh - 96px);
+}
+
+.show-complete-contact-template {
+    height: calc(100vh - 96px) !important;
 }
 
 .contacts-list-container {
