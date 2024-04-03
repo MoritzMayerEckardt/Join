@@ -802,6 +802,36 @@
     color: white;
 }
 
+#task-edited-container {
+    position: absolute;
+    right: calc(50% - 163px);
+    bottom: calc(50% - 37px);
+    z-index: 999;
+    background: #2A3647;
+    height: 74px;
+    width: 326px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+#task-deleted-container {
+    position: absolute;
+    right: calc(50% - 163px);
+    bottom: calc(50% - 37px);
+    z-index: 999;
+    background: #2A3647;
+    height: 74px;
+    width: 326px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
 @keyframes slideOut {
     from {
         transform: translateX(0);

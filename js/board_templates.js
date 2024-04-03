@@ -48,6 +48,10 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
                 </div>
             </div>
         </div>
+        <div id="task-deleted-container" class="d-none">
+            <span>Task succesfully deleted</span>
+            <img src="../assets/img/task_added.svg" alt="">
+        </div>
     `;
 }
 
@@ -127,8 +131,10 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                 <div class="button-edit-card-container"><button type="submit" class="button-edit-card"><span class="button-edit-card-text">Ok</span><img src="../assets/img/check.svg" alt=""></button></div>
             </form>
         </div>
-        
-
+        <div id="task-edited-container" class="d-none">
+            <span>Task succesfully edited</span>
+            <img src="../assets/img/task_added.svg" alt="">
+        </div>
     `;
 }
 
@@ -234,11 +240,11 @@ function renderAddTaskForm() {
                     <img src="assets/img/check.png">
                 </button>
             </div>
-            <div id="task-added-container" class="d-none">
-                <span>Task added to board</span>
-                <img src="../assets/img/task_added.svg" alt="">
-            </div>
-        </form> 
+        </form>
+        <div id="task-added-container" class="d-none">
+            <span>Task added to board</span>
+            <img src="../assets/img/task_added.svg" alt="">
+        </div>
     `;
 }
 

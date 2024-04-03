@@ -101,7 +101,7 @@ async function addTaskFromTemplate() {
     await loadTasks();
     saveTaskIdCounter();
     showTaskAddedTemplate();
-    closeAddTaskFormAfterAddedTask();
+    closeTaskFormAfterInfo();
     renderColumns();
     chosenContacts = [];
     subtaskArray = [];
@@ -114,7 +114,8 @@ async function deleteTask(taskId) {
         tasks.splice(selectedTask, 1);
         await postData(TASKS_PATH);
         renderColumns();
-        closePopup('card');
+        showTaskDeleted();
+        closeCardAfterInfo();
     }
 }
 
@@ -145,7 +146,8 @@ async function editTask(taskId) {
     updateTask(taskId, { title, description, date, priority, assigned });
     await postData(TASKS_PATH);
     await loadTasks();
-    closePopup('card');
+    showTaskEdited();
+    closeCardAfterInfo();
     renderColumns();
     chosenContacts = [];
 }
@@ -157,8 +159,7 @@ function updateTask(taskId, updatedTask) {
     }
 }
 
-function getValuesFromInputFromEditCard(taskId) {
-    let task = tasks.find(task => task.id === taskId);
+function getValuesFromInputFromEditCard() {
     let title = document.getElementById('title-edit-card').value;
     let description = document.getElementById('description-edit-card').value;
     let date = document.getElementById('date-edit-card').value;
@@ -167,7 +168,7 @@ function getValuesFromInputFromEditCard(taskId) {
     return { title, description, date, priority, assigned};
 }
 
-function closeAddTaskFormAfterAddedTask() {
+function closeTaskFormAfterInfo() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let taskForm = document.getElementById('task-form');
     setTimeout(() => {
@@ -193,6 +194,23 @@ function closePopup(cardId) {
     renderColumns();
 }
 
+function closeCardAfterInfo() {
+    let popupContent = document.getElementById('card');
+    let popupOverlay = document.getElementById('popup-board-overlay');
+    setTimeout(() => {
+        popupContent.style.animation = 'slideOut 0.5s forwards';
+        popupOverlay.style.animation = 'fadeOutOverlay 0.5s forwards';
+    }, 1000);
+    setTimeout(() => {
+        popupContent.style.display = 'none';
+        popupContent.style.removeProperty('animation');
+        popupOverlay.classList.add('d-none');
+        popupOverlay.style.removeProperty('animation');
+    }, 1500); 
+    renderColumns();
+}
+
+
 function closeFromClickOutside() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
@@ -200,6 +218,14 @@ function closeFromClickOutside() {
 
 function showTaskAddedTemplate() {
     document.getElementById('task-added-container').classList.remove('d-none');
+}
+
+function showTaskEdited() {
+    document.getElementById('task-edited-container').classList.remove('d-none');
+}
+
+function showTaskDeleted() {
+    document.getElementById('task-deleted-container').classList.remove('d-none');
 }
 
 
