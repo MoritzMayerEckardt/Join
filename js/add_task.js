@@ -1,6 +1,6 @@
 async function initAddTask() {
     await includeHTML();
-    await loadCurrentUserIndex(); // Hier aufrufen
+    await loadCurrentUserIndex(); 
     await loadTasks();
     await loadContacts();
     await loadUsers();
