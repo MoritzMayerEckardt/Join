@@ -48,7 +48,7 @@ function renderCurrentUserName() {
     let greetingName = document.getElementById('greeting-name');
 
     if (currentUserIndex == 'guestLogin') {
-        greetingName.innerHTML = '';
+        greetingName.innerHTML = 'Dear Guest';
     } else {
         let name = users[currentUserIndex]['name']
         greetingName.innerHTML = name;
