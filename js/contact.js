@@ -6,9 +6,11 @@ async function initContacts() {
     await includeHTML();
     await loadUsers();
     await loadCurrentUserIndex()
+    await loadGuestLogin();
     addBackgroundColor(3);
     renderContactList()
     loadMobileMenu()
+    showCurrentUserInButton();
 }
 
 
