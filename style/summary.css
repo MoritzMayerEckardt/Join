@@ -315,3 +315,41 @@ body {
     color: #29ABE2;
     line-height: 76.8px;
 }
+
+
+/* ******************MOBILE RESPONSIVE****************** */
+
+
+@media(max-width:1255px) {
+    .greeting-text-container {
+        display: none;
+    }
+}
+
+@media(max-width:1015px) {
+    .summary {
+        margin-left: 275px;
+    }
+}
+
+@media(max-width:950px) {
+    .summary {
+        margin-left: 275px;
+    }
+
+    .heading-container {
+        flex-direction: column;
+        align-items: unset;
+    }
+
+    .seperator {
+        display: none;
+    }
+
+    .mobile-seperator {
+        width: 120px;
+        height: 3px;
+        background-color: #29ABE2;
+        margin: 20px 0px;
+    }
+}
