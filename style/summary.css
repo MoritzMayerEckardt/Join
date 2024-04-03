@@ -127,7 +127,7 @@ body {
 }
 
 .amount-description {
-    font-weight: 400px;
+    font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     color: #2A3647;
@@ -281,6 +281,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
 }
 
 .tasks-amount {
@@ -383,6 +387,8 @@ body {
         display: flex;
         justify-content: center;
         margin-left: unset;
+        padding-bottom: 80px;
+        margin-top: 104px;
     }
 
     .header-summary {
@@ -393,4 +399,100 @@ body {
     .mobile-menu {
         display: flex !important;
     }
+}
+
+
+@media(max-width:600px) {
+
+    .overview-container {
+        width: 396px;
+
+    }
+
+    .todo-done-row {
+        gap: 24px;
+        height: 110px;
+        width: 396px;
+    }
+
+    .to-do-container {
+        width: 186px;
+        height: 110px;
+    }
+
+    .done-container {
+        width: 186px;
+        height: 110px;
+    }
+
+    .edit-container {
+        width: 40px;
+        height: 40px;
+        background-size: 20px;
+    }
+
+    .inner-done-container {
+        width: 40px;
+        height: 40px;
+        background-size: 41px;
+    }
+
+    .urgent-container {
+        height: 110px;
+        padding: 28px;
+    }
+
+    .urgent-img-container {
+        width: 40px;
+        height: 40px;
+    }
+
+    .urgent-img {
+        width: 22.79px;
+        height: 16.74px;
+    }
+
+    .urgent-seperator {
+        height: 68px;
+    }
+
+    .tasks-info-container {
+        width: 116px;
+        height: 116px;
+        padding: 12px 0px 12px 0px;
+    }
+
+    .amount {
+        font-size: 47px;
+        line-height: 56.4px;
+    }
+
+    .tasks-amount {
+        font-size: 47px;
+        line-height: 56.4px;
+    }
+
+    .amount-description {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.8px;
+    }
+
+    .deadline-date {
+        font-size: 16px;
+        line-height: 19.2px;
+    }
+
+    .deadline-description {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.8px;
+    }
+
+    .tasks-description-container {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.8px;      
+    }
+
 }
