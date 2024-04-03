@@ -183,11 +183,15 @@ function loadAmountUrgentTasks() {
 
 function loadUrgentDeadline() {
     let urgentDates;
-    if(guest['tasks'].length || users[currentUserIndex]['tasks'].length)
+
     if (currentUserIndex === 'guestLogin') {
-        urgentDates = guest['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
+        if (guest['tasks'].length) {
+            urgentDates = guest['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
+        }
     } else {
-        urgentDates = users[currentUserIndex]['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
+        if (users[currentUserIndex]['tasks'].length) {
+            urgentDates = users[currentUserIndex]['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
+        }
     }
 
     let formattedDate;
