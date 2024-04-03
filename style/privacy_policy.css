@@ -29,17 +29,15 @@ p, ul, li {
 .column10gap {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .space-betw {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 72px;
+    padding-top: 50px;
 }
 
 .container-position {
-    gap: 30px;
     margin: 120px 56px;
     height: 100%;
 }
