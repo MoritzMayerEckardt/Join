@@ -57,6 +57,7 @@ body {
     display: flex;
     gap: 16px;
     margin-top: 45px;
+    overflow: hidden;
 }
 
 /* ******************TODO DONE ROW****************** */
