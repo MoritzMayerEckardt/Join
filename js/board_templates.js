@@ -109,7 +109,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                 </div>
                 <div>
                     <span style="font-size: 20px; color: #2A3647">Assigned to</span>
-                    <div style="margin-top: 14px; margin-bottom: 14px" id="assigned-edit-card" class="selection" onclick="toggleAssignedContainerEditCard()">
+                    <div style="margin-top: 14px; margin-bottom: 14px" id="assigned-edit-card" class="selection" onclick="toggleAssignedContainerEditCard(event)">
                         <p id="standardOption" class="standardOption">Select contacts to assign</p>
                         <img id="dropdown-arrow-edit-card" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
                     </div>

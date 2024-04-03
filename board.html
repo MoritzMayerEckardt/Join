@@ -12,6 +12,7 @@
     <script src="/js/board_tasks.js"></script>
     <script src="/js/board.js"></script>
     <script src="/js/drag_drop.js"></script>
+    <script src="/js/mobile_menu.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="initBoard()">
@@ -20,7 +21,7 @@
     </div>
     <menu class="mobile-menu" w3-include-html="\assets\templates\mobile_menu.html"></menu> 
     <div class="flex">
-        <aside class="w-232" w3-include-html="\assets\templates\aside.html"></aside>
+        <aside class="sidebar" w3-include-html="\assets\templates\aside.html"></aside>
         <section style="max-width: 1440px;">
             <header w3-include-html="\assets\templates\header.html"></header>
             <section style="max-width: 1440px;" id="board">
@@ -43,31 +44,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="board-subheadlines">
-                    <div class="subheadline-container">
-                        <span>To do</span>
-                        <img class="add-task-img" id="add-task-img0" onclick="showAddTaskForm('toDo')" onmouseover="changeColorOfAddTaskImg(0)" onmouseout="changeColorOfAddTaskImg2(0)" src="./assets/img/add_task_button.svg" alt="">
+                <div id="board-content" class="board-content">
+                    <div>
+                        <div class="subheadline-container">
+                            <span>To do</span>
+                            <img class="add-task-img" id="add-task-img0" onclick="showAddTaskForm('toDo')" onmouseover="changeColorOfAddTaskImg(0)" onmouseout="changeColorOfAddTaskImg2(0)" src="./assets/img/add_task_button.svg" alt="">
+                        </div>
+                        <div ondragover="allowDrop(event); highlight('to-do-column')" ondrop="moveTo('toDo'); removeHighlight('to-do-column')" ondragleave="removeHighlight('to-do-column')" id="to-do-column" class="column"></div>
                     </div>
-                    <div class="subheadline-container">
-                        <span>In progress</span>
-                        <img class="add-task-img" id="add-task-img1" onclick="showAddTaskForm('inProgress')" onmouseover="changeColorOfAddTaskImg(1)" onmouseout="changeColorOfAddTaskImg2(1)" src="./assets/img/add_task_button.svg" alt="">
+                    <div>
+                        <div class="subheadline-container">
+                            <span>In progress</span>
+                            <img class="add-task-img" id="add-task-img1" onclick="showAddTaskForm('inProgress')" onmouseover="changeColorOfAddTaskImg(1)" onmouseout="changeColorOfAddTaskImg2(1)" src="./assets/img/add_task_button.svg" alt="">
+                        </div>
+                        <div ondragover="allowDrop(event); highlight('in-progress-column')" ondrop="moveTo('inProgress'); removeHighlight('in-progress-column')" ondragleave="removeHighlight('in-progress-column')" id="in-progress-column" class="column"></div>
                     </div>
-                    <div class="subheadline-container">
-                        <span>Await feedback</span>
-                        <img class="add-task-img" id="add-task-img2" onclick="showAddTaskForm('awaitFeedback')" onmouseover="changeColorOfAddTaskImg(2)" onmouseout="changeColorOfAddTaskImg2(2)" src="./assets/img/add_task_button.svg" alt="">
+                    <div>
+                        <div class="subheadline-container">
+                            <span>Await feedback</span>
+                            <img class="add-task-img" id="add-task-img2" onclick="showAddTaskForm('awaitFeedback')" onmouseover="changeColorOfAddTaskImg(2)" onmouseout="changeColorOfAddTaskImg2(2)" src="./assets/img/add_task_button.svg" alt="">
+                        </div>
+                        <div ondragover="allowDrop(event); highlight('await-feedback-column')" ondrop="moveTo('awaitFeedback'); removeHighlight('await-feedback-column')" ondragleave="removeHighlight('await-feedback-column')" id="await-feedback-column" class="column"></div>
                     </div>
-                    <div class="subheadline-container">
-                        <span>Done</span>
+                    <div>
+                        <div class="subheadline-container">
+                            <span>Done</span>
+                        </div>
+                        <div ondragover="allowDrop(event); highlight('done-column')" ondrop="moveTo('done'); removeHighlight('done-column')" ondragleave="removeHighlight('done-column')" id="done-column" class="column"></div>
                     </div>
-                </div>
-                <div id="board-content">
-                    <div ondragover="allowDrop(event); highlight('to-do-column')" ondrop="moveTo('toDo'); removeHighlight('to-do-column')" ondragleave="removeHighlight('to-do-column')" id="to-do-column" class="column"></div>
-                    <div ondragover="allowDrop(event); highlight('in-progress-column')" ondrop="moveTo('inProgress'); removeHighlight('in-progress-column')" ondragleave="removeHighlight('in-progress-column')" id="in-progress-column" class="column"></div>
-                    <div ondragover="allowDrop(event); highlight('await-feedback-column')" ondrop="moveTo('awaitFeedback'); removeHighlight('await-feedback-column')" ondragleave="removeHighlight('await-feedback-column')" id="await-feedback-column" class="column"></div>
-                    <div ondragover="allowDrop(event); highlight('done-column')" ondrop="moveTo('done'); removeHighlight('done-column')" ondragleave="removeHighlight('done-column')" id="done-column" class="column"></div>
                 </div>
             </section>
         </section>
     </div>
+    
 </body>
 </html>

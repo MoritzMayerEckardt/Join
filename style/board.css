@@ -3,6 +3,16 @@
     padding-top: 96px;
 }
 
+.sidebar {
+    width: 232px;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 0 !important;
+    }
+}
+
 .board-top {
     height: 232px;
     background-color: #F6F7F8;
@@ -96,6 +106,7 @@
     font-size: 20px;
     color: #42526E;
     font-weight: 700;
+    margin-bottom: 24px;
 }
 
 #add-task-button {
@@ -135,7 +146,8 @@
 .task-card:hover {
     cursor: pointer;
 }
-#board-content {
+
+.board-content {
     margin-top: 16px;
     gap: 16px;
     display: flex;
@@ -897,26 +909,33 @@
     margin-top: 8px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 900px) {
     .mobile-menu {
         display: flex;
     }
 }
 
-@media (min-width: 481px) {
+@media (min-width: 901px) {
     .mobile-menu {
         display: none !important;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 900px) {
     .side-bar {
         display: none !important;
     }
 }
 
-@media (min-width: 481px) {
+@media (min-width: 901px) {
     .side-bar {
         display: flex;
+    }
+}
+
+@media (max-width: 1500px) {
+    .board-content {
+        flex-wrap: wrap;
+        max-width: calc(1500px - 232px);
     }
 }
