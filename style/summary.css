@@ -57,6 +57,7 @@ body {
     display: flex;
     gap: 16px;
     margin-top: 45px;
+    overflow: hidden;
 }
 
 /* ******************TODO DONE ROW****************** */
@@ -149,7 +150,7 @@ body {
 }
 
 .inner-done-container {
-    background: url('../assets/img/hook.svg') no-repeat;
+    background: url('../assets/img/hook-white.svg') no-repeat;
     background-position: center;
     display: flex;
     justify-content: center;
