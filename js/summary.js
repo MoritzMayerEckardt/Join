@@ -5,9 +5,11 @@ async function initSummary() {
     await loadGuestLogin();
     await loadUsers();
     await loadCurrentUserIndex();
+    await loadGuestLogin();
     addBackgroundColor(0);
     greetBasedOnTime();
     renderData();
+    showCurrentUserInButton();
     loadMobileMenu()
 }
 
