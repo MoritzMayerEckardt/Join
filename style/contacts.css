@@ -943,3 +943,24 @@
         border-radius: 100%;
     }
 }
+
+@media(max-width: 900px) {
+
+    .contacts-header {
+        left: unset;
+        width: 100vw;
+    }
+
+    .contacts-section {
+        margin-left: unset;
+    }
+
+    .d-none-mobile-menu-contacts {
+        display: flex !important;
+    }
+
+    .add-contacts-btn-mobile {
+        bottom: 80px;
+        left: calc(100vw - 100px);
+    }
+}
