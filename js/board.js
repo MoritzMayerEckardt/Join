@@ -79,7 +79,8 @@ function openEditCard(taskId) {
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');
     let subtasksHTMLEditCard = generateSubtasksHTMLEditCard(task);
-    let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)
+    let assignedContactsHTML = generateAssignedContactsInDetailedCard(task);
+    chosenContacts = task.assigned;
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML);
