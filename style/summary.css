@@ -404,9 +404,33 @@ body {
 
 @media(max-width:600px) {
 
+    .heading-container {
+        margin-top: 16px;
+    }
+
+    .heading {
+        font-size: 47px;
+        line-height: 56.4px;
+        text-align: left;
+        height: 56px;
+    }
+
+    .subheading {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+        height: 24px;
+    }
+
+    .mobile-seperator {
+        width: 90px;
+        margin-top: 8px;
+    }
+
     .overview-container {
         width: 396px;
-
+        margin-top: 32px;
     }
 
     .todo-done-row {
@@ -492,7 +516,33 @@ body {
     .tasks-description-container {
         font-size: 14px;
         font-weight: 400;
-        line-height: 16.8px;      
+        line-height: 16.8px;
     }
+
+}
+
+@media(max-width:414px) { 
+
+    .overview-container {
+        width: 300px;
+    }
+
+    .todo-done-row {
+        width: 300px;
+        gap: 12px;
+      }
+
+    .to-do-container {
+        width: 144px;
+    }
+
+    .done-container {
+        width: 144px;
+    }
+
+    .tasks-info-container {
+        width: 96px;
+    }
+
 
 }
