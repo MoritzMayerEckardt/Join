@@ -48,8 +48,8 @@
     width: 232px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 170px 0px 52px 0px;
+    align-items: flex-start;
+    padding: 170px 0px 52px 55px;
     gap: 4px;
 }
 
