@@ -909,7 +909,7 @@
     margin-top: 8px;
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 480px) {
     .mobile-menu {
         display: flex;
     }
@@ -919,7 +919,7 @@
     .mobile-menu {
         display: none !important;
     }
-}
+} */
 
 @media (max-width: 900px) {
     .side-bar {

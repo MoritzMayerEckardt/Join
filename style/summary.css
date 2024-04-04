@@ -127,7 +127,7 @@ body {
 }
 
 .amount-description {
-    font-weight: 400px;
+    font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     color: #2A3647;
@@ -281,6 +281,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
 }
 
 .tasks-amount {
@@ -314,4 +318,236 @@ body {
     font-weight: 700;
     color: #29ABE2;
     line-height: 76.8px;
+}
+
+
+.d-none-mobile-menu-summary {
+    display: none !important;
+}
+
+
+/* ******************MOBILE RESPONSIVE****************** */
+
+
+@media(max-width:1255px) {
+    .greeting-text-container {
+        display: none;
+    }
+}
+
+@media(max-width:1015px) {
+    .summary {
+        margin-left: 275px;
+    }
+}
+
+@media(max-width:950px) {
+
+    .heading {
+        height: 95px;
+    }
+
+    .summary {
+        margin-left: 275px;
+    }
+
+    .heading-container {
+        flex-direction: column;
+        align-items: unset;
+    }
+
+    .seperator {
+        display: none;
+    }
+
+    .mobile-seperator {
+        width: 120px;
+        height: 3px;
+        background-color: #29ABE2;
+        margin-top: 20px;
+    }
+}
+
+
+@media(max-width:900px) {
+
+    .summary {
+        width: 100vw;
+    }
+
+    .content-right-summary {
+        width: 100%;
+    }
+
+    .content-container {
+        justify-content: flex-start;
+    }
+
+    .aside-summary {
+        display: none;
+    }
+
+    .summary {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-left: unset;
+        padding-bottom: 80px;
+        margin-top: 104px;
+    }
+
+    .header-summary {
+        left: unset;
+        width: 100vw;
+    }
+
+    .d-none-mobile-menu-summary {
+        display: flex !important;
+    }
+}
+
+
+@media(max-width:600px) {
+
+    .heading-container {
+        margin-top: 16px;
+    }
+
+    .heading {
+        font-size: 47px;
+        line-height: 56.4px;
+        text-align: left;
+        height: 56px;
+    }
+
+    .subheading {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+        height: 24px;
+    }
+
+    .mobile-seperator {
+        width: 90px;
+        margin-top: 8px;
+    }
+
+    .overview-container {
+        width: 396px;
+        margin-top: 32px;
+    }
+
+    .todo-done-row {
+        gap: 24px;
+        height: 110px;
+        width: 396px;
+    }
+
+    .to-do-container {
+        width: 186px;
+        height: 110px;
+    }
+
+    .done-container {
+        width: 186px;
+        height: 110px;
+    }
+
+    .edit-container {
+        width: 40px;
+        height: 40px;
+        background-size: 20px;
+    }
+
+    .inner-done-container {
+        width: 40px;
+        height: 40px;
+        background-size: 41px;
+    }
+
+    .urgent-container {
+        height: 110px;
+        padding: 28px;
+    }
+
+    .urgent-img-container {
+        width: 40px;
+        height: 40px;
+    }
+
+    .urgent-img {
+        width: 22.79px;
+        height: 16.74px;
+    }
+
+    .urgent-seperator {
+        height: 68px;
+    }
+
+    .tasks-info-container {
+        width: 116px;
+        height: 116px;
+        padding: 12px 0px 12px 0px;
+    }
+
+    .amount {
+        font-size: 47px;
+        line-height: 56.4px;
+    }
+
+    .tasks-amount {
+        font-size: 47px;
+        line-height: 56.4px;
+    }
+
+    .amount-description {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.8px;
+    }
+
+    .deadline-date {
+        font-size: 16px;
+        line-height: 19.2px;
+    }
+
+    .deadline-description {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.8px;
+    }
+
+    .tasks-description-container {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.8px;
+    }
+
+}
+
+@media(max-width:414px) { 
+
+    .overview-container {
+        width: 300px;
+    }
+
+    .todo-done-row {
+        width: 300px;
+        gap: 12px;
+      }
+
+    .to-do-container {
+        width: 144px;
+    }
+
+    .done-container {
+        width: 144px;
+    }
+
+    .tasks-info-container {
+        width: 96px;
+    }
+
+
 }

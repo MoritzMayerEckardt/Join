@@ -1,0 +1,11 @@
+.container-position{
+    height: 100%;
+}
+
+.legalHeadline{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 50px;
+}
+

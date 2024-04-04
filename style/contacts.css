@@ -164,6 +164,8 @@
     line-height: 73px;
     letter-spacing: 0em;
     text-align: left;
+    width: 274px;
+    ;
 }
 
 .seperator-contacts-heading {
@@ -177,6 +179,7 @@
     line-height: 32px;
     letter-spacing: 0em;
     text-align: left;
+    width: 236px;
 }
 
 .view-contact-container {
@@ -747,4 +750,145 @@
     color: #2A3647;
 }
 
+.d-none-mobile-menu-contacts {
+    display: none !important;
+}
 
+
+@media(max-width:1275px) {
+
+    /* .contacts-heading-container{
+        margin-top: 32px;
+    } */
+
+    .contacts-heading-container {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 278px;
+        gap: 8px;
+        height: 135px;
+    }
+
+    .seperator-contacts-heading {
+        display: none;
+    }
+
+    .seperator-contacts-heading-mobile {
+        width: 120px;
+        border: 3px solid #29ABE2;
+        height: 3px;
+        margin-top: 4px;
+    }
+}
+
+@media(max-width:1150px) {
+
+    .contacts-list-container {
+        width: 328px;
+    }
+
+
+    .contacts-container {
+        width: 360px;
+    }
+
+    @keyframes slideInContact {
+        0% {
+            left: 100%;
+        }
+
+        100% {
+            left: 594px;
+        }
+
+        50% {
+            left: 594px;
+        }
+
+        90% {
+            left: 594px;
+        }
+
+        100% {
+            left: 594px;
+        }
+    }
+}
+
+
+@media(max-width:1080px) {
+    .aside-contacts {
+        display: none;
+    }
+
+    .contacts-heading-container {
+        margin-top: 8px;
+    }
+
+    .contacts-header {
+        left: unset;
+        width: 100vw;
+    }
+
+    .contacts-section {
+        margin-left: unset;
+        height: calc(100vh - 96px - 80px);
+    }
+
+
+    .contacts-container {
+        height: calc(100vh - 96px - 80px);
+        height: 100%;
+    }
+
+    @keyframes slideInContact {
+        0% {
+            left: 100%;
+        }
+
+        100% {
+            left: 362px;
+        }
+
+        50% {
+            left: 362px;
+        }
+
+        90% {
+            left: 362px;
+        }
+
+        100% {
+            left: 362px;
+        }
+    }
+
+    .d-none-mobile-menu-contacts {
+        display: flex !important;
+        margin-top: 0;
+    }
+
+    .content-right-contacts {
+        overflow-x: unset;
+    }
+
+    .show-complete-contact-template {
+        width: calc(100vw - 360px);
+        overflow: auto;
+        height: calc(100vh - 96px - 80px) !important;
+    }
+
+    .list-container {
+        height: calc(100vh - (101px + 96px + 20px + 80px));
+    }
+
+    .contact-information {
+        height: unset;
+        margin-top: 40px;
+    }
+}
+
+@media(max-width: 840px) {
+
+
+}

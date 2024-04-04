@@ -14,9 +14,9 @@
 </head>
 <body onload="initSummary()">
     <div class="content-container flex">
-        <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
+        <aside id="content-left" class="aside-summary" w3-include-html="\assets\templates\aside.html"></aside>
         <section id="content-right" class="content-right-summary">
-            <header w3-include-html="\assets\templates\header.html"></header>
+            <header class="header-summary" w3-include-html="\assets\templates\header.html"></header>
             <section class="summary" id="summary">
                 
                 <div>
@@ -24,6 +24,7 @@
                         <div class="heading">JOIN 360</div>
                         <div class="seperator"></div>
                         <div class="subheading">Key Metrics at a Glance</div>
+                        <div class="mobile-seperator"></div>
                     </div>
 
                     <div class="overview-container">
@@ -103,7 +104,7 @@
         </section>
     </div>
 
-    <menu class="mobile-menu d-none" w3-include-html="\assets\templates\mobile_menu.html" ></menu>
+    <menu w3-include-html=".\assets\templates\mobile_menu.html" class="mobile-menu d-none-mobile-menu-summary"></menu>
 
 </body>
 
