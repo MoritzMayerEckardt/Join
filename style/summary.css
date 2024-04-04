@@ -321,6 +321,11 @@ body {
 }
 
 
+.d-none-mobile-menu-summary {
+    display: none !important;
+}
+
+
 /* ******************MOBILE RESPONSIVE****************** */
 
 
@@ -396,7 +401,7 @@ body {
         width: 100vw;
     }
 
-    .mobile-menu {
+    .d-none-mobile-menu-summary {
         display: flex !important;
     }
 }

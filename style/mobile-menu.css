@@ -1,5 +1,5 @@
 .mobile-menu {
-    display: none;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: #2a3647;
