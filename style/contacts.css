@@ -19,6 +19,7 @@
 }
 
 .show-complete-contact-template {
+    width: calc(100vw - 379px);
     height: calc(100vh - 96px) !important;
 }
 
@@ -47,6 +48,7 @@
     display: flex;
     align-items: center;
 }
+
 
 .add-contacts-btn {
     display: flex;
@@ -77,6 +79,10 @@
 .person-add-svg {
     width: 32px;
     height: 32px;
+}
+
+.add-contacts-btn-mobile {
+    display: none;
 }
 
 .list-container {
@@ -134,6 +140,8 @@
     /* Oder hier die Hintergrundfarbe für den aktiven Kontakt einfügen */
 }
 
+
+
 .name-initials {
     display: flex;
     justify-content: center;
@@ -155,6 +163,7 @@
     height: 73px;
     gap: 30px;
     margin-top: 55px;
+    margin-left: 40px;
 }
 
 .main-contact-heading {
@@ -165,7 +174,6 @@
     letter-spacing: 0em;
     text-align: left;
     width: 274px;
-    ;
 }
 
 .seperator-contacts-heading {
@@ -816,7 +824,7 @@
 }
 
 
-@media(max-width:1080px) {
+/* @media(max-width:1080px) {
     .aside-contacts {
         display: none;
     }
@@ -873,7 +881,7 @@
     }
 
     .show-complete-contact-template {
-        width: calc(100vw - 360px);
+        width: calc(100vw - 379px);
         overflow: auto;
         height: calc(100vh - 96px - 80px) !important;
     }
@@ -886,9 +894,52 @@
         height: unset;
         margin-top: 40px;
     }
-}
 
-@media(max-width: 840px) {
+    .view-contact-container {
+        width: max-content;
+        height: calc(100vh - 96px - 80px - 120px) !important;
+    }
 
+    .name-container {
+        width: calc(100vw - 379px);
+    }
 
+} */
+
+@media(max-width: 1080px) {
+
+    .contacts-section {
+        width: 100vw;
+    }
+
+    .contacts-container {
+        width: 100%;
+    }
+
+    .contacts-list-container {
+        width: 100%;
+    }
+
+    .show-complete-contact-template {
+        display: none;
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    .list-container {
+        height: 100%;
+    }
+
+    .add-contacts-btn-mobile {
+        display: flex;
+        position: absolute;
+        left: calc(100vw - 80px);
+        bottom: 24px;
+        background-color: #2A3647;
+        padding: 12px;
+        border: none;
+        border-radius: 100%;
+    }
 }
