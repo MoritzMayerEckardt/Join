@@ -13,9 +13,10 @@
 </head>
 <body onload="initAddTask()">
     <div class="content-container">
-        <aside id="content-left" w3-include-html="\assets\templates\aside.html"></aside>
+        <aside id="content-left" class="aside-addtask" w3-include-html="\assets\templates\aside.html"></aside>
+        <menu class="mobile-menu" w3-include-html="\assets\templates\mobile_menu.html" ></menu>
         <section id="content-right" class="content-right">
-            <header w3-include-html="\assets\templates\header.html"></header>
+            <header class="header-addtask" w3-include-html="\assets\templates\header.html"></header>
             <form onsubmit="addTask(); return false">
                 <section id="board" class="board1">
                     <div class="headline">

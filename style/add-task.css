@@ -303,7 +303,6 @@
     max-height: 200px;
     overflow: auto;
     background-color: white;
-    z-index: 100;
 }
 
 .newcontact{
@@ -564,4 +563,15 @@
 
 .vectorPic {
     height: 450px;
+}
+
+.mobile-menu{
+    display: none !important;
+}
+
+@media (max-width: 900px){
+    .mobile-menu{
+        display: flex !important;
+        z-index: 99;
+    }
 }

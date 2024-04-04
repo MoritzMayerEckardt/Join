@@ -285,7 +285,7 @@ function showContactsForAssign() {
             </div>
             <div class="nameAndCheckbox">    
                 <p class="contactName">${contact.name}</p>
-                <input type="checkbox" id="checkbox" class="checkBox">
+                <input type="checkbox" id="checkbox${i}" class="checkBox">
             </div> 
         </div>`;
     }
