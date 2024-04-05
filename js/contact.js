@@ -302,3 +302,9 @@ async function saveEditContact() {
     openFullCard(name, email, phone, initials, currentIndex);
 }
 
+
+
+function showFullContactMobile(){
+    document.getElementById('contacts-container').classList.add('d-none')
+    document.getElementById('show-complete-contact-template').classList.remove('d-none')
+}

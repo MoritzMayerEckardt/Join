@@ -948,6 +948,29 @@
         border: none;
         border-radius: 100%;
     }
+
+    /* @keyframes slideInContact {
+        0% {
+            left: 100%;
+        }
+
+        100% {
+            left: 300px;
+        }
+
+        50% {
+            left: 300px;
+        }
+
+        90% {
+            left: 300px;
+        }
+
+        100% {
+            left: 300px;
+        }
+    } */
+
 }
 
 @media(max-width: 900px) {
