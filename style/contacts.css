@@ -1072,6 +1072,10 @@
         width: 90px;
     }
 
+    .arrow-back-contacts-mobile {
+        top: 170px;
+    }
+
     .view-contact-container {
         width: 330px;
     }
@@ -1120,3 +1124,46 @@
         margin-top: unset;
     }
 }
+
+@media(max-width: 530px) {
+
+    .contacts-heading-container {
+        margin-left: 20px;
+    }
+
+    .view-contact-container {
+        width: 300px;
+    }
+
+    .name-container {
+        width: 300px;
+    }
+
+    @keyframes slideInContact {
+        0% {
+            left: 100%;
+            top: 270px;
+        }
+
+        100% {
+            left: 20px;
+            top: 270px;
+        }
+
+        50% {
+            left: 20px;
+            top: 270px;
+        }
+
+        90% {
+            left: 20px;
+            top: 270px;
+        }
+
+        100% {
+            left: 20px;
+            top: 270px;
+        }
+    }
+}
+
