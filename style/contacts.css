@@ -913,6 +913,14 @@
 
 @media(max-width: 1080px) {
 
+    /* .d-flex {
+        display: flex;
+    } */
+
+        .d-none1080 {
+        display: none;
+    }
+
     .contacts-section {
         width: 100vw;
     }
@@ -925,9 +933,9 @@
         width: 100%;
     }
 
-    .show-complete-contact-template {
+    /* .show-complete-contact-template {
         display: none;
-    }
+    } */
 
     .button-container {
         display: none;
@@ -1034,7 +1042,4 @@
             top: 270px;
         }
     }
-
-
-
 }

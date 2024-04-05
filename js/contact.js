@@ -308,7 +308,11 @@ async function saveEditContact() {
 
 function showFullContactMobile(){
     if (window.innerWidth < 1080) {
-    document.getElementById('contacts-container').classList.add('d-none')
-    document.getElementById('show-complete-contact-template').style.display = "flex";
+    document.getElementById('contacts-container').classList.add('d-none1080')
+    // document.getElementById('show-complete-contact-template').style.display = "flex";
+    document.getElementById('show-complete-contact-template').classList.add('d-flex');
+    document.getElementById('show-complete-contact-template').classList.remove('d-none1080');
+    
+
     }
 }
