@@ -91,6 +91,7 @@
     height: calc(100vh - (101px + 96px + 20px));
     overflow-y: auto;
     overflow-x: hidden;
+    padding-right: 1px;
 }
 
 /* Anpassungen für die Scrollleiste */
@@ -125,6 +126,7 @@
 .contactActive {
     background-color: #2a3647;
     color: white;
+    width: 100%;
 }
 
 .email-in-Contact-list {
@@ -133,6 +135,8 @@
 
 .contact-in-list:hover {
     background-color: lightgrey;
+
+    width: 100%;
 }
 
 .contact-in-list.contactActive:hover {
@@ -793,6 +797,7 @@
 
     .contacts-list-container {
         width: 328px;
+        padding-right: 2px;
     }
 
 
@@ -930,6 +935,7 @@
 
     .list-container {
         height: 100%;
+        width: calc(100vw - 257px);
     }
 
     .add-contacts-btn-mobile {
@@ -955,6 +961,10 @@
         margin-left: unset;
     }
 
+    .list-container {
+        width: calc(100vw - 50px);
+    }
+
     .d-none-mobile-menu-contacts {
         display: flex !important;
     }
@@ -963,4 +973,6 @@
         bottom: 80px;
         left: calc(100vw - 100px);
     }
+
+
 }
