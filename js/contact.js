@@ -217,6 +217,8 @@ function openFullCard(name, email, phone, initials, index) {
     document.getElementById(`contact-in-list${index}`).classList.add('contactActive');
 
     showDataFromCurrentContact(name, email, phone, initials, index);
+
+    showFullContactMobile();
 }
 
 
@@ -305,6 +307,8 @@ async function saveEditContact() {
 
 
 function showFullContactMobile(){
+    if (window.innerWidth < 1080) {
     document.getElementById('contacts-container').classList.add('d-none')
-    document.getElementById('show-complete-contact-template').classList.remove('d-none')
+    document.getElementById('show-complete-contact-template').style.display = "flex";
+    }
 }

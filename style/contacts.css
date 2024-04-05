@@ -949,27 +949,32 @@
         border-radius: 100%;
     }
 
-    /* @keyframes slideInContact {
+    @keyframes slideInContact {
         0% {
             left: 100%;
+            top: 270px;
         }
 
         100% {
-            left: 300px;
+            left: 270px;
+            top: 270px;
         }
 
         50% {
-            left: 300px;
+            left: 270px;
+            top: 270px;
         }
 
         90% {
-            left: 300px;
+            left: 270px;
+            top: 270px;
         }
 
         100% {
-            left: 300px;
+            left: 270px;
+            top: 270px;
         }
-    } */
+    }
 
 }
 
