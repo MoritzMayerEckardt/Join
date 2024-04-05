@@ -19,15 +19,21 @@
     <div id="popup-board-overlay" class="flex-center d-none popup-board-overlay" onclick="closeFromClickOutside()">
         <div id="popup-board-content" onclick="doNotClose(event)"></div>
     </div>
-    <menu class="mobile-menu d-none" w3-include-html="\assets\templates\mobile_menu.html"></menu> 
-    <div class="flex">
+    <menu class="mobile-menu-board" w3-include-html="\assets\templates\mobile_menu.html"></menu> 
+    <section class="header-mobile" w3-include-html="\assets\templates\header_mobile.html"></section>
+    <div class="flex-wrapper-board flex">
         <aside class="sidebar" w3-include-html="\assets\templates\aside.html"></aside>
-        <section style="max-width: 1440px;">
-            <header w3-include-html="\assets\templates\header.html"></header>
+        <section class="position-helper-board">
+            <header class="header-board" w3-include-html="\assets\templates\header.html"></header>
             <section style="max-width: 1440px;" id="board">
                 <div class="board-top">
                     <div class="board-headline-container">
-                        <h1 class="board-headline">Board</h1>
+                        <div class="board-headline-mobile">
+                            <h1 class="board-headline">Board</h1>
+                            <div class="add-task-button-mobile" onclick="showAddTaskForm('toDo')">
+                                <img src="./assets/img/plus_add_task_mobile.svg" alt="">
+                            </div>
+                        </div>
                         <div class="board-search-and-task-container">
                             <div class="search-container">
                                 <div class="search-container-inside">
@@ -45,28 +51,28 @@
                     </div>
                 </div>
                 <div id="board-content" class="board-content">
-                    <div>
+                    <div class="position-helper-board-content">
                         <div class="subheadline-container">
                             <span>To do</span>
                             <img class="add-task-img" id="add-task-img0" onclick="showAddTaskForm('toDo')" onmouseover="changeColorOfAddTaskImg(0)" onmouseout="changeColorOfAddTaskImg2(0)" src="./assets/img/add_task_button.svg" alt="">
                         </div>
                         <div ondragover="allowDrop(event); highlight('to-do-column')" ondrop="moveTo('toDo'); removeHighlight('to-do-column')" ondragleave="removeHighlight('to-do-column')" id="to-do-column" class="column"></div>
                     </div>
-                    <div>
+                    <div class="position-helper-board-content">
                         <div class="subheadline-container">
                             <span>In progress</span>
                             <img class="add-task-img" id="add-task-img1" onclick="showAddTaskForm('inProgress')" onmouseover="changeColorOfAddTaskImg(1)" onmouseout="changeColorOfAddTaskImg2(1)" src="./assets/img/add_task_button.svg" alt="">
                         </div>
                         <div ondragover="allowDrop(event); highlight('in-progress-column')" ondrop="moveTo('inProgress'); removeHighlight('in-progress-column')" ondragleave="removeHighlight('in-progress-column')" id="in-progress-column" class="column"></div>
                     </div>
-                    <div>
+                    <div class="position-helper-board-content">
                         <div class="subheadline-container">
                             <span>Await feedback</span>
                             <img class="add-task-img" id="add-task-img2" onclick="showAddTaskForm('awaitFeedback')" onmouseover="changeColorOfAddTaskImg(2)" onmouseout="changeColorOfAddTaskImg2(2)" src="./assets/img/add_task_button.svg" alt="">
                         </div>
                         <div ondragover="allowDrop(event); highlight('await-feedback-column')" ondrop="moveTo('awaitFeedback'); removeHighlight('await-feedback-column')" ondragleave="removeHighlight('await-feedback-column')" id="await-feedback-column" class="column"></div>
                     </div>
-                    <div>
+                    <div class="position-helper-board-content">
                         <div class="subheadline-container">
                             <span>Done</span>
                         </div>
@@ -74,6 +80,7 @@
                     </div>
                 </div>
             </section>
+            
         </section>
     </div>
     

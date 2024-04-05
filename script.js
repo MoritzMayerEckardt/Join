@@ -9,6 +9,7 @@ let tasks = [];
 let contacts = [];
 let guest;
 let smallMenuOpen = false;
+let smallMenuMobileOpen = false;
 let taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
 let subtaskArray = [];
 let lastClickedButton = '';
@@ -114,6 +115,44 @@ document.addEventListener('click', function(event) {
         // Schließe das smallMenu und setze smallMenuOpen auf false
         smallMenu.style.display = 'none';
         smallMenuOpen = false;
+    }
+});
+
+async function showCurrentUserInButtonMobile() {
+    let button = document.getElementById('user-initials-mobile');
+    let currentUserInitials;
+
+    if (currentUserIndex == 'guestLogin') {
+         currentUserInitials = guest['initials']
+    }else{
+         currentUserInitials = users[currentUserIndex]['initials'];
+    }
+    button.innerHTML= currentUserInitials;
+}
+
+function openSmallMenuMobile(){
+    let smallMenuMobile = document.getElementById('small-menu-mobile');
+
+    if (!smallMenuMobileOpen) {
+            smallMenuMobile.style.display = 'flex';
+            smallMenuMobileOpen = true;
+    } else {
+        smallMenuMobile.style.display = 'none';
+        smallMenuMobileOpen = false;
+    }
+}
+
+// Eventlistener für Klicks auf den gesamten Bildschirm
+document.addEventListener('click', function(event) {
+    let smallMenuMobile = document.getElementById('small-menu-mobile');
+    let smallMenuBtnMobile = document.getElementById('user-initials-mobile')
+    let targetElement = event.target; // Das geklickte Element
+
+    // Überprüfen, ob das geklickte Element nicht innerhalb des smallMenu liegt und ob das smallMenu geöffnet ist
+    if (targetElement !== smallMenuMobileOpen && targetElement !== smallMenuBtnMobile) {
+        // Schließe das smallMenu und setze smallMenuOpen auf false
+        smallMenuMobile.style.display = 'none';
+        smallMenuBtnMobile = false;
     }
 });
 

@@ -16,6 +16,7 @@ async function initBoard() {
     addBackgroundColor(2);
     renderColumns(); 
     showCurrentUserInButton();
+    showCurrentUserInButtonMobile();
 }
 
 
