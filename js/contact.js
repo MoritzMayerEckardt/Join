@@ -209,7 +209,7 @@ function openFullCard(name, email, phone, initials, index) {
 
     // Alle Kontakt-Elemente zurücksetzen
     let allContactElements = document.querySelectorAll('.contact-in-list');
-    allContactElements.forEach(function(contactElement) {
+    allContactElements.forEach(function (contactElement) {
         contactElement.classList.remove('contactActive');
     });
 
@@ -246,7 +246,7 @@ function showEditForm() {
     let email = document.getElementById('email-view-contact').innerHTML;
     let phone = document.getElementById('phone-noumber-view-contact').innerHTML;
     let color = document.getElementById('name-initials-container-view-contact').style.backgroundColor;
-    
+
 
     document.getElementById('initals-field-edit-contact').innerHTML = initials;
     document.getElementById('name-input-field-edit-contact').value = name;
@@ -306,13 +306,16 @@ async function saveEditContact() {
 
 
 
-function showFullContactMobile(){
+function showFullContactMobile() {
     if (window.innerWidth < 1080) {
-    document.getElementById('contacts-container').classList.add('d-none1080')
-    // document.getElementById('show-complete-contact-template').style.display = "flex";
-    document.getElementById('show-complete-contact-template').classList.add('d-flex');
-    document.getElementById('show-complete-contact-template').classList.remove('d-none1080');
-    
-
+        document.getElementById('contacts-container').classList.add('d-none1080');
+        document.getElementById('show-complete-contact-template').classList.remove('d-none1080');
     }
+}
+
+function closeContactMobile(){
+
+    document.getElementById('contacts-container').classList.remove('d-none1080');
+    document.getElementById('show-complete-contact-template').classList.add('d-none1080');
+
 }

@@ -766,6 +766,9 @@
     display: none !important;
 }
 
+.d-flex1080 {
+    display: none;
+}
 
 @media(max-width:1275px) {
 
@@ -913,20 +916,26 @@
 
 @media(max-width: 1080px) {
 
-    /* .d-flex {
+    .d-flex1080 {
         display: flex;
-    } */
+    }
 
         .d-none1080 {
         display: none;
     }
 
+    .arrow-back-contacts-mobile {
+        position: fixed;
+        top: 180px;
+        right: 30px;
+    }
     .contacts-section {
         width: 100vw;
     }
 
     .contacts-container {
         width: 100%;
+        height: calc(100vh - 160px);
     }
 
     .contacts-list-container {
