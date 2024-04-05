@@ -949,33 +949,39 @@
         border-radius: 100%;
     }
 
-    @keyframes slideInContact {
-        0% {
-            left: 100%;
-            top: 270px;
-        }
-
-        100% {
-            left: 270px;
-            top: 270px;
-        }
-
-        50% {
-            left: 270px;
-            top: 270px;
-        }
-
-        90% {
-            left: 270px;
-            top: 270px;
-        }
-
-        100% {
-            left: 270px;
-            top: 270px;
-        }
+    .d-none-900 {
+        display: none;
     }
 
+   
+
+        @keyframes slideInContact {
+            0% {
+                left: 100%;
+                top: 270px;
+            }
+
+            100% {
+                left: 270px;
+                top: 270px;
+            }
+
+            50% {
+                left: 270px;
+                top: 270px;
+            }
+
+            90% {
+                left: 270px;
+                top: 270px;
+            }
+
+            100% {
+                left: 270px;
+                top: 270px;
+            }
+        }
+    
 }
 
 @media(max-width: 900px) {
@@ -1002,7 +1008,7 @@
         left: calc(100vw - 65px);
     }
 
-    
+
 
 
 }
