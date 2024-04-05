@@ -1008,6 +1008,32 @@
         left: calc(100vw - 65px);
     }
 
+    @keyframes slideInContact {
+        0% {
+            left: 100%;
+            top: 270px;
+        }
+
+        100% {
+            left: 40px;
+            top: 270px;
+        }
+
+        50% {
+            left: 40px;
+            top: 270px;
+        }
+
+        90% {
+            left: 40px;
+            top: 270px;
+        }
+
+        100% {
+            left: 40px;
+            top: 270px;
+        }
+    }
 
 
 
