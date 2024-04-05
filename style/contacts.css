@@ -163,7 +163,7 @@
 .contacts-heading-container {
     display: flex;
     align-items: center;
-    width: 575px;
+    width: 605px;
     height: 73px;
     gap: 30px;
     margin-top: 55px;
@@ -970,9 +970,11 @@
     }
 
     .add-contacts-btn-mobile {
-        bottom: 80px;
-        left: calc(100vw - 100px);
+        bottom: 75px;
+        left: calc(100vw - 65px);
     }
+
+    
 
 
 }
