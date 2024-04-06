@@ -7,14 +7,16 @@
     <title>Add Task</title>
     <script src="js/includeHTML.js"></script>
     <script src="/js/aside.js"></script>
-    <script src="script.js"></script>
     <script src="js/add_task.js"></script>
+    <script src="script.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body onload="initAddTask()">
     <div class="content-container">
         <aside id="content-left" class="aside-addtask" w3-include-html="\assets\templates\aside.html"></aside>
-        <menu class="mobile-menu" w3-include-html="\assets\templates\mobile_menu.html" ></menu>
+        <menu class="mobile-menu" w3-include-html="\assets\templates\mobile_menu.html"></menu>
         <section id="content-right" class="content-right">
             <header class="header-addtask" w3-include-html="\assets\templates\header.html"></header>
             <form onsubmit="addTask(); return false">
@@ -116,19 +118,22 @@
                     <div id="newSubtask" class="newSubtask">
                     </div>
 
-                    <div class="requiredField">
-                        <p><span class="star">*</span>This field is required</p>
-                    </div>
-                    <div class="buttons">
-                        <button class="clearBtn" onclick="clearForm()">
-                            <p class="clear">Clear</p>
-                            <img src="assets/img/cancel.png">
-                        </button>
 
-                        <button class="createBtn">
-                            <p class="create">Create Task</p>
-                            <img src="assets/img/check.png">
-                        </button>
+                    <div class="buttonsAndRequired">
+                        <div class="requiredField">
+                            <p><span class="star">*</span>This field is required</p>
+                        </div>
+                        <div class="buttons">
+                            <button class="clearBtn" onclick="clearForm()">
+                                <p class="clear">Clear</p>
+                                <img src="assets/img/cancel.png">
+                            </button>
+
+                            <button class="createBtn">
+                                <p class="create">Create Task</p>
+                                <img src="assets/img/check.png">
+                            </button>
+                        </div>
                     </div>
                     <div class="vector">
                         <img class="vectorPic" src="assets/img/vector.svg">

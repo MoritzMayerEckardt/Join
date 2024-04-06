@@ -12,6 +12,8 @@
 @import url('./style/contacts.css');
 @import url('./style/mobile-menu.css');
 @import url(./style/header_mobile.css);
+@import url(./style/add_task_mobile.css);
+
 
 body {
     margin: 0;

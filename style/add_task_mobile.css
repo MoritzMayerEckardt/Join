@@ -1,0 +1,156 @@
+@media (max-width: 900px) {
+    .mobile-menu {
+        display: flex !important;
+        z-index: 99;
+    }
+
+    .content-right {
+        width: 100%;
+        padding-left: 0px;
+    }
+
+    .header-addtask {
+        position: fixed;
+        left: 0px;
+        width: 100%;
+        padding: 0px;
+    }
+
+    .userInitials {
+        position: static;
+    }
+
+    .board1 {
+        width: 100% !important;
+        padding-top: 0px !important;
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+    .headline{
+        left: 0px;
+        padding-top: 40px;
+        padding-left: 10px;
+        width: 300px;
+    }
+
+    .leftSide{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        left: 0px;
+        padding-left: 10px;
+        padding-right: 20px;
+    }
+
+    .titleFrame{
+        width: 100%;
+    }
+
+    .inputTitle{
+        width: 100%;
+    }
+
+    .inputfieldTitle{
+        width: 100% !important;
+    }
+
+    .descriptionFrame{
+        width: 100%;
+        position: static;
+    }
+
+    .inputfieldDescription{
+        width: 100%;
+    }
+
+    .smallinputfieldDescription{
+        width: 100%;
+    }
+
+    .assignedToFrame{
+        width: 100%;
+        position: static;
+    }
+
+    .assigned{
+        width: 100%;
+    }
+
+    .selection{
+        width: 100%;
+    }
+
+    .leftSide{
+        padding-top: 40px;
+    }
+
+    .description{
+        width: 100%;
+    }
+
+    .rightSide{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    left: 0px;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-top: 150px;
+    gap: 20px;
+    position: static;
+    }
+
+    .buttonsFrame{
+        width: 100%;
+        position: static;
+    }
+
+    .title{
+        width: 100%;
+        position: static;
+    }
+
+    .smallButtonsFrame{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .categoryFrame{
+        width: 100%;
+        position: static;
+    }
+
+    .select{
+        width: 100%;
+    }
+
+    .subtaskFrame{
+        width: 100%;
+        position: static;
+    }
+
+    .newSubtask{
+        width: 100%;
+        position: s;
+    }
+
+    .requiredField{
+        position: static;
+    }
+    
+    .buttons{
+        position: static;
+    }
+
+    .vector{
+        display: none;
+    }
+}
