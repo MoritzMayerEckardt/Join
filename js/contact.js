@@ -313,7 +313,7 @@ function showFullContactMobile() {
     }
 }
 
-function closeContactMobile(){
+function closeContactMobile() {
 
     document.getElementById('contacts-container').classList.remove('d-none1080');
     document.getElementById('show-complete-contact-template').classList.add('d-none1080');
