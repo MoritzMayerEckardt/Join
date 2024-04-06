@@ -30,14 +30,14 @@
         flex-direction: column;
     }
 
-    .headline{
+    .headline {
         left: 0px;
         padding-top: 40px;
         padding-left: 10px;
         width: 300px;
     }
 
-    .leftSide{
+    .leftSide {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -48,109 +48,137 @@
         padding-right: 20px;
     }
 
-    .titleFrame{
+    .titleFrame {
         width: 100%;
     }
 
-    .inputTitle{
+    .inputTitle {
         width: 100%;
     }
 
-    .inputfieldTitle{
+    .inputfieldTitle {
         width: 100% !important;
+        margin-right: -25px;
     }
 
-    .descriptionFrame{
+    .descriptionFrame {
         width: 100%;
         position: static;
     }
 
-    .inputfieldDescription{
+    .inputfieldDescription {
         width: 100%;
     }
 
-    .smallinputfieldDescription{
+    .smallinputfieldDescription {
         width: 100%;
     }
 
-    .assignedToFrame{
+    .assignedToFrame {
         width: 100%;
         position: static;
     }
 
-    .assigned{
+    .assigned {
         width: 100%;
     }
 
-    .selection{
+    .selection {
         width: 100%;
     }
 
-    .leftSide{
+    .leftSide {
         padding-top: 40px;
     }
 
-    .description{
+    .description {
         width: 100%;
     }
 
-    .rightSide{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
-    left: 0px;
-    padding-left: 10px;
-    padding-right: 20px;
-    padding-top: 150px;
-    gap: 20px;
-    position: static;
+    .rightSide {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        left: 0px;
+        padding-left: 10px;
+        padding-right: 20px;
+        padding-top: 150px;
+        gap: 20px;
+        position: static;
+        margin-bottom: 240px;
     }
 
-    .buttonsFrame{
+    .buttonsFrame {
         width: 100%;
         position: static;
     }
 
-    .title{
+    .title {
         width: 100%;
         position: static;
     }
 
-    .smallButtonsFrame{
+    .smallButtonsFrame {
         width: 100%;
         justify-content: center;
     }
 
-    .categoryFrame{
+    .categoryFrame {
         width: 100%;
         position: static;
     }
 
-    .select{
+    .select {
         width: 100%;
     }
 
-    .subtaskFrame{
+    .subPlus {
+        display: flex;
+    }
+
+    .subtaskPlus {
+        position: static;
+    }
+
+    .subtaskFrame {
         width: 100%;
         position: static;
     }
 
-    .newSubtask{
+    .newSubtask {
         width: 100%;
-        position: s;
+        position: static;
+        padding-left: 10px;
+        padding-bottom: 270px;
     }
 
-    .requiredField{
-        position: static;
-    }
-    
-    .buttons{
-        position: static;
+    .buttonsAndRequired {
+        position: fixed;
+        bottom: 64px;
+        width: 100%;
+        background-color: rgba(246, 247, 248, 1);
+        display: flex;
+        align-items: center;
+        height: 100px;
     }
 
-    .vector{
+    .requiredField {
+        position: static;
+        padding-top: 0px;
+    }
+
+    .buttons {
+        position: static;
+        padding-right: 0px;
+    }
+
+    .clearBtn {
+        display: none;
+    }
+
+    .vector {
         display: none;
     }
 }
