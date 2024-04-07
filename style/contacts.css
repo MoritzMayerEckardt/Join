@@ -824,8 +824,8 @@
         width: 100%;
         height: calc(100vh - 96px - 80px);
         margin-top: 96px;
-        margin-left: 16px;
-        margin-right: 16px;
+        margin-left: 4px;
+        margin-right: 4px;
     }
     
     .close-container {
@@ -1003,7 +1003,6 @@
         left: calc(100vw - 80px);
         bottom: 24px;
         background-color: #2A3647;
-        padding: 12px;
         border: none;
         border-radius: 100%;
         width: 56px;
@@ -1043,6 +1042,31 @@
         display: block;
         animation: slideInContact none;
         margin-left: 40px;
+    }
+
+    @keyframes slideInFromRight {
+        from {
+            right: 0;
+
+            /* Startposition außerhalb des Bildschirms rechts */
+        }
+    
+        to {
+            right: 0;
+            /* Endposition: Anzeige von rechts nach links */
+           }
+    }
+
+    @keyframes slideOutToRight {
+        from {
+            right: 0;
+            /* Startposition: Anzeige von rechts nach links */
+        }
+    
+        to {
+            right: 0;
+            /* Endposition: Außerhalb des Bildschirms rechts */
+        }
     }
 
 }
