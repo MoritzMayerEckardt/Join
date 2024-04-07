@@ -15,7 +15,7 @@
 
 <body class="body-contacts" onload="initContacts()">
     <div class="content-container">
-        
+
         <aside id="content-left" class="aside-contacts" w3-include-html="\assets\templates\aside.html"></aside>
 
         <section id="content-right" class="content-right-contacts">
@@ -34,18 +34,22 @@
                         <ol class="list-container" id="list-container">
                         </ol>
                     </div>
-                    <button class="add-contacts-btn-mobile" onclick="showFullContactMobile()">
+                    <button class="add-contacts-btn-mobile" onclick="openDialogAddContacts()">
                         <img class="mobile-btn-img" src="assets/img/person_add.svg" alt="">
                     </button>
                 </div>
 
-                <div class="show-complete-contact-template d-none1080" id="show-complete-contact-template" w3-include-html="\assets\templates\show_complete_contact_data.html"></div>
+                <div class="show-complete-contact-template d-none1080" id="show-complete-contact-template"
+                    w3-include-html="\assets\templates\show_complete_contact_data.html"></div>
 
-                <div w3-include-html="\assets\templates\add_contact_form.html" id="dialog-add-contacts"
+                <!-- <div w3-include-html="\assets\templates\add_contact_form.html" id="dialog-add-contacts"
                     class="dialog-add-bg d-none" onclick="closeAddContactDialog()">
+                </div> -->
+
+                <div w3-include-html="\assets\templates\add_contact_form_mobile.html" id="dialog-add-contacts"
+                    class="dialog-add-bg-mobile d-none" onclick="closeAddContactDialog()">
                 </div>
 
-                
                 <div w3-include-html="\assets\templates\edit_contact_form.html" id="dialog-edit-contacts"
                     class="dialog-edit-bg d-none" onclick="closeEditContactDialog()">
                 </div>
@@ -53,7 +57,7 @@
             </section>
     </div>
 
-    <menu class="mobile-menu d-none-mobile-menu-contacts" w3-include-html="\assets\templates\mobile_menu.html" ></menu>
+    <menu class="mobile-menu d-none-mobile-menu-contacts" w3-include-html="\assets\templates\mobile_menu.html"></menu>
 
 </body>
 
