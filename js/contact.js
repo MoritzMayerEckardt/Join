@@ -18,7 +18,9 @@ async function initContacts() {
 
 function openDialogAddContacts() {
     let dialog = document.getElementById('dialog-add-contacts');
+    let dialogMobile = document.getElementById('dialog-add-contacts-mobile');
     dialog.classList.remove('d-none');
+    dialogMobile.classList.remove('d-none')
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
     dialog.style.right = '0';
 }
