@@ -237,14 +237,19 @@ function showTaskDeleted() {
 // **********************SEARCH-TASK-FUNCTION**********************
 
 function searchTasks() {
-    let search = document.getElementById('search').value.toLowerCase();
+    let search = document.getElementById('search').value.trim().toLowerCase();
     for (const column of columns) {
         const container = document.getElementById(column.containerId);
         container.innerHTML = '';
-        const tasksInColumn = filterTasksByCategory(tasks, column.category);
-        const foundTasksInColumn = renderTasksForColumn(tasksInColumn, search, container);
-        if (!foundTasksInColumn) {
-            container.innerHTML = column.emptyRenderer();
+        if (search === '') {
+            const tasksInColumn = filterTasksByCategory(tasks, column.category);
+            renderTasksForColumn(tasksInColumn, '', container);
+        } else {
+            const tasksInColumn = filterTasksByCategory(tasks, column.category);
+            const foundTasksInColumn = renderTasksForColumn(tasksInColumn, search, container);
+            if (!foundTasksInColumn) {
+                container.innerHTML = column.emptyRenderer();
+            }
         }
     }
 }

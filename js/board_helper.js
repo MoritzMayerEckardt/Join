@@ -225,7 +225,7 @@ function getNewSubtaskInTemplate() {
     newSubtask.innerHTML = ``;
     for (i = 0; i < subtaskArray.length; i++) {
         newSubtask.innerHTML += /*html*/`
-             <li><b>${subtaskArray[i].title}</b></li> 
+             <li class="subtask-list-edit-card"><b>${subtaskArray[i].title}</b></li> 
          `
     }
     document.getElementById('subtasks-template').value = ``;

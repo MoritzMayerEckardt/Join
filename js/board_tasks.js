@@ -82,10 +82,9 @@ function changeBackgroundColorRedButton() {
 }
 
 function changeBackgroundColorYellowButton() {
-    let {urgentButton, mediumButton, mediumButtonText, prioMedium, lowButton, redArrow, greenArrow, whiteArrow, whiteArrowLow} = getVariablesForPriorityButtons();
+    let {urgentButton, mediumButton, prioMedium, lowButton, redArrow, greenArrow, whiteArrow, whiteArrowLow} = getVariablesForPriorityButtons();
     mediumButton.style.backgroundColor = 'rgba(255, 168, 0, 1)';
     mediumButton.style.color = 'white';
-    mediumButtonText.style.fontWeight = '700';
     prioMedium.style.display = 'none';
     urgentButton.style.backgroundColor = 'white';
     urgentButton.style.color = 'black';
@@ -98,14 +97,13 @@ function changeBackgroundColorYellowButton() {
 }
 
 function changeBackgroundColorGreenButton() {
-    let {urgentButton, mediumButton, mediumButtonText, prioMedium, lowButton, redArrow, greenArrow, whiteArrow, whiteArrowLow} = getVariablesForPriorityButtons();
+    let {urgentButton, mediumButton, prioMedium, lowButton, redArrow, greenArrow, whiteArrow, whiteArrowLow} = getVariablesForPriorityButtons();
     lowButton.style.backgroundColor = 'rgba(122, 226, 41, 1)';
     lowButton.style.color = 'white';
     greenArrow.style.display = 'none';
     whiteArrowLow.style.display = 'flex';
     mediumButton.style.backgroundColor = 'white';
     mediumButton.style.color = 'black';
-    mediumButtonText.style.fontWeight = 'normal';
     prioMedium.style.display = 'flex';
     urgentButton.style.backgroundColor = 'white';
     urgentButton.style.color = 'black';

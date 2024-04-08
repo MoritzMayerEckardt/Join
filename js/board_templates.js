@@ -88,7 +88,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                             </div>
                         </button>
                         <button id="mediumButton" class="medium priority-button" onclick="changeBackgroundColor('medium'); return false">
-                            <div id="mediumText" class="mediumText">
+                            <div id="mediumText" style="font-size: 20px">
                                 Medium
                             </div>
                             <div class="arrows" style="position: relative">
@@ -171,7 +171,7 @@ function renderAddTaskForm() {
                         <div id="show-chosen-initials" class="showChosenInitials"></div>
                     </div>
                 </div>
-                <div style="height: 424px; width: 1px; background-color: lightgrey"></div>
+                <div class="add-task-seperator"></div>
                 <div class="right-side-template">
                     <div class="add-task-template-small-container">
                         <span class="add-task-text-field">Due Date <span class="star">*</span></span>
@@ -179,10 +179,10 @@ function renderAddTaskForm() {
                             <input id="date-template" type="date" name="date" class="inputfieldTitle" required>
                         </div>
                     </div>
-                    <div class="add-task-template-small-container">
+                    <div class="priority-buttons-container-template">
                         <span class="add-task-text-field">Prio</span>
-                        <div class="smallButtonsFrame">
-                            <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent'); return false">
+                        <div class="smallButtonsFrame priority-buttons-container">
+                            <button id="urgentButton" class="urgent priority-button" onclick="changeBackgroundColor('urgent'); return false">
                                 <div class="urgentText">
                                     Urgent
                                 </div>
@@ -191,16 +191,16 @@ function renderAddTaskForm() {
                                     <img id="whiteArrow" class="whiteArrow" src="assets/img/prioUrgent.svg" alt="svg">
                                 </div>
                             </button>
-                            <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium'); return false">
-                                <div id="mediumText" class="mediumText">
+                            <button id="mediumButton" class="medium priority-button" onclick="changeBackgroundColor('medium'); return false">
+                                <div id="mediumText" style="font-size: 20px;">
                                     Medium
                                 </div>
                                 <div class="arrows">
-                                    <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
-                                    <img id="prioMedium" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
+                                    <img id="mediumButtonPic" style="width: 22px" src="assets/img/hypen.svg" alt="svg">
+                                    <img id="prioMedium" style="width: 22px" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
                                 </div>
                             </button>
-                            <button id="lowButton" class="low" onclick="changeBackgroundColor('low'); return false">
+                            <button id="lowButton" class="low priority-button" onclick="changeBackgroundColor('low'); return false">
                                 <div class="lowText">
                                     Low
                                 </div>
@@ -223,7 +223,7 @@ function renderAddTaskForm() {
                         <span class="add-task-text-field">Subtask</span>
                         <div class="subtasks-input-edit-card">
                             <input onkeydown="handleKeyPressInTemplate(event)" class="subtasks-template" id="subtasks-template" type="text" placeholder="Add new subtask">
-                            <img src="assets/img/+.svg" onclick="addNewSubtaskInTemplate()">
+                            <img class="plus-img-subtask" src="assets/img/+.svg" onclick="addNewSubtaskInTemplate()">
                         </div>
                         <div id="new-subtask-template" class="new-subtask-container">
                     </div>
