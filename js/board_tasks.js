@@ -372,16 +372,10 @@ function showChosenInitialsEditCard() {
     showChosenInitials.innerHTML = '';
     chosenContacts.forEach(contact => {
         if (chosenContacts.includes(contact)) {
-            showChosenInitials.innerHTML += /*html*/`
-            <div class="assigned-contacts-edit-card">    
-                <div class="task-contacts-ellipse flex-center" style="background-color: ${contact.color}; color: white">
-                    <span style="font-size: 12px;">${contact.initials}</span>
-                </div>
-                <span>${contact.name}</span>
-            </div>
-            `;
+            showChosenInitials.innerHTML += renderChosenInitialsEditCard(contact);
         } else {
             showChosenInitials.innerHTML += ``;
         }
     });
 }
+

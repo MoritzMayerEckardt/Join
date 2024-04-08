@@ -99,7 +99,7 @@ function generateSubtasksHTML(task) {
             subtasksHTML += renderSubtaskHTML(task, subtask, checkBoxImage, index);
         }
     } else {
-        subtasksHTML = /*html*/` <div class="no-subtasks-container" style="font-size: 16px">No subtasks</div>`;
+        subtasksHTML = /*html*/` <div class="no-subtasks-container">No subtasks</div>`;
     }
     return subtasksHTML;
 }

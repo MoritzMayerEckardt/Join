@@ -26,3 +26,39 @@
         transform: none;
     }
 }
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(300%);
+    }
+}
+
+@keyframes fadeOutOverlay {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(300%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

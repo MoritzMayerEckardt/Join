@@ -23,21 +23,21 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
             <span class="detailed-card-title">${task.title}</span>
             <span class="detailed-card-description">${task.description}</span>
             <div class="detailed-card-date">
-                <span style="font-size: 20px; color: #42526E">Due date:</span>
-                <span style="font-size: 19px">${task.date}</span>
+                <span style="color: #42526E">Due date:</span>
+                <span>${task.date}</span>
             </div>
             <div class="detailed-card-priority">
-                <span style="font-size: 20px; color: #42526E">Priority:</span>
-                <div class="detailed-card-priority-text"><span style="font-size: 19px">${task.priority}</span><img src="../assets/img/prio_${task.priority}.svg" alt=""></div>
+                <span style="color: #42526E">Priority:</span>
+                <div class="detailed-card-priority-text"><span>${task.priority}</span><img src="../assets/img/prio_${task.priority}.svg" alt=""></div>
             </div>
             <div class="detailed-card-assigned">
-                <div style="font-size: 20px; color: #42526E">Assigned To:</div>
+                <div style="color: #42526E">Assigned To:</div>
                 <div class="detailed-card-contact-container">
                     ${assignedContactsHTML}
                 </div>
             </div>
             <div class="detailed-card-subtasks-container">
-                <span style="font-size: 20px; color: #42526E">Subtasks</span>
+                <span style="color: #42526E">Subtasks</span>
                 <div id="subtasks-container-detailed-card">${subtasksHTML}</div>
             </div>
             <div class="detailed-card-bottom">
@@ -64,21 +64,21 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                     <a onclick="closePopup('card')" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
                 </div>
                 <div class="edit-card-top">
-                    <span style="font-size: 20px; color: #2A3647">Title</span>
+                    <span style=" color: #2A3647">Title</span>
                     <input required placeholder="Enter a title" id="title-edit-card" class="edit-card-input-field" type="text" value="${task.title}">
                 </div>
                 <div class="edit-card-top">
-                    <span style="font-size: 20px; color: #2A3647">Description</span>
+                    <span style="color: #2A3647">Description</span>
                     <textarea placeholder="Enter a description" id="description-edit-card" class="edit-card-input-field" style="height: 168px" type="text">${task.description}</textarea>
                 </div>
                 <div class="edit-card-top">
-                    <span style="font-size: 20px; color: #2A3647">Due date</span>
+                    <span style="color: #2A3647">Due date</span>
                     <input id="date-edit-card" class="edit-card-input-field" type="date" value="${task.date}" required> 
                 </div>
                 <div class="priority-container-edit-card">
-                    <span class="title">Priority</span>
-                    <div class="smallButtonsFrame">
-                        <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent'); return false">
+                    <span class="title-priority-edit-card">Priority</span>
+                    <div class="smallButtonsFrame priority-buttons-container">
+                        <button id="urgentButton" class="urgent priority-button" onclick="changeBackgroundColor('urgent'); return false">
                             <div class="urgentText">
                                 Urgent
                             </div>
@@ -87,7 +87,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                                 <img id="whiteArrow" class="arrow-white" src="assets/img/prioUrgent.svg" alt="svg">
                             </div>
                         </button>
-                        <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium'); return false">
+                        <button id="mediumButton" class="medium priority-button" onclick="changeBackgroundColor('medium'); return false">
                             <div id="mediumText" class="mediumText">
                                 Medium
                             </div>
@@ -96,7 +96,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                                 <img id="prioMedium" class="arrow-white-medium" src="assets/img/prio_medium.svg" alt="svg">
                             </div>
                         </button>
-                        <button id="lowButton" class="low" onclick="changeBackgroundColor('low'); return false">
+                        <button id="lowButton" class="low priority-button" onclick="changeBackgroundColor('low'); return false">
                             <div class="lowText">
                                 Low
                             </div>
@@ -108,9 +108,9 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                     </div>
                 </div>
                 <div>
-                    <span style="font-size: 20px; color: #2A3647">Assigned to</span>
+                    <span style="color: #2A3647">Assigned to</span>
                     <div style="margin-top: 14px; margin-bottom: 14px" id="assigned-edit-card" class="selection" onclick="toggleAssignedContainerEditCard(event)">
-                        <p id="standardOption" class="standardOption">Select contacts to assign</p>
+                        <p id="standardOption" class="standardOption standard-option-edit-card">Select contacts to assign</p>
                         <img id="dropdown-arrow-edit-card" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
                     </div>
                     <div id="show-assigned-contacts-edit-card" class="assigned-contacts-container-edit-card">
@@ -119,9 +119,9 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                     <div style="margin-top: 8px" id="show-chosen-initials-edit-card" class="showChosenInitials"></div>
                 </div>
                 <div class="subtasks-container-edit-card">
-                    <span style="font-size: 20px; color: #2A3647">Subtask</span>
+                    <span style="color: #2A3647">Subtask</span>
                     <div class="subtasks-input-edit-card">
-                        <input id="subtasks-edit-card" type="text" class="inputfieldTitle" placeholder="Add new subtask">
+                        <input id="subtasks-edit-card" type="text" placeholder="Add new subtask">
                         <img class="plus-button-edit-card" src="assets/img/+.svg" onclick="addNewSubtaskInEditCard(${task.id})">
                     </div>
                 </div>
@@ -141,92 +141,96 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
 function renderAddTaskForm() {
     return /*html*/`
         <form id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false">
-            <div class="headline-template">
-                Add Task
+            <div class="add-task-top-container">
+                <div class="headline-template">
+                    Add Task
+                </div>
+                <a class="close-button-template" onclick="closePopup('task-form')"><img src="../assets/img/close.svg" alt=""></a>
             </div>
-            <a class="close-button-template" onclick="closePopup('task-form')"><img src="../assets/img/close.svg" alt=""></a>
-            <div class="left-side-template">
-                <div class="titleFrame">
-                    <p class="title">Title <span class="star">*</span></p>
-                    <div class="inputTitle">
-                        <input id="title-template" type="text" class="inputfieldTitle" placeholder="Enter a title"
-                            required>
+            <div class="outer-container">
+                <div class="left-side-template">
+                    <div class="add-task-template-small-container">
+                        <span class="add-task-text-field">Title<span class="star">*</span></span>
+                        <div>
+                            <input id="title-template" type="text" class="inputfieldTitle" placeholder="Enter a title" required>
+                        </div>
+                    </div>
+                    <div class="add-task-template-small-container">
+                        <span class="add-task-text-field">Description</span>
+                        <div>
+                            <textarea name="smallinputfieldDescription" id="description-template" placeholder="Enter a Description" class="smallinputfieldDescription" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="add-task-template-assigned-container">
+                        <span class="add-task-text-field" style="margin-bottom: 8px;">Assigned to</span>
+                        <div id="assigned-template" class="selection" onclick="toggleAssignedContainer()">
+                            <span id="standardOption">Select contacts to assign</span>
+                            <img id="dropdown-arrow" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
+                        </div>
+                        <div id="show-assigned-contacts" class="showContactsToAssign"></div>
+                        <div id="show-chosen-initials" class="showChosenInitials"></div>
                     </div>
                 </div>
-                <div class="descriptionFrame">
-                    <p class="description">Description</p>
-                    <div class="inputfieldDescription">
-                        <textarea name="smallinputfieldDescription" id="description-template"
-                            placeholder="Enter a Description" class="smallinputfieldDescription" cols="30"
-                            rows="10"></textarea>
+                <div style="height: 424px; width: 1px; background-color: lightgrey"></div>
+                <div class="right-side-template">
+                    <div class="add-task-template-small-container">
+                        <span class="add-task-text-field">Due Date <span class="star">*</span></span>
+                        <div>
+                            <input id="date-template" type="date" name="date" class="inputfieldTitle" required>
+                        </div>
+                    </div>
+                    <div class="add-task-template-small-container">
+                        <span class="add-task-text-field">Prio</span>
+                        <div class="smallButtonsFrame">
+                            <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent'); return false">
+                                <div class="urgentText">
+                                    Urgent
+                                </div>
+                                <div class="arrows">
+                                    <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
+                                    <img id="whiteArrow" class="whiteArrow" src="assets/img/prioUrgent.svg" alt="svg">
+                                </div>
+                            </button>
+                            <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium'); return false">
+                                <div id="mediumText" class="mediumText">
+                                    Medium
+                                </div>
+                                <div class="arrows">
+                                    <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
+                                    <img id="prioMedium" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
+                                </div>
+                            </button>
+                            <button id="lowButton" class="low" onclick="changeBackgroundColor('low'); return false">
+                                <div class="lowText">
+                                    Low
+                                </div>
+                                <div class="arrows">
+                                    <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
+                                    <img id="whiteArrowLow" class="whiteArrowLow" src="assets/img/prioLow.svg">
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="add-task-template-small-container">
+                        <span class="add-task-text-field">Category <span class="star">*</span></span>
+                        <select id="category-template" class="select" required>
+                            <option value="">Select task category</option>
+                            <option value="User Story">User Story</option>
+                            <option value="Technical Task">Technical Task</option>
+                        </select>
+                    </div>
+                    <div class="add-task-template-small-container">
+                        <span class="add-task-text-field">Subtask</span>
+                        <div class="subtasks-input-edit-card">
+                            <input onkeydown="handleKeyPressInTemplate(event)" class="subtasks-template" id="subtasks-template" type="text" placeholder="Add new subtask">
+                            <img src="assets/img/+.svg" onclick="addNewSubtaskInTemplate()">
+                        </div>
+                        <div id="new-subtask-template" class="new-subtask-container">
                     </div>
                 </div>
-                <div class="assignedToFrame">
-                    <p class="assignedTo">Assigned to</p>
-                    <div id="assigned-template" class="selection" onclick="toggleAssignedContainer()">
-                        <p id="standardOption" class="standardOption">Select contacts to assign</p>
-                        <img id="dropdown-arrow" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
-                    </div>
-                    <div id="show-assigned-contacts" class="showContactsToAssign"></div>
-                    <div id="show-chosen-initials" class="showChosenInitials"></div>
-                </div>
             </div>
-            </div>
-            <div class="right-side-template">
-                <div class="titleFrame">
-                    <p class="title">Due Date <span class="star">*</span></p>
-                    <div class="inputTitle">
-                        <input id="date-template" type="date" name="date" class="inputfieldTitle" required>
-                    </div>
-                </div>
-                <div class="buttonsFrame">
-                    <p class="title">Prio</p>
-                    <div class="smallButtonsFrame">
-                        <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent'); return false">
-                            <div class="urgentText">
-                                Urgent
-                            </div>
-                            <div class="arrows">
-                                <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
-                                <img id="whiteArrow" class="whiteArrow" src="assets/img/prioUrgent.svg" alt="svg">
-                            </div>
-                        </button>
-                        <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium'); return false">
-                            <div id="mediumText" class="mediumText">
-                                Medium
-                            </div>
-                            <div class="arrows">
-                                <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
-                                <img id="prioMedium" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
-                            </div>
-                        </button>
-                        <button id="lowButton" class="low" onclick="changeBackgroundColor('low'); return false">
-                            <div class="lowText">
-                                Low
-                            </div>
-                            <div class="arrows">
-                                <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
-                                <img id="whiteArrowLow" class="whiteArrowLow" src="assets/img/prioLow.svg">
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                <div class="categoryFrame">
-                    <p class="category">Category <span class="star">*</span></p>
-                    <select id="category-template" class="select" required>
-                        <option value="">Select task category</option>
-                        <option value="User Story">User Story</option>
-                        <option value="Technical Task">Technical Task</option>
-                    </select>
-                </div>
-                <div class="subtaskFrame">
-                    <p class="subtask">Subtask</p>
-                    <input onkeydown="handleKeyPressInTemplate(event)" id="subtasks-template" type="text" class="inputfieldTitle" placeholder="Add new subtask">
-                    <img src="assets/img/+.svg" class="subtaskPlus" onclick="addNewSubtaskInTemplate()">
-                </div>
-            </div>
-            <div id="new-subtask-template" class="new-subtask-container">
-            </div>
+        </div>
+        <div class="add-task-template-bottom">
             <div class="required-field-template">
                 <p><span class="star">*</span>This field is required</p>
             </div>
@@ -240,6 +244,7 @@ function renderAddTaskForm() {
                     <img src="assets/img/check.png">
                 </button>
             </div>
+        </div>
         </form>
         <div id="task-added-container" class="d-none">
             <span>Task added to board</span>
@@ -336,7 +341,7 @@ function renderSubtaskHTML(task, subtask, checkBoxImage, index) {
     return /*html*/`
         <div onclick="handleCheckBox(${task.id}, ${index})" class="flex check-box-container-subtasks">
             <img class="check-box-img" id="check-box${index}" style="width: 16px; height: 16px;" src="${checkBoxImage}" alt="">
-            <span style="font-size: 16px">${subtask}</span>
+            <span class="checkbox-text">${subtask}</span>
         </div>
     `;
 }
@@ -358,7 +363,31 @@ function renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastNa
         <div class="task-contacts-ellipse flex-center" style="background-color: ${contactColor}">
             <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
         </div>
-        <span style="font-size: 19px">${assignedContact}</span>
+        <span>${assignedContact}</span>
     </div>
 `;
+}
+
+function renderChosenInitialsEditCard(contact) {
+    return /*html*/`
+    <div class="assigned-contacts-edit-card">    
+        <div class="task-contacts-ellipse flex-center" style="background-color: ${contact.color}; color: white">
+            <span style="font-size: 12px;">${contact.initials}</span>
+        </div>
+        <span>${contact.name}</span>
+    </div>
+    `;
+}
+
+function renderContactsForAssignEditCard(contact, i) {
+    /*html*/`
+        <div id="newcontact-edit-card${i}" class="newcontact" onclick="handleContactClickEditCardWrapper(contactElement, ${i})">
+            <div class="circle" style="background-color: ${contact.color};">
+                <p>${contact.initials}</p>
+            </div>
+            <div class="nameAndCheckbox">    
+                <p class="contactName">${contact.name}</p>
+                <input type="checkbox" id="checkbox-edit-card${i}" class="checkBox">
+            </div> 
+        </div>`;
 }
