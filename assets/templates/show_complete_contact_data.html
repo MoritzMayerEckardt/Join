@@ -4,7 +4,8 @@
     <div class="contact-subheading">Better with a team</div>
     <div class="seperator-contacts-heading-mobile"></div>
 </div>
-<a href="#" class="arrow-back-contacts-mobile d-flex1080" id="arrow-back-contacts-mobile" onclick="closeContactMobile()">
+<a href="#" class="arrow-back-contacts-mobile d-flex1080" id="arrow-back-contacts-mobile"
+    onclick="closeContactMobile()">
     <img src="assets/img/blue-arrow.svg" alt="">
 </a>
 <div class="view-contact-container d-none" id="view-contact-container">
@@ -38,6 +39,17 @@
     </div>
 </div>
 <div id="confirmation-field" class="confirmation-field">Contact successfully created</div>
-<button class="edit-contacts-btn-mobile" onclick="showFullContactMobile()">
+<button class="edit-contacts-btn-mobile" onclick="showEditMenuMobile(); doNotClose(event)">
     <img class="edit-contacts-btn-mobile-img" src="assets/img/mobile-edit-btn.svg" alt="">
 </button>
+
+<div class="edit-menu-mobile-contacts d-none" id="edit-menu-mobile-contacts" onclick="doNotClose(event)">
+    <div class="edit-menu-mobile-contacts-row">
+        <img src="assets/img/edit-dark-blue.svg" alt="">
+        <span>Edit</span>
+    </div>
+    <div class="edit-menu-mobile-contacts-row">
+        <img src="assets/img/delete-dark-blue.svg" alt="">
+        <span>Delete</span>
+    </div>
+</div>

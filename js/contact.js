@@ -279,10 +279,17 @@ function showEditForm() {
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
 }
 
+
+
 // **********************OPEN EDIT MENU MOBILE**********************
 
-function showEditMobileMenu(){
-    
+function showEditMenuMobile() {
+    document.getElementById('edit-menu-mobile-contacts').classList.remove('d-none');
+}
+
+
+function closeEditMenuMobile() {
+    document.getElementById('edit-menu-mobile-contacts').classList.add('d-none');
 }
 
 
