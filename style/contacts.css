@@ -905,11 +905,11 @@
     #name-input-field-add-contact-mobile {
         background-image: url(/assets/img/person-grey.svg);
     }
-    
+
     #email-input-field-add-contact-mobile {
         background-image: url(/assets/img/mail-grey.svg);
     }
-    
+
     #phone-input-field-add-contact-mobile {
         background-image: url(/assets/img/call-grey.svg);
     }
@@ -992,7 +992,7 @@
     .d-none1080 {
         display: none;
     }
-    
+
     .arrow-back-contacts-mobile {
         position: fixed;
         top: 180px;
@@ -1005,7 +1005,7 @@
 
     .contacts-container {
         width: 100%;
-        height: calc(100vh - 160px);
+        height: calc(100vh - 96px);
     }
 
     .contacts-list-container {
@@ -1082,8 +1082,8 @@
         z-index: 1000;
         background-color: white;
     }
-    
-    
+
+
     .edit-menu-mobile-contacts-row {
         display: flex;
         align-items: center;
@@ -1128,6 +1128,10 @@
 
     .aside-contacts {
         display: none;
+    }
+
+    .contacts-container {
+        height: calc(100vh - 160px);
     }
 
     .contacts-header {
@@ -1223,7 +1227,7 @@
     .email-view-contact-container {
         margin-top: unset;
     }
-    
+
     .edit-menu-mobile-contacts {
         bottom: 75px;
     }
@@ -1249,7 +1253,7 @@
 
 
 
-    
+
 
     .heading-information-text {
         font-size: 47px;
@@ -1270,5 +1274,3 @@
 
 
 }
-
-
