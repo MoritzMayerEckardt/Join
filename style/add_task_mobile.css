@@ -253,3 +253,10 @@
     }
 }
 
+@media (max-width: 350px){
+    .smallButtonsFrame{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
