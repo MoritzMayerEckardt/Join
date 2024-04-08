@@ -279,6 +279,12 @@ function showEditForm() {
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
 }
 
+// **********************OPEN EDIT MENU MOBILE**********************
+
+function showEditMobileMenu(){
+    
+}
+
 
 // **********************OPEN AND CLOSE EDIT CONTACT WINDOW**********************
 

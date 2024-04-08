@@ -7,6 +7,7 @@ async function initAddTask() {
     await loadGuestLogin();
     addBackgroundColor(1);
     showCurrentUserInButton();
+    showCurrentUserInButtonMobile();
 }
 
 async function addTask() {
