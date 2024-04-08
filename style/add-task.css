@@ -378,7 +378,6 @@
 
 .whiteArrow {
     display: none;
-    position: absolute;
     bottom: 19px;
     right: 325px;
     width: 22px;
@@ -387,11 +386,8 @@
 
 .whiteArrowLow {
     display: none;
-    position: absolute;
     width: 22px;
     height: 18px;
-    right: 52px;
-    bottom: 19px;
 }
 
 .urgentText {
@@ -414,9 +410,9 @@
 
 .priomedium {
     display: none;
-    position: absolute;
-    right: 179px;
-    bottom: 22px;
+    bottom: 10px;
+    display: flex;
+    position: relative;
 }
 
 .lowText {
