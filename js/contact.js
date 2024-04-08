@@ -27,11 +27,14 @@ function openDialogAddContacts() {
 
 function closeAddContactDialog() {
     dialog = document.getElementById('dialog-add-contacts');
+    dialogMobile = document.getElementById('dialog-add-contacts-mobile');
     dialog.style.animation = 'slideOutToRight 0.250s ease-in-out';
     dialog.style.right = '-200%';
     setTimeout(() => {
         dialog.classList.add('d-none');
     }, 250);
+
+    dialogMobile.classList.add('d-none')
 }
 
 function doNotClose(event) {
@@ -44,12 +47,14 @@ function doNotClose(event) {
 
 
 async function addContact() {
-    document.getElementById('dialog-add-contacts').classList.add('d-none');
+
     createContactsIfNotCreated();
     pushValuesToContacts();
     await postData(`${CONTACTS_PATH}`);
     clearAddContactForm();
     renderContactList();
+    document.getElementById('dialog-add-contacts').classList.add('d-none');
+    document.getElementById('dialog-add-contacts-mobile').classList.add('d-none');
     showConfirmation();
 }
 
@@ -82,9 +87,18 @@ function getRandomIndexFromColors() {
 
 
 function getValuesFromInputAddContact() {
-    let name = document.getElementById('name-input-field-add-contact').value;
-    let email = document.getElementById('email-input-field-add-contact').value;
-    let phone = document.getElementById('phone-input-field-add-contact').value;
+    let name;
+    let email;
+    let phone;
+    if (window.innerWidth > 1130) {
+        name = document.getElementById('name-input-field-add-contact').value;
+        email = document.getElementById('email-input-field-add-contact').value;
+        phone = document.getElementById('phone-input-field-add-contact').value;
+    } else {
+        name = document.getElementById('name-input-field-add-contact-mobile').value;
+        email = document.getElementById('email-input-field-add-contact-mobile').value;
+        phone = document.getElementById('phone-input-field-add-contact-mobile').value;
+    }
 
     let nameParts = name.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
@@ -118,6 +132,9 @@ function clearAddContactForm() {
     document.getElementById('name-input-field-add-contact').value = '';
     document.getElementById('email-input-field-add-contact').value = '';
     document.getElementById('phone-input-field-add-contact').value = '';
+    document.getElementById('name-input-field-add-contact-mobile').value = '';
+    document.getElementById('email-input-field-add-contact-mobile').value = '';
+    document.getElementById('phone-input-field-add-contact-mobile').value = '';
 }
 
 

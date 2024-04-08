@@ -824,7 +824,8 @@
         right: 0;
         bottom: 0;
         top: 0;
-        display: flex;
+        
+        /* display: flex;
         justify-content: center;
         align-items: center;
         top: 50%;
@@ -832,7 +833,7 @@
         transform: translate(0, -50%);
         background: transparent;
         padding: 20px;
-        transition: right 0.250s ease-in-out;
+        transition: right 0.250s ease-in-out; */
     }
 
     .dialog {
@@ -888,6 +889,7 @@
 
     .input-container {
         width: 100%;
+        padding-bottom: 16px;
     }
 
     .add-contacts-btn-container {
