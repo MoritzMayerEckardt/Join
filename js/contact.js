@@ -316,6 +316,7 @@ async function deleteContact() {
 async function deleteContactMobile(){
     await deleteContact();
     closeContactMobile();
+    closeEditMenuMobile();
 }
 
 function clearEditContact() {
