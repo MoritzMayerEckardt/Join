@@ -1073,6 +1073,10 @@
 
 @media(max-width: 900px) {
 
+    .aside-contacts {
+        display: none;
+    }
+
     .contacts-header {
         left: unset;
         width: 100vw;
