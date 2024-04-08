@@ -1,8 +1,30 @@
+@media (min-width: 901px) and (max-width: 1315px){
+    .rightSide{
+        top: 210px;
+        left: 96px;
+    }
+
+    .buttonsAndRequired{
+        z-index: 2;
+        top: 290px;
+        padding-bottom: 35px;
+        justify-content: flex-start;
+    }
+    .vector{
+        display: none;
+    }
+
+    .requiredField{
+        padding-top: 45px;
+    }
+}
+
 @media (max-width: 900px) {
     .mobile-menu {
         display: flex !important;
         z-index: 99;
     }
+
 
     .aside-addtask{
         display: none;
@@ -13,12 +35,6 @@
         padding-left: 0px;
     }
 
-    .header-addtask {
-        position: fixed;
-        left: 0px;
-        width: 100%;
-        padding: 0px;
-    }
 
     .userInitials {
         position: static;
@@ -36,9 +52,10 @@
 
     .headline {
         left: 0px;
-        padding-top: 40px;
         padding-left: 10px;
         width: 300px;
+        position: relative;
+        top: 10px;
     }
 
     .leftSide {
@@ -50,6 +67,8 @@
         left: 0px;
         padding-left: 10px;
         padding-right: 20px;
+        position: relative;
+        top: 10px;
     }
 
     .titleFrame {
@@ -83,16 +102,16 @@
         position: static;
     }
 
+    .showContactsToAssign{
+        z-index: 99;
+    }
+
     .assigned {
         width: 100%;
     }
 
     .selection {
         width: 100%;
-    }
-
-    .leftSide {
-        padding-top: 40px;
     }
 
     .description {
@@ -108,10 +127,10 @@
         left: 0px;
         padding-left: 10px;
         padding-right: 20px;
-        padding-top: 150px;
         gap: 20px;
-        position: static;
-        margin-bottom: 240px;
+        position: relative;
+        top: 30px;
+        margin-bottom: 150px;
     }
 
     .buttonsFrame {
@@ -168,6 +187,7 @@
         height: 100px;
         padding-left: 10px;
         padding-right: 10px;
+        z-index: 2;
     }
 
     .requiredField {
@@ -188,3 +208,48 @@
         display: none;
     }
 }
+
+@media (min-width: 700px) and (max-width: 899px) {
+    .header-addtask {
+        left: 0px;
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .headline{
+        top: 150px;
+    }
+    
+    .leftSide{
+        top: 170px;
+    }
+
+    .showContactsToAssign{
+        z-index: 1;
+    }
+
+    .rightSide{
+        top: 220px;
+        margin-bottom: 300px;
+    }
+
+    .buttonsAndRequired{
+        z-index: 2;
+    }
+}
+
+@media (max-width: 700px){
+    .header-addtask{
+        display: none;
+    }
+
+    .showContactsToAssign{
+        z-index: 1;
+    }
+
+    .buttonsAndRequired{
+        z-index: 2;
+    }
+}
+

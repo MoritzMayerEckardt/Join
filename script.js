@@ -85,19 +85,19 @@ async function showCurrentUserInButton() {
     let currentUserInitials;
 
     if (currentUserIndex == 'guestLogin') {
-         currentUserInitials = guest['initials']
-    }else{
-         currentUserInitials = users[currentUserIndex]['initials'];
+        currentUserInitials = guest['initials']
+    } else {
+        currentUserInitials = users[currentUserIndex]['initials'];
     }
-    button.innerHTML= currentUserInitials;
+    button.innerHTML = currentUserInitials;
 }
 
-function openSmallMenu(){
+function openSmallMenu() {
     let smallMenu = document.getElementById('smallMenu');
 
     if (!smallMenuOpen) {
-            smallMenu.style.display = 'flex';
-            smallMenuOpen = true;
+        smallMenu.style.display = 'flex';
+        smallMenuOpen = true;
     } else {
         smallMenu.style.display = 'none';
         smallMenuOpen = false;
@@ -105,7 +105,7 @@ function openSmallMenu(){
 }
 
 // Eventlistener für Klicks auf den gesamten Bildschirm
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     let smallMenu = document.getElementById('smallMenu');
     let smallMenuBtn = document.getElementById('userInitials')
     let targetElement = event.target; // Das geklickte Element
@@ -123,38 +123,38 @@ async function showCurrentUserInButtonMobile() {
     let currentUserInitials;
 
     if (currentUserIndex == 'guestLogin') {
-         currentUserInitials = guest['initials']
-    }else{
-         currentUserInitials = users[currentUserIndex]['initials'];
+        currentUserInitials = guest['initials']
+    } else {
+        currentUserInitials = users[currentUserIndex]['initials'];
     }
-    button.innerHTML= currentUserInitials;
+    button.innerHTML = currentUserInitials;
 }
 
-function openSmallMenuMobile(){
+function openSmallMenuMobile() {
     let smallMenuMobile = document.getElementById('small-menu-mobile');
 
     if (!smallMenuMobileOpen) {
-            smallMenuMobile.style.display = 'flex';
-            smallMenuMobileOpen = true;
+        smallMenuMobile.style.display = 'flex';
+        smallMenuMobileOpen = true;
     } else {
         smallMenuMobile.style.display = 'none';
         smallMenuMobileOpen = false;
     }
 }
 
-// // Eventlistener für Klicks auf den gesamten Bildschirm
-// document.addEventListener('click', function(event) {
-//     let smallMenuMobile = document.getElementById('small-menu-mobile');
-//     let smallMenuBtnMobile = document.getElementById('user-initials-mobile')
-//     let targetElement = event.target; // Das geklickte Element
+// Eventlistener für Klicks auf den gesamten Bildschirm
+document.addEventListener('click', function (event) {
+    let smallMenuMobile = document.getElementById('small-menu-mobile');
+    let smallMenuBtnMobile = document.getElementById('user-initials-mobile')
+    let targetElement = event.target; // Das geklickte Element
 
-//     // Überprüfen, ob das geklickte Element nicht innerhalb des smallMenu liegt und ob das smallMenu geöffnet ist
-//     if (targetElement !== smallMenuMobileOpen && targetElement !== smallMenuBtnMobile) {
-//         // Schließe das smallMenu und setze smallMenuOpen auf false
-//         smallMenuMobile.style.display = 'none';
-//         smallMenuBtnMobile = false;
-//     }
-// });
+    // Überprüfen, ob das geklickte Element nicht innerhalb des smallMenu liegt und ob das smallMenu geöffnet ist
+    if (targetElement !== smallMenuMobileOpen && targetElement !== smallMenuBtnMobile) {
+        //         // Schließe das smallMenu und setze smallMenuOpen auf false
+        smallMenuMobile.style.display = 'none';
+        smallMenuBtnMobile = false;
+    }
+});
 
 function saveTaskIdCounter() {
     localStorage.setItem('taskIdCounter', taskIdCounter.toString());

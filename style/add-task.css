@@ -3,6 +3,10 @@
     overflow-x: hidden;
 }
 
+.header-mobile-addTask{
+    display: none;
+}
+
 .headline {
     position: relative;
     width: 278px;
