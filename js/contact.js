@@ -313,6 +313,11 @@ async function deleteContact() {
     clearEditContact();
 }
 
+async function deleteContactMobile(){
+    await deleteContact();
+    closeContactMobile();
+}
+
 function clearEditContact() {
     let showFullContact = document.getElementById('view-contact-container');
     showFullContact.classList.add('d-none');
