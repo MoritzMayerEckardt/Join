@@ -781,6 +781,14 @@
     height: 100vh;
 }
 
+.d-flex1130 {
+    display: none;
+}
+
+.d-none1130 {
+    display: flex;
+}
+
 @media(max-width: 1380px) {
     .person-icon-container {
         display: none;
@@ -793,6 +801,14 @@
 
 
 @media(max-width: 1130px) {
+
+    .d-flex1130 {
+        display: flex;
+    }
+
+    .d-none1130 {
+        display: none;
+    }
 
     /* .dialog-add-bg-mobile {
         display: flex;
