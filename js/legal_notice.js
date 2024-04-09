@@ -7,4 +7,5 @@ async function initLegalNotice() {
     await loadGuestLogin();
     addBackgroundColor();
     showCurrentUserInButton();
+    showCurrentUserInButtonMobile();
 }
