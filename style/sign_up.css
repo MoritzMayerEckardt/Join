@@ -46,7 +46,6 @@
     font-size: 21px;
     font-weight: 700;
     line-height: 25.2px;
-    text-align: left;
 }
 
 .back-button-sign-up {
@@ -64,7 +63,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: calc(100vh - 120px);
     flex-direction: column;
 }
 
@@ -146,5 +145,64 @@
     100% {
         transform: translateX(-50%) translateY(100%);
         bottom: -100%;
+    }
+}
+
+.join-logo-mobile {
+    width: 64px;
+    height: 78.03px;
+    position: absolute;
+    top:37px;
+    left: 36px;
+}
+.header-sign-up-mobile {
+    display: flex;
+    justify-content: flex-end;
+    height: 120px;
+}
+
+@media (max-width: 701px) {
+    .join-logo {
+        display: none;
+    }
+    .sign-up-container {
+        width: 396px;
+        padding: 32px 16px 32px 16px;
+        height: 595px;
+    }
+    .sign-up-headline-container {
+        font-size: 47px;
+    }
+    .link-container {
+        display: none;
+    }
+    .sign-up-button-text {
+        font-size: 16px;
+    }
+    .back-button-sign-up {
+        left: 40px;
+        top: 40px;
+    }
+    .remember-me-container {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 421px) {
+    .sign-up-container {
+        width: 300px;
+    }
+    .back-button-sign-up {
+        left: 24px;
+        top: 24px;
+    }
+}
+
+@media (min-width: 700px) {
+    .join-logo-mobile {
+        display: none;
+    }
+    .link-container-mobile {
+        display: none;
     }
 }

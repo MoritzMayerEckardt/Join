@@ -7,6 +7,7 @@
     <title>Add Task</title>
     <script src="js/includeHTML.js"></script>
     <script src="/js/aside.js"></script>
+    <script src="/js/header.js"></script>
     <script src="js/add_task.js"></script>
     <script src="script.js"></script>
 
@@ -65,7 +66,7 @@
                         <div class="buttonsFrame">
                             <p class="title">Prio</p>
                             <div class="smallButtonsFrame">
-                                <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent')">
+                                <button id="urgentButton" class="urgent" onclick="changeBackgroundColor('urgent'); return false">
                                     <div class="urgentText">
                                         Urgent
                                     </div>
@@ -75,7 +76,7 @@
                                             alt="svg">
                                     </div>
                                 </button>
-                                <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium')">
+                                <button id="mediumButton" class="medium" onclick="changeBackgroundColor('medium'); return false">
                                     <div id="mediumText" class="mediumText">
                                         Medium
                                     </div>
@@ -86,7 +87,7 @@
 
                                     </div>
                                 </button>
-                                <button id="lowButton" class="low" onclick="changeBackgroundColor('low')">
+                                <button id="lowButton" class="low" onclick="changeBackgroundColor('low'); return false">
                                     <div class="lowText">
                                         Low
                                     </div>

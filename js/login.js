@@ -16,7 +16,6 @@ async function loginUser() {
     let email = document.getElementById('inputEmail');
     let password = document.getElementById('inputPassword');
     let user = users.find(user => user.email == email.value && user.password == password.value);
-
     if (user) {
         console.log('user id', user.id)
         currentUserId = user.id;
@@ -40,13 +39,11 @@ async function postData(path, currentUser) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(currentUser) // Daten im JSON-Format
+            body: JSON.stringify(currentUser)
         });
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         let data = await response.json();
         console.log("Daten erfolgreich gesendet:", data);
     } catch (error) {
