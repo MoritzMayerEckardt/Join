@@ -76,7 +76,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                     <input id="date-edit-card" class="edit-card-input-field" type="date" value="${task.date}" required> 
                 </div>
                 <div class="priority-buttons-container-template">
-                    <span class="add-task-text-field">Prio</span>
+                    <span class="edit-card-text-field">Prio</span>
                     <div class="priority-buttons-container">
                         <button id="btn-urgent" class="btn-urgent-low priority-button" onclick="changeBackgroundColor('urgent'); return false">
                             <span>Urgent</span>
@@ -93,7 +93,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                     </div>
                 </div>
                 <div class="assigned-container-edit-card">
-                    <span style="color: #2A3647">Assigned to</span>
+                    <span style="color: #2A3647" class="edit-card-text-field">Assigned to</span>
                     <div id="assigned-edit-card" class="selection-edit-card" onclick="toggleAssignedContainerEditCard()">
                         <span id="standardOption" class="standard-option-edit-card">Select contacts to assign</span>
                         <img id="dropdown-arrow-edit-card" class="dropdownArrow" src="assets/img/dropdownArrow.svg">

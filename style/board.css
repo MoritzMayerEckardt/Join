@@ -535,6 +535,11 @@
     font-size: 20px;
 }
 
+.edit-card-text-field {
+    font-size: 20px;
+    color: #2A3647;
+}
+
 .outer-container {
     display: flex;
     justify-content: space-between;
@@ -1086,6 +1091,21 @@
 }
 
 @media (max-width: 701px) {
+    .edit-card-text-field {
+        font-size: 16px;
+    }
+    .btn-urgent-low {
+        width: 100% !important;
+    }
+    .btn-medium {
+        width: 100% !important;
+    }
+    .priority-buttons-container {
+        flex-direction: column;
+    }
+    .no-contacts-assigned-text {
+        font-size: 14px;
+    }
     .assigned-container-edit-card {
         font-size: 16px;
     }
@@ -1177,7 +1197,7 @@
         align-items: flex-start;
     }
     #card {
-        width: 300px;
+        width: 396px;
         max-height: 640px;
         padding: 32px 24px 32px 24px;
     }
@@ -1347,16 +1367,7 @@
 
 @media (max-width: 581px) { 
     .add-task-template {
-        width: 300px;
-    }
-    .priority-buttons-container {
-        flex-direction: column;
-    }
-    .btn-urgent-low {
-        width: 100% !important;
-    }
-    .btn-medium {
-        width: 100% !important;
+        width: 396px;
     }
 }
 
@@ -1366,6 +1377,15 @@
     }
     .buttons-template {
         justify-content: flex-end;
+    }
+}
+
+@media (max-width: 421px) {
+    .add-task-template {
+        width: 300px;
+    }
+    #card {
+        width: 300px;
     }
 }
 
@@ -1485,4 +1505,10 @@
     max-height: 200px;
     overflow: auto;
     background-color: white;
+}
+
+.no-contacts-assigned-text {
+    font-size: 16px;
+    margin-left: 16px;
+    padding: 8px;
 }

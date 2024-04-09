@@ -68,7 +68,7 @@ function generateAssignedContactsInDetailedCard(task) {
             assignedContactsHTML += renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastName, assignedContact, contactColor);
         }
     } else {
-        assignedContactsHTML = /*html*/`<span style="font-size: 16px; margin-left: 16px">No contacts assigned</span>`;
+        assignedContactsHTML = /*html*/`<span class="no-contacts-assigned-text">No contacts assigned</span>`;
     }
     return assignedContactsHTML;
 }

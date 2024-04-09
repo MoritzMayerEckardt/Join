@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <!-- <script src="/includeHTML.js"></script> -->
-    <script src="script.js"></script>
-    <script src="/js/login.js"></script>    
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body class="body-login" onload="initLogin()">
     <div class="login-container">
         <div class="login-headline-container">
             <h1 class="login-headline">Log in</h1>
@@ -41,9 +28,11 @@
             </div>
         </form>
     </div>
-    <div class="link-container">
+    <div class="signup-container-mobile">
+        <span class="sign-up-text-mobile">Not a Join user?</span>
+        <button id="header-button" class="header-button" onclick="forwardingToSignup()">Sign up</button>
+    </div>
+    <div class="link-container-mobile">
         <a class="link" href="#">Privacy policy</a>
         <a class="link" href="#">Legal notice</a>
     </div>
-</body>
-</html>

@@ -9,6 +9,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 .join-logo {
@@ -17,6 +18,11 @@
     left: 77px;
     width: 100.03px;
     height: 121.97px;
+}
+
+.join-logo-start-mobile {
+    width: 64px;
+    height: 70px;
 }
 
 .signup-container-header {
@@ -139,7 +145,6 @@
 
 .login-buttons-container {
     width: 322px;
-    height: 48px;
     display: flex;
     justify-content: center;
     gap: 35px;
@@ -196,10 +201,7 @@
 }
 
 #content-login {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    height: calc(100vh - 120px);
 }
 
 #header {
@@ -233,4 +235,87 @@
 .header-button:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.signup-container-mobile {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    width: 292px;
+    height: 49px;
+    margin-top: 57.5px;
+    justify-content: center;
+}
+
+.sign-up-text-mobile {
+    font-size: 20px;
+}
+
+.link-container-mobile {
+    width: 246px;
+    height: 35px;
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 701px) {
+    .signup-container-header {
+        display: none;
+    }
+    .join-logo-start {
+        display: none;
+    }
+    .login-container {
+        width: 396px;
+        padding: 32px 16px 32px 16px;
+        height: 515px;
+    }
+    .login-headline {
+        font-size: 47px;
+    }
+    .login-form {
+        width: 100%;
+    }
+    .remember-me-container {
+        width: 100%;
+        padding-left: 0px;
+    }
+    .login-buttons-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 21px;
+    }
+    .login-button-left {
+        width: 180px;
+        height: 51px;
+        padding: 4px 0px 4px 0px;
+        font-size: 16px;
+    }
+    .login-button-right {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 700px) {
+    .signup-container-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 421px) {
+    .login-container {
+        width: 300px;
+    }
+    .signup-container-mobile {
+        gap: 24px;
+        width: 280px;
+    }
+    .sign-up-text-mobile {
+        font-size: 16px;
+    }
+    .link-container-mobile {
+        width: 214px;
+    }
 }

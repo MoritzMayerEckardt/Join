@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="/js/login.js"></script>
+    <title>Login</title>
+    <script src="js/includeHTML.js"></script>
     <script src="script.js"></script>
-    <script src="./js/includeHTML.js"></script>
+    <script src="/js/login.js"></script>    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body onload="initLogin()">
+    <div class="index">
         <img class="join-logo-start" src="./assets/img/logo.png" alt="">
-    <div id="content-login">
-        <section id="header" w3-include-html="./assets/templates/header_login.html"></section>
-        <section id="login" w3-include-html="login.html"></section>
+        <section class="header-login" id="header" w3-include-html="./assets/templates/header_login.html"></section>
+        <div id="content-login">
+            <section id="login" w3-include-html="./assets/templates/login.html"></section>
+        </div>
     </div>
 </body>
 </html>
