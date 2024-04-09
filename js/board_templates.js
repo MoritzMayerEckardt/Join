@@ -75,48 +75,33 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                     <span style="color: #2A3647">Due date</span>
                     <input id="date-edit-card" class="edit-card-input-field" type="date" value="${task.date}" required> 
                 </div>
-                <div class="priority-container-edit-card">
-                    <span class="title-priority-edit-card">Priority</span>
-                    <div class="smallButtonsFrame priority-buttons-container">
-                        <button id="urgentButton" class="urgent priority-button" onclick="changeBackgroundColor('urgent'); return false">
-                            <div class="urgentText">
-                                Urgent
-                            </div>
-                            <div class="arrows">
-                                <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
-                                <img id="whiteArrow" class="arrow-white" src="assets/img/prioUrgent.svg" alt="svg">
-                            </div>
+                <div class="priority-buttons-container-template">
+                    <span class="add-task-text-field">Prio</span>
+                    <div class="priority-buttons-container">
+                        <button id="btn-urgent" class="btn-urgent-low priority-button" onclick="changeBackgroundColor('urgent'); return false">
+                            <span>Urgent</span>
+                            <img id="img-urgent-btn" src="assets/img/redArrow.svg" alt="svg">
                         </button>
-                        <button id="mediumButton" class="medium priority-button" onclick="changeBackgroundColor('medium'); return false">
-                            <div id="mediumText" style="font-size: 20px">
-                                Medium
-                            </div>
-                            <div class="arrows" style="position: relative">
-                                <img id="mediumButtonPic" src="assets/img/hypen.svg" alt="svg">
-                                <img id="prioMedium" class="arrow-white-medium" src="assets/img/prio_medium.svg" alt="svg">
-                            </div>
+                        <button id="btn-medium" class="btn-medium priority-button" onclick="changeBackgroundColor('medium'); return false">
+                            <span>Medium</span>
+                            <img id="img-medium-btn" src="assets/img/hypen.svg" alt="svg">
                         </button>
-                        <button id="lowButton" class="low priority-button" onclick="changeBackgroundColor('low'); return false">
-                            <div class="lowText">
-                                Low
-                            </div>
-                            <div class="arrows">
-                                <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
-                                <img id="whiteArrowLow" class="arrow-white" src="assets/img/prioLow.svg">
-                            </div>
+                        <button id="btn-low" class="btn-urgent-low priority-button" onclick="changeBackgroundColor('low'); return false">
+                            <span>Low</span>
+                            <img id="img-low-btn" src="assets/img/greenArrow.svg" alt="svg">
                         </button>
                     </div>
                 </div>
-                <div>
+                <div class="assigned-container-edit-card">
                     <span style="color: #2A3647">Assigned to</span>
-                    <div style="margin-top: 14px; margin-bottom: 14px" id="assigned-edit-card" class="selection" onclick="toggleAssignedContainerEditCard(event)">
-                        <p id="standardOption" class="standardOption standard-option-edit-card">Select contacts to assign</p>
+                    <div id="assigned-edit-card" class="selection-edit-card" onclick="toggleAssignedContainerEditCard()">
+                        <span id="standardOption" class="standard-option-edit-card">Select contacts to assign</span>
                         <img id="dropdown-arrow-edit-card" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
                     </div>
                     <div id="show-assigned-contacts-edit-card" class="assigned-contacts-container-edit-card">
                         ${assignedContactsHTML}
                     </div>
-                    <div style="margin-top: 8px" id="show-chosen-initials-edit-card" class="showChosenInitials"></div>
+                    <div id="show-chosen-initials-edit-card" class="showChosenInitials"></div>
                 </div>
                 <div class="subtasks-container-edit-card">
                     <span style="color: #2A3647">Subtask</span>
@@ -152,13 +137,13 @@ function renderAddTaskForm() {
                     <div class="add-task-template-small-container">
                         <span class="add-task-text-field">Title<span class="star">*</span></span>
                         <div>
-                            <input id="title-template" type="text" class="inputfieldTitle" placeholder="Enter a title" required>
+                            <input id="title-template" type="text" class="inputfield-title" placeholder="Enter a title" required>
                         </div>
                     </div>
                     <div class="add-task-template-small-container">
                         <span class="add-task-text-field">Description</span>
                         <div>
-                            <textarea name="smallinputfieldDescription" id="description-template" placeholder="Enter a Description" class="smallinputfieldDescription" cols="30" rows="10"></textarea>
+                            <textarea id="description-template" placeholder="Enter a Description" class="smallinputfieldDescription" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="add-task-template-assigned-container">
@@ -167,7 +152,7 @@ function renderAddTaskForm() {
                             <span id="standardOption">Select contacts to assign</span>
                             <img id="dropdown-arrow" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
                         </div>
-                        <div id="show-assigned-contacts" class="showContactsToAssign"></div>
+                        <div id="show-assigned-contacts" class="show-contacts-to-assign-container"></div>
                         <div id="show-chosen-initials" class="showChosenInitials"></div>
                     </div>
                 </div>
@@ -181,33 +166,18 @@ function renderAddTaskForm() {
                     </div>
                     <div class="priority-buttons-container-template">
                         <span class="add-task-text-field">Prio</span>
-                        <div class="smallButtonsFrame priority-buttons-container">
-                            <button id="urgentButton" class="urgent priority-button" onclick="changeBackgroundColor('urgent'); return false">
-                                <div class="urgentText">
-                                    Urgent
-                                </div>
-                                <div class="arrows">
-                                    <img id="redArrow" class="redArrow" src="assets/img/redArrow.svg" alt="svg">
-                                    <img id="whiteArrow" class="whiteArrow" src="assets/img/prioUrgent.svg" alt="svg">
-                                </div>
+                        <div class="priority-buttons-container">
+                            <button id="btn-urgent" class="btn-urgent-low priority-button" onclick="changeBackgroundColor('urgent'); return false">
+                                <span>Urgent</span>
+                                <img id="img-urgent-btn" src="assets/img/redArrow.svg" alt="svg">
                             </button>
-                            <button id="mediumButton" class="medium priority-button" onclick="changeBackgroundColor('medium'); return false">
-                                <div id="mediumText" style="font-size: 20px;">
-                                    Medium
-                                </div>
-                                <div class="arrows">
-                                    <img id="mediumButtonPic" style="width: 22px" src="assets/img/hypen.svg" alt="svg">
-                                    <img id="prioMedium" style="width: 22px" class="priomedium" src="assets/img/prio_medium.svg" alt="svg">
-                                </div>
+                            <button id="btn-medium" class="btn-medium priority-button" onclick="changeBackgroundColor('medium'); return false">
+                                <span>Medium</span>
+                                <img id="img-medium-btn" src="assets/img/hypen.svg" alt="svg">
                             </button>
-                            <button id="lowButton" class="low priority-button" onclick="changeBackgroundColor('low'); return false">
-                                <div class="lowText">
-                                    Low
-                                </div>
-                                <div class="arrows">
-                                    <img id="greenArrow" class="greenArrow" src="assets/img/greenArrow.svg" alt="svg">
-                                    <img id="whiteArrowLow" class="whiteArrowLow" src="assets/img/prioLow.svg">
-                                </div>
+                            <button id="btn-low" class="btn-urgent-low priority-button" onclick="changeBackgroundColor('low'); return false">
+                                <span>Low</span>
+                                <img id="img-low-btn" src="assets/img/greenArrow.svg" alt="svg">
                             </button>
                         </div>
                     </div>
@@ -368,26 +338,21 @@ function renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastNa
 `;
 }
 
-function renderChosenInitialsEditCard(contact) {
+function renderAssignedContactHTML(contact) {
     return /*html*/`
-    <div class="assigned-contacts-edit-card">    
-        <div class="task-contacts-ellipse flex-center" style="background-color: ${contact.color}; color: white">
-            <span style="font-size: 12px;">${contact.initials}</span>
+        <div class="assigned-contacts-edit-card">    
+            <div class="task-contacts-ellipse flex-center" style="background-color: ${contact.color}; color: white">
+                <span style="font-size: 12px;">${contact.initials}</span>
+            </div>
+            <span>${contact.name}</span>
         </div>
-        <span>${contact.name}</span>
-    </div>
     `;
 }
 
-function renderContactsForAssignEditCard(contact, i) {
-    /*html*/`
-        <div id="newcontact-edit-card${i}" class="newcontact" onclick="handleContactClickEditCardWrapper(contactElement, ${i})">
-            <div class="circle" style="background-color: ${contact.color};">
-                <p>${contact.initials}</p>
-            </div>
-            <div class="nameAndCheckbox">    
-                <p class="contactName">${contact.name}</p>
-                <input type="checkbox" id="checkbox-edit-card${i}" class="checkBox">
-            </div> 
-        </div>`;
+function renderNoContactsAssignedHTML() {
+    return /*html*/`
+        <div class="assigned-contacts-edit-card">
+            <span style="font-size: 16px; margin-left: 16px;">No contacts assigned</span>
+        </div>
+    `;
 }

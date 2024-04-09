@@ -428,6 +428,13 @@
     align-items: center;
 }
 
+.checkbox-text {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .check-box-container-subtasks:hover {
     background-color: #F4F4F4;
     border-radius: 10px;
@@ -470,6 +477,10 @@
     align-items: center;
 }
 
+.priority-button-text {
+    font-size: 20px;
+}
+
 .popup-board-overlay {
     position: fixed;
     top: 0;
@@ -498,7 +509,7 @@
     width: 1116px;
     height: 870px;
     border-radius: 30px;
-    animation: slideInFromRight 0.2s ease-in-out;
+    animation: slideIn 0.2s ease-in-out;
     padding: 64px 74px 64px 74px;
 }
 
@@ -690,9 +701,9 @@
 
 .assigned-container-edit-card {
     display: flex;
-    gap: 12px;
     flex-direction: column;
     font-size: 20px;
+    gap: 8px;
 }
 
 .subtasks-container-edit-card {
@@ -976,8 +987,7 @@
     background-color: white;
     z-index: 100;
     display: flex;
-    margin-top: 8px;
-    gap: 8px;
+    gap: 4px;
 }
 
 .assigned-contacts-edit-card {
@@ -989,6 +999,11 @@
 
 #show-chosen-initials {
     margin-top: 8px;
+}
+
+#show-chosen-initials-edit-card {
+    margin-top: -8px;
+    border-radius: 10px;
 }
 
 .detailed-card-container::-webkit-scrollbar {
@@ -1026,12 +1041,6 @@
 @media (max-width: 1501px) {
     .board-content {
         flex-wrap: wrap;
-    }
-}
-
-@media (max-width: 1201px) {
-    .header-board {
-        padding: 20px 40px 20px 64px;
     }
 }
 
@@ -1077,6 +1086,27 @@
 }
 
 @media (max-width: 701px) {
+    .assigned-container-edit-card {
+        font-size: 16px;
+    }
+    .priority-button-text {
+        font-size: 16px;
+    }
+    .priority-button{
+        font-size: 16px !important;
+    }
+    #img-urgent-btn {
+        width: 16px;
+    }
+    #img-medium-btn{
+        width: 16px;
+    }
+    #img-low-btn {
+        width: 16px;
+    }
+    .subtask-list-edit-card {
+        font-size: 14px;
+    }
     .board-content {
         flex-direction: column;
         justify-content: center;
@@ -1133,18 +1163,6 @@
     #small-menu-mobile {
         top: 80px;
     }
-}
-
-@media (min-width: 700px) {
-    .header-mobile {
-        display: none;
-    }
-    .add-task-button-mobile {
-        display: none;
-    }
-}
-
-@media (max-width: 581px) {
     .position-helper-board-content {
         align-items: flex-start;
     }
@@ -1218,19 +1236,31 @@
     .standard-option-edit-card {
         font-size: 16px;
     }
-    .priority-buttons-container {
-        flex-direction: column;
-    }
     .priority-button {
         width: 100%;
     }
     #subtasks-edit-card {
         font-size: 16px;
     }
+}
+
+@media (min-width: 700px) {
+    .header-mobile {
+        display: none;
+    }
+    .add-task-button-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 1201px) {
     .add-task-template {
         overflow: scroll;
         width: 300px;
         padding: 32px 24px 32px 24px;
+    }
+    .inputfield-title {
+        width: 100% !important;
     }
     .headline-template {
         font-size: 36px;
@@ -1310,11 +1340,149 @@
         right: calc(50% - 140px);
         width: 280px;
     }
+    .header-board {
+        padding: 20px 40px 20px 64px;
+    }
 }
 
-.checkbox-text {
-    font-size: 16px;
-    white-space: nowrap;
+@media (max-width: 581px) { 
+    .add-task-template {
+        width: 300px;
+    }
+    .priority-buttons-container {
+        flex-direction: column;
+    }
+    .btn-urgent-low {
+        width: 100% !important;
+    }
+    .btn-medium {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 581px) and (max-width: 1201px) {
+    .add-task-template {
+        width: 480px;
+    }
+    .buttons-template {
+        justify-content: flex-end;
+    }
+}
+
+.btn-medium {
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    padding: 16px 10px 16px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    border-width: 0px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 168, 0);
+    color: white;
+    font-weight: 700;
+}
+
+.btn-urgent-low {
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    padding: 16px 10px 16px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    border-width: 0px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    background-color:white;
+    color: black;
+}
+
+.overflow-hidden {
     overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+.new-contact {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.selection-edit-card {
+    width: 100%;
+    height: 53px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    font-family: 'Inter' !important;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    background-color: white;
+    border-color: rgba(209, 209, 209, 1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.selection-edit-card:hover {
+    cursor: pointer;
+}
+
+#date-edit-card:hover {
+    cursor: pointer;
+}
+
+.new-contact:hover {
+    cursor: pointer;
+    background-color: #D1D1D1;
+}
+
+.inputfield-title {
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border-width: 1px;
+    padding-top: 12px;
+    padding-right: 21px;
+    padding-bottom: 12px;
+    padding-left: 21px;
+    gap: 10px;
+    background-color: #FFFFFF;
+    border-color: #D1D1D1;
+    border-style: solid;
+}
+
+.inputfield-title::placeholder {
+    width: 398px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #D1D1D1;
+}
+
+.show-contacts-to-assign-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    border-top: none;
+    max-height: 200px;
+    overflow: auto;
+    background-color: white;
 }

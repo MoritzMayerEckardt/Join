@@ -73,6 +73,7 @@ function openDetailedCard(taskId) {
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML);
+    avoidScolling();
 }
 
 function openEditCard(taskId) {
@@ -81,7 +82,11 @@ function openEditCard(taskId) {
     let popupContent = document.getElementById('popup-board-content');
     let subtasksHTMLEditCard = generateSubtasksHTMLEditCard(task);
     let assignedContactsHTML = generateAssignedContactsInDetailedCard(task);
-    chosenContacts = task.assigned;
+    if (!task.assigned) {
+        chosenContacts = [];
+    } else {
+        chosenContacts = task.assigned;
+    }
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML);
@@ -94,6 +99,7 @@ function showAddTaskForm(columnId) {
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderAddTaskForm();
+    avoidScolling();
 }
 
 
@@ -183,6 +189,7 @@ function closeTaskFormAfterInfo() {
             popupOverlay.classList.add('d-none');
         }, 200);
     }, 1200);
+    allowScrolling();
 }
 
 function closePopup(cardId) {
@@ -197,6 +204,7 @@ function closePopup(cardId) {
         popupOverlay.style.removeProperty('animation');
     }, 500); 
     renderColumns();
+    allowScrolling();
 }
 
 function closeCardAfterInfo() {
@@ -213,12 +221,14 @@ function closeCardAfterInfo() {
         popupOverlay.style.removeProperty('animation');
     }, 1500); 
     renderColumns();
+    allowScrolling();
 }
 
 
 function closeFromClickOutside() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
+    allowScrolling();
 }
 
 function showTaskAddedTemplate() {
@@ -241,11 +251,10 @@ function searchTasks() {
     for (const column of columns) {
         const container = document.getElementById(column.containerId);
         container.innerHTML = '';
+        const tasksInColumn = filterTasksByCategory(tasks, column.category);
         if (search === '') {
-            const tasksInColumn = filterTasksByCategory(tasks, column.category);
-            renderTasksForColumn(tasksInColumn, '', container);
+            renderTasksForColumn(tasksInColumn, '', container, column.emptyRenderer);
         } else {
-            const tasksInColumn = filterTasksByCategory(tasks, column.category);
             const foundTasksInColumn = renderTasksForColumn(tasksInColumn, search, container);
             if (!foundTasksInColumn) {
                 container.innerHTML = column.emptyRenderer();
@@ -261,7 +270,7 @@ function renderTaskCard(task, container) {
     container.innerHTML += renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML);
 }
 
-function renderTasksForColumn(tasksInColumn, search, container) {
+function renderTasksForColumn(tasksInColumn, search, container, emptyRenderer) {
     let foundTasks = false;
     if (tasksInColumn && tasksInColumn.length >= 1) {
         tasksInColumn.forEach(task => {
@@ -272,14 +281,24 @@ function renderTasksForColumn(tasksInColumn, search, container) {
             }
         });
     }
+    if (!foundTasks && typeof emptyRenderer === 'function') {
+        container.innerHTML = emptyRenderer();
+    }
     return foundTasks;
 }
-
 
 // **********************STOP-PROPAGATION**********************
 
 function doNotClose(event) {
     event.stopPropagation();
+}
+
+function avoidScolling() {
+    document.getElementById('mybody').classList.add('overflow-hidden');
+}
+
+function allowScrolling() {
+    document.getElementById('mybody').classList.remove('overflow-hidden');
 }
 
 
