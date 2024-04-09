@@ -470,9 +470,6 @@
 }
 
 .newSubtask {
-    position: relative;
-    left: 632.25px;
-    bottom: 245px;
     height: 100px;
     width: 440px;
 }
@@ -481,7 +478,8 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    bottom: 200px;
+    bottom: 120px;
+    padding-top: 25px;
 }
 
 .buttons {
