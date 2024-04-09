@@ -1,0 +1,30 @@
+@media (max-width: 900px) {
+    .mobile-menu {
+        display: flex !important;
+        z-index: 99;
+    }
+    .sidebar-legalNotice{
+        display: none;
+    }
+
+    .sidebar-privacyPolicy{
+        display: none;
+    }
+
+    .header-privacyPolicy{
+            position: fixed;
+            left: 0px;
+            width: 100%;
+            padding: 0px;
+    }
+}
+
+@media (max-width: 699px){
+    .header-privacyPolicy{
+        display: none;
+    }
+
+    .space-betw{
+        padding-top: 0px;
+    }
+}

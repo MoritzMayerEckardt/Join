@@ -7,6 +7,7 @@ async function initPrivacyPolicy() {
     await loadGuestLogin();
     addBackgroundColor();
     showCurrentUserInButton();
+    showCurrentUserInButtonMobile();
 }
 
 function goBack() {
