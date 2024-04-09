@@ -264,7 +264,7 @@
     width: 100%;
     height: 100vh;
     background-color: #2A3647;
-    animation: fadeOutBackground 2000ms ease-in-out forwards;
+    animation: fadeOutBackground 2500ms ease-in-out forwards;
 }
 
 @keyframes fadeOutBackground {
@@ -313,10 +313,17 @@
     .login-button-right {
         font-size: 16px;
     }
+   
 }
 
 @media (min-width: 700px) {
     .signup-container-mobile {
+        display: none;
+    }
+    .join-logo-end-mobile {
+        display: none;
+    }
+    .blue-background {
         display: none;
     }
     .join-logo-end-mobile {

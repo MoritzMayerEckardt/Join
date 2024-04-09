@@ -1380,7 +1380,7 @@
     }
 }
 
-@media (max-width: 421px) {
+@media (max-width: 401px) {
     .add-task-template {
         width: 300px;
     }
