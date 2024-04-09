@@ -103,7 +103,9 @@ function clearForm() {
     document.getElementById('date').value = "";
     document.getElementById('category').selectedIndex = 0;
     document.getElementById('subtasks').value = "";
+    document.getElementById('showChosenInitials').innerHTML= "";
     subtaskArray = [];
+    chosenContacts = [];
     getNewSubtask();
     resetButtonStyles();
 }
