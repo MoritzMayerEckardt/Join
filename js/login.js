@@ -1,8 +1,15 @@
 async function initLogin() {
     await loadUsers();
     setTimeout(() => {
+        hideBackgroundMobile();
+    }, 1500);
+    setTimeout(() => {
          includeHTML();
      }, 1500);
+}
+
+function hideBackgroundMobile() {
+    document.getElementById('blue-background').classList.add('d-none');
 }
 
 async function loginUser() {

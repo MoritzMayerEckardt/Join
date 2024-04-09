@@ -9,6 +9,34 @@
     left: 50%;
 }
 
+.join-logo-end-mobile {
+    position: absolute;
+    vertical-align: middle;
+    animation: moveLogoMobile ease-in-out 1000ms;
+    animation-fill-mode: forwards;
+    animation-delay: 400ms;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 78.03px;
+}
+
+.join-logo-start-mobile {
+    position: absolute;
+    vertical-align: middle;
+    animation: moveLogoMobile ease-in-out 1000ms;
+    animation-fill-mode: forwards;
+    animation-delay: 400ms;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 78.03px;
+}
+
 @keyframes moveLogo {
     from {
         width: 274px;
@@ -23,6 +51,24 @@
         height: 121.97px;
         top: 60px;
         left: 77px;
+        transform: none;
+    }
+}
+
+@keyframes moveLogoMobile {
+    from {
+        width: 64px;
+        height: 78.03px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        width: 64px;
+        height: 78.03px;
+        top: 37px;
+        left: 36px;
         transform: none;
     }
 }
