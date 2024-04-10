@@ -1,6 +1,8 @@
-function openSmallMenu() {
+/**
+ * Opens or closes the small menu.
+ */
+ function openSmallMenu() {
     let smallMenu = document.getElementById('smallMenu');
-
     if (!smallMenuOpen) {
         smallMenu.style.display = 'flex';
         smallMenuOpen = true;
@@ -9,7 +11,10 @@ function openSmallMenu() {
         smallMenuOpen = false;
     }
 }
-
+/**
+ * Event listener that closes the small menu when clicked outside.
+ * @param {Event} event - The click event triggered
+ */
 document.addEventListener('click', function (event) {
     let smallMenu = document.getElementById('smallMenu');
     let smallMenuBtn = document.getElementById('userInitials')
@@ -19,7 +24,9 @@ document.addEventListener('click', function (event) {
         smallMenuOpen = false;
     }
 });
-
+/**
+ * Displays the current user's initials in the mobile button.
+ */
 async function showCurrentUserInButtonMobile() {
     let button = document.getElementById('user-initials-mobile');
     let currentUserInitials;
@@ -30,7 +37,9 @@ async function showCurrentUserInButtonMobile() {
     }
     button.innerHTML = currentUserInitials;
 }
-
+/**
+ * Opens or closes the small menu on mobile devices.
+ */
 function openSmallMenuMobile() {
     let smallMenuMobile = document.getElementById('small-menu-mobile');
     if (!smallMenuMobileOpen) {
@@ -41,7 +50,10 @@ function openSmallMenuMobile() {
         smallMenuMobileOpen = false;
     }
 }
-
+/**
+ * Event listener that closes the mobile small menu when clicked outside.
+ * @param {Event} event - The click event triggered
+ */
 document.addEventListener('click', function (event) {
     let smallMenuMobile = document.getElementById('small-menu-mobile');
     let smallMenuBtnMobile = document.getElementById('user-initials-mobile')

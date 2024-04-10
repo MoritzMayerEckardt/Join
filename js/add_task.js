@@ -1,4 +1,9 @@
-async function initAddTask() {
+/**
+ * Initializes the addition of a new task.
+ * Loads necessary data and sets up the interface.
+ * @returns {Promise<void>}
+ */
+ async function initAddTask() {
     await includeHTML();
     await loadCurrentUserIndex(); 
     await loadTasks();
@@ -10,6 +15,10 @@ async function initAddTask() {
     showCurrentUserInButtonMobile();
 }
 
+/**
+ * Adds a new task by creating it, pushing values, and posting it to the server.
+ * @returns {Promise<void>}
+ */
 async function addTask() {
     createTasksIfNotCreated();
     pushValuesToTasks();
@@ -18,12 +27,19 @@ async function addTask() {
     jumpToBoard()
 }
 
+/**
+ * Creates tasks array if it doesn't exist.
+ */
 function createTasksIfNotCreated() {
     if (!tasks) {
         tasks = [];
     }
 }
 
+/**
+ * Gets input values for creating a new task.
+ * @returns {Object} - Object containing task details.
+ */
 function getValuesFromInput() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
@@ -43,6 +59,9 @@ function getValuesFromInput() {
     return { title, description, assigned, date, category, priority, };
 }
 
+/**
+ * Pushes input values to tasks array.
+ */
 function pushValuesToTasks() {
     let boardCategory = "toDo";
     let { title, description, date, category, priority } = getValuesFromInput();
@@ -59,6 +78,9 @@ function pushValuesToTasks() {
     });
 }
 
+/**
+ * Adds a new subtask to the subtask array.
+ */
 function addNewSubtask() {
     let addNewSubtask = document.getElementById('subtasks').value;
     if (subtaskArray.length < 2) {
@@ -72,31 +94,38 @@ function addNewSubtask() {
     }
 }
 
+/**
+ * Updates the interface with new subtask information.
+ */
 function getNewSubtask() {
-    console.log("getNewSubtask() wird aufgerufen")
+    console.log("getNewSubtask() is called")
     let newSubtask = document.getElementById('newSubtask');
-
     newSubtask.innerHTML = ``;
-
     for (i = 0; i < subtaskArray.length; i++) {
         newSubtask.innerHTML += `
         <div> 
              <b> •${subtaskArray[i].title} </b> 
          </div>`
-
     }
-
     document.getElementById('subtasks').value = ``;
 }
 
+/**
+ * Handles key press events, particularly the Enter key for adding subtasks.
+ * @param {Event} event - The key press event.
+ */
 function handleKeyPress(event) {
-    if (event.keyCode === 13) { // 13 entspricht der Enter-Taste
-        event.preventDefault(); // Standardverhalten unterdrücken
+    if (event.keyCode === 13) { 
+        event.preventDefault(); 
         addNewSubtask();
     }
 }
 
-function clearForm() {
+/**
+ * Clears all input fields and resets associated styles.
+ */
+ function clearForm() {
+    // Clear input field values
     document.getElementById('title').value = "";
     document.getElementById('description').value = "";
     document.getElementById('assigned').selectedIndex = 0;
@@ -104,137 +133,141 @@ function clearForm() {
     document.getElementById('category').selectedIndex = 0;
     document.getElementById('subtasks').value = "";
     document.getElementById('showChosenInitials').innerHTML= "";
+    // Reset arrays and UI elements
     subtaskArray = [];
     chosenContacts = [];
     getNewSubtask();
     resetButtonStyles();
 }
 
+/**
+ * Resets button styles to their default state.
+ */
 function resetButtonStyles() {
-    const urgentButton = document.getElementById('urgentButton');
-    const mediumButton = document.getElementById('mediumButton');
-    const mediumButtonText = document.getElementById('mediumText');
-    const prioMedium = document.getElementById('prioMedium');
-    const lowButton = document.getElementById('lowButton');
-    const redArrow = document.getElementById('redArrow');
-    const greenArrow = document.getElementById('greenArrow');
-    const whiteArrow = document.getElementById('whiteArrow');
-    const whiteArrowLow = document.getElementById('whiteArrowLow');
-
+    // Reset urgent button styles
+    let urgentButton = document.getElementById('urgentButton');
+    let redArrow = document.getElementById('redArrow');
+    let whiteArrow = document.getElementById('whiteArrow');
     urgentButton.style.backgroundColor = '';
     urgentButton.style.color = '';
     redArrow.style.display = '';
     whiteArrow.style.display = '';
-
+    // Reset medium button styles
+    let mediumButton = document.getElementById('mediumButton');
+    let mediumButtonText = document.getElementById('mediumText');
+    let prioMedium = document.getElementById('prioMedium');
     mediumButton.style.backgroundColor = '';
     mediumButton.style.color = '';
     mediumButtonText.style.fontWeight = '';
     prioMedium.style.display = '';
-
+    // Reset low button styles
+    let lowButton = document.getElementById('lowButton');
+    let greenArrow = document.getElementById('greenArrow');
+    let whiteArrowLow = document.getElementById('whiteArrowLow');
     lowButton.style.backgroundColor = '';
     lowButton.style.color = '';
     greenArrow.style.display = '';
     whiteArrowLow.style.display = '';
 }
 
+/**
+ * Changes background color and styles based on the clicked button.
+ * @param {string} clickedButton - The ID of the button that was clicked.
+ */
 function changeBackgroundColor(clickedButton) {
+    // Retrieve button and arrow elements
     let urgentButton = document.getElementById('urgentButton');
     let mediumButton = document.getElementById('mediumButton');
-    let mediumButtonText = document.getElementById('mediumText');
-    let prioMedium = document.getElementById('prioMedium');
     let lowButton = document.getElementById('lowButton');
     let redArrow = document.getElementById('redArrow');
     let greenArrow = document.getElementById('greenArrow');
     let whiteArrow = document.getElementById('whiteArrow');
-    let whiteArrowLow = document.getElementById('whiteArrowLow')
-
-
-
+    let whiteArrowLow = document.getElementById('whiteArrowLow');
+    let mediumButtonText = document.getElementById('mediumText');
+    let prioMedium = document.getElementById('prioMedium');
+    
+    // Update styles based on the clicked button
     if (clickedButton === 'urgent') {
+        // Update urgent button styles
         urgentButton.style.backgroundColor = 'rgba(255, 61, 0, 1)';
         urgentButton.style.color = 'white';
         redArrow.style.display = 'none';
         whiteArrow.style.display = 'flex';
-
-        lowButton.style.backgroundColor = 'white';
-        lowButton.style.color = 'black';
-        greenArrow.style.display = 'flex';
-        whiteArrowLow.style.display = 'none';
-
+        // Reset medium button styles
         mediumButton.style.backgroundColor = 'white';
         mediumButton.style.color = 'black';
         mediumButtonText.style.fontWeight = 'normal';
         prioMedium.style.display = 'flex';
-
-
+        // Reset low button styles
+        lowButton.style.backgroundColor = 'white';
+        lowButton.style.color = 'black';
+        greenArrow.style.display = 'flex';
+        whiteArrowLow.style.display = 'none';
     } else if (clickedButton === 'medium') {
+        // Update medium button styles
         mediumButton.style.backgroundColor = 'rgba(255, 168, 0, 1)';
         mediumButton.style.color = 'white';
         mediumButtonText.style.fontWeight = '700';
         prioMedium.style.display = 'none';
-
+        // Reset urgent button styles
         urgentButton.style.backgroundColor = 'white';
         urgentButton.style.color = 'black';
         redArrow.style.display = 'flex';
         whiteArrow.style.display = 'none';
-
+        // Reset low button styles
         lowButton.style.backgroundColor = 'white';
         lowButton.style.color = 'black';
         greenArrow.style.display = 'flex';
         whiteArrowLow.style.display = 'none';
-
     } else if (clickedButton === 'low') {
+        // Update low button styles
         lowButton.style.backgroundColor = 'rgba(122, 226, 41, 1)';
         lowButton.style.color = 'white';
         greenArrow.style.display = 'none';
         whiteArrowLow.style.display = 'flex';
-
+        // Reset medium button styles
         mediumButton.style.backgroundColor = 'white';
         mediumButton.style.color = 'black';
         mediumButtonText.style.fontWeight = 'normal';
         prioMedium.style.display = 'flex';
-
+        // Reset urgent button styles
         urgentButton.style.backgroundColor = 'white';
         urgentButton.style.color = 'black';
         redArrow.style.display = 'flex';
         whiteArrow.style.display = 'none';
     }
+    // Update last clicked button
     lastClickedButton = clickedButton;
 }
 
-function jumpToBoard() {
+/**
+ * Redirects the user to the board page.
+ */
+ function jumpToBoard() {
     window.location.href = "../board.html";
 }
 
-
+/**
+ * Event listener to toggle visibility of contacts when the assigned dropdown is clicked.
+ */
 document.addEventListener('DOMContentLoaded', function () {
-    // Dieser Eventlistener wird ausgeführt, wenn 'assigned' angeklickt wird und es wird toggleContactsVisibility() ausgeführt.
     document.getElementById('assigned').addEventListener('click', function(event) {
-        // Elemente aus dem DOM auswählen
         let showContacts = document.getElementById('showContactsToAssign');
         let arrowImage = document.getElementById('dropdownArrow');
         let initialDIV = document.getElementById('showChosenInitials');
-        
-        // Zeige initialDIV an
         initialDIV.style.display = 'flex';
-        
-        // Schließe showContactsToAssign und setze die andere Logik für das Klicken auf assigned fort
         toggleContactsVisibility();
     });
     
-    // Dieser Eventlistener sorgt dafür, dass sich beim Klicken außerhalb den Containers, der Container wieder schließt.
     document.addEventListener('click', function(event) {
-        // Elemente aus dem DOM auswählen
         let showContacts = document.getElementById('showContactsToAssign');
         let arrowImage = document.getElementById('dropdownArrow');
         let initialDIV = document.getElementById('showChosenInitials');
         let assignedDIV = document.getElementById('assigned');
 
-        // Überprüfen, ob die Liste der zuzuweisenden Kontakte sichtbar ist
+        // Close contacts dropdown when clicking outside of it
         if (showContacts.style.display !== 'none') {
-            // Überprüfen, ob der Klick außerhalb der Liste und bestimmter anderer Elemente erfolgt ist
             if (!showContacts.contains(event.target) && event.target !== assignedDIV && event.target.id !== 'assigned' && event.target.id !== 'standardOption' && event.target.id !== 'dropdownArrow') {
-                // Wenn ja, die Liste leeren und das Aussehen ändern
                 showContacts.innerHTML = '';
                 contactsVisible = false;
                 arrowImage.style.transform = 'rotate(0deg)';
@@ -244,22 +277,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Diese Funktion ändert die Sichtbarkeit der Liste der zuzuweisenden Kontakte
+/**
+ * Toggles visibility of contacts dropdown.
+ */
 function toggleContactsVisibility() {
-    // Elemente aus dem DOM auswählen
     let showContacts = document.getElementById('showContactsToAssign');
     let arrowImage = document.getElementById('dropdownArrow');
     let initialDIV = document.getElementById('showChosenInitials');
 
-    // Überprüfen, ob die Liste der zuzuweisenden Kontakte sichtbar ist
     if (contactsVisible) {
-        // Wenn ja, leere die Liste und ändere das Aussehen entsprechend
         showContacts.innerHTML = '';
         contactsVisible = false;
         arrowImage.style.transform = 'rotate(0deg)';
         initialDIV.style.display = 'flex !important';
     } else {
-        // Wenn nicht, zeige die Liste an und ändere das Aussehen entsprechend
         showContactsForAssign();
         contactsVisible = true;
         arrowImage.style.transform = 'rotate(180deg)';
@@ -267,20 +298,15 @@ function toggleContactsVisibility() {
     }
 }
 
-
-
-
-// Diese Funktion zeigt die Liste der Kontakte an, die zur Zuweisung verfügbar sind
+/**
+ * Populates the contacts dropdown with available contacts.
+ */
 function showContactsForAssign() {
-    // Das Element 'showContactsToAssign' aus dem DOM auswählen
     let showContacts = document.getElementById('showContactsToAssign');
-    // Die HTML-Inhalte des Elements leeren
     showContacts.innerHTML = '';
-
-    // Eine Schleife durchläuft alle Kontakte und fügt sie der Liste hinzu
+    // Loop through contacts and populate the dropdown
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-        // Das HTML für jedes Kontakt-Element erstellen und zur 'showContacts' Liste hinzufügen
         showContacts.innerHTML += `
         <div id="newcontact${i}" class="newcontact">
             <div class="circle" style="background-color: ${contact.color};">
@@ -292,59 +318,59 @@ function showContactsForAssign() {
             </div> 
         </div>`;
     }
-    // Die Funktion 'chosenContact' aufrufen, um das Verhalten der Kontakt-Elemente zu definieren
     chosenContact();
 }
 
-// Diese Funktion definiert das Verhalten der ausgewählten Kontakte
-// Diese Funktion definiert das Verhalten der ausgewählten Kontakte
-function chosenContact() {
-    // Eine Schleife durchläuft alle Kontakte
+/**
+ * Handles the selection of contacts in the contacts dropdown.
+ */
+ function chosenContact() {
+    // Loop through contacts and add event listeners to contact elements
     for (let i = 0; i < contacts.length; i++) {
         let contactElement = document.getElementById(`newcontact${i}`);
-        // Die Hintergrundfarbe des Kontakt-Elements zurücksetzen
         contactElement.style.backgroundColor = '';
-        // Ein Eventlistener wird auf das Kontakt-Element angewendet, um das Klicken zu behandeln
+        // Add click event listener to toggle selection of contact
         contactElement.addEventListener('click', function () {
-            // Die aktuelle Hintergrundfarbe des Kontakt-Elements abrufen
+            // Get the current background color of the contact element
             let currentBackgroundColor = window.getComputedStyle(contactElement).getPropertyValue('background-color');
-            // Überprüfen, ob das Kontakt-Element ausgewählt ist oder nicht
+            // Toggle background color and checkbox status based on current state
             if (currentBackgroundColor === 'rgb(42, 54, 71)') {
-                // Wenn ausgewählt, das Aussehen zurücksetzen und den Kontakt aus der Liste der ausgewählten Kontakte entfernen
                 contactElement.style.backgroundColor = '';
                 contactElement.style.color = 'black';
                 let checkbox = contactElement.querySelector('.checkBox');
                 checkbox.checked = false;
-
+                // Remove contact from chosen contacts array
                 let index = chosenContacts.findIndex(c => c.name === contacts[i].name);
                 if (index !== -1) {
                     chosenContacts.splice(index, 1);
                 }
             } else {
-                // Wenn nicht ausgewählt, das Aussehen ändern und den Kontakt zur Liste der ausgewählten Kontakte hinzufügen
                 contactElement.style.backgroundColor = 'rgb(42, 54, 71)';
                 contactElement.style.color = 'white';
                 let checkbox = contactElement.querySelector('.checkBox');
                 checkbox.checked = true;
-
+                // Add contact to chosen contacts array
                 let index = chosenContacts.findIndex(c => c.name === contacts[i].name);
                 if (index === -1) {
                     chosenContacts.push(contacts[i]);
                 }
             }
-            // Die Funktion 'showChosenInitials' aufrufen, um die ausgewählten Initialen anzuzeigen
+            // Update the display of chosen contact initials
             showChosenInitials();
         });
-        // Die Funktion 'checkedContactStaysChecked' aufrufen, um sicherzustellen, dass ausgewählte Kontakte ausgewählt bleiben
+        // Ensure that checked contacts remain checked
         checkedContactStaysChecked(contactElement, i);
     }
 }
 
-// Diese Funktion stellt sicher, dass ausgewählte Kontakte ausgewählt bleiben
+/**
+ * Ensures that previously selected contacts remain checked upon rendering.
+ * @param {HTMLElement} contactElement - The contact element.
+ * @param {number} i - Index of the contact.
+ */
 function checkedContactStaysChecked(contactElement, i) {
-    // Überprüfen, ob der aktuelle Kontakt in der Liste der ausgewählten Kontakte enthalten ist
+    // Check if contact is in chosen contacts array and update styling accordingly
     if (chosenContacts.findIndex(c => c.name === contacts[i].name) !== -1) {
-        // Wenn ja, das Aussehen entsprechend ändern
         contactElement.style.backgroundColor = '#2A3647';
         contactElement.style.color = 'white';
         let checkbox = contactElement.querySelector('.checkBox');
@@ -352,26 +378,18 @@ function checkedContactStaysChecked(contactElement, i) {
     }
 }
 
-
-// Diese Funktion zeigt die ausgewählten Initialen an
+/**
+ * Updates the display of chosen contact initials.
+ */
 function showChosenInitials() {
-    // Das Element 'showChosenInitials' aus dem DOM auswählen
     let showChosenInitials = document.getElementById('showChosenInitials');
-    // Die HTML-Inhalte des Elements leeren
     showChosenInitials.innerHTML = '';
-
-    // Durch alle ausgewählten Kontakte iterieren und die Initialen anzeigen
+    // Loop through chosen contacts and display initials
     chosenContacts.forEach(contact => {
-        if (chosenContacts.includes(contact)) {
-            // Wenn der Kontakt ausgewählt ist, die Initialen anzeigen
-            showChosenInitials.innerHTML += `
-            <div class="circleSmall" style="background-color: ${contact.color};">
-                <p>${contact.initials}</p>
-            </div>`;
-        } else {
-            // Andernfalls nichts anzeigen
-            showChosenInitials.innerHTML += ``;
-        }
+        showChosenInitials.innerHTML += `
+        <div class="circleSmall" style="background-color: ${contact.color};">
+            <p>${contact.initials}</p>
+        </div>`;
     });
 }
 
