@@ -1,4 +1,9 @@
-async function initLogin() {
+/**
+ * Initializes the login process by loading users, guest login data, and current user index.
+ * Hides the mobile background after a delay.
+ * Includes HTML files after a delay.
+ */
+ async function initLogin() {
     await loadUsers();
     await loadGuestLogin();
     await loadCurrentUserIndex();
@@ -9,11 +14,17 @@ async function initLogin() {
          includeHTML();
      }, 1500);
 }
-
+/**
+ * Hides the mobile background.
+ */
 function hideBackgroundMobile() {
     document.getElementById('blue-background').classList.add('d-none');
 }
-
+/**
+ * Logs in the user with provided email and password.
+ * Redirects to the summary page if login is successful.
+ * Displays an alert if login fails.
+ */
 async function loginUser() {
     let email = document.getElementById('inputEmail');
     let password = document.getElementById('inputPassword');
@@ -27,13 +38,20 @@ async function loginUser() {
         alert('Login failed. Check your username and password.')
     }
 }
-
+/**
+ * Logs in as a guest user.
+ * Redirects to the summary page with a success message.
+ */
 async function loginGuest(){
     await postData('/currentUserId', 'guestLogin')
-    console.log('guest login klappt')
+    console.log('guest login successful')
     window.location.href = `summary.html?msg=successfully_logged_in_as_guest`;
 }
-
+/**
+ * Sends data to the specified path via HTTP PUT request.
+ * @param {string} path - The path to send the data
+ * @param {string} currentUser - The current user data to be sent
+ */
 async function postData(path, currentUser) {
     try {
         let response = await fetch(BASE_URL + path + ".json", {
@@ -47,12 +65,15 @@ async function postData(path, currentUser) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         let data = await response.json();
-        console.log("Daten erfolgreich gesendet:", data);
+        console.log("Data sent successfully:", data);
     } catch (error) {
-        console.error("Fehler beim Senden der Daten:", error);
+        console.error("Error sending data:", error);
     }
 }
-
+/**
+ * Redirects to the sign-up page.
+ */
 function forwardingToSignup(){
     window.location.href = `sign_up.html`;
 }
+
