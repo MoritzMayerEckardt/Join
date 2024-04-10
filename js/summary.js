@@ -63,10 +63,11 @@ function loadAmountTodo() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = guest['tasks'];
+        tasks = guest['tasks'] || [];
     } else {
-        tasks = users[currentUserIndex].tasks;
+        tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
+    
     if (tasks.length) {
         for (let i = 0; i < tasks.length; i++) {
             if (tasks[i].boardCategory === "toDo") {
@@ -77,14 +78,15 @@ function loadAmountTodo() {
     document.getElementById('amount-todo').innerHTML = todoCount;
 }
 
+
 function loadAmountDone() {
     let doneCount = 0;
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = guest.tasks;
+        tasks = guest['tasks'] || [];
     } else {
-        tasks = users[currentUserIndex].tasks;
+        tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
 
     for (let i = 0; i < tasks.length; i++) {
@@ -98,9 +100,9 @@ function loadAmountDone() {
 function loadAmountAllTasks() {
     let allTasks;
     if (currentUserIndex === 'guestLogin') {
-        allTasks = guest['tasks'];
+        allTasks = guest['tasks'] || [];
     } else {
-        allTasks = users[currentUserIndex]['tasks'];
+        allTasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
 
     if (allTasks.length) {
@@ -115,9 +117,9 @@ function loadAmountInProgress() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = guest.tasks;
+        tasks = guest['tasks'] || [];
     } else {
-        tasks = users[currentUserIndex].tasks;
+        tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
 
     for (let i = 0; i < tasks.length; i++) {
@@ -133,9 +135,9 @@ function loadAmountAwaitingFeedback() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = guest.tasks;
+        tasks = guest['tasks'] || [];
     } else {
-        tasks = users[currentUserIndex].tasks;
+        tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
 
     for (let i = 0; i < tasks.length; i++) {
@@ -151,9 +153,9 @@ function loadAmountAwaitingFeedback() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = guest.tasks;
+        tasks = guest['tasks'] || [];
     } else {
-        tasks = users[currentUserIndex].tasks;
+        tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
 
     for (let i = 0; i < tasks.length; i++) {
@@ -169,9 +171,9 @@ function loadAmountUrgentTasks() {
     let tasks;
 
     if (currentUserIndex === 'guestLogin') {
-        tasks = guest.tasks;
+        tasks = guest['tasks'] || [];
     } else {
-        tasks = users[currentUserIndex].tasks;
+        tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
 
     for (let i = 0; i < tasks.length; i++) {

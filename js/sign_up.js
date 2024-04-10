@@ -156,7 +156,7 @@ function showSuccessfullySignedUpMessage() {
     document.getElementById("signUpBody").style.overflow = 'hidden';
 
     const successMessage = document.getElementById('successfully-signed-up-message');
-    successMessage.style.display = 'block';
+    successMessage.style.display = 'flex';
 
     setTimeout(() => {
         successMessage.style.display = 'none';

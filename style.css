@@ -1,5 +1,5 @@
-@import url(./style/fonts.css);
-@import url(./style/animation.css);
+@import url('./style/fonts.css');
+@import url('./style/animation.css');
 @import url(./style/login.css);
 @import url(./style/sign_up.css);
 @import url(./style/aside.css);
@@ -15,9 +15,6 @@
 @import url(./style/add_task_mobile.css);
 @import url(./style/legal_notice_mobile.css);
 @import url(./style/privacy_policy_mobile.css);
-
-
-
 
 body {
     margin: 0;
