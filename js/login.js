@@ -43,8 +43,6 @@ async function loginUser() {
  * Redirects to the summary page with a success message.
  */
 async function loginGuest(){
-    await postData('/currentUserId', 'guestLogin');
-    console.log('guest login successful');
     await postData('/currentUserId', 'guestLogin')
     console.log('guest login successful')
     window.location.href = `summary.html?msg=successfully_logged_in_as_guest`;

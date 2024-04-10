@@ -130,7 +130,7 @@ function renderAddTaskForm() {
                 <div class="headline-template">
                     Add Task
                 </div>
-                <a class="close-button-template" onclick="closePopup('task-form')"><img src="../assets/img/close.svg" alt=""></a>
+                <a class="close-button-template" onclick="closePopup('task-form')"><img src="./assets/img/close.svg" alt=""></a>
             </div>
             <div class="outer-container">
                 <div class="left-side-template">
@@ -218,7 +218,7 @@ function renderAddTaskForm() {
         </form>
         <div id="task-added-container" class="d-none">
             <span>Task added to board</span>
-            <img src="../assets/img/task_added.svg" alt="">
+            <img src="./assets/img/task_added.svg" alt="">
         </div>
     `;
 }

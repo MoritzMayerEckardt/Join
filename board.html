@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <script src="js/includeHTML.js"></script>
-    <script src="/js/aside.js"></script>
+    <script src="js/aside.js"></script>
     <script src="script.js"></script>
-    <script src="/js/header.js"></script>
-    <script src="/js/board_templates.js"></script>
-    <script src="/js/board_helper.js"></script>
-    <script src="/js/board_tasks.js"></script>
-    <script src="/js/board.js"></script>
-    <script src="/js/drag_drop.js"></script>
-    <script src="/js/mobile_menu.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/board_templates.js"></script>
+    <script src="js/board_helper.js"></script>
+    <script src="js/board_tasks.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/drag_drop.js"></script>
+    <script src="js/mobile_menu.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="mybody" onload="initBoard()">
     <div id="popup-board-overlay" class="flex-center d-none popup-board-overlay" onclick="closeFromClickOutside()">
         <div id="popup-board-content" onclick="doNotClose(event)"></div>
     </div>
-    <menu class="mobile-menu-board" w3-include-html="\assets\templates\mobile_menu.html"></menu> 
-    <section class="header-mobile" w3-include-html="\assets\templates\header_mobile.html"></section>
+    <menu class="mobile-menu-board" w3-include-html="assets\templates\mobile_menu.html"></menu> 
+    <section class="header-mobile" w3-include-html="assets\templates\header_mobile.html"></section>
     <div class="flex-wrapper-board flex">
-        <aside class="side-bar-board" w3-include-html="\assets\templates\aside.html"></aside>
+        <aside class="side-bar-board" w3-include-html="assets\templates\aside.html"></aside>
         <section class="position-helper-board">
-            <header class="header-board" w3-include-html="\assets\templates\header.html"></header>
+            <header class="header-board" w3-include-html="assets\templates\header.html"></header>
             <section style="max-width: 1440px;" id="board">
                 <div class="board-top">
                     <div class="board-headline-container">
