@@ -104,7 +104,6 @@
          emailExists = false;
      }
  }
-
 /**
  * Checks if the privacy policy checkbox is checked.
  * Sets the privacyAccepted variable accordingly.
@@ -115,7 +114,6 @@
         privacyAccepted = true;
     }
 }
-
 /**
  * Creates JSON data for a new user based on provided information.
  * @param {string} userName - The name of the new user
@@ -146,7 +144,6 @@ function createJsonForUsers(userName, userEmail, userPassword, confirmationPassw
         alert("The passwords you provided do not match. Please try again.");
     }
 }
-
 /**
  * Checks if the provided password and confirmation password match.
  * Sets the comparePasswords variable accordingly.
@@ -158,7 +155,6 @@ function checkPassword(userPassword, confirmationPassword) {
         comparePasswords = true;
     }
 }
-
 /**
  * Sends user data to the specified path via HTTP PUT request.
  * @param {string} path - The path to send the data
@@ -175,14 +171,12 @@ async function postData(path) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         let data = await response.json();
         console.log("Data sent successfully:", data);
     } catch (error) {
         console.error("Error sending data:", error);
     }
 }
-
 /**
  * Redirects to the login page if conditions are met, and displays a success message.
  */
@@ -195,7 +189,6 @@ async function postData(path) {
         }, 2000);
     }
 }
-
 /**
  * Displays a success message after successful sign-up.
  */
@@ -208,7 +201,6 @@ function showSuccessfullySignedUpMessage() {
         document.getElementById("signUpBody").style.overflow = 'visible';
     }, 2000);
 }
-
 /**
  * Resets the sign-up related variables.
  */
@@ -218,7 +210,6 @@ function resetVariables() {
     comparePasswords = false;
     privacyAccepted = false;
 }
-
 /**
  * Resets the sign-up form by clearing input fields.
  */
