@@ -1,95 +1,130 @@
-let emailExists;
-let currentUserdata;
-let comparePasswords;
-let privacyAccepted;
+/**
+ * Indicates whether the email already exists.
+ * @type {boolean}
+ */
+ let emailExists;
+ /**
+  * Stores data of the current user during sign-up.
+  */
+ let currentUserdata;
+ /**
+  * Compares passwords during sign-up.
+  */
+ let comparePasswords;
+ /**
+  * Indicates whether the privacy policy is accepted during sign-up.
+  * @type {boolean}
+  */
+ let privacyAccepted;
+ /**
+  * Initializes the sign-up process by loading user data.
+  */
+ async function initSignUp() {
+     await loadUsers();
+ }
+ /**
+  * Registers a new user.
+  */
+ async function register() {
+     await loadUsers();
+     createUsersIfNotCreated();
+     pushDataToUsers();
+     await postData(USERS_PATH);
+     forwardingToLogin();
+     resetVariables();
+ }
+ /**
+  * Creates users array if not already created.
+  */
+ function createUsersIfNotCreated() {
+     if (!users) {
+         users = [];
+     }
+ }
+ /**
+  * Pushes data of the current user to the users array.
+  */
+ function pushDataToUsers() {
+     getDataFromInput();
+     users.push(currentUserdata);
+ }
+ /**
+  * Retrieves data from sign-up form inputs.
+  */
+ function getDataFromInput() {
+     let userName = document.getElementById('inputSingUpName').value;
+     let userEmail = document.getElementById('inputSingUpEmail').value;
+     let userPassword = document.getElementById('password').value;
+     let confirmationPassword = document.getElementById('confirmationPassword').value;
+     let initials = getInitials(userName);
+     checkIfEmailExists(userEmail);
+     checkIfPrivacyAccepted();
+ 
+     if (privacyAccepted) {
+         if (!emailExists) {
+             createJsonForUsers(userName, userEmail, userPassword, confirmationPassword, initials);
+         } else {
+             alert("Your email is already registered.");
+         }
+     } else {
+         alert("Please accept the Privacy Policy to proceed with the registration.");
+     }
+ }
+ /**
+  * Retrieves initials from a given name.
+  * @param {string} userName - The user's name
+  * @returns {string} - The initials of the user's name
+  */
+ function getInitials(userName) {
+     // Split the name into words
+     const words = userName.split(' ');
+     // Store initials
+     let initials = '';
+     // Iterate through each word
+     words.forEach(word => {
+         // Add the first letter of the word to initials
+         initials += word.charAt(0);
+     });
+     console.log(initials);  // Output: "MM"
+     // Return initials (in uppercase)
+     return initials.toUpperCase();
+ }
+ /**
+  * Checks if the provided email already exists in the users' database.
+  * @param {string} userEmail - The email to be checked
+  */
+ function checkIfEmailExists(userEmail) {
+     if (users && users.length > 0) {
+         users.forEach(function (user) {
+             if (user.email === userEmail) {
+                 emailExists = true;
+             }
+         });
+     } else {
+         emailExists = false;
+     }
+ }
 
-async function initSignUp() {
-    await loadUsers();
-}
-
-async function register() {
-    await loadUsers();
-    createUsersIfNotCreated();
-    pushDataToUsers();
-    await postData(USERS_PATH);
-    forwardingToLogin();
-    resetVariables();
-}
-
-function createUsersIfNotCreated() {
-    if (!users) {
-        users = [];
-    }
-}
-
-function pushDataToUsers() {
-    getDataFromInput();
-    users.push(currentUserdata);
-}
-
-function getDataFromInput() {
-    let userName = document.getElementById('inputSingUpName').value;
-    let userEmail = document.getElementById('inputSingUpEmail').value;
-    let userPassword = document.getElementById('password').value;
-    let confirmationPassword = document.getElementById('confirmationPassword').value;
-    let initals = getInitials(userName);
-
-    checkIfEmailExists(userEmail);
-    checkIfPrivacyAccepted()
-
-    if (privacyAccepted) {
-        if (!emailExists) {
-            createJsonForUsers(userName, userEmail, userPassword, confirmationPassword, initals)
-        } else {
-            alert("Your email is already registered.");
-        }
-    } else {
-        alert("Please accept the Privacy Policy to proceed with the registration.");
-    }
-}
-
-function getInitials(userName) {
-    // Teile den Namen in Wörter auf
-    const words = userName.split(' ');
-
-    // Initialen speichern
-    let initials = '';
-
-    // Durchlaufe jedes Wort
-    words.forEach(word => {
-        // Füge den ersten Buchstaben des Wortes den Initialen hinzu
-        initials += word.charAt(0);
-    });
-
-    console.log(initials);  // Ausgabe: "MM"
-
-    // Gib die Initialen zurück (in Großbuchstaben)
-    return initials.toUpperCase();
-}
-
-function checkIfEmailExists(userEmail) {
-    if (users && users.length > 0) {
-        users.forEach(function (user) {
-
-            if (user.email === userEmail) {
-                emailExists = true;
-            }
-        });
-    } else {
-        emailExists = false;
-    }
-}
-
-
-function checkIfPrivacyAccepted() {
+/**
+ * Checks if the privacy policy checkbox is checked.
+ * Sets the privacyAccepted variable accordingly.
+ */
+ function checkIfPrivacyAccepted() {
     let privacyCheckbox = document.getElementById('checkbox-for-privacy-policy');
-
     if (privacyCheckbox.checked) {
         privacyAccepted = true;
     }
 }
 
-function createJsonForUsers(userName, userEmail, userPassword, confirmationPassword, initals) {
+/**
+ * Creates JSON data for a new user based on provided information.
+ * @param {string} userName - The name of the new user
+ * @param {string} userEmail - The email of the new user
+ * @param {string} userPassword - The password of the new user
+ * @param {string} confirmationPassword - The confirmation password of the new user
+ * @param {string} initials - The initials of the new user
+ */
+function createJsonForUsers(userName, userEmail, userPassword, confirmationPassword, initials) {
     checkPassword(userPassword, confirmationPassword);
     if (comparePasswords) {
         let userId;
@@ -100,25 +135,34 @@ function createJsonForUsers(userName, userEmail, userPassword, confirmationPassw
         }
         currentUserdata = {
             "name": userName,
-            "initials": initals,
+            "initials": initials,
             "email": userEmail,
             "password": userPassword,
             "id": userId,
             "contacts": "",
             "tasks": "",
-
         };
     } else {
         alert("The passwords you provided do not match. Please try again.");
     }
 }
 
+/**
+ * Checks if the provided password and confirmation password match.
+ * Sets the comparePasswords variable accordingly.
+ * @param {string} userPassword - The password provided by the user
+ * @param {string} confirmationPassword - The confirmation password provided by the user
+ */
 function checkPassword(userPassword, confirmationPassword) {
     if (userPassword === confirmationPassword) {
         comparePasswords = true;
     }
 }
 
+/**
+ * Sends user data to the specified path via HTTP PUT request.
+ * @param {string} path - The path to send the data
+ */
 async function postData(path) {
     try {
         let response = await fetch(BASE_URL + path + ".json", {
@@ -126,25 +170,25 @@ async function postData(path) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(users) // Daten im JSON-Format
+            body: JSON.stringify(users) // Data in JSON format
         });
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         let data = await response.json();
-        console.log("Daten erfolgreich gesendet:", data);
-
-
+        console.log("Data sent successfully:", data);
     } catch (error) {
-        console.error("Fehler beim Senden der Daten:", error);
+        console.error("Error sending data:", error);
     }
 }
 
-function forwardingToLogin() {
+/**
+ * Redirects to the login page if conditions are met, and displays a success message.
+ */
+ function forwardingToLogin() {
     if (!emailExists && comparePasswords && privacyAccepted) {
-        showSuccessfullySignedUpMessage()
+        showSuccessfullySignedUpMessage();
         setTimeout(() => {
             resetSignUpForm();
             window.location.href = `index.html?msg=successfully_registered`;
@@ -152,18 +196,22 @@ function forwardingToLogin() {
     }
 }
 
+/**
+ * Displays a success message after successful sign-up.
+ */
 function showSuccessfullySignedUpMessage() {
     document.getElementById("signUpBody").style.overflow = 'hidden';
-
     const successMessage = document.getElementById('successfully-signed-up-message');
     successMessage.style.display = 'flex';
-
     setTimeout(() => {
         successMessage.style.display = 'none';
         document.getElementById("signUpBody").style.overflow = 'visible';
     }, 2000);
 }
 
+/**
+ * Resets the sign-up related variables.
+ */
 function resetVariables() {
     emailExists = false;
     currentUserdata = '';
@@ -171,6 +219,9 @@ function resetVariables() {
     privacyAccepted = false;
 }
 
+/**
+ * Resets the sign-up form by clearing input fields.
+ */
 function resetSignUpForm() {
     document.getElementById('inputSingUpName').value = '';
     document.getElementById('inputSingUpEmail').value = '';
