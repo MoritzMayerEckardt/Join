@@ -13,7 +13,7 @@ async function initAddTask() {
 async function addTask() {
     createTasksIfNotCreated();
     pushValuesToTasks();
-    await postData(TASKS_PATH);
+    await postTasks(TASKS_PATH);
     saveTaskIdCounter();
     jumpToBoard()
 }

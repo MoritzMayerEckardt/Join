@@ -108,7 +108,7 @@ function showAddTaskForm(columnId) {
 async function addTaskFromTemplate() {
     createTasksIfNotCreated();
     pushValuesToTasksFromTemplate();
-    await postData(TASKS_PATH);
+    await postTasks(TASKS_PATH);
     await loadTasks();
     saveTaskIdCounter();
     showTaskAddedTemplate();
@@ -123,7 +123,7 @@ async function deleteTask(taskId) {
     let selectedTask = tasks.findIndex(task => task.id === taskId);
     if (selectedTask !== -1) {
         tasks.splice(selectedTask, 1);
-        await postData(TASKS_PATH);
+        await postTasks(TASKS_PATH);
         renderColumns();
         showTaskDeleted();
         closeCardAfterInfo();
@@ -155,7 +155,7 @@ function createTasksIfNotCreated() {
 async function editTask(taskId) {
     let { title, description, date, priority, assigned } = getValuesFromInputFromEditCard(taskId);
     updateTask(taskId, { title, description, date, priority, assigned });
-    await postData(TASKS_PATH);
+    await postTasks(TASKS_PATH);
     await loadTasks();
     showTaskEdited();
     closeCardAfterInfo();

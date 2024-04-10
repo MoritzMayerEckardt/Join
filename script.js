@@ -22,7 +22,7 @@ async function loadData(path = "") {
     return responseAsJson = await response.json();
 }
 
-async function postData(path) {
+async function postTasks(path) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {

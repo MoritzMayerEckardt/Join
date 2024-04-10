@@ -114,7 +114,7 @@ function handleCheckBox(taskId, index) {
         checkBox.setAttribute('src', '../assets/img/check_button_check.svg');
     }
     subtask.isChecked = !subtask.isChecked;
-    postData(TASKS_PATH);
+    postTasks(TASKS_PATH);
     renderColumns();
 }
 
@@ -175,7 +175,7 @@ function changeColorOfAddTaskImg2(id) {
 async function deleteSubtask(taskId, index) {
     let task = tasks.find(task => task.id === taskId); 
     task.subtasks.splice(index, 1);
-    await postData(TASKS_PATH);
+    await postTasks(TASKS_PATH);
     await loadTasks();
     openEditCard(taskId);
     document.getElementById('new-subtask-edit-card').scrollIntoView({ behavior: 'instant' });
@@ -250,7 +250,7 @@ async function addNewSubtaskInEditCard(taskId) {
     } else {
         alert("You can only add a maximum of two subtasks.");
     }
-    await postData(TASKS_PATH);
+    await postTasks(TASKS_PATH);
     renderColumns();
 }
 
@@ -290,7 +290,7 @@ async function saveSubtask(taskId, index) {
             isChecked: subtasks[index].isChecked
         };   
     } 
-    await postData(TASKS_PATH);
+    await postTasks(TASKS_PATH);
     await loadTasks();
     showSubtasksInList(task.id, index);
 }

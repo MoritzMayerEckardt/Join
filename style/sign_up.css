@@ -109,27 +109,22 @@
 }
 
 .successfully-signed-up-message-container {
-    display: none;
+    display: none; 
     position: absolute;
     left: 50%;
     transform: translateX(-50%) translateY(100%);
     bottom: 0;
     color: white;
-    padding: 15px;
-    border-radius: 5px;
-    animation: slideUpAndDown 2s ease-in-out;
-}
-
-.successfully-signed-up-message-text {
-    background-color: #2A3647;
     padding: 15px 24px 15px 24px;
     border-radius: 8px;
+    animation: slideUpAndDown 2s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    width: 326px;
+    height: 74px;
+    background-color: #2A3647;
     font-size: 21px;
-    font-weight: 700;
-    line-height: 25.2px;
-    text-align: left;
 }
-
 
 @keyframes slideUpAndDown {
     0% {

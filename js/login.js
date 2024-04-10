@@ -1,5 +1,7 @@
 async function initLogin() {
     await loadUsers();
+    await loadGuestLogin();
+    await loadCurrentUserIndex();
     setTimeout(() => {
         hideBackgroundMobile();
     }, 1500);
@@ -27,7 +29,7 @@ async function loginUser() {
 }
 
 async function loginGuest(){
-    await postData('/currentUserId', `guestLogin`)
+    await postData('/currentUserId', 'guestLogin')
     console.log('guest login klappt')
     window.location.href = `summary.html?msg=successfully_logged_in_as_guest`;
 }
