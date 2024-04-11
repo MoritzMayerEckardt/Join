@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
     <script src="js/includeHTML.js"></script>
-    <script src="/js/aside.js"></script>
-    <script src="/js/header.js"></script>
+    <script src="js/aside.js"></script>
+    <script src="js/header.js"></script>
     <script src="js/add_task.js"></script>
     <script src="script.js"></script>
 
@@ -16,11 +16,11 @@
 
 <body onload="initAddTask()">
     <div class="content-container">
-        <aside id="content-left" class="aside-addtask" w3-include-html="\assets\templates\aside.html"></aside>
-        <menu class="mobile-menu" w3-include-html="\assets\templates\mobile_menu.html"></menu>
+        <aside id="content-left" class="aside-addtask" w3-include-html=".\assets\templates\aside.html"></aside>
+        <menu class="mobile-menu" w3-include-html=".\assets\templates\mobile_menu.html"></menu>
         <section id="content-right" class="content-right">
-            <header class="header-addtask" w3-include-html="\assets\templates\header.html"></header>
-            <section class="header-mobile" w3-include-html="\assets\templates\header_mobile.html"></section>
+            <header class="header-addtask" w3-include-html=".\assets\templates\header.html"></header>
+            <section class="header-mobile" w3-include-html=".\assets\templates\header_mobile.html"></section>
             <form onsubmit="addTask(); return false">
                 <section id="board" class="board1">
                     <div class="headline">

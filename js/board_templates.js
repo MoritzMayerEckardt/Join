@@ -7,7 +7,7 @@ function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML
                 ${progressBarHTML}
             <div class="task-assigned-container">
                 ${assignedContactsHTML}
-                <img class="priority-img-card" style="width: 17px" src="../assets/img/prio_${task.priority}.svg" alt="">
+                <img class="priority-img-card" style="width: 17px" src="./assets/img/prio_${task.priority}.svg" alt="">
             </div>
         </div>      
     `;
@@ -18,7 +18,7 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
         <div id="card" class="detailed-card-container">
             <div class="detailed-card-top-container">
                 <div style="background-color: ${backgroundColor}" class="detailed-card-category">${task.category}</div>
-                <a onclick="closePopup('card')" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
+                <a onclick="closePopup('card')" class="detailed-card-close-button"><img src="./assets/img/close.svg" alt=""></a>
             </div>
             <span class="detailed-card-title">${task.title}</span>
             <span class="detailed-card-description">${task.description}</span>
@@ -28,7 +28,7 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
             </div>
             <div class="detailed-card-priority">
                 <span style="color: #42526E">Priority:</span>
-                <div class="detailed-card-priority-text"><span>${task.priority}</span><img src="../assets/img/prio_${task.priority}.svg" alt=""></div>
+                <div class="detailed-card-priority-text"><span>${task.priority}</span><img src="./assets/img/prio_${task.priority}.svg" alt=""></div>
             </div>
             <div class="detailed-card-assigned">
                 <div style="color: #42526E">Assigned To:</div>
@@ -42,15 +42,15 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
             </div>
             <div class="detailed-card-bottom">
                 <div class="flex-center" style="width: 159px; gap: 8px;">
-                    <div onmouseover="changeColorOfDeleteButton()" onmouseout="changeColorOfDeleteButton2()" onclick="deleteTask(${task.id})" class="detailed-card-delete-container"><img id="delete-img" src="../assets/img/delete-dark-blue.svg" alt=""><span>Delete</span></div>
+                    <div onmouseover="changeColorOfDeleteButton()" onmouseout="changeColorOfDeleteButton2()" onclick="deleteTask(${task.id})" class="detailed-card-delete-container"><img id="delete-img" src="./assets/img/delete-dark-blue.svg" alt=""><span>Delete</span></div>
                     <div style="height: 24px; width: 1px; background: #D1D1D1"></div>
-                    <div onmouseover="changeColorOfEditButton()" onmouseout="changeColorOfEditButton2()" onclick="openEditCard(${task.id})" class="detailed-card-edit-container"><img id="edit-img" src="../assets/img/edit-dark-blue.svg" alt=""><span>Edit</span></div>
+                    <div onmouseover="changeColorOfEditButton()" onmouseout="changeColorOfEditButton2()" onclick="openEditCard(${task.id})" class="detailed-card-edit-container"><img id="edit-img" src="./assets/img/edit-dark-blue.svg" alt=""><span>Edit</span></div>
                 </div>
             </div>
         </div>
         <div id="task-deleted-container" class="d-none">
             <span>Task succesfully deleted</span>
-            <img src="../assets/img/task_added.svg" alt="">
+            <img src="./assets/img/task_added.svg" alt="">
         </div>
     `;
 }
@@ -61,7 +61,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
             <form class="form-edit-card" onsubmit="editTask(${task.id}); return false">    
                 <div class="edit-card-top-container">
                     <div class="detailed-card-category"></div>
-                    <a onclick="closePopup('card')" class="detailed-card-close-button"><img src="../assets/img/close.svg" alt=""></a>
+                    <a onclick="closePopup('card')" class="detailed-card-close-button"><img src="./assets/img/close.svg" alt=""></a>
                 </div>
                 <div class="edit-card-top">
                     <span style=" color: #2A3647">Title</span>
@@ -118,7 +118,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
         </div>
         <div id="task-edited-container" class="d-none">
             <span>Task succesfully edited</span>
-            <img src="../assets/img/task_added.svg" alt="">
+            <img src="./assets/img/task_added.svg" alt="">
         </div>
     `;
 }
@@ -266,17 +266,17 @@ function renderSubtasksListInEditCard(task, subtasks, subtask, index) {
         <div id="subtask${index}" onmouseover="showEditImages(${index})" onmouseout="removeEditImages(${index})" class="subtask-container-edit-card">
             <li class="subtask-list-edit-card">${subtask}</li>
             <div class="edit-card-edit-container d-none" id="edit-container${index}">
-                <div class="subtasks-img"><img class="subtask-img" onclick="editSubtask(${index})" style="height: 20px" src="../assets/img/edit-dark-blue.svg" alt=""></div>
+                <div class="subtasks-img"><img class="subtask-img" onclick="editSubtask(${index})" style="height: 20px" src="./assets/img/edit-dark-blue.svg" alt=""></div>
                 <div style="height: 18px; width: 2px; background: lightgrey"></div>
-                <div class="subtasks-img"><img class="subtask-img" onclick="deleteSubtask(${task.id}, ${index})" style="height: 20px" src="../assets/img/delete-dark-blue.svg" alt=""></div>
+                <div class="subtasks-img"><img class="subtask-img" onclick="deleteSubtask(${task.id}, ${index})" style="height: 20px" src="./assets/img/delete-dark-blue.svg" alt=""></div>
             </div>
         </div>
         <div id="edit-subtask-container${index}" class="edit-subtask-container d-none">
             <input id="subtask-input${index}" class="subtask-input" value="${subtasks[index].title}">
             <div class="edit-card-edit-container">
-                <div class="subtasks-img"><img onclick="emptyInputSubtask(${index})" style="height: 14px" src="../assets/img/delete.svg" alt=""></div>
+                <div class="subtasks-img"><img onclick="emptyInputSubtask(${index})" style="height: 14px" src="./assets/img/delete.svg" alt=""></div>
                 <div style="width: 2px; height: 18px; background: lightgrey"></div>
-                <div class="subtasks-img"><img onclick="saveSubtask(${task.id}, ${index})" style="height: 14px" src="../assets/img/check_blue.svg" alt=""></div>
+                <div class="subtasks-img"><img onclick="saveSubtask(${task.id}, ${index})" style="height: 14px" src="./assets/img/check_blue.svg" alt=""></div>
             </div>
         </div>
     </div>
@@ -288,9 +288,9 @@ function renderSubtasksHTMLInEditCard(task, index, subtasks, subtask) {
     <div onmouseover="showEditImages(${index + subtasks.length})" onmouseout="removeEditImages(${index + subtasks.length})" class="subtask-container-edit-card">
         <li class="subtask-list-edit-card" id="subtask${index + subtasks.length}">${subtask}</li>
         <div class="edit-card-edit-container d-none" id="edit-container${index + subtasks.length}">
-            <img style="height: 18px" src="../assets/img/edit-dark-blue.svg" alt="">
+            <img style="height: 18px" src="./assets/img/edit-dark-blue.svg" alt="">
             <div style="height: 18px; width: 1px; background: lightgrey"></div>
-            <img onclick="deleteSubtask(${task.id}, ${index})" style="height: 18px" src="../assets/img/delete-dark-blue.svg" alt="">
+            <img onclick="deleteSubtask(${task.id}, ${index})" style="height: 18px" src="./assets/img/delete-dark-blue.svg" alt="">
         </div>
     </div>
 `;

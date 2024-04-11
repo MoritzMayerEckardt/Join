@@ -24,14 +24,6 @@
     padding-top: 96px;
 }
 
-.about-container {
-    padding: 243px, 0px, 0px, 52px;
-    justify-content: flex-end;
-    position: relative;
-    padding-top: 243px;
-    padding-bottom: 52px;
-}
-
 .leftSide {
     position: relative;
     width: 440px;
