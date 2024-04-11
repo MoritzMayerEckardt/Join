@@ -7,21 +7,21 @@
     <title>contacts</title>
     <link rel="stylesheet" href="style.css">
     <script src="js/includeHTML.js"></script>
-    <script src="/js/header.js"></script>
+    <script src="js/header.js"></script>
     <script src="script.js"></script>
     <script src="js/contact.js"></script>
-    <script src="/js/aside.js"></script>
-    <script src="/js/mobile_menu.js"></script>
+    <script src="js/aside.js"></script>
+    <script src="js/mobile_menu.js"></script>
 </head>
 
 <body class="body-contacts" onload="initContacts()">
     <div class="content-container">
 
-        <aside id="content-left" class="aside-contacts" w3-include-html="\assets\templates\aside.html"></aside>
+        <aside id="content-left" class="aside-contacts" w3-include-html=".\assets\templates\aside.html"></aside>
 
         <section id="content-right" class="content-right-contacts">
 
-            <header class="contacts-header" w3-include-html="\assets\templates\header.html"></header>
+            <header class="contacts-header" w3-include-html=".\assets\templates\header.html"></header>
 
             <section class="contacts-section" id="contacts">
 
@@ -41,24 +41,24 @@
                 </div>
 
                 <div class="show-complete-contact-template d-none1080" id="show-complete-contact-template"
-                    w3-include-html="\assets\templates\show_complete_contact_data.html" onclick="closeEditMenuMobile()"></div>
+                    w3-include-html=".\assets\templates\show_complete_contact_data.html" onclick="closeEditMenuMobile()"></div>
 
-                <div w3-include-html="\assets\templates\add_contact_form.html" id="dialog-add-contacts"
+                <div w3-include-html=".\assets\templates\add_contact_form.html" id="dialog-add-contacts"
                     class="dialog-add-bg d-none d-none1130" onclick="closeAddContactDialog()">
                 </div>
 
-                <div w3-include-html="\assets\templates\add_contact_form_mobile.html" id="dialog-add-contacts-mobile"
+                <div w3-include-html=".\assets\templates\add_contact_form_mobile.html" id="dialog-add-contacts-mobile"
                     class="dialog-add-bg-mobile d-none d-flex1130" onclick="closeAddContactDialog()">
                 </div>
 
-                <div w3-include-html="\assets\templates\edit_contact_form.html" id="dialog-edit-contacts"
+                <div w3-include-html=".\assets\templates\edit_contact_form.html" id="dialog-edit-contacts"
                     class="dialog-edit-bg d-none" onclick="closeEditContactDialog()">
                 </div>
 
             </section>
     </div>
 
-    <menu class="mobile-menu d-none-mobile-menu-contacts" w3-include-html="\assets\templates\mobile_menu.html"></menu>
+    <menu class="mobile-menu d-none-mobile-menu-contacts" w3-include-html=".\assets\templates\mobile_menu.html"></menu>
 
 </body>
 

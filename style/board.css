@@ -1318,6 +1318,7 @@
     }
     .buttons-template {
         width: 100%;
+        justify-content: flex-end;
     }
     .clear-button-template {
         height: 48px;

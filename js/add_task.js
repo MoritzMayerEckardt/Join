@@ -244,7 +244,7 @@ function changeBackgroundColor(clickedButton) {
  * Redirects the user to the board page.
  */
  function jumpToBoard() {
-    window.location.href = "../board.html";
+    window.location.href = "../join/board.html";
 }
 
 /**

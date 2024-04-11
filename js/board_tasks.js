@@ -74,11 +74,11 @@ function changeBackgroundColorRedButton() {
     mediumButton.style.color = 'black';
     mediumButton.style.fontWeight = '400';
     lowButton.style.fontWeight = '400';
-    urgentArrow.setAttribute('src', '../assets/img/prioUrgent.svg');
-    mediumArrow.setAttribute('src', '../assets/img/prio_medium.svg');
+    urgentArrow.setAttribute('src', './assets/img/prioUrgent.svg');
+    mediumArrow.setAttribute('src', './assets/img/prio_medium.svg');
     lowButton.style.backgroundColor = 'white';
     lowButton.style.color = 'black';
-    lowArrow.setAttribute('src', '../assets/img/greenArrow.svg');
+    lowArrow.setAttribute('src', './assets/img/greenArrow.svg');
 }
 
 function changeBackgroundColorYellowButton() {
@@ -89,11 +89,11 @@ function changeBackgroundColorYellowButton() {
     urgentButton.style.color = 'black';
     urgentButton.style.fontWeight = '400';
     lowButton.style.fontWeight = '400';
-    urgentArrow.setAttribute('src', '../assets/img/redArrow.svg');
-    mediumArrow.setAttribute('src', '../assets/img/hypen.svg');
+    urgentArrow.setAttribute('src', './assets/img/redArrow.svg');
+    mediumArrow.setAttribute('src', './assets/img/hypen.svg');
     lowButton.style.backgroundColor = 'white';
     lowButton.style.color = 'black';
-    lowArrow.setAttribute('src', '../assets/img/greenArrow.svg');
+    lowArrow.setAttribute('src', './assets/img/greenArrow.svg');
     mediumButton.style.fontWeight = '700';
 }
 
@@ -101,9 +101,9 @@ function changeBackgroundColorGreenButton() {
     let {mediumButton, urgentButton, urgentArrow, mediumArrow, lowButton, lowArrow} = getVariablesForPriorityButtons();
     lowButton.style.backgroundColor = 'rgb(122, 226, 41)';
     lowButton.style.color = 'white';
-    lowArrow.setAttribute('src', '../assets/img/prioLow.svg');
-    urgentArrow.setAttribute('src', '../assets/img/redArrow.svg');
-    mediumArrow.setAttribute('src', '../assets/img/prio_medium.svg');
+    lowArrow.setAttribute('src', './assets/img/prioLow.svg');
+    urgentArrow.setAttribute('src', './assets/img/redArrow.svg');
+    mediumArrow.setAttribute('src', './assets/img/prio_medium.svg');
     urgentButton.style.backgroundColor = 'white';
     urgentButton.style.color = 'black';
     mediumButton.style.backgroundColor = 'white';
