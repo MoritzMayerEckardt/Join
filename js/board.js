@@ -112,7 +112,7 @@ async function addTaskFromTemplate() {
     await loadTasks();
     saveTaskIdCounter();
     showTaskAddedTemplate();
-    closeTaskFormAfterInfo();
+    closeCardAfterInfo('task-form');
     renderColumns();
     chosenContacts = [];
     subtaskArray = [];
@@ -126,7 +126,7 @@ async function deleteTask(taskId) {
         await postTasks(TASKS_PATH);
         renderColumns();
         showTaskDeleted();
-        closeCardAfterInfo();
+        closeCardAfterInfo('card');
     }
 }
 
@@ -158,7 +158,7 @@ async function editTask(taskId) {
     await postTasks(TASKS_PATH);
     await loadTasks();
     showTaskEdited();
-    closeCardAfterInfo();
+    closeCardAfterInfo('card');
     renderColumns();
     chosenContacts = [];
 }
@@ -179,19 +179,6 @@ function getValuesFromInputFromEditCard() {
     return { title, description, date, priority, assigned};
 }
 
-function closeTaskFormAfterInfo() {
-    let popupOverlay = document.getElementById('popup-board-overlay');
-    let taskForm = document.getElementById('task-form');
-    setTimeout(() => {
-        taskForm.style.animation = 'slideOutToRight 0.3s ease-in-out'; 
-        taskForm.style.right = '-200%';
-        setTimeout(() => {
-            popupOverlay.classList.add('d-none');
-        }, 200);
-    }, 1200);
-    allowScrolling();
-}
-
 function closePopup(cardId) {
     let popupContent = document.getElementById(cardId);
     let popupOverlay = document.getElementById('popup-board-overlay');
@@ -207,8 +194,8 @@ function closePopup(cardId) {
     allowScrolling();
 }
 
-function closeCardAfterInfo() {
-    let popupContent = document.getElementById('card');
+function closeCardAfterInfo(id) {
+    let popupContent = document.getElementById(id);
     let popupOverlay = document.getElementById('popup-board-overlay');
     setTimeout(() => {
         popupContent.style.animation = 'slideOut 0.5s forwards';
@@ -224,7 +211,6 @@ function closeCardAfterInfo() {
     allowScrolling();
 }
 
-
 function closeFromClickOutside() {
     let popupOverlay = document.getElementById('popup-board-overlay');
     popupOverlay.classList.add('d-none');
@@ -232,7 +218,9 @@ function closeFromClickOutside() {
 }
 
 function showTaskAddedTemplate() {
-    document.getElementById('task-added-container').classList.remove('d-none');
+    var taskAddedContainer = document.getElementById('task-added-container');
+    taskAddedContainer.classList.remove('d-none'); 
+    taskAddedContainer.classList.add('animate-slide'); 
 }
 
 function showTaskEdited() {

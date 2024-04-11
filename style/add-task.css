@@ -52,6 +52,7 @@
     height: 64px;
 }
 
+.inputfieldSubtask,
 .inputfieldTitle {
     width: 440px;
     height: 48px;
@@ -65,13 +66,17 @@
     background-color: #FFFFFF;
     border-color: #D1D1D1;
     border-style: solid;
+}
 
+.inputfieldTitle:focus {
+    border-color: red;
 }
 
 .inputfieldTitle:hover {
     cursor: pointer !important;
 }
 
+.inputfieldSubtask::placeholder,
 .inputfieldTitle::placeholder {
     width: 398px;
     height: 24px;

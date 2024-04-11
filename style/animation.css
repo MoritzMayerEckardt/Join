@@ -127,3 +127,12 @@
         transform: translateX(0);
     }
 }
+
+@keyframes slideInFromBottom {
+    from {
+        bottom: -100px;
+    }
+    to {
+        bottom: calc(50vh - 50px);
+    }
+}

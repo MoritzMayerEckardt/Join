@@ -516,6 +516,14 @@
     border-radius: 100%;
 }
 
+.inputfield-title:focus {
+    border-color: red;
+}
+
+#date-template:focus {
+    border-color: red;
+}
+
 .add-task-template {
     background: white;
     width: 1116px;
@@ -922,6 +930,7 @@
     justify-content: space-around;
     align-items: center;
     color: white;
+    animation: slideInFromBottom 0.5s forwards;
 }
 
 #task-edited-container {
@@ -1525,3 +1534,4 @@
     margin-left: 16px;
     padding: 8px;
 }
+

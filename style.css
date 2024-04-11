@@ -54,7 +54,7 @@ button:hover {
 }
 
 select:focus {
-    border-color: #4589FF; 
+    border-color: red; 
     outline: none; 
   }
 
