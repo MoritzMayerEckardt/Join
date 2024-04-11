@@ -255,9 +255,22 @@ function showDataFromCurrentContact(name, email, phone, initials, index) {
     bgColorInitials.style.backgroundColor = color;
 }
 
+function openDialogAddContacts() {
+    let dialog = document.getElementById('dialog-add-contacts');
+    let dialogMobile = document.getElementById('dialog-add-contacts-mobile');
+    dialog.classList.remove('d-none');
+    dialogMobile.classList.remove('d-none')
+    dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
+    dialog.style.right = '0';
+}
+
+
+
 function showEditForm() {
     let dialog = document.getElementById('dialog-edit-contacts');
+    let dialogMobile = document.getElementById('dialog-edit-contacts-mobile');
     dialog.classList.remove('d-none');
+    dialogMobile.classList.remove('d-none');
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
     dialog.style.right = '0';
 
@@ -272,6 +285,10 @@ function showEditForm() {
     document.getElementById('name-input-field-edit-contact').value = name;
     document.getElementById('email-input-field-edit-contact').value = email;
     document.getElementById('phone-input-field-edit-contact').value = phone;
+
+    document.getElementById('name-input-field-edit-contact-mobile').value = name;
+    document.getElementById('email-input-field-edit-contact-mobile').value = email;
+    document.getElementById('phone-input-field-edit-contact-mobile').value = phone;
 
 
     document.getElementById('initals-field-edit-contact').style.backgroundColor = color;
@@ -297,12 +314,14 @@ function closeEditMenuMobile() {
 // **********************OPEN AND CLOSE EDIT CONTACT WINDOW**********************
 
 function closeEditContactDialog() {
-    let dialog = document.getElementById('dialog-edit-contacts')
+    let dialog = document.getElementById('dialog-edit-contacts');
+    let dialogMobile = document.getElementById('dialog-edit-contacts-mobile');
     dialog.style.animation = 'slideOutToRight 0.250s ease-in-out';
     dialog.style.right = '-200%';
     setTimeout(() => {
         dialog.classList.add('d-none');
     }, 250);
+    dialogMobile.classList.add('d-none');
 }
 
 
@@ -314,7 +333,7 @@ async function deleteContact() {
     clearEditContact();
 }
 
-async function deleteContactMobile(){
+async function deleteContactMobile() {
     await deleteContact();
     closeContactMobile();
     closeEditMenuMobile();
@@ -327,9 +346,19 @@ function clearEditContact() {
 
 async function saveEditContact() {
     let contactToEdit = contacts[currentIndex]
-    let name = document.getElementById('name-input-field-edit-contact').value;
-    let email = document.getElementById('email-input-field-edit-contact').value;
-    let phone = document.getElementById('phone-input-field-edit-contact').value;
+    let name;
+    let email;
+    let phone;
+
+    if (window.innerWidth < 1080) {
+        name = document.getElementById('name-input-field-edit-contact-mobile').value;
+        email = document.getElementById('email-input-field-edit-contact-mobile').value;
+        phone = document.getElementById('phone-input-field-edit-contact-mobile').value;
+    } else {
+        name = document.getElementById('name-input-field-edit-contact').value;
+        email = document.getElementById('email-input-field-edit-contact').value;
+        phone = document.getElementById('phone-input-field-edit-contact').value;
+    }
     let nameParts = name.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
     let initials = firstLetters.join("");

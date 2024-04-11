@@ -767,6 +767,12 @@
     color: #2A3647;
 }
 
+.edit-delete-container-in-edit-form-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 .d-none-mobile-menu-contacts {
     display: none !important;
 }

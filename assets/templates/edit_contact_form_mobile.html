@@ -1,0 +1,45 @@
+<div id="inner-dialog" class="dialog" onclick="doNotClose(event)">
+    <div class="information-container">
+        <div class="close-container">
+            <img class="closeDialog" onclick="closeEditContactDialog()" src="assets/img/close-white.svg" alt="">
+        </div>
+        <div class="inner-information-container">
+            <span class="heading-information-text">Edit contact</span>
+            <img class="img-blue-line" src="assets/img/blue-line.svg" alt="">
+        </div>
+    </div>
+    <div class="add-container">
+
+        <div class="add-information-overview-container">
+            <div class="person-icon-container">
+                <div class="initals-field-edit-contact" id="initals-field-edit-contact">
+                </div>
+            </div>
+
+            <div class="add-information-container">
+                <form onsubmit="saveEditContact(); return false">
+                    <div class="input-container">
+                        <input required type="text" id="name-input-field-edit-contact-mobile"
+                            class="input-add-information input-icon" placeholder="Name" type="text">
+                        <input required type="email" id="email-input-field-edit-contact-mobile"
+                            class="input-add-information input-icon" placeholder="Email" type="text">
+                        <input required type="number" id="phone-input-field-edit-contact-mobile"
+                            class="input-add-information input-icon" placeholder="Phone" type="text">
+                        <div class="edit-delete-container-in-edit-form-mobile">
+                            <button class="delete-edit-contact-btn" type="button" onclick="deleteContact()">
+                                <span class="delete-edit-contact-btn-text">Delete</span>
+                            </button>
+                            <button class="save-edit-contact-btn" onclick="saveEditContact()">
+                                <span class="save-edit-contact-btn-text">Save</span>
+                                <img class="icon-in-btn" src="assets/img/check.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="add-contacts-btn-container">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
