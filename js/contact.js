@@ -8,9 +8,10 @@ async function initContacts() {
     await loadCurrentUserIndex()
     await loadGuestLogin();
     addBackgroundColor(3);
-    renderContactList()
-    loadMobileMenu()
+    renderContactList();
+    loadMobileMenu();
     showCurrentUserInButton();
+    showCurrentUserInButtonMobile();
 }
 
 

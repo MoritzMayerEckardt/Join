@@ -15,6 +15,10 @@
 @import url(./style/add_task_mobile.css);
 @import url(./style/legal_notice_mobile.css);
 @import url(./style/privacy_policy_mobile.css);
+@import url(./style/summary_mobile.css);
+@import url(./style/contacts_mobile.css);
+
+
 
 body {
     margin: 0;
