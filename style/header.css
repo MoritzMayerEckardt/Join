@@ -21,6 +21,10 @@ header {
     gap: 16px;
 }
 
+.question-mark:hover {
+    transform: scale(1.2);
+}
+
 .userInitials {
     color: rgba(41, 171, 226, 1);
     background-color: #ffffff;

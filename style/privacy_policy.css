@@ -35,6 +35,7 @@ p, ul, li {
     display: flex;
     justify-content: space-between;
     padding-top: 50px;
+    align-items: center;
 }
 
 .container-position {
@@ -93,6 +94,16 @@ p, ul, li {
     font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;
+}
+
+.back-button-light-blue {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+}
+
+.back-button-light-blue:hover {
+    background-color: lightgrey;
 }
 
 
