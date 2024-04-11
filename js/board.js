@@ -218,9 +218,7 @@ function closeFromClickOutside() {
 }
 
 function showTaskAddedTemplate() {
-    var taskAddedContainer = document.getElementById('task-added-container');
-    taskAddedContainer.classList.remove('d-none'); 
-    taskAddedContainer.classList.add('animate-slide'); 
+    document.getElementById('task-added-container').classList.remove('d-none');
 }
 
 function showTaskEdited() {

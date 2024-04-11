@@ -930,7 +930,7 @@
     justify-content: space-around;
     align-items: center;
     color: white;
-    animation: slideInFromBottom 0.5s forwards;
+    animation: slideInFromBottom 0.3s forwards;
 }
 
 #task-edited-container {
@@ -946,6 +946,7 @@
     justify-content: space-around;
     align-items: center;
     color: white;
+    animation: slideInFromBottom 0.3s forwards;
 }
 
 #task-deleted-container {
@@ -961,42 +962,7 @@
     justify-content: space-around;
     align-items: center;
     color: white;
-}
-
-@keyframes slideOut {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(300%);
-    }
-}
-
-@keyframes fadeOutOverlay {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(300%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInOverlay {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    animation: slideInFromBottom 0.3s forwards;
 }
 
 .assigned-contacts-container-edit-card {
@@ -1079,19 +1045,10 @@
     }
 }
 
-@media (max-width: 1001px) {
+@media (max-width: 901px) {
     .mobile-menu-board {
         display: flex;
     }
-}
-
-@media (min-width: 1000px) {
-    .mobile-menu-board {
-        display: none;
-    }
-}
-
-@media (max-width: 901px) {
     .header-board {
         left: 0px;
         width: 100%;
@@ -1108,6 +1065,9 @@
 @media (min-width: 900px) {
     .side-bar-board {
         display: flex;
+    }
+    .mobile-menu-board {
+        display: none;
     }
 }
 
