@@ -10,7 +10,8 @@ async function initSummary() {
     greetBasedOnTime();
     renderData();
     showCurrentUserInButton();
-    loadMobileMenu()
+    loadMobileMenu();
+    showCurrentUserInButtonMobile();
 }
 
 
