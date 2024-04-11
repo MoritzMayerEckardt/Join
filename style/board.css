@@ -178,6 +178,14 @@
     align-items: center;
 }
 
+.search-container:focus-within {
+    border: 1px solid #4589FF;
+}
+
+.subtasks-input-edit-card:focus-within {
+    border: 1px solid #4589FF;
+}
+
 .no-tasks-text {
     color: #A8A8A8;
     font-size: 16px;
@@ -300,6 +308,10 @@
     position: relative;
     flex-direction: column;
     gap: 8px;
+}
+
+.priority-button:hover {
+    box-shadow: 0px 4px 4px 0px #0000001A;
 }
 
 .priority-buttons-container {

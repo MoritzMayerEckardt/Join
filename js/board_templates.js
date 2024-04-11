@@ -113,7 +113,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                 <div id="new-subtask-edit-card">
                     ${subtasksHTMLEditCard}
                 </div>
-                <div class="button-edit-card-container"><button type="submit" class="button-edit-card"><span class="button-edit-card-text">Ok</span><img src="../assets/img/check.svg" alt=""></button></div>
+                <div class="button-edit-card-container"><button type="submit" class="button-edit-card"><span class="button-edit-card-text">Ok</span><img src="./assets/img/check.svg" alt=""></button></div>
             </form>
         </div>
         <div id="task-edited-container" class="d-none">

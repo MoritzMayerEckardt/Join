@@ -138,6 +138,7 @@ function toggleAssignedContainer() {
 }
 
 function hideContacts(showContacts, arrowImage, initialDIV) {
+    document.getElementById('assigned-template').style.borderColor = '#D1D1D1';
     showContacts.style.border = 'none';
     showContacts.innerHTML = '';
     contactsVisible = false;
@@ -146,6 +147,7 @@ function hideContacts(showContacts, arrowImage, initialDIV) {
 }
 
 function showAssignedContacts(showContacts, arrowImage, initialDIV) {
+    document.getElementById('assigned-template').style.borderColor = '#4589FF';
     showContacts.style.border = '1px solid lightgrey';
     showContactsForAssign();
     contactsVisible = true;
@@ -284,6 +286,7 @@ function hideContactsEditCard(showContacts, arrowImage, assignedContacts) {
     generateChosenContactsEditCard(assignedContacts);
     contactsVisibleEditCard = false;
     arrowImage.style.transform = 'rotate(0deg)';
+    document.getElementById('assigned-edit-card').style.borderColor = '#D1D1D1';
 }
 
 function showAssignedContactsEditCard(showContacts, arrowImage, assignedContacts) {
@@ -293,6 +296,7 @@ function showAssignedContactsEditCard(showContacts, arrowImage, assignedContacts
     showContactsForAssignEditCard();
     contactsVisibleEditCard = true;
     arrowImage.style.transform = 'rotate(180deg)';
+    document.getElementById('assigned-edit-card').style.borderColor = '#4589FF';
 }
 
 function showContactsForAssignEditCard() {

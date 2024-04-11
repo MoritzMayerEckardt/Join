@@ -354,6 +354,12 @@
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
+.urgent:hover,
+.medium:hover,
+.low:hover {
+    box-shadow: 0px 4px 4px 0px #0000001A;
+}
+
 .urgent,
 .low {
     background-color: #FFFFFF;

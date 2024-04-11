@@ -49,6 +49,26 @@ button:hover {
     cursor: pointer;
 }
 
+select:focus {
+    border-color: #4589FF; 
+    outline: none; 
+  }
+
+input:focus {
+    border-color: #4589FF; 
+    outline: none; 
+}
+
+textarea:focus {
+    border-color: #4589FF; 
+    outline: none;
+}
+
+input:focus {
+    border-color: #4589FF;
+    outline: none;
+  }
+
 .w-232 {
     width: 232px;
 }
