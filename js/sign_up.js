@@ -33,6 +33,8 @@
      forwardingToLogin();
      resetVariables();
  }
+
+
  /**
   * Creates users array if not already created.
   */
@@ -41,6 +43,8 @@
          users = [];
      }
  }
+
+
  /**
   * Pushes data of the current user to the users array.
   */
@@ -48,6 +52,8 @@
      getDataFromInput();
      users.push(currentUserdata);
  }
+
+
  /**
   * Retrieves data from sign-up form inputs.
   */
@@ -86,6 +92,8 @@
      // Return initials (in uppercase)
      return initials.toUpperCase();
  }
+
+
  /**
   * Checks if the provided email already exists in the users' database.
   * @param {string} userEmail - The email to be checked
@@ -142,6 +150,8 @@ function createJsonForUsers(userName, userEmail, userPassword, confirmationPassw
         alert("The passwords you provided do not match. Please try again.");
     }
 }
+
+
 /**
  * Checks if the provided password and confirmation password match.
  * Sets the comparePasswords variable accordingly.
@@ -153,6 +163,8 @@ function checkPassword(userPassword, confirmationPassword) {
         comparePasswords = true;
     }
 }
+
+
 /**
  * Sends user data to the specified path via HTTP PUT request.
  * @param {string} path - The path to send the data
@@ -175,6 +187,8 @@ async function postData(path) {
         console.error("Error sending data:", error);
     }
 }
+
+
 /**
  * Redirects to the login page if conditions are met, and displays a success message.
  */
@@ -187,6 +201,8 @@ async function postData(path) {
         }, 2000);
     }
 }
+
+
 /**
  * Displays a success message after successful sign-up.
  */
@@ -199,6 +215,8 @@ function showSuccessfullySignedUpMessage() {
         document.getElementById("signUpBody").style.overflow = 'visible';
     }, 2000);
 }
+
+
 /**
  * Resets the sign-up related variables.
  */
@@ -208,6 +226,8 @@ function resetVariables() {
     comparePasswords = false;
     privacyAccepted = false;
 }
+
+
 /**
  * Resets the sign-up form by clearing input fields.
  */
