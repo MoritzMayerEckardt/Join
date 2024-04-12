@@ -1,6 +1,6 @@
 .sign-up-container {
     width: 598px;
-    height: 630px;
+    min-height: 630px;
     padding: 48px 115px 48px 115px;
     display: flex;
     flex-direction: column;
