@@ -1,7 +1,6 @@
 let currentIndex;
 const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#b3b3b3", "#cccccc", "#e6e6e6", "#1a1a8d", "#3333a1", "#4d4db5", "#6666c8", "#8080dc", "#9999f0", "#b3b3f4", "#ccccf8", "#e6e6fc", "#ffffff"];
 
-
 async function initContacts() {
     await includeHTML();
     await loadUsers();
@@ -26,6 +25,7 @@ function openDialogAddContacts() {
     dialog.style.right = '0';
 }
 
+
 function closeAddContactDialog() {
     dialog = document.getElementById('dialog-add-contacts');
     dialogMobile = document.getElementById('dialog-add-contacts-mobile');
@@ -38,17 +38,15 @@ function closeAddContactDialog() {
     dialogMobile.classList.add('d-none')
 }
 
+
 function doNotClose(event) {
     event.stopPropagation();
 }
 
 
-
 // **********************ADD CONTACT**********************
 
-
 async function addContact() {
-
     createContactsIfNotCreated();
     pushValuesToContacts();
     await postData(`${CONTACTS_PATH}`);
@@ -71,7 +69,6 @@ function pushValuesToContacts() {
     let { name, email, phone, initials } = getValuesFromInputAddContact();
     let randomIndex = getRandomIndexFromColors();
     let color = colors[randomIndex];
-
     contacts.push({
         name: name,
         email: email,
@@ -88,25 +85,35 @@ function getRandomIndexFromColors() {
 
 
 function getValuesFromInputAddContact() {
-    let name;
-    let email;
-    let phone;
-    if (window.innerWidth > 1130) {
-        name = document.getElementById('name-input-field-add-contact').value;
-        email = document.getElementById('email-input-field-add-contact').value;
-        phone = document.getElementById('phone-input-field-add-contact').value;
-    } else {
-        name = document.getElementById('name-input-field-add-contact-mobile').value;
-        email = document.getElementById('email-input-field-add-contact-mobile').value;
-        phone = document.getElementById('phone-input-field-add-contact-mobile').value;
-    }
-
-    let nameParts = name.split(" ");
-    let firstLetters = nameParts.map(namePart => namePart.charAt(0));
-    let initials = firstLetters.join("");
-
+    let { name, email, phone } = getInputElementsForContact();
+    let initials = getInitialsFromName(name);
     return { name, email, phone, initials };
 }
+
+
+function getInputElementsForContact() {
+    if (window.innerWidth > 1130) {
+        return {
+            name: document.getElementById('name-input-field-add-contact').value,
+            email: document.getElementById('email-input-field-add-contact').value,
+            phone: document.getElementById('phone-input-field-add-contact').value
+        };
+    } else {
+        return {
+            name: document.getElementById('name-input-field-add-contact-mobile').value,
+            email: document.getElementById('email-input-field-add-contact-mobile').value,
+            phone: document.getElementById('phone-input-field-add-contact-mobile').value
+        };
+    }
+}
+
+
+function getInitialsFromName(name) {
+    let nameParts = name.split(" ");
+    let firstLetters = nameParts.map(namePart => namePart.charAt(0));
+    return firstLetters.join("");
+}
+
 
 async function postData(path) {
     try {
@@ -117,17 +124,16 @@ async function postData(path) {
             },
             body: JSON.stringify(contacts) // Daten im JSON-Format
         });
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         let data = await response.json();
         console.log("Daten erfolgreich gesendet:", data);
     } catch (error) {
         console.error("Fehler beim Senden der Daten:", error);
     }
 }
+
 
 function clearAddContactForm() {
     document.getElementById('name-input-field-add-contact').value = '';
@@ -163,7 +169,6 @@ function sortList(a, b) {
     return 0;
 }
 
-
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
@@ -171,31 +176,50 @@ function addContactToList() {
     let currentLetter = null;
 
     for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        let name = contact['name'];
-        let email = contact['email'];
-        let phone = contact['phone'];
-        let initials = contact['initials'];
-        let color = contact['color'];
-        let index = i;
+        let { name, email, phone, initials, color, index, firstLetter } = getContactDetails(contacts[i], i);
 
-        let firstLetter = name.charAt(0).toUpperCase();
-
-        // Überprüfen, ob der aktuelle Kontakt einen anderen Anfangsbuchstaben hat
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
-
-            // Füge einen Header für den aktuellen Buchstaben hinzu
-            listContainer.innerHTML += `<div class="contact-letter">${currentLetter}</div>`;
+            addLetterHeaderToContainer(listContainer, currentLetter);
         }
 
-        // Füge den Kontakt zur Liste hinzu
         listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials, index);
 
-        // Hintergrundfarbe setzen
-        let addBgColorInContactList = document.getElementById(`name-initials${index}`);
-        addBgColorInContactList.style.backgroundColor = color;
+        setInitialsBackgroundColor(index, color);
     }
+}
+
+
+function getContactDetails(contact, index) {
+    let name = contact['name'];
+    let email = contact['email'];
+    let phone = contact['phone'];
+    let initials = contact['initials'];
+    let color = contact['color'];
+    let firstLetter = name.charAt(0).toUpperCase();
+
+    return { name, email, phone, initials, color, index, firstLetter };
+}
+
+
+function setInitialsBackgroundColor(index, color) {
+    let initialsContainer = document.getElementById(`name-initials${index}`);
+    if (initialsContainer) {
+        initialsContainer.style.backgroundColor = color;
+    }
+}
+
+
+function setInitialsBackgroundColor(index, color) {
+    let initialsContainer = document.getElementById(`name-initials${index}`);
+    if (initialsContainer) {
+        initialsContainer.style.backgroundColor = color;
+    }
+}
+
+
+function addLetterHeaderToContainer(container, letter) {
+    container.innerHTML += `<div class="contact-letter">${letter}</div>`;
 }
 
 
@@ -223,25 +247,17 @@ function showConfirmation() {
 
 function openFullCard(name, email, phone, initials, index) {
     let showFullContact = document.getElementById('view-contact-container');
+    let allContactElements = document.querySelectorAll('.contact-in-list');
     showFullContact.classList.remove('d-none');
     showFullContact.classList.add('view-contact-container-slide-in');
     currentIndex = index;
-
-    // Alle Kontakt-Elemente zurücksetzen
-    let allContactElements = document.querySelectorAll('.contact-in-list');
     allContactElements.forEach(function (contactElement) {
         contactElement.classList.remove('contactActive');
     });
-
-    // Den aktuellen Kontakt aktiv markieren
     document.getElementById(`contact-in-list${index}`).classList.add('contactActive');
-
     showDataFromCurrentContact(name, email, phone, initials, index);
-
     showFullContactMobile();
 }
-
-
 
 
 function showDataFromCurrentContact(name, email, phone, initials, index) {
@@ -249,11 +265,11 @@ function showDataFromCurrentContact(name, email, phone, initials, index) {
     document.getElementById('name-view-contact').innerHTML = name;
     document.getElementById('email-view-contact').innerHTML = email;
     document.getElementById('phone-noumber-view-contact').innerHTML = phone;
-
     let color = contacts[index]['color'];
     let bgColorInitials = document.getElementById('name-initials-container-view-contact');
     bgColorInitials.style.backgroundColor = color;
 }
+
 
 function openDialogAddContacts() {
     let dialog = document.getElementById('dialog-add-contacts');
@@ -265,36 +281,73 @@ function openDialogAddContacts() {
 }
 
 
+// function showEditForm() {
+//     showEditFormDesktop();
+//     showEditFormMobile();
+
+//     let initials = document.getElementById('name-initials-view-contact').innerHTML;
+//     let name = document.getElementById('name-view-contact').innerHTML;
+//     let email = document.getElementById('email-view-contact').innerHTML;
+//     let phone = document.getElementById('phone-noumber-view-contact').innerHTML;
+//     let color = document.getElementById('name-initials-container-view-contact').style.backgroundColor;
+
+
+//     document.getElementById('initals-field-edit-contact').innerHTML = initials;
+//     document.getElementById('name-input-field-edit-contact').value = name;
+//     document.getElementById('email-input-field-edit-contact').value = email;
+//     document.getElementById('phone-input-field-edit-contact').value = phone;
+
+//     document.getElementById('name-input-field-edit-contact-mobile').value = name;
+//     document.getElementById('email-input-field-edit-contact-mobile').value = email;
+//     document.getElementById('phone-input-field-edit-contact-mobile').value = phone;
+
+
+//     document.getElementById('initals-field-edit-contact').style.backgroundColor = color;
+
+
+//     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
+// }
 
 function showEditForm() {
-    let dialog = document.getElementById('dialog-edit-contacts');
-    let dialogMobile = document.getElementById('dialog-edit-contacts-mobile');
-    dialog.classList.remove('d-none');
-    dialogMobile.classList.remove('d-none');
-    dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
-    dialog.style.right = '0';
-
+    showEditFormDesktop();
+    showEditFormMobile();
     let initials = document.getElementById('name-initials-view-contact').innerHTML;
     let name = document.getElementById('name-view-contact').innerHTML;
     let email = document.getElementById('email-view-contact').innerHTML;
     let phone = document.getElementById('phone-noumber-view-contact').innerHTML;
-    let color = document.getElementById('name-initials-container-view-contact').style.backgroundColor;
+    fillEditFormFields(initials, name, email, phone);
+    document.getElementById('dialog-edit-contacts').style.animation = 'slideInFromRight 0.250s ease-in-out';
+}
 
 
+function showEditFormDesktop() {
+    let dialog = document.getElementById('dialog-edit-contacts');
+    dialog.classList.remove('d-none');
+    dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
+    dialog.style.right = '0';
+}
+
+
+function showEditFormMobile() {
+    let dialogMobile = document.getElementById('dialog-edit-contacts-mobile');
+    dialogMobile.classList.remove('d-none');
+
+}
+
+
+function fillEditFormFields(initials, name, email, phone) {
     document.getElementById('initals-field-edit-contact').innerHTML = initials;
     document.getElementById('name-input-field-edit-contact').value = name;
     document.getElementById('email-input-field-edit-contact').value = email;
     document.getElementById('phone-input-field-edit-contact').value = phone;
 
+    // Mobile Ansicht
     document.getElementById('name-input-field-edit-contact-mobile').value = name;
     document.getElementById('email-input-field-edit-contact-mobile').value = email;
     document.getElementById('phone-input-field-edit-contact-mobile').value = phone;
 
-
+    let color = document.getElementById('name-initials-container-view-contact').style.backgroundColor;
     document.getElementById('initals-field-edit-contact').style.backgroundColor = color;
-
-
-    dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
 }
 
 
@@ -333,22 +386,35 @@ async function deleteContact() {
     clearEditContact();
 }
 
+
 async function deleteContactMobile() {
     await deleteContact();
     closeContactMobile();
     closeEditMenuMobile();
 }
 
+
 function clearEditContact() {
     let showFullContact = document.getElementById('view-contact-container');
     showFullContact.classList.add('d-none');
 }
 
+
 async function saveEditContact() {
-    let contactToEdit = contacts[currentIndex]
-    let name;
-    let email;
-    let phone;
+    let contactToEdit = contacts[currentIndex];
+    
+    let { name, email, phone } = getContactInfoForEdit();
+    
+    await editAndSaveContact(contactToEdit, name, email, phone);
+    
+    renderContactList();
+    closeEditContactDialog();
+    openFullCard(name, email, phone, contactToEdit['initials'], currentIndex);
+}
+
+
+function getContactInfoForEdit() {
+    let name, email, phone;
 
     if (window.innerWidth < 1080) {
         name = document.getElementById('name-input-field-edit-contact-mobile').value;
@@ -359,17 +425,27 @@ async function saveEditContact() {
         email = document.getElementById('email-input-field-edit-contact').value;
         phone = document.getElementById('phone-input-field-edit-contact').value;
     }
+
+    return { name, email, phone };
+}
+
+
+function getInitialsFromName(name) {
     let nameParts = name.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
-    let initials = firstLetters.join("");
+    return firstLetters.join("");
+}
+
+
+async function editAndSaveContact(contactToEdit, name, email, phone) {
+    let initials = getInitialsFromName(name);
+
     contactToEdit['name'] = name;
     contactToEdit['email'] = email;
     contactToEdit['phone'] = phone;
     contactToEdit['initials'] = initials;
+
     await postData(`${CONTACTS_PATH}`);
-    renderContactList();
-    closeEditContactDialog();
-    openFullCard(name, email, phone, initials, currentIndex);
 }
 
 
@@ -381,9 +457,8 @@ function showFullContactMobile() {
     }
 }
 
-function closeContactMobile() {
 
+function closeContactMobile() {
     document.getElementById('contacts-container').classList.remove('d-none1080');
     document.getElementById('show-complete-contact-template').classList.add('d-none1080');
-
 }
