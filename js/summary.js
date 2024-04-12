@@ -15,8 +15,6 @@ async function initSummary() {
 }
 
 
-
-
 function greetBasedOnTime() {
     const now = new Date();
     const hour = now.getHours();
@@ -40,16 +38,13 @@ function renderData() {
     loadAmountAllTasks();
     loadAmountInProgress();
     loadAmountAwaitingFeedback();
-
     loadAmountUrgentTasks()
     loadUrgentDeadline();
-
 }
 
+
 function renderCurrentUserName() {
-
     let greetingName = document.getElementById('greeting-name');
-
     if (currentUserIndex == 'guestLogin') {
         greetingName.innerHTML = 'Dear Guest';
     } else {
@@ -60,15 +55,20 @@ function renderCurrentUserName() {
 }
 
 function loadAmountTodo() {
+    let tasks = getCurrentUserTasks();
+    let todoCount = countTasksByBoard(tasks, "toDo");
+    document.getElementById('amount-todo').innerHTML = todoCount;
+}
+
+
+function loadAmountTodo() {
     let todoCount = 0;
     let tasks;
-
     if (currentUserIndex === 'guestLogin') {
         tasks = guest['tasks'] || [];
     } else {
         tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
-    
     if (tasks.length) {
         for (let i = 0; i < tasks.length; i++) {
             if (tasks[i].boardCategory === "toDo") {
@@ -83,13 +83,11 @@ function loadAmountTodo() {
 function loadAmountDone() {
     let doneCount = 0;
     let tasks;
-
     if (currentUserIndex === 'guestLogin') {
         tasks = guest['tasks'] || [];
     } else {
         tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
-
     for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].boardCategory === "done") {
             doneCount++;
@@ -98,6 +96,7 @@ function loadAmountDone() {
     document.getElementById('amount-done').innerHTML = doneCount;
 }
 
+
 function loadAmountAllTasks() {
     let allTasks;
     if (currentUserIndex === 'guestLogin') {
@@ -105,7 +104,6 @@ function loadAmountAllTasks() {
     } else {
         allTasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
-
     if (allTasks.length) {
         document.getElementById('tasks-amount').innerHTML = allTasks.length;
     } else {
@@ -113,16 +111,15 @@ function loadAmountAllTasks() {
     }
 }
 
+
 function loadAmountInProgress() {
     let inProgressCount = 0;
     let tasks;
-
     if (currentUserIndex === 'guestLogin') {
         tasks = guest['tasks'] || [];
     } else {
         tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
-
     for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].boardCategory === "inProgress") {
             inProgressCount++;
@@ -131,16 +128,15 @@ function loadAmountInProgress() {
     document.getElementById('tasks-in-progress').innerHTML = inProgressCount;
 }
 
+
 function loadAmountAwaitingFeedback() {
     let awaitFeedbackCount = 0;
     let tasks;
-
     if (currentUserIndex === 'guestLogin') {
         tasks = guest['tasks'] || [];
     } else {
         tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
-
     for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].boardCategory === "awaitFeedback") {
             awaitFeedbackCount++;
@@ -149,16 +145,15 @@ function loadAmountAwaitingFeedback() {
     document.getElementById('tasks-await-feedback').innerHTML = awaitFeedbackCount;
 }
 
+
 function loadAmountAwaitingFeedback() {
     let awaitFeedbackCount = 0;
     let tasks;
-
     if (currentUserIndex === 'guestLogin') {
         tasks = guest['tasks'] || [];
     } else {
         tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
-
     for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].boardCategory === "awaitFeedback") {
             awaitFeedbackCount++;
@@ -166,17 +161,16 @@ function loadAmountAwaitingFeedback() {
     }
     document.getElementById('tasks-await-feedback').innerHTML = awaitFeedbackCount;
 }
+
 
 function loadAmountUrgentTasks() {
     let urgentCount = 0;
     let tasks;
-
     if (currentUserIndex === 'guestLogin') {
         tasks = guest['tasks'] || [];
     } else {
         tasks = (users[currentUserIndex] && users[currentUserIndex].tasks) || [];
     }
-
     for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].priority === "urgent") {
             urgentCount++;
@@ -187,35 +181,46 @@ function loadAmountUrgentTasks() {
 
 
 function loadUrgentDeadline() {
-    let urgentDates;
+    let tasks = getCurrentUserTasks();
+    let urgentDates = getUrgentDates(tasks);
+    let formattedDate = formatLatestDate(urgentDates);
+    document.getElementById('urgent-deadline').innerHTML = formattedDate;
+}
 
+
+function getCurrentUserTasks() {
     if (currentUserIndex === 'guestLogin') {
-        if (guest['tasks'].length) {
-            urgentDates = guest['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
-        }
+        return guest['tasks'] || [];
     } else {
-        if (users[currentUserIndex]['tasks'].length) {
-            urgentDates = users[currentUserIndex]['tasks'].filter(user => user.priority === "urgent").map(user => new Date(user.date));
-        }
+        return (users[currentUserIndex] && users[currentUserIndex]['tasks']) || [];
     }
+}
 
-    let formattedDate;
 
-    if (!urgentDates == undefined) {
-        // Sortiere die Datumswerte absteigend
-        urgentDates.sort((a, b) => a - b);
+function getUrgentDates(tasks) {
+    return tasks
+        .filter(task => task.priority === "urgent")
+        .map(task => new Date(task.date));
+}
 
-        // Das jüngste Datum auswählen
-        let juengstesDatum = urgentDates[0];
 
-        formattedDate = juengstesDatum.toLocaleDateString("en-US", {
+function getUrgentDates(tasks) {
+    return tasks
+        .filter(task => task.priority === "urgent")
+        .map(task => new Date(task.date));
+}
+
+
+function formatLatestDate(dates) {
+    if (dates && dates.length > 0) {
+        dates.sort((a, b) => a - b);
+        let latestDate = dates[0];
+        return latestDate.toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
             year: "numeric"
         });
     } else {
-        formattedDate = 'No'
+        return 'No';
     }
-
-    document.getElementById('urgent-deadline').innerHTML = formattedDate;
 }
