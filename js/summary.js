@@ -28,11 +28,11 @@ function greetBasedOnTime() {
     greeting = "";
 
     if (hour >= 3 && hour < 12) {
-        greeting = "Good morning";
+        greeting = "Good morning,";
     } else if (hour >= 12 && hour < 17) {
-        greeting = "Good afternoon";
+        greeting = "Good afternoon,";
     } else {
-        greeting = "Good evening";
+        greeting = "Good evening,";
     }
     document.getElementById('greet').innerHTML = greeting;
 }
@@ -65,7 +65,7 @@ function renderCurrentUserName() {
     } else {
         let name = users[currentUserIndex]['name']
         greetingName.innerHTML = name;
-        document.getElementById('greet').innerHTML = greeting + ',';
+        document.getElementById('greet').innerHTML = greeting;
     }
 }
 
