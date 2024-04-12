@@ -13,7 +13,6 @@ async function initContacts() {
     showCurrentUserInButtonMobile();
 }
 
-
 // **********************OPEN AND CLOSE ADD CONTACT WINDOW**********************
 
 function openDialogAddContacts() {
@@ -42,7 +41,6 @@ function closeAddContactDialog() {
 function doNotClose(event) {
     event.stopPropagation();
 }
-
 
 // **********************ADD CONTACT**********************
 
@@ -172,9 +170,7 @@ function sortList(a, b) {
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
-
     let currentLetter = null;
-
     for (let i = 0; i < contacts.length; i++) {
         let { name, email, phone, initials, color, index, firstLetter } = getContactDetails(contacts[i], i);
 
@@ -182,9 +178,7 @@ function addContactToList() {
             currentLetter = firstLetter;
             addLetterHeaderToContainer(listContainer, currentLetter);
         }
-
         listContainer.innerHTML += createHtmlTemplateForList(name, email, phone, initials, index);
-
         setInitialsBackgroundColor(index, color);
     }
 }
@@ -197,7 +191,6 @@ function getContactDetails(contact, index) {
     let initials = contact['initials'];
     let color = contact['color'];
     let firstLetter = name.charAt(0).toUpperCase();
-
     return { name, email, phone, initials, color, index, firstLetter };
 }
 
@@ -242,7 +235,6 @@ function showConfirmation() {
     }, 1500); // Die Gesamtdauer der Animation beträgt 1,5 Sekunden
 }
 
-
 // **********************SHCOW ALL DATA FROM CONTACT**********************
 
 function openFullCard(name, email, phone, initials, index) {
@@ -281,33 +273,6 @@ function openDialogAddContacts() {
 }
 
 
-// function showEditForm() {
-//     showEditFormDesktop();
-//     showEditFormMobile();
-
-//     let initials = document.getElementById('name-initials-view-contact').innerHTML;
-//     let name = document.getElementById('name-view-contact').innerHTML;
-//     let email = document.getElementById('email-view-contact').innerHTML;
-//     let phone = document.getElementById('phone-noumber-view-contact').innerHTML;
-//     let color = document.getElementById('name-initials-container-view-contact').style.backgroundColor;
-
-
-//     document.getElementById('initals-field-edit-contact').innerHTML = initials;
-//     document.getElementById('name-input-field-edit-contact').value = name;
-//     document.getElementById('email-input-field-edit-contact').value = email;
-//     document.getElementById('phone-input-field-edit-contact').value = phone;
-
-//     document.getElementById('name-input-field-edit-contact-mobile').value = name;
-//     document.getElementById('email-input-field-edit-contact-mobile').value = email;
-//     document.getElementById('phone-input-field-edit-contact-mobile').value = phone;
-
-
-//     document.getElementById('initals-field-edit-contact').style.backgroundColor = color;
-
-
-//     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
-// }
-
 function showEditForm() {
     showEditFormDesktop();
     showEditFormMobile();
@@ -331,7 +296,6 @@ function showEditFormDesktop() {
 function showEditFormMobile() {
     let dialogMobile = document.getElementById('dialog-edit-contacts-mobile');
     dialogMobile.classList.remove('d-none');
-
 }
 
 
@@ -340,7 +304,6 @@ function fillEditFormFields(initials, name, email, phone) {
     document.getElementById('name-input-field-edit-contact').value = name;
     document.getElementById('email-input-field-edit-contact').value = email;
     document.getElementById('phone-input-field-edit-contact').value = phone;
-
     // Mobile Ansicht
     document.getElementById('name-input-field-edit-contact-mobile').value = name;
     document.getElementById('email-input-field-edit-contact-mobile').value = email;
@@ -349,8 +312,6 @@ function fillEditFormFields(initials, name, email, phone) {
     let color = document.getElementById('name-initials-container-view-contact').style.backgroundColor;
     document.getElementById('initals-field-edit-contact').style.backgroundColor = color;
 }
-
-
 
 // **********************OPEN EDIT MENU MOBILE**********************
 
@@ -362,7 +323,6 @@ function showEditMenuMobile() {
 function closeEditMenuMobile() {
     document.getElementById('edit-menu-mobile-contacts').classList.add('d-none');
 }
-
 
 // **********************OPEN AND CLOSE EDIT CONTACT WINDOW**********************
 
@@ -402,11 +362,8 @@ function clearEditContact() {
 
 async function saveEditContact() {
     let contactToEdit = contacts[currentIndex];
-    
     let { name, email, phone } = getContactInfoForEdit();
-    
     await editAndSaveContact(contactToEdit, name, email, phone);
-    
     renderContactList();
     closeEditContactDialog();
     openFullCard(name, email, phone, contactToEdit['initials'], currentIndex);
@@ -415,7 +372,6 @@ async function saveEditContact() {
 
 function getContactInfoForEdit() {
     let name, email, phone;
-
     if (window.innerWidth < 1080) {
         name = document.getElementById('name-input-field-edit-contact-mobile').value;
         email = document.getElementById('email-input-field-edit-contact-mobile').value;
@@ -425,7 +381,6 @@ function getContactInfoForEdit() {
         email = document.getElementById('email-input-field-edit-contact').value;
         phone = document.getElementById('phone-input-field-edit-contact').value;
     }
-
     return { name, email, phone };
 }
 
@@ -439,15 +394,12 @@ function getInitialsFromName(name) {
 
 async function editAndSaveContact(contactToEdit, name, email, phone) {
     let initials = getInitialsFromName(name);
-
     contactToEdit['name'] = name;
     contactToEdit['email'] = email;
     contactToEdit['phone'] = phone;
     contactToEdit['initials'] = initials;
-
     await postData(`${CONTACTS_PATH}`);
 }
-
 
 
 function showFullContactMobile() {
