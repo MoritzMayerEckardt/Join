@@ -359,6 +359,17 @@ function showDataFromCurrentContact(name, email, phone, initials, index) {
     bgColorInitials.style.backgroundColor = color;
 }
 
+/**
+ * Displays the full contact card view in mobile view if screen width is  < 1080px
+ */
+function showFullContactMobile() {
+    if (window.innerWidth < 1080) {
+        document.getElementById('contacts-container').classList.add('d-none1080');
+        document.getElementById('show-complete-contact-template').classList.remove('d-none1080');
+    }
+}
+
+// **********************SHCOW ADD CONTACT FORM**********************
 
 /**
  * Opens the dialog for adding contacts on both desktop and mobile.
@@ -371,6 +382,8 @@ function openDialogAddContacts() {
     dialog.style.animation = 'slideInFromRight 0.250s ease-in-out';
     dialog.style.right = '0';
 }
+
+// **********************SHCOW EDIT CONTACT FORM**********************
 
 
 /**
@@ -463,6 +476,8 @@ function closeEditContactDialog() {
     dialogMobile.classList.add('d-none');
 }
 
+// **********************DELETE CONTACT**********************
+
 
 /**
  * Deletes the current contact, updates the contact list, and closes the edit dialog.
@@ -485,13 +500,25 @@ async function deleteContactMobile() {
     closeEditMenuMobile();
 }
 
+
 /**
- * Clears the full contact card view.
+ * Closes the full contact card view in mobile view.
+ */
+function closeContactMobile() {
+    document.getElementById('contacts-container').classList.remove('d-none1080');
+    document.getElementById('show-complete-contact-template').classList.add('d-none1080');
+}
+
+
+/**
+ * Clears the full contact card.
  */
 function clearEditContact() {
     let showFullContact = document.getElementById('view-contact-container');
     showFullContact.classList.add('d-none');
 }
+
+// **********************EDIT CONTACT**********************
 
 /**
  * Saves the edited contact details, updates the contact list, and opens the updated contact card.
@@ -551,24 +578,4 @@ async function editAndSaveContact(contactToEdit, name, email, phone) {
     contactToEdit['phone'] = phone;
     contactToEdit['initials'] = initials;
     await postData(`${CONTACTS_PATH}`);
-}
-
-
-/**
- * Displays the full contact card view in mobile view if screen width is  < 1080px
- */
-function showFullContactMobile() {
-    if (window.innerWidth < 1080) {
-        document.getElementById('contacts-container').classList.add('d-none1080');
-        document.getElementById('show-complete-contact-template').classList.remove('d-none1080');
-    }
-}
-
-
-/**
- * Closes the full contact card view in mobile view.
- */
-function closeContactMobile() {
-    document.getElementById('contacts-container').classList.remove('d-none1080');
-    document.getElementById('show-complete-contact-template').classList.add('d-none1080');
 }
