@@ -510,6 +510,9 @@
 
 .clearBtn:hover {
     cursor: pointer !important;
+    cursor: pointer;
+    border: 1px solid #29abe2;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .clear {
@@ -537,6 +540,10 @@
 .createBtn:hover {
     cursor: pointer !important;
     transition: all 100ms ease-in-out !important;
+    background-color: #29abe2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: none;
+    cursor: pointer;
 }
 
 .create {
