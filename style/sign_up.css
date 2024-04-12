@@ -63,7 +63,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px);
+    margin-top: 20px;
     flex-direction: column;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .successfully-signed-up-message-container {
-    display: none; 
+    display: none;
     position: absolute;
     left: 50%;
     transform: translateX(-50%) translateY(100%);
@@ -130,7 +130,7 @@
     background-color: lightgray;
     color: gray;
     cursor: not-allowed;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 @keyframes slideUpAndDown {
@@ -154,9 +154,10 @@
     width: 64px;
     height: 78.03px;
     position: absolute;
-    top:37px;
+    top: 37px;
     left: 36px;
 }
+
 .header-sign-up-mobile {
     display: flex;
     justify-content: flex-end;
@@ -167,24 +168,30 @@
     .join-logo {
         display: none;
     }
+
     .sign-up-container {
         width: 396px;
         padding: 32px 16px 32px 16px;
         height: 595px;
     }
+
     .sign-up-headline-container {
         font-size: 47px;
     }
+
     .link-container {
         display: none;
     }
+
     .sign-up-button-text {
         font-size: 16px;
     }
+
     .back-button-sign-up {
         left: 40px;
         top: 40px;
     }
+
     .remember-me-container {
         justify-content: center;
     }
@@ -194,6 +201,7 @@
     .sign-up-container {
         width: 300px;
     }
+
     .back-button-sign-up {
         left: 24px;
         top: 24px;
@@ -204,6 +212,7 @@
     .join-logo-mobile {
         display: none;
     }
+
     .link-container-mobile {
         display: none;
     }

@@ -10,12 +10,24 @@ async function initSummary() {
     await loadUsers();
     await loadCurrentUserIndex();
     await loadGuestLogin();
+    greetBasedOnTimeMobile();
     addBackgroundColor(0);
     greetBasedOnTime();
     renderData();
     showCurrentUserInButton();
     loadMobileMenu();
     showCurrentUserInButtonMobile();
+}
+
+function greetBasedOnTimeMobile() {
+    if (window.innerWidth < 700) {
+        if (document.referrer.includes("index.html")) {
+            document.getElementById('greeting-container-mobile').classList.remove('d-none');
+            setTimeout(() => {
+                document.getElementById('greeting-container-mobile').classList.add('d-none');
+            }, 1500);
+        }
+    }
 }
 
 

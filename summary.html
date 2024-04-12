@@ -13,6 +13,7 @@
     <script src="js/aside.js"></script>
     <script src="js/mobile_menu.js"></script>
 </head>
+
 <body onload="initSummary()">
     <div class="content-container flex">
         <aside id="content-left" class="aside-summary" w3-include-html=".\assets\templates\aside.html"></aside>
@@ -95,6 +96,12 @@
                 </div>
             </section>
         </section>
+    </div>
+
+    <div class="greeting-container-mobile d-none" id="greeting-container-mobile">
+            <div class="greet-mobile">Hallo</div>
+            <div class="greeting-name">Veronika</div>
+        </div>
     </div>
     <menu w3-include-html=".\assets\templates\mobile_menu.html" class="mobile-menu d-none-mobile-menu-summary"></menu>
 </body>

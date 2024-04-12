@@ -9,7 +9,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: min-content;
+    margin-top: 20px;
 }
 
 .join-logo {

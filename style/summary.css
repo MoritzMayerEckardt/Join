@@ -3,9 +3,6 @@ body {
     font-family: 'Inter';
 }
 
-
-
-
 .summary {
     margin-left: 328px;
     margin-top: 140px;
@@ -325,6 +322,39 @@ body {
     display: none !important;
 }
 
+/* ******************GREETING CONTAINER Mobile****************** */
+
+.greeting-container-mobile {
+    z-index: 1000;
+    position: fixed;
+    top: 80px;
+    bottom: 64px;
+    right: 0;
+    left: 0;
+    background-color: #f6f7f8;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.5s ease-in-out;
+    opacity: 1;
+}
+
+.greet-mobile {
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 43.2px;
+    color: #2A3647;
+}
+
+.greeting-name-mobile {
+    font-size: 47px;
+    font-weight: 700;
+    color: #29ABE2;
+    line-height: 56.4px;
+}
+
 
 /* ******************MOBILE RESPONSIVE****************** */
 
@@ -405,6 +435,7 @@ body {
         display: flex !important;
     }
 }
+
 
 @media(max-width:600px) {
     .summary {
