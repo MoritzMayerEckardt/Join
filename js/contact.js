@@ -1,6 +1,10 @@
 let currentIndex;
 const colors = ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#808080", "#999999", "#b3b3b3", "#cccccc", "#e6e6e6", "#1a1a8d", "#3333a1", "#4d4db5", "#6666c8", "#8080dc", "#9999f0", "#b3b3f4", "#ccccf8", "#e6e6fc", "#ffffff"];
 
+/**
+ * Initializes the contacts page by loading necessary data and rendering the UI.
+ * Also sets up event listeners for user interactions.
+ */
 async function initContacts() {
     await includeHTML();
     await loadUsers();
@@ -13,8 +17,11 @@ async function initContacts() {
     showCurrentUserInButtonMobile();
 }
 
-// **********************OPEN AND CLOSE ADD CONTACT WINDOW**********************
+// **********************OPEN AND CLOSE ADD CONTACT OVERLAY**********************
 
+/**
+ * Opens the dialog to add contacts on both desktop and mobile.
+ */
 function openDialogAddContacts() {
     let dialog = document.getElementById('dialog-add-contacts');
     let dialogMobile = document.getElementById('dialog-add-contacts-mobile');
@@ -25,6 +32,9 @@ function openDialogAddContacts() {
 }
 
 
+/**
+ * Closes the dialog for adding contacts.
+ */
 function closeAddContactDialog() {
     dialog = document.getElementById('dialog-add-contacts');
     dialogMobile = document.getElementById('dialog-add-contacts-mobile');
@@ -38,12 +48,20 @@ function closeAddContactDialog() {
 }
 
 
+/**
+ * Prevents the default behavior of an event to stop it from closing.
+ * @param {Event} event - The event object.
+ */
 function doNotClose(event) {
     event.stopPropagation();
 }
 
 // **********************ADD CONTACT**********************
 
+
+/**
+ * Adds a new contact by pushing values to the contacts array, saving it, and rendering the updated list.
+ */
 async function addContact() {
     createContactsIfNotCreated();
     pushValuesToContacts();
@@ -55,7 +73,9 @@ async function addContact() {
     showConfirmation();
 }
 
-
+/**
+ * Creates an empty contacts array if it doesn't exist.
+ */
 function createContactsIfNotCreated() {
     if (!contacts) {
         contacts = [];
@@ -63,6 +83,9 @@ function createContactsIfNotCreated() {
 }
 
 
+/**
+ * Gathers input values, generates initials, and pushes the new contact object to the contacts array.
+ */
 function pushValuesToContacts() {
     let { name, email, phone, initials } = getValuesFromInputAddContact();
     let randomIndex = getRandomIndexFromColors();
@@ -77,11 +100,19 @@ function pushValuesToContacts() {
 }
 
 
+/**
+ * Generates a random index to select a color from the predefined colors array.
+ * @returns {number} A random index.
+ */
 function getRandomIndexFromColors() {
     return Math.floor(Math.random() * colors.length);
 }
 
 
+/**
+ * Gets input values for adding a contact, depending on the screen width.
+ * @returns {Object} An object with name, email, phone, and initials.
+ */
 function getValuesFromInputAddContact() {
     let { name, email, phone } = getInputElementsForContact();
     let initials = getInitialsFromName(name);
@@ -89,6 +120,10 @@ function getValuesFromInputAddContact() {
 }
 
 
+/**
+ * Gets input elements for adding a contact, based on the screen width.
+ * @returns {Object} An object with name, email, and phone.
+ */
 function getInputElementsForContact() {
     if (window.innerWidth > 1130) {
         return {
@@ -106,6 +141,11 @@ function getInputElementsForContact() {
 }
 
 
+/**
+ * Generates initials from a given name.
+ * @param {string} name - The name from which to generate initials.
+ * @returns {string} The generated initials.
+ */
 function getInitialsFromName(name) {
     let nameParts = name.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
@@ -113,6 +153,10 @@ function getInitialsFromName(name) {
 }
 
 
+/**
+ * Sends a POST request to the specified path with the contacts data.
+ * @param {string} path - The path to which to send the POST request.
+ */
 async function postData(path) {
     try {
         let response = await fetch(BASE_URL + path + ".json", {
@@ -133,6 +177,9 @@ async function postData(path) {
 }
 
 
+/**
+ * Clears the input fields in the add contact form.
+ */
 function clearAddContactForm() {
     document.getElementById('name-input-field-add-contact').value = '';
     document.getElementById('email-input-field-add-contact').value = '';
@@ -143,6 +190,9 @@ function clearAddContactForm() {
 }
 
 
+/**
+ * Renders the contact list by loading contacts, sorting them, and updating the UI.
+ */
 async function renderContactList() {
     await loadContacts();
     if (Array.isArray(contacts) && contacts.length > 0) {
@@ -155,6 +205,12 @@ async function renderContactList() {
 }
 
 
+/**
+ * Sorts contacts alphabetically by name.
+ * @param {Object} a - The first contact object.
+ * @param {Object} b - The second contact object.
+ * @returns {number} A sorting indicator (-1, 0, or 1).
+ */
 function sortList(a, b) {
     let nameA = a.name.toUpperCase();
     let nameB = b.name.toUpperCase();
@@ -167,6 +223,10 @@ function sortList(a, b) {
     return 0;
 }
 
+
+/**
+ * Adds each contact to the list container in the UI.
+ */
 function addContactToList() {
     let listContainer = document.getElementById('list-container');
     listContainer.innerHTML = '';
@@ -184,6 +244,12 @@ function addContactToList() {
 }
 
 
+/**
+ * Extracts details from a contact object for rendering.
+ * @param {Object} contact - The contact object.
+ * @param {number} index - The index of the contact.
+ * @returns {Object} An object with contact details.
+ */
 function getContactDetails(contact, index) {
     let name = contact['name'];
     let email = contact['email'];
@@ -195,6 +261,11 @@ function getContactDetails(contact, index) {
 }
 
 
+/**
+ * Sets the background color of the initials container for a contact.
+ * @param {number} index - The index of the contact.
+ * @param {string} color - The background color.
+ */
 function setInitialsBackgroundColor(index, color) {
     let initialsContainer = document.getElementById(`name-initials${index}`);
     if (initialsContainer) {
@@ -203,19 +274,25 @@ function setInitialsBackgroundColor(index, color) {
 }
 
 
-function setInitialsBackgroundColor(index, color) {
-    let initialsContainer = document.getElementById(`name-initials${index}`);
-    if (initialsContainer) {
-        initialsContainer.style.backgroundColor = color;
-    }
-}
-
-
+/**
+ * Adds a letter header to the list container for grouping contacts.
+ * @param {HTMLElement} container - The container element.
+ * @param {string} letter - The letter to display.
+ */
 function addLetterHeaderToContainer(container, letter) {
     container.innerHTML += `<div class="contact-letter">${letter}</div>`;
 }
 
 
+/**
+ * Creates an HTML template for displaying a contact in the list.
+ * @param {string} name - The contact's name.
+ * @param {string} email - The contact's email.
+ * @param {string} phone - The contact's phone number.
+ * @param {string} initials - The contact's initials.
+ * @param {number} index - The index of the contact.
+ * @returns {string} The HTML template for the contact.
+ */
 function createHtmlTemplateForList(name, email, phone, initials, index) {
     return `
         <li class="contact-in-list" id="contact-in-list${index}" onclick="openFullCard('${name}', '${email}', '${phone}', '${initials}', ${index})">
@@ -227,6 +304,10 @@ function createHtmlTemplateForList(name, email, phone, initials, index) {
         </li>`
 }
 
+
+/**
+ * Displays a confirmation message on successful action.
+ */
 function showConfirmation() {
     let slideContainer = document.getElementById('confirmation-field');
     slideContainer.classList.add('confirmation-field-active');
@@ -237,6 +318,14 @@ function showConfirmation() {
 
 // **********************SHCOW ALL DATA FROM CONTACT**********************
 
+/**
+ * Opens the full contact card view, highlights the selected contact, and shows its details.
+ * @param {string} name - The contact's name.
+ * @param {string} email - The contact's email.
+ * @param {string} phone - The contact's phone number.
+ * @param {string} initials - The contact's initials.
+ * @param {number} index - The index of the contact.
+ */
 function openFullCard(name, email, phone, initials, index) {
     let showFullContact = document.getElementById('view-contact-container');
     let allContactElements = document.querySelectorAll('.contact-in-list');
@@ -252,6 +341,14 @@ function openFullCard(name, email, phone, initials, index) {
 }
 
 
+/**
+ * Displays the details of the current contact in the full contact card view.
+ * @param {string} name - The contact's name.
+ * @param {string} email - The contact's email.
+ * @param {string} phone - The contact's phone number.
+ * @param {string} initials - The contact's initials.
+ * @param {number} index - The index of the contact.
+ */
 function showDataFromCurrentContact(name, email, phone, initials, index) {
     document.getElementById('name-initials-view-contact').innerHTML = initials;
     document.getElementById('name-view-contact').innerHTML = name;
@@ -263,6 +360,9 @@ function showDataFromCurrentContact(name, email, phone, initials, index) {
 }
 
 
+/**
+ * Opens the dialog for adding contacts on both desktop and mobile.
+ */
 function openDialogAddContacts() {
     let dialog = document.getElementById('dialog-add-contacts');
     let dialogMobile = document.getElementById('dialog-add-contacts-mobile');
@@ -273,6 +373,9 @@ function openDialogAddContacts() {
 }
 
 
+/**
+ * Shows the edit form for contacts on both desktop and mobile and fills the form fields with the current contact's details.
+ */
 function showEditForm() {
     showEditFormDesktop();
     showEditFormMobile();
@@ -285,6 +388,9 @@ function showEditForm() {
 }
 
 
+/**
+ * Shows the edit form for contacts on desktop.
+ */
 function showEditFormDesktop() {
     let dialog = document.getElementById('dialog-edit-contacts');
     dialog.classList.remove('d-none');
@@ -293,12 +399,22 @@ function showEditFormDesktop() {
 }
 
 
+/**
+ * Shows the edit form for contacts on mobile.
+ */
 function showEditFormMobile() {
     let dialogMobile = document.getElementById('dialog-edit-contacts-mobile');
     dialogMobile.classList.remove('d-none');
 }
 
 
+/**
+ * Fills the edit form fields with the provided contact details.
+ * @param {string} initials - The contact's initials.
+ * @param {string} name - The contact's name.
+ * @param {string} email - The contact's email.
+ * @param {string} phone - The contact's phone number.
+ */
 function fillEditFormFields(initials, name, email, phone) {
     document.getElementById('initals-field-edit-contact').innerHTML = initials;
     document.getElementById('name-input-field-edit-contact').value = name;
@@ -315,17 +431,27 @@ function fillEditFormFields(initials, name, email, phone) {
 
 // **********************OPEN EDIT MENU MOBILE**********************
 
+/**
+ * Shows the edit menu for contacts on mobile.
+ */
 function showEditMenuMobile() {
     document.getElementById('edit-menu-mobile-contacts').classList.remove('d-none');
 }
 
 
+/**
+ * Closes the edit menu for contacts on mobile.
+ */
 function closeEditMenuMobile() {
     document.getElementById('edit-menu-mobile-contacts').classList.add('d-none');
 }
 
 // **********************OPEN AND CLOSE EDIT CONTACT WINDOW**********************
 
+
+/**
+ * Closes the dialog for editing contacts on both desktop and mobile.
+ */
 function closeEditContactDialog() {
     let dialog = document.getElementById('dialog-edit-contacts');
     let dialogMobile = document.getElementById('dialog-edit-contacts-mobile');
@@ -338,6 +464,9 @@ function closeEditContactDialog() {
 }
 
 
+/**
+ * Deletes the current contact, updates the contact list, and closes the edit dialog.
+ */
 async function deleteContact() {
     contacts.splice(currentIndex, 1);
     await postData(`${CONTACTS_PATH}`);
@@ -347,19 +476,26 @@ async function deleteContact() {
 }
 
 
+/**
+ * Deletes the current contact on mobile, updates the contact list, and closes the edit menu.
+ */
 async function deleteContactMobile() {
     await deleteContact();
     closeContactMobile();
     closeEditMenuMobile();
 }
 
-
+/**
+ * Clears the full contact card view.
+ */
 function clearEditContact() {
     let showFullContact = document.getElementById('view-contact-container');
     showFullContact.classList.add('d-none');
 }
 
-
+/**
+ * Saves the edited contact details, updates the contact list, and opens the updated contact card.
+ */
 async function saveEditContact() {
     let contactToEdit = contacts[currentIndex];
     let { name, email, phone } = getContactInfoForEdit();
@@ -370,6 +506,10 @@ async function saveEditContact() {
 }
 
 
+/**
+ * Retrieves the edited contact details from the form fields.
+ * @returns {Object} An object containing the edited contact information.
+ */
 function getContactInfoForEdit() {
     let name, email, phone;
     if (window.innerWidth < 1080) {
@@ -385,6 +525,11 @@ function getContactInfoForEdit() {
 }
 
 
+/**
+ * Generates initials from the given full name.
+ * @param {string} name - The full name to generate initials from.
+ * @returns {string} The initials of the name.
+ */
 function getInitialsFromName(name) {
     let nameParts = name.split(" ");
     let firstLetters = nameParts.map(namePart => namePart.charAt(0));
@@ -392,6 +537,13 @@ function getInitialsFromName(name) {
 }
 
 
+/**
+ * Updates and saves the edited contact's details.
+ * @param {Object} contactToEdit - The contact object to edit.
+ * @param {string} name - The edited name.
+ * @param {string} email - The edited email.
+ * @param {string} phone - The edited phone number.
+ */
 async function editAndSaveContact(contactToEdit, name, email, phone) {
     let initials = getInitialsFromName(name);
     contactToEdit['name'] = name;
@@ -402,6 +554,9 @@ async function editAndSaveContact(contactToEdit, name, email, phone) {
 }
 
 
+/**
+ * Displays the full contact card view in mobile view if screen width is  < 1080px
+ */
 function showFullContactMobile() {
     if (window.innerWidth < 1080) {
         document.getElementById('contacts-container').classList.add('d-none1080');
@@ -410,6 +565,9 @@ function showFullContactMobile() {
 }
 
 
+/**
+ * Closes the full contact card view in mobile view.
+ */
 function closeContactMobile() {
     document.getElementById('contacts-container').classList.remove('d-none1080');
     document.getElementById('show-complete-contact-template').classList.add('d-none1080');
