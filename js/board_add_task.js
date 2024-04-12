@@ -274,7 +274,7 @@ function generateChosenContactsEditCard(assignedContacts) {
     } else {
         for (let index = 0; index < chosenContacts.length; index++) {
             const contact = chosenContacts[index];
-            assignedContacts.innerHTML += renderAssignedContactHTML(contact);
+            assignedContacts.innerHTML += renderAssignedContactsInEditCardHTML(contact);
         }
     }
 }
@@ -379,6 +379,20 @@ function checkedContactStaysCheckedEditCard(contactElement, i) {
         let checkbox = contactElement.querySelector('.checkBox');
         checkbox.checked = true;
     }
+}
+
+/**
+ * Retrieves values from input fields in a task template.
+ * @returns {Object} - Object containing task details.
+ */
+function getValuesFromInputFromTemplate() {
+    let title = document.getElementById('title-template').value;
+    let description = document.getElementById('description-template');
+    let assigned = document.getElementById('assigned-template');
+    let date = document.getElementById('date-template');
+    let category = document.getElementById('category-template');
+    let priority = getVAlueOfPriority();
+    return { title, description, assigned, date, category, priority };
 }
 
 

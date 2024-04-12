@@ -1,3 +1,12 @@
+/**
+ * Renders a task card with provided details.
+ * 
+ * @param {object} task - The task object containing details like id, category, title, description, priority, etc.
+ * @param {string} backgroundColor - The background color of the task card.
+ * @param {string} progressBarHTML - HTML string representing a progress bar for the task.
+ * @param {string} assignedContactsHTML - HTML string representing assigned contacts for the task.
+ * @returns {string} - HTML string representing the task card.
+ */
 function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML) {
     return /*html*/`
         <div onclick="openDetailedCard(${task.id})" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
@@ -13,6 +22,15 @@ function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML
     `;
 }
 
+/**
+ * Renders a detailed view of a task card with provided details.
+ * 
+ * @param {object} task - The task object containing details like id, category, title, description, priority, etc.
+ * @param {string} backgroundColor - The background color of the detailed card.
+ * @param {string} assignedContactsHTML - HTML string representing assigned contacts for the task.
+ * @param {string} subtasksHTML - HTML string representing subtasks for the task.
+ * @returns {string} - HTML string representing the detailed card.
+ */
 function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML) { 
     return /*html*/`
         <div id="card" class="detailed-card-container">
@@ -55,6 +73,14 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
     `;
 }
 
+/**
+ * Renders an edit form for a task with pre-filled details.
+ * 
+ * @param {object} task - The task object containing details like id, category, title, description, priority, etc.
+ * @param {string} subtasksHTMLEditCard - HTML string representing subtasks for the task in edit mode.
+ * @param {string} assignedContactsHTML - HTML string representing assigned contacts for the task.
+ * @returns {string} - HTML string representing the edit form.
+ */
 function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
     return /*html*/`
         <div id="card" class="edit-card-container">
@@ -123,6 +149,11 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
     `;
 }
 
+/**
+ * Renders a form to add a new task.
+ * 
+ * @returns {string} - HTML string representing the add task form.
+ */
 function renderAddTaskForm() {
     return /*html*/`
         <form id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false">
@@ -226,6 +257,11 @@ function renderAddTaskForm() {
 
 // **********************EMPTY-COLUMN-TEMPLATES**********************
 
+/**
+ * Renders an empty column template for 'To Do' tasks.
+ * 
+ * @returns {string} - HTML string representing the empty 'To Do' column.
+ */
 function renderEmptyToDoColumn() {
     return /*html*/`
             <div class="no-tasks-container">
@@ -234,6 +270,11 @@ function renderEmptyToDoColumn() {
     `;
 }
 
+/**
+ * Renders an empty column template for 'Done' tasks.
+ * 
+ * @returns {string} - HTML string representing the empty 'Done' column.
+ */
 function renderEmptyDoneColumn() {
     return /*html*/`
             <div class="no-tasks-container">
@@ -242,6 +283,11 @@ function renderEmptyDoneColumn() {
     `;
 }
 
+/**
+ * Renders an empty column template for 'In Progress' tasks.
+ * 
+ * @returns {string} - HTML string representing the empty 'In Progress' column.
+ */
 function renderEmptyInProgressColumn() {
     return /*html*/`
     <div class="no-tasks-container">
@@ -250,6 +296,11 @@ function renderEmptyInProgressColumn() {
 `;
 }
 
+/**
+ * Renders an empty column template for 'Await Feedback' tasks.
+ * 
+ * @returns {string} - HTML string representing the empty 'Await Feedback' column.
+ */
 function renderEmptyAwaitFeedbackColumn() {
     return /*html*/`
     <div class="no-tasks-container">
@@ -260,6 +311,15 @@ function renderEmptyAwaitFeedbackColumn() {
 
 // **********************SUBTASKS-TEMPLATES**********************
 
+/**
+ * Renders HTML for subtasks list in edit card.
+ * 
+ * @param {object} task - The task object containing details like id, category, title, description, priority, etc.
+ * @param {array} subtasks - Array of subtask objects.
+ * @param {string} subtask - Subtask text.
+ * @param {number} index - Index of the subtask.
+ * @returns {string} - HTML string representing the subtasks list in edit card.
+ */
 function renderSubtasksListInEditCard(task, subtasks, subtask, index) {
     return /*html*/`
     <div>
@@ -283,6 +343,15 @@ function renderSubtasksListInEditCard(task, subtasks, subtask, index) {
     `;
 }
 
+/**
+ * Renders HTML for subtasks in edit card.
+ * 
+ * @param {object} task - The task object containing details like id, category, title, description, priority, etc.
+ * @param {number} index - Index of the subtask.
+ * @param {array} subtasks - Array of subtask objects.
+ * @param {string} subtask - Subtask text.
+ * @returns {string} - HTML string representing the subtasks in edit card.
+ */
 function renderSubtasksHTMLInEditCard(task, index, subtasks, subtask) {
     return /*html*/`
     <div onmouseover="showEditImages(${index + subtasks.length})" onmouseout="removeEditImages(${index + subtasks.length})" class="subtask-container-edit-card">
@@ -296,6 +365,13 @@ function renderSubtasksHTMLInEditCard(task, index, subtasks, subtask) {
 `;
 }
 
+/**
+ * Renders a progress bar for a task.
+ * 
+ * @param {string} progressBarClass - CSS class for the progress bar.
+ * @param {string} subtasksText - Text indicating the number of subtasks.
+ * @returns {string} - HTML string representing the progress bar.
+ */
 function renderProgressBar(progressBarClass, subtasksText) {
     return /*html*/`
             <div class="task-subtasks-container">
@@ -307,6 +383,16 @@ function renderProgressBar(progressBarClass, subtasksText) {
         `;
 }
 
+
+/**
+ * Renders HTML for a subtask.
+ * 
+ * @param {object} task - The task object containing details like id, category, title, description, priority, etc.
+ * @param {string} subtask - Subtask text.
+ * @param {string} checkBoxImage - Image source for the checkbox.
+ * @param {number} index - Index of the subtask.
+ * @returns {string} - HTML string representing the subtask.
+ */
 function renderSubtaskHTML(task, subtask, checkBoxImage, index) {
     return /*html*/`
         <div onclick="handleCheckBox(${task.id}, ${index})" class="flex check-box-container-subtasks">
@@ -319,6 +405,15 @@ function renderSubtaskHTML(task, subtask, checkBoxImage, index) {
 
 // **********************ASSIGNED-CONTACTS-TEMPLATES**********************
 
+/**
+ * Renders HTML for assigned contacts.
+ * 
+ * @param {string} firstLetterName - First letter of the contact's name.
+ * @param {string} firstLetterLastName - First letter of the contact's last name.
+ * @param {string} contactColor - Color associated with the contact.
+ * @param {string} marginClass - CSS class for margin.
+ * @returns {string} - HTML string representing the assigned contacts.
+ */
 function renderAssignedContactsHTML(firstLetterName, firstLetterLastName, contactColor, marginClass) {
     return /*html*/`
         <div class="task-contacts-ellipse flex-center ${marginClass}" style="background-color: ${contactColor}">
@@ -327,6 +422,15 @@ function renderAssignedContactsHTML(firstLetterName, firstLetterLastName, contac
 `;
 }
 
+/**
+ * Renders HTML for assigned contacts in detailed card.
+ * 
+ * @param {string} firstLetterName - First letter of the contact's name.
+ * @param {string} firstLetterLastName - First letter of the contact's last name.
+ * @param {string} assignedContact - Assigned contact's name.
+ * @param {string} contactColor - Color associated with the contact.
+ * @returns {string} - HTML string representing the assigned contacts in detailed card.
+ */
 function renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastName, assignedContact, contactColor) {
     return /*html*/`
     <div class="detailed-card-contact-item">
@@ -338,7 +442,13 @@ function renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastNa
 `;
 }
 
-function renderAssignedContactHTML(contact) {
+/**
+ * Renders HTML for assigned contact in edit card.
+ * 
+ * @param {object} contact - Contact object containing details like name, initials, color, etc.
+ * @returns {string} - HTML string representing the assigned contact.
+ */
+function renderAssignedContactsInEditCardHTML(contact) {
     return /*html*/`
         <div class="assigned-contacts-edit-card">    
             <div class="task-contacts-ellipse flex-center" style="background-color: ${contact.color}; color: white">
@@ -349,6 +459,11 @@ function renderAssignedContactHTML(contact) {
     `;
 }
 
+/**
+ * Renders HTML for when no contacts are assigned.
+ * 
+ * @returns {string} - HTML string indicating no contacts are assigned.
+ */
 function renderNoContactsAssignedHTML() {
     return /*html*/`
         <div class="assigned-contacts-edit-card">

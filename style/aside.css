@@ -23,6 +23,7 @@
     align-items: center;
     gap: 15px;
     height: 229px;
+    z-index: 1;
 }
 
 .link-container-sidebar {
