@@ -10,24 +10,13 @@ async function initSummary() {
     await loadUsers();
     await loadCurrentUserIndex();
     await loadGuestLogin();
-    greetBasedOnTimeMobile();
     addBackgroundColor(0);
     greetBasedOnTime();
     renderData();
     showCurrentUserInButton();
     loadMobileMenu();
     showCurrentUserInButtonMobile();
-}
-
-function greetBasedOnTimeMobile() {
-    if (window.innerWidth < 700) {
-        if (document.referrer.includes("index.html")) {
-            document.getElementById('greeting-container-mobile').classList.remove('d-none');
-            setTimeout(() => {
-                document.getElementById('greeting-container-mobile').classList.add('d-none');
-            }, 1500);
-        }
-    }
+    greetBasedOnTimeMobile();
 }
 
 
@@ -47,6 +36,70 @@ function greetBasedOnTime() {
         greeting = "Good evening,";
     }
     document.getElementById('greet').innerHTML = greeting;
+}
+
+
+/**
+ * Displays a greeting message on a mobile screen if conditions are met.
+ * @function greetBasedOnTimeMobile
+ */
+function greetBasedOnTimeMobile() {
+    if (isMobileScreen() && isFromIndexPage()) {
+        displayGreetingMobile();
+        showHideGreetingContainerMobile();
+    }
+}
+
+
+/**
+ * Checks if the screen width is less than 700 pixels.
+ * @function isMobileScreen
+ * @returns {boolean} true if the screen width is less than 700 pixels, false otherwise
+ */
+function isMobileScreen() {
+    return window.innerWidth < 700;
+}
+
+
+/**
+ * Checks if the page was referred from 'index.html'.
+ * @function isFromIndexPage
+ * @returns {boolean} true if the page was referred from 'index.html', false otherwise
+ */
+function isFromIndexPage() {
+    return document.referrer.includes('index.html');
+}
+
+
+/**
+ * Displays the appropriate greeting message on a mobile screen.
+ * @function displayGreetingMobile
+ */
+function displayGreetingMobile() {
+    let greetingName = document.getElementById('greeting-name-mobile');
+    let greetingTime = document.getElementById('greet-mobile');
+
+    if (currentUserIndex === 'guestLogin') {
+        greetingTime.innerHTML = greeting;
+        greetingName.innerHTML = 'Dear Guest';
+    } else {
+        let name = users[currentUserIndex]['name'];
+        greetingName.innerHTML = name;
+        greetingTime.innerHTML = greeting;
+    }
+}
+
+
+/**
+ * Shows and then hides the greeting container after a delay.
+ * @function showHideGreetingContainerMobile
+ */
+function showHideGreetingContainerMobile() {
+    let greetingContainer = document.getElementById('greeting-container-mobile');
+    greetingContainer.classList.remove('d-none');
+    setTimeout(() => {
+        greetingContainer.classList.add('d-none');
+    }, 1500);
 }
 
 

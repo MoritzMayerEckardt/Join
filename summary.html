@@ -19,7 +19,7 @@
         <aside id="content-left" class="aside-summary" w3-include-html=".\assets\templates\aside.html"></aside>
         <section id="content-right" class="content-right-summary">
             <header class="header-summary" w3-include-html=".\assets\templates\header.html"></header>
-            <section class="header-mobile" w3-include-html=".\assets\templates\header_mobile.html"></section>
+            <section class="header-mobile mb-unset" w3-include-html=".\assets\templates\header_mobile.html"></section>
             <section class="summary" id="summary">
                 <div>
                     <div class="heading-container">
@@ -99,8 +99,8 @@
     </div>
 
     <div class="greeting-container-mobile d-none" id="greeting-container-mobile">
-            <div class="greet-mobile">Hallo</div>
-            <div class="greeting-name">Veronika</div>
+            <div class="greet-mobile" id="greet-mobile"></div>
+            <div class="greeting-name" id="greeting-name-mobile"></div>
         </div>
     </div>
     <menu w3-include-html=".\assets\templates\mobile_menu.html" class="mobile-menu d-none-mobile-menu-summary"></menu>
