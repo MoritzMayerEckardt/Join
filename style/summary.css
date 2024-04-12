@@ -406,6 +406,11 @@ body {
     }
 }
 
+@media(max-width:600px) {
+    .summary {
+        margin-top: 0;
+    }
+}
 
 @media(max-width:600px) {
 
@@ -526,7 +531,7 @@ body {
 
 }
 
-@media(max-width:414px) { 
+@media(max-width:414px) {
 
     .overview-container {
         width: 300px;
@@ -535,7 +540,7 @@ body {
     .todo-done-row {
         width: 300px;
         gap: 12px;
-      }
+    }
 
     .to-do-container {
         width: 144px;
