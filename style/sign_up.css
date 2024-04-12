@@ -126,6 +126,13 @@
     font-size: 21px;
 }
 
+.sign-up-button[disabled] {
+    background-color: lightgray;
+    color: gray;
+    cursor: not-allowed;
+    pointer-events: none; 
+}
+
 @keyframes slideUpAndDown {
     0% {
         transform: translateX(-50%) translateY(100%);

@@ -23,39 +23,39 @@
                     <h1 class="login-headline">Sign up</h1>
                     <div class="seperation-container-headline"></div>
                 </div>
-                <form class="login-form" onsubmit="register(); return false">
+                <form class="login-form" id="login-form" onsubmit="register(); return false">
                     <div class="login-input-container">
-                        <input class="login-input-field" type="text" required placeholder="Name" id="inputSingUpName"
+                        <input oninput="checkAllFieldsFilled()" class="login-input-field" type="text" required placeholder="Name" id="inputSingUpName"
                             style="border: unset; width: 100%;">
                         <img class="login-img-wrapper" src="./assets/img/person_input.png" alt=""
                             style="width: 16px; height: 16px">
                     </div>
                     <div class="login-input-container">
-                        <input class="login-input-field" type="email" required placeholder="Email" id="inputSingUpEmail"
+                        <input oninput="checkAllFieldsFilled()" class="login-input-field" type="email" required placeholder="Email" id="inputSingUpEmail"
                             style="border: unset; width: 100%;">
                         <img class="login-img-wrapper" src="./assets/img/mail_input.png" alt=""
                             style="width: 24px; height: 16px">
                     </div>
                     <div class="login-input-container">
-                        <input class="login-input-field" type="password" required placeholder="Password" id="password"
+                        <input oninput="checkAllFieldsFilled()" class="login-input-field" type="password" required placeholder="Password" id="password"
                             style="border: unset; width: 100%;">
                         <img class="login-img-wrapper" src="./assets/img/lock_input.png" alt=""
                             style="margin-right: 2px; width: 16px; height: 21px;">
                     </div>
                     <div class="login-input-container">
-                        <input class="login-input-field" type="password" placeholder="Confirm Password"
+                        <input oninput="checkAllFieldsFilled()" class="login-input-field" type="password" required placeholder="Confirm Password"
                             id="confirmationPassword" style="border: unset; width: 100%;">
                         <div class="login-img-wrapper"><img src="./assets/img/lock_input.png" alt=""
                                 style="width: 16px; height: 21px;"></div>
                     </div>
                     <div class="remember-me-container">
                         <div class="remember-me">
-                            <input type="checkbox" class="remember-me-checkbox" id="checkbox-for-privacy-policy">
+                            <input oninput="checkAllFieldsFilled()" type="checkbox" required class="remember-me-checkbox" id="checkbox-for-privacy-policy">
                             <span class="remember-me-text">I accept the <a href="#" class="privacy-link-signup">privacy policy</a></span>
                         </div>
                     </div>
                     <div class="login-buttons-container">
-                        <button class="sign-up-button">
+                        <button class="sign-up-button" id="sign-up-button" disabled>
                             <span class="sign-up-button-text">
                                 Sign up
                             </span>

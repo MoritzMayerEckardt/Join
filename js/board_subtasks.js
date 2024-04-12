@@ -9,6 +9,7 @@ function getSubtasksText(task) {
     return allsubtasks > 0 ? `${subtasksCompleted}/${allsubtasks} Subtasks` : '';
 }
 
+
 /**
  * Determines the CSS class for the progress bar based on subtask completion.
  * @param {Object} task - The task object containing subtasks.
@@ -24,6 +25,7 @@ function getProgressBarClass(task) {
     }
 }
 
+
 /**
  * Generates HTML for the progress bar based on task's subtask completion.
  * @param {Object} task - The task object containing subtasks.
@@ -38,6 +40,7 @@ function generateProgressBarHTML(task) {
     }
     return progressBarHTML;
 }
+
 
 /**
  * Generates HTML for subtasks in a detailed card view.
@@ -60,6 +63,7 @@ function generateSubtasksHTML(task) {
     return subtasksHTML;
 }
 
+
 /**
  * Handles checkbox functionality for subtasks.
  * @param {string} taskId - The ID of the task.
@@ -78,6 +82,7 @@ function handleCheckBox(taskId, index) {
     postTasks(TASKS_PATH);
     renderColumns();
 }
+
 
 /**
  * Generates HTML for subtasks in an edit card.
@@ -100,6 +105,7 @@ function generateSubtasksHTMLEditCard(task) {
     return subtasksHTMLEditCard;
 }
 
+
 /**
  * Deletes a subtask.
  * @param {string} taskId - The ID of the task.
@@ -114,6 +120,7 @@ async function deleteSubtask(taskId, index) {
     document.getElementById('new-subtask-edit-card').scrollIntoView({ behavior: 'instant' });
     renderColumns(); 
 }
+
 
 /**
  * Adds a new subtask in a task template.
@@ -131,6 +138,7 @@ function addNewSubtaskInTemplate() {
     }
 }
 
+
 /**
  * Displays newly added subtasks in the task template.
  */
@@ -144,6 +152,7 @@ function getNewSubtaskInTemplate() {
     }
     document.getElementById('subtasks-template').value = ``;
 }
+
 
 /**
  * Handles the addition of a new subtask in an edit card.
@@ -165,6 +174,7 @@ async function addNewSubtaskInEditCard(taskId) {
     renderColumns();
 }
 
+
 /**
  * Adds a new subtask to the task object.
  * 
@@ -181,6 +191,7 @@ function addSubtaskToTask(task, subtaskTitle) {
     });
 }
 
+
 /**
  * Displays newly added subtasks in an edit card.
  * @param {Object} task - The task object containing subtasks.
@@ -190,6 +201,7 @@ function getNewSubtaskInEditCard(task) {
     newSubtask.innerHTML = '';
         newSubtask.innerHTML += generateSubtasksHTMLEditCard(task);
 }
+
 
 /**
  * Generates HTML for subtasks in an edit card.
@@ -212,6 +224,7 @@ function generateSubtasksHTMLEditCard(task) {
     return subtasksHTMLEditCard;
 }
 
+
 /**
  * Clears input field for a subtask.
  * @param {number} index - The index of the subtask input field.
@@ -219,6 +232,7 @@ function generateSubtasksHTMLEditCard(task) {
 function emptyInputSubtask(index) {
     inputSubtask = document.getElementById(`subtask-input${index}`).value = '';
 }
+
 
 /**
  * Saves edited subtask in an edit card.
@@ -239,6 +253,7 @@ async function saveSubtask(taskId, index) {
     await loadTasks();
     showSubtasksInList(task.id, index);
 }
+
 
 /**
  * Displays subtasks in a list after saving edits.
@@ -264,6 +279,7 @@ function editSubtask(index) {
     document.getElementById(`edit-container${index}`).classList.add('d-none'); 
 }
 
+
 /**
  * Displays edit images for a subtask.
  * @param {number} index - The index of the subtask.
@@ -273,6 +289,7 @@ function showEditImages(index) {
     editContainer.classList.remove('d-none');
 }
 
+
 /**
  * Hides edit images for a subtask.
  * @param {number} index - The index of the subtask.
@@ -281,6 +298,7 @@ function removeEditImages(index) {
     let editContainer = document.getElementById(`edit-container${index}`)
     editContainer.classList.add('d-none');
 }
+
 
 /**
  * Handles key press event in the task template.

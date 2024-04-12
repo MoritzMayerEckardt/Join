@@ -1495,3 +1495,9 @@
     padding: 8px;
 }
 
+.assigned-container-card {
+    width: 180px;
+    overflow-y: auto;
+    display: flex;
+}
+

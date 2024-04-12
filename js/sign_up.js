@@ -52,24 +52,21 @@
   * Retrieves data from sign-up form inputs.
   */
  function getDataFromInput() {
-     let userName = document.getElementById('inputSingUpName').value;
-     let userEmail = document.getElementById('inputSingUpEmail').value;
-     let userPassword = document.getElementById('password').value;
-     let confirmationPassword = document.getElementById('confirmationPassword').value;
-     let initials = getInitials(userName);
-     checkIfEmailExists(userEmail);
-     checkIfPrivacyAccepted();
- 
-     if (privacyAccepted) {
-         if (!emailExists) {
-             createJsonForUsers(userName, userEmail, userPassword, confirmationPassword, initials);
-         } else {
-             alert("Your email is already registered.");
-         }
-     } else {
-         alert("Please accept the Privacy Policy to proceed with the registration.");
-     }
- }
+    let userName = document.getElementById('inputSingUpName').value;
+    let userEmail = document.getElementById('inputSingUpEmail').value;
+    let userPassword = document.getElementById('password').value;
+    let confirmationPassword = document.getElementById('confirmationPassword').value;
+    let initials = getInitials(userName);
+    checkIfEmailExists(userEmail);
+
+    if (!emailExists) {
+        createJsonForUsers(userName, userEmail, userPassword, confirmationPassword, initials);
+    } else {
+        alert("Your email is already registered.");
+    }
+}
+
+
  /**
   * Retrieves initials from a given name.
   * @param {string} userName - The user's name
@@ -104,16 +101,17 @@
          emailExists = false;
      }
  }
-/**
- * Checks if the privacy policy checkbox is checked.
- * Sets the privacyAccepted variable accordingly.
- */
- function checkIfPrivacyAccepted() {
-    let privacyCheckbox = document.getElementById('checkbox-for-privacy-policy');
-    if (privacyCheckbox.checked) {
-        privacyAccepted = true;
+
+ function checkAllFieldsFilled() {
+    let form = document.getElementById('login-form');
+    let signUpButton = document.getElementById('sign-up-button');
+    if (form.checkValidity()) {
+        signUpButton.disabled = false;
+    } else {
+        signUpButton.disabled = true;
     }
 }
+
 /**
  * Creates JSON data for a new user based on provided information.
  * @param {string} userName - The name of the new user
@@ -181,7 +179,7 @@ async function postData(path) {
  * Redirects to the login page if conditions are met, and displays a success message.
  */
  function forwardingToLogin() {
-    if (!emailExists && comparePasswords && privacyAccepted) {
+    if (!emailExists && comparePasswords) {
         showSuccessfullySignedUpMessage();
         setTimeout(() => {
             resetSignUpForm();
