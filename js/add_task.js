@@ -280,7 +280,7 @@ function resetLowButtonStyles() {
  * Redirects the user to the board page.
  */
  function jumpToBoard() {
-    window.location.href = "../join/board.html";
+    window.location.href = "./board.html";
 }
 
 /**

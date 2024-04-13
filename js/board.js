@@ -168,6 +168,7 @@ function showAddTaskForm(columnId) {
     popupOverlay.classList.remove('d-none');
     popupContent.innerHTML = '';
     popupContent.innerHTML = renderAddTaskForm();
+    lastClickedButton = 'medium';
     avoidScolling();
 }
 

@@ -72,6 +72,7 @@ function changeBackgroundColor(clickedButton) {
     } else if (clickedButton === 'low') {
         changeBackgroundColorGreenButton();
     }
+    lastClickedButton = clickedButton;
 }
 
 
