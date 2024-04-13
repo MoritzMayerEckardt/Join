@@ -119,16 +119,18 @@ function filterTasksByCategory(tasks, category) {
  * @returns {void}
  */
 function openDetailedCard(taskId) {
-    let task = tasks.find(task => task.id === taskId);
-    let popupOverlay = document.getElementById('popup-board-overlay');
-    let popupContent = document.getElementById('popup-board-content');
-    let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
-    let subtasksHTML = generateSubtasksHTML(task); 
-    let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)  
-    popupOverlay.classList.remove('d-none');
-    popupContent.innerHTML = '';
-    popupContent.innerHTML = renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML);
-    avoidScolling();
+    if (!isMoveModalOpen) {
+        let task = tasks.find(task => task.id === taskId);
+        let popupOverlay = document.getElementById('popup-board-overlay');
+        let popupContent = document.getElementById('popup-board-content');
+        let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
+        let subtasksHTML = generateSubtasksHTML(task); 
+        let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)  
+        popupOverlay.classList.remove('d-none');
+        popupContent.innerHTML = '';
+        popupContent.innerHTML = renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML);
+        avoidScolling();
+    }
 }
 
 

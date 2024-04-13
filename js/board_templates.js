@@ -1,3 +1,5 @@
+let isMoveModalOpen = false;
+
 /**
  * Renders a task card with provided details.
  * 
@@ -9,7 +11,7 @@
  */
 function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML) {
     return /*html*/`
-        <div onclick="openDetailedCard(${task.id})" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
+        <div id="task-card" onclick="openDetailedCard(${task.id})" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
             <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
             <span class="task-title">${task.title}</span>
             <div class="task-description">${task.description}</div>
@@ -17,6 +19,23 @@ function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML
             <div class="task-assigned-container">
                 <div class="assigned-container-card">${assignedContactsHTML}</div>
                 <img class="priority-img-card" style="width: 17px" src="./assets/img/prio_${task.priority}.svg" alt="">
+            </div>
+            <div class="move-to-button-mobile d-none">
+                <a id="move-to-button-mobile" onclick="openMoveModal(${task.id}, event)">
+                    <img src="./assets/img/+.svg" alt="">
+            </a>
+            </div>
+            <div id="move-modal${task.id}" class="move-modal d-none">
+                <div class="move-modal-top">
+                    <span>Move to:</span>
+                    <a class="close-move-modal" href=""></a>
+                </div> 
+                <div>
+                    <span class="move-modal-link" onclick="moveToMobile(${task.id}, 'toDo')">To Do</span>
+                    <span class="move-modal-link" onclick="moveToMobile(${task.id}, 'inProgress')">In Progress</span>
+                    <span class="move-modal-link" onclick="moveToMobile(${task.id}, 'awaitFeedback')">Await Feedback</span>
+                    <span class="move-modal-link" onclick="moveToMobile(${task.id}, 'done')">Done</span>
+                </div>     
             </div>
         </div>      
     `;

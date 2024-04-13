@@ -72,8 +72,8 @@
     border-color: red;
 }
 
-.inputfieldTitle:hover {
-    cursor: pointer !important;
+#date:hover {
+    cursor: pointer;
 }
 
 .inputfieldSubtask::placeholder,

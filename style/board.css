@@ -140,7 +140,7 @@
     padding: 16px;
     background: white;
     border-radius: 16px;
-    gap: 10px;
+    position: relative;
 }
 
 .task-card:hover {
@@ -523,6 +523,10 @@
 
 #date-template:focus {
     border-color: red;
+}
+
+#date-template:hover {
+    cursor: pointer;
 }
 
 .add-task-template {
@@ -1500,4 +1504,74 @@
     width: 180px;
     overflow-y: auto;
     display: flex;
+}
+
+.move-to-button-mobile {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+}
+
+.move-to-button-mobile:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.move-modal {
+    background-color: rgba(42, 54, 71, 1);
+    position: absolute;
+    width: 150px;
+    height: 158px;
+    top: 36px;
+    right: 36px;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #ffffff;
+    justify-content: space-around;
+    z-index: 1;
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+}
+
+.close-move-modal {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    height: 24px;
+    border-radius: 100%;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-move-modal:hover {
+    cursor: pointer;
+    background-color: #29abe2;
+}
+
+.move-modal-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    padding: 2px 8px 2px 8px;
+}
+
+.move-modal-link:hover {
+    background-color: #29abe2;
+}
+
+.move-modal-top {
+    display: flex;
+    justify-content: space-between;
 }

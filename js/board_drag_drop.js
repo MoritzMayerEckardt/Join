@@ -37,6 +37,19 @@ async function moveTo(category) {
 
 
 /**
+ * Moves a task to a different category on the mobile board asynchronously.
+ * @param {number} taskId - The ID of the task to be moved.
+ * @param {string} category - The category to which the task will be moved.
+ */
+async function moveToMobile(taskId, category) {
+    let task = tasks.find(task => task.id === taskId);
+    task.boardCategory = category;
+    await postTasks(TASKS_PATH);
+    renderColumns();
+}
+
+
+/**
  * Adds a highlight effect to the specified element.
  * @param {string} id - The ID of the element to highlight.
  */
