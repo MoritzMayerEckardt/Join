@@ -6,6 +6,10 @@
 @import url(./style/header.css);
 @import url(./style/add-task.css);
 @import url(./style/board.css);
+@import url(./style/board_add_task.css);
+@import url(./style/board_card.css);
+@import url(./style/board_detailed_card.css);
+@import url(./style/board_edit_card.css);
 @import url(./style/summary.css);
 @import url(./style/privacy_policy.css);
 @import url(./style/legal_notice.css);
@@ -17,7 +21,6 @@
 @import url(./style/privacy_policy_mobile.css);
 @import url(./style/summary_mobile.css);
 @import url(./style/contacts_mobile.css);
-
 
 
 body {

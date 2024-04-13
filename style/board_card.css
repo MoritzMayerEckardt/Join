@@ -1,0 +1,74 @@
+.task-progress-bar {
+    width: 128px;
+    height: 8px;
+    border-radius: 8px;
+    padding: 0px 64px 0px 64px;
+    background-color: #F4F4F4;
+    position: relative;
+}
+
+.task-progress-bar-progress {
+    height: 8px;
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+}
+
+.full {
+    width: 128px;
+    background-color: #4589FF;
+}
+
+.half-filled {
+    width: 64px;
+    background-color: #4589FF;
+}
+
+.task-subtasks-text {
+    font-size: 12px;
+    height: 14px;
+}
+
+.task-assigned-container {
+    height: 32px;
+    display: flex;
+    width: 220px;
+    position: relative;
+}
+
+.task-contacts-ellipse {
+    width: 32px;
+    height: 32px;
+    border-radius: 45px;
+}
+
+.task-contacts-letters {
+    color: white;
+    font-size: 12px;
+}
+
+.task-card-bottom {
+    display: flex;
+    width: 220px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-right: 10px;
+}
+
+.priority-img-card {
+    position: absolute;
+    right: 16px;
+    bottom: 8px;
+}
+
+.priority-button:hover {
+    box-shadow: 0px 4px 4px 0px #0000001A;
+}
+
+.priority-buttons-container {
+    display: flex;
+    position: relative;
+    gap: 8px;
+}
+
