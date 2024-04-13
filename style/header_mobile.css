@@ -27,6 +27,13 @@
     font-weight: 700;
 }
 
+.header-mobile-guest-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 @media (max-width: 701px) {
     .header-mobile {
         display: flex;

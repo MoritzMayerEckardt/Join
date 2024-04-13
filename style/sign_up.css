@@ -180,7 +180,7 @@
     }
 
     .link-container {
-        display: none;
+        display: flex;
     }
 
     .sign-up-button-text {
