@@ -1,3 +1,4 @@
+
 #board {
     width: calc(100vw - 232px);
     padding-top: 96px;
@@ -192,8 +193,229 @@
     font-weight: 400;
 }
 
+.task-category {
+    max-width: 144px;
+    height: 27px;
+    border-radius: 8px;
+    padding: 4px 16px 4px 16px;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.task-title {
+    font-size: 16px;
+    font-weight: 700;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2; 
+    white-space: normal;
+    word-wrap: break-word;;
+}
+
+.task-description {
+    color: #A8A8A8;
+    width: 220px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    margin-bottom: 24px;
+    word-wrap: break-word;;
+}
+
+.task-subtasks-container {
+    width: 220px;
+    height: 16px;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.task-progress-bar {
+    width: 128px;
+    height: 8px;
+    border-radius: 8px;
+    padding: 0px 64px 0px 64px;
+    background-color: #F4F4F4;
+    position: relative;
+}
+
+.task-progress-bar-progress {
+    height: 8px;
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+}
+
+.full {
+    width: 128px;
+    background-color: #4589FF;
+}
+
+.half-filled {
+    width: 64px;
+    background-color: #4589FF;
+}
+
+.task-subtasks-text {
+    font-size: 12px;
+    height: 14px;
+}
+
+.task-assigned-container {
+    height: 32px;
+    display: flex;
+    width: 220px;
+    position: relative;
+}
+
+.task-contacts-ellipse {
+    width: 32px;
+    height: 32px;
+    border-radius: 45px;
+}
+
+.task-contacts-letters {
+    color: white;
+    font-size: 12px;
+}
+
+.task-card-bottom {
+    display: flex;
+    width: 220px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-right: 10px;
+}
+
+.priority-img-card {
+    position: absolute;
+    right: 16px;
+    bottom: 8px;
+}
+
+.priority-buttons-container-template {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.priority-button:hover {
+    box-shadow: 0px 4px 4px 0px #0000001A;
+}
+
+.priority-buttons-container {
+    display: flex;
+    position: relative;
+    gap: 8px;
+}
+
 .drag-area-highlight {
     background-color: white;
+}
+
+.detailed-card-container {
+    width: 525px;
+    background: white;
+    z-index: 999;
+    padding: 48px 40px 48px 40px;
+    border-radius: 30px;
+    display: inline-block;
+    animation: slideIn 0.2s ease-in-out;
+    max-height: 800px;
+    overflow: auto;
+}
+
+.detailed-card-title {
+    font-size: 61px;
+    font-weight: 700;
+    width: 445px;
+    display: flex;
+    align-items: center;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2; 
+    white-space: normal;
+    word-wrap: break-word;
+    margin-bottom: 24px;
+}
+
+.detailed-card-description {
+    color: #000000;
+    width: 445px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 5;
+    font-size: 20px;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin-bottom: 24px;
+}
+
+.detailed-card-category {
+    height: 36px;
+    border-radius: 8px;
+    padding: 4px 16px 4px 16px;
+    color: white;
+    font-size: 23px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.detailed-card-top-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailed-card-date {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 24px;
+    font-size: 20px;
+}
+
+.detailed-card-priority {
+    display: flex;
+    gap: 42px;
+    margin-bottom: 24px;
+    font-size: 20px;
+}
+
+.detailed-card-assigned {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 20px;
+}
+
+.detailed-card-contact-container {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 16px 7px 16px;
+    gap: 16px;
+    margin-bottom: 24px;
+    font-size: 19px;
+}
+
+.detailed-card-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .margin-0 {
@@ -202,6 +424,74 @@
 
 .margin-8 {
     margin-left: -8px;
+}
+
+.detailed-card-subtasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 20px;
+}
+
+.check-box-container-subtasks {
+    padding: 6px 16px 6px 16px;
+    gap: 16px;
+    width: 100%;
+    height: 32px;
+    align-items: center;
+}
+
+.checkbox-text {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.check-box-container-subtasks:hover {
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.detailed-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.detailed-card-delete-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detailed-card-delete-container:hover {
+    color: rgb(0, 124, 238);
+    cursor: pointer;
+}
+
+.detailed-card-edit-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detailed-card-edit-container:hover {
+    color: rgb(0, 124, 238);
+    cursor: pointer;
+}
+
+.detailed-card-priority-text {
+    font-size: 19px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.priority-button-text {
+    font-size: 20px;
 }
 
 .popup-board-overlay {
@@ -215,6 +505,291 @@
     opacity: 0;
     animation: fadeInOverlay 0.3s forwards;
 }
+
+.detailed-card-close-button {
+    height: 32px;
+    width: 32px;
+}
+
+.detailed-card-close-button:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+    border-radius: 100%;
+}
+
+.inputfield-title:focus {
+    border-color: red;
+}
+
+#date-template:focus {
+    border-color: red;
+}
+
+.add-task-template {
+    background: white;
+    width: 1116px;
+    height: 870px;
+    border-radius: 30px;
+    animation: slideIn 0.2s ease-in-out;
+    padding: 64px 74px 64px 74px;
+}
+
+.subtasks-template {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
+}
+
+.add-task-template-small-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.add-task-template-assigned-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-task-text-field {
+    font-size: 20px;
+}
+
+.edit-card-text-field {
+    font-size: 20px;
+    color: #2A3647;
+}
+
+.outer-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 136px;
+}
+
+.add-task-top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+}
+
+.add-task-seperator {
+    height: 424px; 
+    width: 1px; 
+    background-color: lightgrey
+}
+
+.headline-template {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.left-side-template {
+    width: 440px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.right-side-template {
+    width: 440px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.add-task-template-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.required-field-template {
+    width: 170px;
+    height: 27px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.buttons-template {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 334px;
+    height: 56px;
+    display: flex;
+    gap: 4px;
+}
+
+.clear-button-template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    gap: 4px;
+    padding: 16px;
+    height: 56px;
+    width: 126px;
+    border: 1px solid #2A3647;
+    font-size: 20px;
+}
+
+.create-task-button-template {
+    width: 183px;
+    height: 54px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    background: #2A3647;
+    padding: 16px;
+    border-radius: 10px;
+    gap: 4px;
+    border: none;
+}
+
+.create-task-button-template:hover {
+    background-color: #29abe2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: none;
+}
+
+.create-task-button-template:hover {
+    cursor: pointer;
+}
+
+.clear-button-template:hover {
+    cursor: pointer;
+    border: 1px solid #29abe2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.new-subtask-container {
+    height: 100px;
+    width: 440px;
+}
+
+.close-button-template {
+    height: 32px;
+    width: 32px;
+}
+
+.subtask-list-edit-card {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.close-button-template:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+    border-radius: 100%;
+}
+
+.detailed-card-delete-container {
+    cursor: pointer;
+}
+
+.edit-card-container {
+    width: 525px;
+    background: white;
+    z-index: 999;
+    padding: 48px 40px 48px 40px;
+    border-radius: 30px;
+    display: flex;
+    max-height: 700px;
+    overflow-y: scroll;
+    flex-direction: column;
+    gap: 24px;
+    overflow: auto;
+}
+
+.priority-container-edit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.title-priority-edit-card {
+    color: #2A3647;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    position: relative;
+    top: 10px;
+    display: flex;
+}
+
+.assigned-container-edit-card {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    gap: 8px;
+}
+
+.subtasks-container-edit-card {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+    margin-bottom: -8px;
+    font-size: 20px;
+}
+
+.edit-card-top {
+    flex-direction: column;
+    display: flex;
+    gap: 8px;
+    font-size: 20px;
+}
+
+.edit-card-top-container {
+    display: flex;
+    justify-content: space-between;
+    height: 24px;
+}
+
+.edit-card-input-field {
+    height: 36px;
+    width: 440px;
+    padding: 12px 21px 12px 21px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    font-size: 20px;
+    color: black;
+    font-family: 'Inter' !important;
+}
+
+#subtasks-edit-card {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
+}
+
+.plus-button-edit-card:hover {
+    cursor: pointer;
+}
+
+.subtasks-input-edit-card {
+    height: 48px;
+    display: flex;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    justify-content: space-between;
+    padding-left: 21px;
+    padding-right: 21px;
+}
+
+.edit-card-container::-webkit-scrollbar {
+    width: 0; 
+    height: 0; 
+  }
 
 .arrow-white {
     display: none;
@@ -231,6 +806,202 @@
     width: 22px;
     height: 18px;
   }
+
+.edit-card-edit-container {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.subtask-container-edit-card {
+    display: flex;
+    justify-content: space-between;
+    height: 32px;
+    padding: 8px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.no-subtasks-container {
+    padding: 7px 16px 7px 16px;
+    gap: 16px;
+    font-size: 16px;
+}
+
+.subtask-container-edit-card:hover {
+    cursor: pointer;
+    background-color: #F4F4F4;
+}
+
+.no-hover:hover {
+    background-color: white;
+}
+
+.edit-container-edit-card {
+    border-bottom: 1px solid #29abe2;
+    border-radius: 0px;
+}
+
+.button-edit-card {
+    border-radius: 10px;
+    border: 0px;
+    background: #2A3647;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+}
+
+.button-edit-card:hover {
+    background-color: #29abe2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: none;
+}
+
+.button-edit-card-text {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.form-edit-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.button-edit-card-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-img-edit-card {
+    height: 18px;
+}
+
+.subtask-input {
+    border: none;
+    width: 100%;
+    font-size: 16px;
+}
+
+.subtask-input:focus {
+    outline: none;
+}
+
+.edit-subtask-container {
+    display: flex;
+    height: 24px;
+    justify-content: space-between;
+    border-bottom: 1px solid #29abe2;
+    padding: 8px;
+    height: 32px;
+}
+
+.subtasks-img {
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtasks-img:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.plus-img-subtask:hover {
+    cursor: pointer;
+}
+
+#task-added-container {
+    position: absolute;
+    right: calc(50% - 163px);
+    bottom: calc(50% - 37px);
+    z-index: 999;
+    background: #2A3647;
+    height: 74px;
+    width: 326px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    animation: slideInFromBottom 0.3s forwards;
+}
+
+#task-edited-container {
+    position: absolute;
+    right: calc(50% - 163px);
+    bottom: calc(50% - 37px);
+    z-index: 999;
+    background: #2A3647;
+    height: 74px;
+    width: 326px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    animation: slideInFromBottom 0.3s forwards;
+}
+
+#task-deleted-container {
+    position: absolute;
+    right: calc(50% - 163px);
+    bottom: calc(50% - 37px);
+    z-index: 999;
+    background: #2A3647;
+    height: 74px;
+    width: 326px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    animation: slideInFromBottom 0.3s forwards;
+}
+
+.assigned-contacts-container-edit-card {
+    position: relative;
+    justify-content: space-between;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    border-top: none;
+    max-height: 200px;
+    overflow: auto;
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    gap: 4px;
+}
+
+.assigned-contacts-edit-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+#show-chosen-initials {
+    margin-top: 8px;
+}
+
+#show-chosen-initials-edit-card {
+    margin-top: -8px;
+    border-radius: 10px;
+}
+
+.detailed-card-container::-webkit-scrollbar {
+    display: none;
+}
 
 .mobile-menu-board {
     display: flex;
@@ -258,10 +1029,6 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-}
-
-.overflow-hidden {
-    overflow: hidden;
 }
 
 @media (max-width: 1501px) {
@@ -605,3 +1372,132 @@
     }
 }
 
+.btn-medium {
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    padding: 16px 10px 16px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    border-width: 0px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 168, 0);
+    color: white;
+    font-weight: 700;
+}
+
+.btn-urgent-low {
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    padding: 16px 10px 16px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    border-width: 0px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    background-color:white;
+    color: black;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.new-contact {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.selection-edit-card {
+    width: 100%;
+    height: 53px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    font-family: 'Inter' !important;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    background-color: white;
+    border-color: rgba(209, 209, 209, 1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.selection-edit-card:hover {
+    cursor: pointer;
+}
+
+#date-edit-card:hover {
+    cursor: pointer;
+}
+
+.new-contact:hover {
+    cursor: pointer;
+    background-color: #D1D1D1;
+}
+
+.inputfield-title {
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border-width: 1px;
+    padding-top: 12px;
+    padding-right: 21px;
+    padding-bottom: 12px;
+    padding-left: 21px;
+    gap: 10px;
+    background-color: #FFFFFF;
+    border-color: #D1D1D1;
+    border-style: solid;
+}
+
+.inputfield-title::placeholder {
+    width: 398px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #D1D1D1;
+}
+
+.show-contacts-to-assign-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    border-top: none;
+    max-height: 200px;
+    overflow: auto;
+    background-color: white;
+}
+
+.no-contacts-assigned-text {
+    font-size: 16px;
+    margin-left: 16px;
+    padding: 8px;
+}
+
+.assigned-container-card {
+    width: 180px;
+    overflow-y: auto;
+    display: flex;
+}
