@@ -5,11 +5,4 @@ async function initLegalNotice() {
     await loadContacts();
     await loadUsers();
     await loadGuestLogin();
-    addBackgroundColor();
-    showCurrentUserInButton();
-    showCurrentUserInButtonMobile();
 }
-
-function goBack() {
-    window.history.back();
-  }

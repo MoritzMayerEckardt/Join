@@ -5,6 +5,9 @@ async function initPrivacyPolicy() {
     await loadContacts();
     await loadUsers();
     await loadGuestLogin();
+    addBackgroundColor();
+    showCurrentUserInButton();
+    showCurrentUserInButtonMobile();
 }
 
 function goBack() {
