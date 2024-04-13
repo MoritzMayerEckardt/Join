@@ -1,3 +1,7 @@
+/**
+ * Initializes the legal notice page by loading necessary content.
+ * @returns {Promise<void>} A promise that resolves once all content is loaded.
+ */
 async function initPrivacyPolicy() {
     await includeHTML();
     await loadCurrentUserIndex(); 
@@ -6,7 +10,3 @@ async function initPrivacyPolicy() {
     await loadUsers();
     await loadGuestLogin();
 }
-
-function goBack() {
-    window.history.back();
-  }

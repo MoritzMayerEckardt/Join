@@ -1,3 +1,7 @@
+/**
+ * Initializes the legal notice page by loading necessary content.
+ * @returns {Promise<void>} A promise that resolves once all content is loaded.
+ */
 async function initLegalNotice() {
     await includeHTML();
     await loadCurrentUserIndex(); 
@@ -10,6 +14,10 @@ async function initLegalNotice() {
     showCurrentUserInButtonMobile();
 }
 
+
+/**
+ * Navigates back to the previous page in the browsing history.
+ */
 function goBack() {
     window.history.back();
-  }
+}

@@ -3,25 +3,37 @@
  * @type {boolean}
  */
  let emailExists;
+
+
  /**
   * Stores data of the current user during sign-up.
   */
  let currentUserdata;
+
+
  /**
   * Compares passwords during sign-up.
   */
  let comparePasswords;
+
+
  /**
   * Indicates whether the privacy policy is accepted during sign-up.
   * @type {boolean}
   */
  let privacyAccepted;
+
+
  /**
   * Initializes the sign-up process by loading user data.
   */
+
+
  async function initSignUp() {
      await loadUsers();
  }
+
+
  /**
   * Registers a new user.
   */
@@ -110,7 +122,11 @@
      }
  }
 
- function checkAllFieldsFilled() {
+
+/**
+ * Checks if all fields in the login form are filled and enables/disables the sign-up button accordingly.
+ */
+function checkAllFieldsFilled() {
     let form = document.getElementById('login-form');
     let signUpButton = document.getElementById('sign-up-button');
     if (form.checkValidity()) {
@@ -119,6 +135,8 @@
         signUpButton.disabled = true;
     }
 }
+
+
 
 /**
  * Creates JSON data for a new user based on provided information.
