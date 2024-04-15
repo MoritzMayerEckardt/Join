@@ -5,15 +5,13 @@
  * If contacts are visible, hides the contacts container and displays the initials.
  * If contacts are hidden, shows the contacts container and hides the initials.
  */
-function toggleAssignedContainer() {
-    let showContacts = document.getElementById('show-assigned-contacts');
-    let arrowImage = document.getElementById('dropdown-arrow');
-    let initialDIV = document.getElementById('show-chosen-initials');
+function toggleAssignedContainer(event) {
     if (contactsVisible) {
-        hideContacts(showContacts, arrowImage, initialDIV);
+        hideContacts(event);
     } else {
-        showAssignedContacts(showContacts, arrowImage, initialDIV);
+        showAssignedContacts();
     }
+    event.stopPropagation();
 }
 
 
@@ -26,8 +24,14 @@ function toggleAssignedContainer() {
  * @param {HTMLElement} arrowImage - The dropdown arrow icon element.
  * @param {HTMLElement} initialDIV - The container element for initials.
  */
-function hideContacts(showContacts, arrowImage, initialDIV) {
+function hideContacts(event) {
+    if (event.target.closest('#show-assigned-contacts')) {
+        return;
+    }
     document.getElementById('assigned-template').style.borderColor = '#D1D1D1';
+    let showContacts = document.getElementById('show-assigned-contacts');
+    let arrowImage = document.getElementById('dropdown-arrow');
+    let initialDIV = document.getElementById('show-chosen-initials'); 
     showContacts.style.border = 'none';
     showContacts.innerHTML = '';
     contactsVisible = false;
@@ -45,10 +49,13 @@ function hideContacts(showContacts, arrowImage, initialDIV) {
  * @param {HTMLElement} arrowImage - The dropdown arrow icon element.
  * @param {HTMLElement} initialDIV - The container element for initials.
  */
-function showAssignedContacts(showContacts, arrowImage, initialDIV) {
-    document.getElementById('assigned-template').style.borderColor = '#4589FF';
+function showAssignedContacts() {
+    let showContacts = document.getElementById('show-assigned-contacts');
+    let arrowImage = document.getElementById('dropdown-arrow');
+    let initialDIV = document.getElementById('show-chosen-initials');
+    document.getElementById('assigned-template').style.borderColor = '#29abe2';
     showContacts.style.border = '1px solid lightgrey';
-    showContactsForAssign();
+    showContactsForAssign(event);
     contactsVisible = true;
     arrowImage.style.transform = 'rotate(180deg)';
     initialDIV.style.display = 'none';

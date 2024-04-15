@@ -3,15 +3,13 @@
  * If contacts are visible, hides the contacts container and displays the initials.
  * If contacts are hidden, shows the contacts container and hides the initials.
  */
-function toggleAssignedContainerEditCard() {
-    let showContacts = document.getElementById('show-chosen-initials-edit-card');
-    let arrowImage = document.getElementById('dropdown-arrow-edit-card');
-    let assignedContacts = document.getElementById('show-assigned-contacts-edit-card');
+function toggleAssignedContainerEditCard(event) {
     if (contactsVisibleEditCard) {
-        hideContactsEditCard(showContacts, arrowImage, assignedContacts);
+        hideContactsEditCard(event);
     } else {
-        showAssignedContactsEditCard(showContacts, arrowImage, assignedContacts);
+        showAssignedContactsEditCard();
     }
+    event.stopPropagation();
 }
 
 
@@ -40,7 +38,13 @@ function generateChosenContactsEditCard(assignedContacts) {
  * @param {HTMLElement} arrowImage - The dropdown arrow icon element.
  * @param {HTMLElement} assignedContacts - The container element for assigned contacts.
  */
-function hideContactsEditCard(showContacts, arrowImage, assignedContacts) {
+function hideContactsEditCard(event) {
+    if (event.target.closest('#show-chosen-initials-edit-card')) {
+        return;
+    }
+    let showContacts = document.getElementById('show-chosen-initials-edit-card');
+    let arrowImage = document.getElementById('dropdown-arrow-edit-card');
+    let assignedContacts = document.getElementById('show-assigned-contacts-edit-card');
     showContacts.style.display = 'none';
     showContacts.innerHTML = '';
     assignedContacts.style.display = 'block';
@@ -58,14 +62,17 @@ function hideContactsEditCard(showContacts, arrowImage, assignedContacts) {
  * @param {HTMLElement} arrowImage - The dropdown arrow icon element.
  * @param {HTMLElement} assignedContacts - The container element for assigned contacts.
  */
-function showAssignedContactsEditCard(showContacts, arrowImage, assignedContacts) {
+function showAssignedContactsEditCard() {
+    let showContacts = document.getElementById('show-chosen-initials-edit-card');
+    let arrowImage = document.getElementById('dropdown-arrow-edit-card');
+    let assignedContacts = document.getElementById('show-assigned-contacts-edit-card');
     showContacts.style.border = '1px solid lightgrey';
     showContacts.style.display = 'block'
     assignedContacts.style.display = 'none'
     showContactsForAssignEditCard();
     contactsVisibleEditCard = true;
     arrowImage.style.transform = 'rotate(180deg)';
-    document.getElementById('assigned-edit-card').style.borderColor = '#4589FF';
+    document.getElementById('assigned-edit-card').style.borderColor = '#29abe2';
 }
 
 

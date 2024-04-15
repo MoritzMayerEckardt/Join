@@ -118,19 +118,20 @@ function filterTasksByCategory(tasks, category) {
  * @param {string} taskId - The ID of the task to open the detailed card for.
  * @returns {void}
  */
-function openDetailedCard(taskId) {
-    if (!isMoveModalOpen) {
-        let task = tasks.find(task => task.id === taskId);
-        let popupOverlay = document.getElementById('popup-board-overlay');
-        let popupContent = document.getElementById('popup-board-content');
-        let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
-        let subtasksHTML = generateSubtasksHTML(task); 
-        let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)  
-        popupOverlay.classList.remove('d-none');
-        popupContent.innerHTML = '';
-        popupContent.innerHTML = renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML);
-        avoidScolling();
+function openDetailedCard(taskId, event) {
+    if (event.target.closest('.move-to-button-mobile') || event.target.closest('.move-modal')) {
+        return;
     }
+    let task = tasks.find(task => task.id === taskId);
+    let popupOverlay = document.getElementById('popup-board-overlay');
+    let popupContent = document.getElementById('popup-board-content');
+    let backgroundColor = prepareBackgroundColorTaskCategory(task.category);
+    let subtasksHTML = generateSubtasksHTML(task); 
+    let assignedContactsHTML = generateAssignedContactsInDetailedCard(task)  
+    popupOverlay.classList.remove('d-none');
+    popupContent.innerHTML = '';
+    popupContent.innerHTML = renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtasksHTML);
+    avoidScolling();
 }
 
 
@@ -164,6 +165,7 @@ function openEditCard(taskId) {
  * @returns {void}
  */
 function showAddTaskForm(columnId) {
+    subtaskArray = [];
     currentColumnId = columnId
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');

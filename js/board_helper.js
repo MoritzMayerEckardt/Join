@@ -293,18 +293,25 @@ function changeColorOfAddTaskImg2(id) {
 /**
  * Opens the move modal for a specific task.
  * @param {number} taskId - The ID of the task.
- * @param {Event} event - The click event object.
  */
 function openMoveModal(taskId) {
     let moveModal = document.getElementById(`move-modal${taskId}`);
-    let isOpen = moveModal.classList.contains('d-none');
+    let isClosed = moveModal.classList.contains('d-none');
     let allMoveModals = document.querySelectorAll('.move-modal');
     allMoveModals.forEach(modal => modal.classList.add('d-none'));
-    if (isOpen) {
+    if (isClosed) {
         moveModal.classList.remove('d-none');
         isMoveModalOpen = true;
     } else {
         moveModal.classList.add('d-none');
         isMoveModalOpen = false;
     }
+}
+
+function closeMoveModalsByClickOutside(event) {
+    if (event.target.closest('.move-to-button-mobile')) {
+        return;
+    }
+    let allMoveModals = document.querySelectorAll('.move-modal');
+    allMoveModals.forEach(modal => modal.classList.add('d-none'));
 }

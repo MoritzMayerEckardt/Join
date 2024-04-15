@@ -32,40 +32,17 @@ function renderSubtasksListInEditCard(task, subtasks, subtask, index) {
 
 
 /**
- * Renders HTML for subtasks in edit card.
- * 
- * @param {object} task - The task object containing details like id, category, title, description, priority, etc.
- * @param {number} index - Index of the subtask.
- * @param {array} subtasks - Array of subtask objects.
- * @param {string} subtask - Subtask text.
- * @returns {string} - HTML string representing the subtasks in edit card.
- */
-function renderSubtasksHTMLInEditCard(task, index, subtasks, subtask) {
-    return /*html*/`
-    <div onmouseover="showEditImages(${index + subtasks.length})" onmouseout="removeEditImages(${index + subtasks.length})" class="subtask-container-edit-card">
-        <li class="subtask-list-edit-card" id="subtask${index + subtasks.length}">${subtask}</li>
-        <div class="edit-card-edit-container d-none" id="edit-container${index + subtasks.length}">
-            <img style="height: 18px" src="./assets/img/edit-dark-blue.svg" alt="">
-            <div style="height: 18px; width: 1px; background: lightgrey"></div>
-            <img onclick="deleteSubtask(${task.id}, ${index})" style="height: 18px" src="./assets/img/delete-dark-blue.svg" alt="">
-        </div>
-    </div>
-`;
-}
-
-
-/**
  * Renders a progress bar for a task.
  * 
  * @param {string} progressBarClass - CSS class for the progress bar.
  * @param {string} subtasksText - Text indicating the number of subtasks.
  * @returns {string} - HTML string representing the progress bar.
  */
-function renderProgressBar(progressBarClass, subtasksText) {
+function renderProgressBar(progressBarWidth, subtasksText) {
     return /*html*/`
             <div class="task-subtasks-container">
                 <div id="progress-bar" class="task-progress-bar">
-                    <div class="task-progress-bar-progress ${progressBarClass}"></div>
+                    <div class="task-progress-bar-progress" style="width: ${progressBarWidth}px"></div>
                 </div>
                 <span class="task-subtasks-text">${subtasksText}</span>
             </div>

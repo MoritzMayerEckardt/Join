@@ -11,7 +11,7 @@ let isMoveModalOpen = false;
  */
 function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML) {
     return /*html*/`
-        <div id="task-card" onclick="openDetailedCard(${task.id})" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
+        <div id="task-card" onclick="openDetailedCard(${task.id}, event)" draggable="true" ondragstart="startDragging(${task.id})" class="task-card">
             <div style="background-color: ${backgroundColor}" class="task-category">${task.category}</div>
             <span class="task-title">${task.title}</span>
             <div class="task-description">${task.description}</div>
@@ -20,15 +20,14 @@ function renderCard(task, backgroundColor, progressBarHTML, assignedContactsHTML
                 <div class="assigned-container-card">${assignedContactsHTML}</div>
                 <img class="priority-img-card" style="width: 17px" src="./assets/img/prio_${task.priority}.svg" alt="">
             </div>
-            <div class="move-to-button-mobile d-none">
-                <a id="move-to-button-mobile" onclick="openMoveModal(${task.id}, event)">
+            <div class="move-to-button-mobile">
+                <a id="move-to-button-mobile" onclick="openMoveModal(${task.id})">
                     <img src="./assets/img/+.svg" alt="">
             </a>
             </div>
             <div id="move-modal${task.id}" class="move-modal d-none">
                 <div class="move-modal-top">
                     <span>Move to:</span>
-                    <a class="close-move-modal" href=""></a>
                 </div> 
                 <div>
                     <span class="move-modal-link" onclick="moveToMobile(${task.id}, 'toDo')">To Do</span>
@@ -104,7 +103,7 @@ function renderDetailedCard(task, backgroundColor, assignedContactsHTML, subtask
  */
 function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
     return /*html*/`
-        <div id="card" class="edit-card-container">
+        <div id="card" class="edit-card-container" onclick="hideContactsEditCard(event)">
             <form class="form-edit-card" onsubmit="editTask(${task.id}); return false">    
                 <div class="edit-card-top-container">
                     <div class="detailed-card-category"></div>
@@ -141,7 +140,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
                 </div>
                 <div class="assigned-container-edit-card">
                     <span style="color: #2A3647" class="edit-card-text-field">Assigned to</span>
-                    <div id="assigned-edit-card" class="selection-edit-card" onclick="toggleAssignedContainerEditCard()">
+                    <div id="assigned-edit-card" class="selection-edit-card" onclick="toggleAssignedContainerEditCard(event)">
                         <span id="standardOption" class="standard-option-edit-card">Select contacts to assign</span>
                         <img id="dropdown-arrow-edit-card" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
                     </div>
@@ -178,7 +177,7 @@ function renderEditCard(task, subtasksHTMLEditCard, assignedContactsHTML) {
  */
 function renderAddTaskForm() {
     return /*html*/`
-        <form id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false">
+        <form id="task-form" class="add-task-template" onsubmit="addTaskFromTemplate(); return false" onclick="hideContacts(event)">
             <div class="add-task-top-container">
                 <div class="headline-template">
                     Add Task
@@ -201,7 +200,7 @@ function renderAddTaskForm() {
                     </div>
                     <div class="add-task-template-assigned-container">
                         <span class="add-task-text-field" style="margin-bottom: 8px;">Assigned to</span>
-                        <div id="assigned-template" class="selection" onclick="toggleAssignedContainer()">
+                        <div id="assigned-template" class="selection" onclick="toggleAssignedContainer(event)">
                             <span id="standardOption">Select contacts to assign</span>
                             <img id="dropdown-arrow" class="dropdownArrow" src="assets/img/dropdownArrow.svg">
                         </div>

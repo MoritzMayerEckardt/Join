@@ -15,15 +15,19 @@ function getSubtasksText(task) {
  * @param {Object} task - The task object containing subtasks.
  * @returns {string} - The CSS class for the progress bar.
  */
-function getProgressBarClass(task) {
-    let allsubtasks = task.subtasks ? task.subtasks.length : 0;
+function getProgressBarWidth(task) {
+    let allSubtasks = task.subtasks ? task.subtasks.length : 0;
     let subtasksCompleted = task.subtasks ? task.subtasks.filter(subtask => subtask.isChecked).length : 0;
-    if (allsubtasks === 0) {
+    if (allSubtasks === 0) {
         return "d-none";
     } else {
-        return subtasksCompleted === 0 ? "empty" : subtasksCompleted === allsubtasks ? "full" : "half-filled";
+        let progressPercentage = (subtasksCompleted / allSubtasks) * 100;
+        let progressBarWidth = Math.min(progressPercentage, 100);
+        let progressBarWidthPx = (progressBarWidth / 100) * 128;
+        return progressBarWidthPx;
     }
 }
+
 
 
 /**
@@ -33,10 +37,10 @@ function getProgressBarClass(task) {
  */
 function generateProgressBarHTML(task) {
     let subtasksText = getSubtasksText(task);
-    let progressBarClass = getProgressBarClass(task);
+    let progressBarWidthPx = getProgressBarWidth(task);
     let progressBarHTML = '';
     if (task.subtasks && task.subtasks.length > 0) {
-        progressBarHTML = renderProgressBar(progressBarClass, subtasksText)
+        progressBarHTML = renderProgressBar(progressBarWidthPx, subtasksText)
     }
     return progressBarHTML;
 }
@@ -85,28 +89,6 @@ function handleCheckBox(taskId, index) {
 
 
 /**
- * Generates HTML for subtasks in an edit card.
- * @param {Object} task - The task object containing subtasks.
- * @returns {string} - The HTML code for subtasks in an edit card.
- */
-function generateSubtasksHTMLEditCard(task) {
-    let subtasksHTMLEditCard = '';
-    let subtasks = task.subtasks;
-    if (subtasks && subtasks.length > 0) {
-        for (let index = 0; index < subtasks.length; index++) {
-            const subtask = subtasks[index].title;
-            subtasksHTMLEditCard += renderSubtasksHTMLInEditCard(task, index, subtasks, subtask);
-        }
-    } else {
-        subtasksHTMLEditCard = /*html*/`
-            <div class="no-subtasks-container">No subtasks</div>
-        `
-    }
-    return subtasksHTMLEditCard;
-}
-
-
-/**
  * Deletes a subtask.
  * @param {string} taskId - The ID of the task.
  * @param {number} index - The index of the subtask to be deleted.
@@ -121,20 +103,25 @@ async function deleteSubtask(taskId, index) {
     renderColumns(); 
 }
 
+function deleteSubtaskTemplate(index) {
+    subtaskArray.splice(index, 1)
+    getNewSubtaskInTemplate();
+}
+
 
 /**
  * Adds a new subtask in a task template.
  */
 function addNewSubtaskInTemplate() {
     let addNewSubtask = document.getElementById('subtasks-template').value;
-    if (subtaskArray.length < 2) {
+    if (subtaskArray.length < 10) {
         subtaskArray.push({
             title: addNewSubtask,
             isChecked: false
         });
         getNewSubtaskInTemplate();
     } else {
-        alert("You can only add a maximum of two subtasks.");
+        alert("You can only add a maximum of ten subtasks.");
     }
 }
 
@@ -145,12 +132,62 @@ function addNewSubtaskInTemplate() {
 function getNewSubtaskInTemplate() {
     let newSubtask = document.getElementById('new-subtask-template');
     newSubtask.innerHTML = ``;
-    for (i = 0; i < subtaskArray.length; i++) {
+    for (index = 0; index < subtaskArray.length; index++) {
+        let subtask = subtaskArray[index].title;
         newSubtask.innerHTML += /*html*/`
-             <li class="subtask-list-edit-card"><b>${subtaskArray[i].title}</b></li> 
+             <div>
+        <div id="subtask${index}" onmouseover="showEditImages(${index})" onmouseout="removeEditImages(${index})" class="subtask-container-edit-card">
+            <li class="subtask-list-edit-card">${subtask}</li>
+            <div class="edit-card-edit-container d-none" id="edit-container${index}">
+                <div class="subtasks-img"><img class="subtask-img" onclick="editSubtask(${index})" style="height: 20px" src="./assets/img/edit-dark-blue.svg" alt=""></div>
+                <div style="height: 18px; width: 2px; background: lightgrey"></div>
+                <div class="subtasks-img"><img class="subtask-img" onclick="deleteSubtaskTemplate(${index})" style="height: 20px" src="./assets/img/delete-dark-blue.svg" alt=""></div>
+            </div>
+        </div>
+        <div id="edit-subtask-container${index}" class="edit-subtask-container d-none">
+            <input id="subtask-input${index}" class="subtask-input" value="${subtask}">
+            <div class="edit-card-edit-container">
+                <div class="subtasks-img"><img onclick="emptyInputSubtask(${index})" style="height: 14px" src="./assets/img/delete.svg" alt=""></div>
+                <div style="width: 2px; height: 18px; background: lightgrey"></div>
+                <div class="subtasks-img"><img onclick="saveSubtaskTemplate(${index})" style="height: 14px" src="./assets/img/check_blue.svg" alt=""></div>
+            </div>
+        </div>
+    </div>
          `
     }
     document.getElementById('subtasks-template').value = ``;
+}
+
+
+function saveSubtaskTemplate(index) {
+    let inputSubtask = document.getElementById(`subtask-input${index}`).value;
+    if (index >= 0 && index < subtaskArray.length) {
+        subtaskArray[index] = {
+            title: inputSubtask,
+            isChecked: subtaskArray[index].isChecked
+        };   
+    } 
+    getNewSubtaskInTemplate();
+}
+
+
+/**
+ * Displays edit images for a subtask.
+ * @param {number} index - The index of the subtask.
+ */
+function showEditImagesTemlate(index) {
+    let editContainer = document.getElementById(`edit-container${index}`)
+    editContainer.classList.remove('d-none');
+}
+
+
+/**
+ * Hides edit images for a subtask.
+ * @param {number} index - The index of the subtask.
+ */
+function removeEditImagesTemplate(index) {
+    let editContainer = document.getElementById(`edit-container${index}`)
+    editContainer.classList.add('d-none');
 }
 
 
@@ -163,12 +200,11 @@ async function addNewSubtaskInEditCard(taskId) {
     let task = tasks.find(task => task.id === taskId);
     let subtasks = task.subtasks || [];
     let addNewSubtask = document.getElementById('subtasks-edit-card').value;
-    
-    if (subtasks.length < 2) {
+    if (subtasks.length < 10) {
         addSubtaskToTask(task, addNewSubtask);
         getNewSubtaskInEditCard(task);
     } else {
-        alert("You can only add a maximum of two subtasks.");
+        alert("You can only add a maximum of ten subtasks.");
     }
     await postTasks(TASKS_PATH);
     renderColumns();
@@ -199,7 +235,8 @@ function addSubtaskToTask(task, subtaskTitle) {
 function getNewSubtaskInEditCard(task) {
     let newSubtask = document.getElementById('new-subtask-edit-card');
     newSubtask.innerHTML = '';
-        newSubtask.innerHTML += generateSubtasksHTMLEditCard(task);
+    newSubtask.innerHTML += generateSubtasksHTMLEditCard(task);
+    document.getElementById('subtasks-edit-card').value = '';
 }
 
 

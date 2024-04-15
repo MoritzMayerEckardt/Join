@@ -180,11 +180,11 @@
 }
 
 .search-container:focus-within {
-    border: 1px solid #4589FF;
+    border: 1px solid #29abe2;
 }
 
 .subtasks-input-edit-card:focus-within {
-    border: 1px solid #4589FF;
+    border: 1px solid #29abe2;
 }
 
 .no-tasks-text {
@@ -254,15 +254,6 @@
     border-radius: 8px;
     position: absolute;
     left: 0;
-}
-
-.full {
-    width: 128px;
-    background-color: #4589FF;
-}
-
-.half-filled {
-    width: 64px;
     background-color: #4589FF;
 }
 
@@ -674,8 +665,14 @@
 }
 
 .new-subtask-container {
-    height: 100px;
+    max-height: 100px;
     width: 440px;
+    overflow-y: auto;
+}
+
+#new-subtask-edit-card {
+    max-height: 100px;
+    overflow-y: auto;
 }
 
 .close-button-template {
@@ -1082,6 +1079,9 @@
         width: 0;
         display: none;
     }
+    .move-to-button-mobile {
+        display: flex;
+    }
 }
 
 @media (min-width: 900px) {
@@ -1089,6 +1089,9 @@
         display: flex;
     }
     .mobile-menu-board {
+        display: none;
+    }
+    .move-to-button-mobile {
         display: none;
     }
 }
