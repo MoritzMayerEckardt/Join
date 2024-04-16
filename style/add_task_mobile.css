@@ -4,6 +4,10 @@
         left: 96px;
     }
 
+    .board1{
+        height: 100%;
+    }
+
     .buttonsAndRequired {
         z-index: 2;
         top: 290px;
