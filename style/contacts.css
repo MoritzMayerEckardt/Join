@@ -430,41 +430,37 @@
     background-color: rgba(184, 185, 186, 0.5);
     z-index: 999;
     position: fixed;
-    left: 0;
-    right: 0;
     bottom: 0;
-    top: 0;
+    left: 0;
+    height: 100vh;
+    top: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 50%;
     right: -100%;
     transform: translate(0, -50%);
-    background: transparent;
     padding: 20px;
     transition: right 0.250s ease-in-out;
+    backdrop-filter: blur(15px);
 }
 
 .dialog-edit-bg {
     background-color: rgba(184, 185, 186, 0.5);
     z-index: 999;
     position: fixed;
-    left: 0;
-    right: 0;
     bottom: 0;
-    top: 0;
+    left: 0;
+    height: 100vh;
+    top: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 50%;
-    right: 0;
+    right: -100%;
     transform: translate(0, -50%);
-    background: transparent;
     padding: 20px;
     transition: right 0.250s ease-in-out;
+    backdrop-filter: blur(15px);
 }
-
-
 
 .dialog {
     height: 500px;
