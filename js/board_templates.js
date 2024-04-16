@@ -365,7 +365,7 @@ function renderAssignedContactsHTML(firstLetterName, firstLetterLastName, contac
  */
 function renderAssignedContactsInDetailedCard(firstLetterName, firstLetterLastName, assignedContact, contactColor) {
     return /*html*/`
-    <div class="detailed-card-contact-item">
+    <div class="assigned-contacts-edit-card">
         <div class="task-contacts-ellipse flex-center" style="background-color: ${contactColor}">
             <span class="task-contacts-letters">${firstLetterName}</span><span class="task-contacts-letters">${firstLetterLastName}</span>
         </div>
@@ -399,9 +399,5 @@ function renderAssignedContactsInEditCardHTML(contact) {
  * @returns {string} - HTML string indicating no contacts are assigned.
  */
 function renderNoContactsAssignedHTML() {
-    return /*html*/`
-        <div class="assigned-contacts-edit-card">
-            <span style="font-size: 16px; margin-left: 16px;">No contacts assigned</span>
-        </div>
-    `;
+    return /*html*/`<span class="no-contacts-assigned-text">No contacts assigned</span>`;
 }

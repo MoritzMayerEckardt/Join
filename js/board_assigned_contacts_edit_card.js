@@ -24,7 +24,7 @@ function generateChosenContactsEditCard(assignedContacts) {
         assignedContacts.innerHTML = renderNoContactsAssignedHTML();
     } else {
         for (let index = 0; index < chosenContacts.length; index++) {
-            const contact = chosenContacts[index];
+            let contact = chosenContacts[index];
             assignedContacts.innerHTML += renderAssignedContactsInEditCardHTML(contact);
         }
     }
@@ -47,7 +47,7 @@ function hideContactsEditCard(event) {
     let assignedContacts = document.getElementById('show-assigned-contacts-edit-card');
     showContacts.style.display = 'none';
     showContacts.innerHTML = '';
-    assignedContacts.style.display = 'block';
+    assignedContacts.style.display = 'flex';
     generateChosenContactsEditCard(assignedContacts);
     contactsVisibleEditCard = false;
     arrowImage.style.transform = 'rotate(0deg)';

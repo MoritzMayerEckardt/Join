@@ -402,8 +402,6 @@
 .detailed-card-contact-container {
     display: flex;
     flex-direction: column;
-    padding: 7px 16px 7px 16px;
-    gap: 16px;
     margin-bottom: 24px;
     font-size: 19px;
 }
@@ -412,6 +410,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-left: 12px;
 }
 
 .margin-0 {
@@ -1022,6 +1021,7 @@
     align-items: center;
     gap: 14px;
     margin-bottom: 8px;
+    margin-left: 16px;
 }
 
 #show-chosen-initials {
@@ -1539,8 +1539,7 @@
 
 .no-contacts-assigned-text {
     font-size: 16px;
-    margin-left: 16px;
-    padding: 8px;
+    padding: 7px 16px 7px 16px;
 }
 
 .assigned-container-card {
