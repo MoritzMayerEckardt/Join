@@ -195,7 +195,7 @@ function renderAddTaskForm() {
                     <div class="add-task-template-small-container">
                         <span class="add-task-text-field">Description</span>
                         <div>
-                            <textarea id="description-template" placeholder="Enter a Description" class="smallinputfieldDescription" cols="30" rows="10"></textarea>
+                            <textarea id="description-template" placeholder="Enter a Description" class="textarea-description" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="add-task-template-assigned-container">

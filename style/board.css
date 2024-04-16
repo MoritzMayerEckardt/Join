@@ -438,20 +438,46 @@
     overflow: hidden;
 }
 
+.textarea-description {
+    width: 440px;
+    height: 120px;
+    border-radius: 10px;
+    border-width: 1px;
+    padding-top: 18px;
+    padding-right: 16px;
+    padding-bottom: 18px;
+    padding-left: 16px;
+    background-color: #FFFFFF;
+    border-color: #D1D1D1;
+    font-family: 'Inter' !important;
+    overflow: hidden;
+    resize: none;
+    font-size: 16px;
+}
+
+.textarea-description::placeholder {
+    width: 408px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #D1D1D1;
+}
+
 .checkbox-text {
     font-size: 16px;
     text-overflow: ellipsis;
     overflow: hidden;
 }
-
-.check-box-container-subtasks:hover {
-    white-space: normal;
+.checkbox-text:hover {
+    text-overflow: unset;
+    overflow: auto;
 }
 
 .check-box-container-subtasks:hover {
     background-color: #F4F4F4;
     border-radius: 10px;
     cursor: pointer;
+    white-space: normal;
 }
 
 .detailed-card-bottom {
