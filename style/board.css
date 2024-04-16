@@ -468,10 +468,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
-.checkbox-text:hover {
-    text-overflow: unset;
-    overflow: auto;
-}
 
 .check-box-container-subtasks:hover {
     background-color: #F4F4F4;
