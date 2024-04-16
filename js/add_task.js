@@ -79,36 +79,95 @@ function pushValuesToTasks() {
 }
 
 /**
- * Adds a new subtask to the subtask array.
+ * Adds a new subtask to the subtask array if the input field is not empty.
  */
-function addNewSubtask() {
+ function addNewSubtask() {
     let addNewSubtask = document.getElementById('subtasks').value;
-    if (subtaskArray.length < 2) {
-        subtaskArray.push({
-            title: addNewSubtask,
-            isChecked: false
-        });
-        getNewSubtask();
+    if (addNewSubtask.trim() !== "") { // Überprüfen, ob das Eingabefeld nicht leer ist
+        if (subtaskArray.length < 6) {
+            subtaskArray.push({
+                title: addNewSubtask,
+                isChecked: false
+            });
+            getNewSubtask();
+        } else {
+            alert("You can only add a maximum of six subtasks.");
+        }
     } else {
-        alert("You can only add a maximum of two subtasks.");
+        alert("Please enter a subtask.");
     }
 }
+
 
 /**
  * Updates the interface with new subtask information.
  */
-function getNewSubtask() {
-    console.log("getNewSubtask() is called")
-    let newSubtask = document.getElementById('newSubtask');
+ function getNewSubtask() {
+    let newSubtask = document.getElementById('newSubtasks');
     newSubtask.innerHTML = ``;
     for (i = 0; i < subtaskArray.length; i++) {
         newSubtask.innerHTML += `
-        <div> 
-             <b> •${subtaskArray[i].title} </b> 
-         </div>`
+        <div id="newSubtask${i}" class="newSubtask">
+         <div class= "titleDIV"> 
+             <p>•</p>
+             <div class="subtaskTitle">${subtaskArray[i].title}</div>
+             <input type="text" class="subtaskInput" value="${subtaskArray[i].title}" style="display: none;">
+         </div>    
+             <div class= "deleteAndEdit">
+             <img src="assets/img/edit.svg" class="editsvg" onclick="enableTitleEditing(${i})"> 
+             <img src="assets/img/delete.svg" class="deletesvg" onclick="deleteNewSubtask(${i})">
+             </div>
+        </div>`
     }
     document.getElementById('subtasks').value = ``;
 }
+
+
+/**
+ * Enables editing of the subtask title.
+ * @param {number} index - The index of the subtask to edit.
+ */
+ function enableTitleEditing(index) {
+    let subtaskTitle = document.getElementById(`newSubtask${index}`).querySelector(".subtaskTitle");
+    let subtaskInput = document.getElementById(`newSubtask${index}`).querySelector(".subtaskInput");
+    subtaskTitle.style.display = "none";
+    subtaskInput.style.display = "block";
+    subtaskInput.focus();
+
+    subtaskInput.addEventListener("blur", function() {
+        updateSubtaskTitle(index, subtaskInput.value);
+    });
+}
+
+
+/**
+ * Updates the subtask title in the subtaskArray.
+ * @param {number} index - The index of the subtask to update.
+ * @param {string} value - The new title value.
+ */
+function updateSubtaskTitle(index, value) {
+    let subtaskTitle = document.getElementById(`newSubtask${index}`).querySelector(".subtaskTitle");
+    let subtaskInput = document.getElementById(`newSubtask${index}`).querySelector(".subtaskInput");
+    subtaskArray[index].title = value.trim();
+    subtaskTitle.textContent = value.trim();
+    subtaskTitle.style.display = "block";
+    subtaskInput.style.display = "none";
+}
+
+
+
+/**
+ * Deletes a subtask from the subtaskArray based on the provided index.
+ * @param {number} i - The index of the subtask to be deleted.
+ * @returns {void}
+ */
+ function deleteNewSubtask(i) {
+    // Remove the subtask from the subtaskArray
+    subtaskArray.splice(i, 1);
+    // Update the display of subtasks
+    getNewSubtask();
+}
+
 
 /**
  * Handles key press events, particularly the Enter key for adding subtasks.
