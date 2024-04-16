@@ -343,6 +343,11 @@
     margin-bottom: 24px;
 }
 
+.detailed-card-title:hover {
+    display: flex;
+    cursor: pointer;
+}
+
 .detailed-card-description {
     color: #000000;
     width: 445px;
@@ -428,15 +433,19 @@
     padding: 6px 16px 6px 16px;
     gap: 16px;
     width: 100%;
-    height: 32px;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .checkbox-text {
     font-size: 16px;
-    white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.check-box-container-subtasks:hover {
+    white-space: normal;
 }
 
 .check-box-container-subtasks:hover {
@@ -832,6 +841,8 @@
 .subtask-container-edit-card:hover {
     cursor: pointer;
     background-color: #F4F4F4;
+    white-space: normal;
+
 }
 
 .no-hover:hover {

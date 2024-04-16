@@ -166,6 +166,7 @@ function openEditCard(taskId) {
  */
 function showAddTaskForm(columnId) {
     subtaskArray = [];
+    chosenContacts = [];
     currentColumnId = columnId
     let popupOverlay = document.getElementById('popup-board-overlay');
     let popupContent = document.getElementById('popup-board-content');

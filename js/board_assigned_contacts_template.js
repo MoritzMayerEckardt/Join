@@ -55,7 +55,7 @@ function showAssignedContacts() {
     let initialDIV = document.getElementById('show-chosen-initials');
     document.getElementById('assigned-template').style.borderColor = '#29abe2';
     showContacts.style.border = '1px solid lightgrey';
-    showContactsForAssign(event);
+    showContactsForAssign();
     contactsVisible = true;
     arrowImage.style.transform = 'rotate(180deg)';
     initialDIV.style.display = 'none';
