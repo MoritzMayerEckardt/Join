@@ -477,62 +477,77 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5px; 
-    height: 30px;
+    border-radius: 10px; 
+    height: 35px;
     background-color: transparent; 
     transition: background-color 0.3s; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .newSubtask:hover {
-    background-color: #e0e0e0; 
+    background-color: #ecebeb; 
     cursor: pointer;
 }
 
 .editsvg {
-    width: 17px;
+    width: 24px;
     height: 24px;
 }
 
 .deletesvg{
-    width: 17px;
+    width: 24px;
     height: 24px;
 }
 
 .editsvg:hover,
 .deletesvg:hover {
-    cursor: pointer;
+  cursor: pointer;
+  transform: scale(1.3); /* Vergrößern der Bilder beim Hover */
+  background-color: #ccc; /* Grauer Hintergrund beim Hover */
+  border-radius: 100%; /* Runder Hintergrund */
+  padding: 2px; /* Innenabstand für den runden Hintergrund */
 }
 
 .deleteAndEdit {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    gap: 8px;
-    justify-content: flex-end;
-    padding-right: 20px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  padding-right: 10px;
+  gap: 5px;
+}
+
+.vectorSubtask{
+    background-color: #aaa9a9;
+    width: 1px;
+    height: 18px;
+    margin-top: 3px;
+    margin-bottom: 1px;
+    width: 2px;
 }
 
 .newSubtasks {
-    height: 100px;
-    width: 440px;
-    overflow: auto;
+  height: 100px;
+  width: 440px;
+  overflow: auto;
 }
 
 /* Neue Regeln für Hover-Verhalten */
 .newSubtask .deleteAndEdit {
-    display: flex;
+  display: flex; /* Standardmäßig ausblenden */
 }
 
 .newSubtask:hover .deleteAndEdit {
-    display: flex;
+  display: flex; /* Einblenden, wenn .newSubtask gehovert wird */
 }
 
 .titleDIV{
-
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .buttonsAndRequired{

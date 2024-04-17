@@ -114,8 +114,9 @@ function pushValuesToTasks() {
              <input type="text" class="subtaskInput" value="${subtaskArray[i].title}" style="display: none;">
          </div>    
              <div class= "deleteAndEdit">
-             <img src="./assets/img/edit.svg" class="editsvg" onclick="enableTitleEditing(${i})"> 
-             <img src="./assets/img/delete.svg" class="deletesvg" onclick="deleteNewSubtask(${i})">
+             <img src="./assets/img/edit-dark-blue.svg" class="editsvg" onclick="enableTitleEditing(${i})"> 
+             <img src="./assets/img/vector.svg" class="vectorSubtask"> 
+             <img src="./assets/img/delete-dark-blue.svg" class="deletesvg" onclick="deleteNewSubtask(${i})">
              </div>
         </div>`
     }
