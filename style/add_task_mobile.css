@@ -22,6 +22,7 @@
     .requiredField {
         padding-top: 45px;
     }
+
 }
 
 @media (max-width: 900px) {
@@ -164,6 +165,7 @@
 
     .subPlus {
         display: flex;
+        width: 104%;
     }
 
     .subtaskPlus {
@@ -179,6 +181,22 @@
         width: 100%;
         position: static;
         padding-left: 10px;
+    }
+
+    .newSubtasks{
+        width: 100%;
+    }
+
+    .inputfieldSubtask{
+        position: relative;
+        width: 100%;
+    }
+
+    .subtaskPlus{
+        position: relative;
+        right: 45px;
+        padding-right: 2px;
+        bottom: 1px;
     }
 
     .buttonsAndRequired {
