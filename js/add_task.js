@@ -123,16 +123,16 @@ function pushValuesToTasks() {
     document.getElementById('subtasks').value = ``;
 }
 
-
-/**
- * Enables editing of the subtask title.
- * @param {number} index - The index of the subtask to edit.
+ /**
+ * Displays the edit interface for a subtask.
+ * @param {number} index - The index of the subtask.
  */
- function enableTitleEditing(index) {
+function enableTitleEditing(index) {
     let subtaskTitle = document.getElementById(`newSubtask${index}`).querySelector(".subtaskTitle");
     let subtaskInput = document.getElementById(`newSubtask${index}`).querySelector(".subtaskInput");
     let newSubtask = document.getElementById(`newSubtask${index}`);
-  
+    let editSvg = document.getElementById(`newSubtask${index}`).querySelector(".editsvg");
+    
     subtaskTitle.style.display = "none";
     subtaskInput.style.display = "block";
     subtaskInput.focus();
@@ -142,26 +142,33 @@ function pushValuesToTasks() {
     subtaskInput.style.border = "none"; 
     newSubtask.style.borderBottom = "1px solid #29abe2"; 
     newSubtask.style.borderRadius = "0px"; 
-    newSubtask.style.pointerEvents = "none"; 
-  }
   
-  
-
+    editSvg.src = "assets/img/check_black.svg"; 
+    editSvg.classList.add("editsvg"); 
+    editSvg.setAttribute("onclick", `updateSubtaskTitle(${index})`);
+}
 
 /**
  * Updates the subtask title in the subtaskArray.
  * @param {number} index - The index of the subtask to update.
- * @param {string} value - The new title value.
  */
-function updateSubtaskTitle(index, value) {
+ function updateSubtaskTitle(index) {
     let subtaskTitle = document.getElementById(`newSubtask${index}`).querySelector(".subtaskTitle");
     let subtaskInput = document.getElementById(`newSubtask${index}`).querySelector(".subtaskInput");
-    subtaskArray[index].title = value.trim();
-    subtaskTitle.textContent = value.trim();
+    let newSubtask = document.getElementById(`newSubtask${index}`);
+    let editSvg = document.getElementById(`newSubtask${index}`).querySelector(".editsvg");
+
+    editSvg.src = "./assets/img/edit-dark-blue.svg";
+    editSvg.setAttribute("onclick", `enableTitleEditing(${index})`);
+
+    subtaskArray[index].title = subtaskInput.value.trim();
+    subtaskTitle.textContent = subtaskInput.value.trim();
+
     subtaskTitle.style.display = "block";
     subtaskInput.style.display = "none";
+    newSubtask.style.borderBottom = ""; 
+    newSubtask.style.borderRadius = ""; 
 }
-
 
 
 /**

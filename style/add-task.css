@@ -521,6 +521,7 @@
   .deleteAndEdit {
     display: flex;
     gap: 5px;
+    padding-right: 5px;
   }
   
   .vectorSubtask {
@@ -533,7 +534,7 @@
   }
   
   .newSubtasks {
-    height: 100px;
+    height: 125px;
     width: 440px;
     overflow: auto;
   }
