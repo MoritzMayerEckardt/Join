@@ -131,14 +131,21 @@ function pushValuesToTasks() {
  function enableTitleEditing(index) {
     let subtaskTitle = document.getElementById(`newSubtask${index}`).querySelector(".subtaskTitle");
     let subtaskInput = document.getElementById(`newSubtask${index}`).querySelector(".subtaskInput");
+    let newSubtask = document.getElementById(`newSubtask${index}`);
+  
     subtaskTitle.style.display = "none";
     subtaskInput.style.display = "block";
     subtaskInput.focus();
-
-    subtaskInput.addEventListener("blur", function() {
-        updateSubtaskTitle(index, subtaskInput.value);
-    });
-}
+  
+    subtaskInput.style.width = "100%"; 
+    subtaskInput.style.backgroundColor = "transparent"; 
+    subtaskInput.style.border = "none"; 
+    newSubtask.style.borderBottom = "1px solid #29abe2"; 
+    newSubtask.style.borderRadius = "0px"; 
+    newSubtask.style.pointerEvents = "none"; 
+  }
+  
+  
 
 
 /**
