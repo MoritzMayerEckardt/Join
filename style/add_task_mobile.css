@@ -1,3 +1,4 @@
+
 @media (min-width: 901px) and (max-width: 1315px) {
     .rightSide {
         top: 210px;
@@ -5,6 +6,10 @@
     }
 
     .board1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         height: 100%;
     }
 
