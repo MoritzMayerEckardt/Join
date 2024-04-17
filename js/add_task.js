@@ -84,7 +84,7 @@ function pushValuesToTasks() {
  function addNewSubtask() {
     let addNewSubtask = document.getElementById('subtasks').value;
     if (addNewSubtask.trim() !== "") { // Überprüfen, ob das Eingabefeld nicht leer ist
-        if (subtaskArray.length < 6) {
+        if (subtaskArray.length < 5) {
             subtaskArray.push({
                 title: addNewSubtask,
                 isChecked: false

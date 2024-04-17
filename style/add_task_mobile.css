@@ -10,7 +10,7 @@
 
     .buttonsAndRequired {
         z-index: 2;
-        top: 290px;
+        top: 390px;
         padding-bottom: 35px;
         justify-content: flex-start;
     }
@@ -179,7 +179,6 @@
         width: 100%;
         position: static;
         padding-left: 10px;
-        padding-bottom: 270px;
     }
 
     .buttonsAndRequired {
@@ -245,7 +244,6 @@
 
     .rightSide {
         top: 220px;
-        margin-bottom: 300px;
     }
 
     .buttonsAndRequired {
@@ -260,6 +258,10 @@
 
     .showContactsToAssign {
         z-index: 1;
+    }
+
+    .rightSide{
+        margin-bottom: 0px;
     }
 
     .buttonsAndRequired {
