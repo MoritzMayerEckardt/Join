@@ -132,7 +132,7 @@ function generateAssignedContactsHTML(task) {
             let contactColor = task.assigned[i].color;
             let firstLetterName = getInitialsFromName(assignedContact);
             let firstLetterLastName = getInitialsFromLastName(assignedContact);
-            let marginClass = i === 0 ? 'margin-0' : 'margin-8';
+            let marginClass = (i === 0 || i === 6) ? 'margin-0' : 'margin-8';
             assignedContactsHTML += renderAssignedContactsHTML(firstLetterName, firstLetterLastName, contactColor, marginClass);
         }
     }
