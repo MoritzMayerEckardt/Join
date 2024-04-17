@@ -515,6 +515,7 @@
 .newSubtasks {
     height: 100px;
     width: 440px;
+    overflow: auto;
 }
 
 /* Neue Regeln für Hover-Verhalten */
