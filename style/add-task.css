@@ -505,8 +505,8 @@
   
   .editsvg,
   .deletesvg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
   
   .editsvg:hover,
@@ -522,6 +522,7 @@
     display: flex;
     gap: 5px;
     padding-right: 5px;
+    align-items: center;
   }
   
   .vectorSubtask {

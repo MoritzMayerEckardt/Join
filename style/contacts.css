@@ -622,15 +622,15 @@
 }
 
 #name-input-field-add-contact {
-    background-image: url(/assets/img/person-grey.svg);
+    background-image: url(../assets/img/person-grey.svg);
 }
 
 #email-input-field-add-contact {
-    background-image: url(/assets/img/mail-grey.svg);
+    background-image: url(../assets/img/mail-grey.svg);
 }
 
 #phone-input-field-add-contact {
-    background-image: url(/assets/img/call-grey.svg);
+    background-image: url(../assets/img/call-grey.svg);
 }
 
 .add-contacts-btn-container {

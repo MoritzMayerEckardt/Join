@@ -528,6 +528,7 @@
     z-index: 9999;
     opacity: 0;
     animation: fadeInOverlay 0.3s forwards;
+    backdrop-filter: blur(15px);
 }
 
 .detailed-card-close-button {
@@ -704,7 +705,7 @@
 }
 
 #new-subtask-edit-card {
-    max-height: 100px;
+    max-height: 240px;
     overflow-y: auto;
 }
 
@@ -845,6 +846,11 @@
     display: flex;
     gap: 4px;
     align-items: center;
+}
+
+#subtasks-container-detailed-card {
+    max-height: 240px;
+    overflow-y: auto;
 }
 
 .subtask-container-edit-card {
@@ -1011,7 +1017,7 @@
     width: 100%;
     border-radius: 10px;
     border-top: none;
-    max-height: 200px;
+    max-height: 240px;
     overflow: auto;
     background-color: white;
     z-index: 100;

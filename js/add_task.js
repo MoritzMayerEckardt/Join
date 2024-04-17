@@ -109,8 +109,7 @@ function pushValuesToTasks() {
         newSubtask.innerHTML += `
         <div id="newSubtask${i}" class="newSubtask">
          <div class= "titleDIV"> 
-             <p>•</p>
-             <div class="subtaskTitle">${subtaskArray[i].title}</div>
+             <li class="subtaskTitle">${subtaskArray[i].title}</li>
              <input type="text" class="subtaskInput" value="${subtaskArray[i].title}" style="display: none;">
          </div>    
              <div class= "deleteAndEdit">
